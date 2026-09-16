@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Kisan Vani (किसान वाणी) AI Voice Assistant & Chatbot
+ * KisanSetu — Kisan Vani AI Voice Assistant & Chatbot
  * Non-blocking floating popup widget with Speech-to-Text (STT) & Text-to-Speech (TTS).
  * Answers questions about Crop Prices (MSP), Procurement Starting Dates/Schedules,
  * Mandi Centers, Slot Booking, Live Queues, and Farmer Grievance Redressal.
@@ -31,92 +31,90 @@
     ttsEnabled: true,
     hasSpokenWelcome: false,
     welcomeAudioText: '',
-    currentLanguage: (window.KisanI18n && window.KisanI18n.getLanguage() === 'hi') ? 'hi-IN' : 'en-IN',
+    currentLanguage: 'en-IN',
     activeUtterance: null,
     recognition: null,
     messages: []
   };
 
   window.addEventListener('kisan_language_changed', (e) => {
-    if (e.detail && e.detail.lang) {
-      State.currentLanguage = e.detail.lang === 'hi' ? 'hi-IN' : 'en-IN';
-      if (State.recognition) {
-        State.recognition.lang = State.currentLanguage;
-      }
+    State.currentLanguage = 'en-IN';
+    if (State.recognition) {
+      State.recognition.lang = State.currentLanguage;
     }
   });
 
   // Offline/Fallback Knowledge for 100% Reliability
   const LOCAL_KNOWLEDGE = {
     wheat: {
-      crop: "गेहूं (Wheat Grade A)",
-      msp: "₹2,275 / क्विंटल",
-      demo: "₹2,425 / क्विंटल",
-      start: "1 अप्रैल 2026",
-      end: "15 मई 2026",
-      season: "रबी 2026",
-      moisture: "12% अधिकतम",
-      desc: "गेहूं की सरकारी खरीद 1 अप्रैल से 15 मई 2026 तक चलेगी। न्यूनतम समर्थन मूल्य ₹2,275 प्रति क्विंटल है।"
+      crop: "Wheat (Grade A)",
+      msp: "₹2,275 / Quintal",
+      demo: "₹2,425 / Quintal",
+      start: "1 April 2026",
+      end: "15 May 2026",
+      season: "Rabi 2026",
+      moisture: "12% Max",
+      desc: "Government procurement of wheat runs from 1 April to 15 May 2026. The minimum support price (MSP) is ₹2,275 per quintal."
     },
     mustard: {
-      crop: "सरसों (Mustard)",
-      msp: "₹5,650 / क्विंटल",
-      demo: "₹5,650 / क्विंटल",
-      start: "15 मार्च 2026",
-      end: "30 अप्रैल 2026",
-      season: "रबी 2026",
-      moisture: "9% अधिकतम",
-      desc: "सरसों की खरीद 15 मार्च 2026 से शुरू हो चुकी है और 30 अप्रैल तक चलेगी। एमएसपी ₹5,650 प्रति क्विंटल है।"
+      crop: "Mustard",
+      msp: "₹5,650 / Quintal",
+      demo: "₹5,650 / Quintal",
+      start: "15 March 2026",
+      end: "30 April 2026",
+      season: "Rabi 2026",
+      moisture: "9% Max",
+      desc: "Mustard procurement started on 15 March 2026 and continues until 30 April. The MSP is ₹5,650 per quintal."
     },
     gram: {
-      crop: "चना (Gram)",
-      msp: "₹5,440 / क्विंटल",
-      demo: "₹5,440 / क्विंटल",
-      start: "1 अप्रैल 2026",
-      end: "15 मई 2026",
-      season: "रबी 2026",
-      moisture: "10% अधिकतम",
-      desc: "चने की खरीद 1 अप्रैल से 15 मई 2026 तक निर्धारित है। समर्थन मूल्य ₹5,440 प्रति क्विंटल है।"
+      crop: "Gram / Chickpea",
+      msp: "₹5,440 / Quintal",
+      demo: "₹5,440 / Quintal",
+      start: "1 April 2026",
+      end: "15 May 2026",
+      season: "Rabi 2026",
+      moisture: "10% Max",
+      desc: "Gram procurement is scheduled from 1 April to 15 May 2026. The MSP rate is ₹5,440 per quintal."
     },
     barley: {
-      crop: "जौ (Barley)",
-      msp: "₹1,850 / क्विंटल",
-      demo: "₹1,980 / क्विंटल",
-      start: "1 अप्रैल 2026",
-      end: "15 मई 2026",
-      season: "रबी 2026",
-      moisture: "12% अधिकतम",
-      desc: "जौ की खरीद 1 अप्रैल से 15 मई 2026 तक चलेगी। एमएसपी ₹1,850 प्रति क्विंटल है।"
+      crop: "Barley",
+      msp: "₹1,850 / Quintal",
+      demo: "₹1,980 / Quintal",
+      start: "1 April 2026",
+      end: "15 May 2026",
+      season: "Rabi 2026",
+      moisture: "12% Max",
+      desc: "Barley procurement runs from 1 April to 15 May 2026. The MSP rate is ₹1,850 per quintal."
     },
     paddy: {
-      crop: "धान (Paddy Common)",
-      msp: "₹2,183 / क्विंटल",
-      demo: "₹2,320 / क्विंटल",
-      start: "1 अक्टूबर 2026",
-      end: "15 नवंबर 2026",
-      season: "खरीफ 2026",
-      moisture: "17% अधिकतम",
-      desc: "धान की सरकारी खरीद 1 अक्टूबर 2026 से 15 नवंबर 2026 तक चलेगी। एमएसपी ₹2,183 प्रति क्विंटल है।"
+      crop: "Paddy (Common)",
+      msp: "₹2,183 / Quintal",
+      demo: "₹2,320 / Quintal",
+      start: "1 October 2026",
+      end: "15 November 2026",
+      season: "Kharif 2026",
+      moisture: "17% Max",
+      desc: "Government paddy procurement is scheduled from 1 October to 15 November 2026. The MSP is ₹2,183 per quintal."
     },
     bajra: {
-      crop: "बाजरा (Bajra)",
-      msp: "₹2,500 / क्विंटल",
-      demo: "₹2,625 / क्विंटल",
-      start: "1 अक्टूबर 2026",
-      end: "15 नवंबर 2026",
-      season: "खरीफ 2026",
-      moisture: "12% अधिकतम",
-      desc: "बाजरा खरीद 1 अक्टूबर से 15 नवंबर 2026 तक होगी। समर्थन मूल्य ₹2,500 प्रति क्विंटल है।"
+      crop: "Bajra (Pearl Millet)",
+      msp: "₹2,500 / Quintal",
+      demo: "₹2,625 / Quintal",
+      start: "1 October 2026",
+      end: "15 November 2026",
+      season: "Kharif 2026",
+      moisture: "12% Max",
+      desc: "Bajra procurement runs from 1 October to 15 November 2026. The MSP rate is ₹2,500 per quintal."
     },
     cotton: {
-      crop: "कपास (Cotton)",
-      msp: "₹6,620 / क्विंटल",
-      demo: "₹7,122 / क्विंटल",
-      start: "15 अक्टूबर 2026",
-      end: "31 दिसंबर 2026",
-      season: "खरीफ 2026",
-      moisture: "8.5% अधिकतम",
-      desc: "कपास खरीद 15 अक्टूबर 2026 से 31 दिसंबर 2026 तक होगी। एमएसपी ₹6,620 प्रति क्विंटल है।"
+      crop: "Cotton",
+      msp: "₹6,620 / Quintal",
+      demo: "₹7,122 / Quintal",
+      start: "15 October 2026",
+      end: "31 December 2026",
+      season: "Kharif 2026",
+      moisture: "8.5% Max",
+      desc: "Cotton procurement runs from 15 October to 31 December 2026. The MSP rate is ₹6,620 per quintal."
     }
   };
 
@@ -148,17 +146,17 @@
     launcherContainer.className = 'kv-launcher-container';
     launcherContainer.id = 'kv-launcher-root';
     launcherContainer.innerHTML = `
-      <button type="button" class="kv-launcher-btn" id="kv-launcher-btn" aria-label="किसान वाणी AI Voice Assistant">
+      <button type="button" class="kv-launcher-btn" id="kv-launcher-btn" aria-label="Kisan Vani AI Voice Assistant">
         <div class="kv-launcher-pulse"></div>
         <div class="kv-launcher-avatar">
           <span>🌾</span>
         </div>
         <div class="kv-launcher-text-box">
           <div class="kv-launcher-title">
-            <span>किसान वाणी</span>
+            <span>Kisan Vani</span>
             <span class="kv-launcher-mic-badge">AI Voice</span>
           </div>
-          <span class="kv-launcher-sub">भाव, तारीखें व मंडी सहायता</span>
+          <span class="kv-launcher-sub">Rates, Dates & Mandi Support</span>
         </div>
       </button>
     `;
@@ -179,7 +177,7 @@
           </div>
           <div class="kv-header-title-box">
             <div class="kv-header-title">
-              <span>किसान वाणी</span>
+              <span>Kisan Vani</span>
               <span class="kv-header-badge">AI Assistant</span>
               <div class="kv-equalizer" id="kv-header-equalizer" style="display: none;">
                 <div class="kv-eq-bar"></div>
@@ -188,20 +186,20 @@
                 <div class="kv-eq-bar"></div>
               </div>
             </div>
-            <span class="kv-header-sub">भाव • खरीद तारीखें • स्लॉट सहायता</span>
+            <span class="kv-header-sub">Rates • Procurement Schedules • Slot Help</span>
           </div>
         </div>
         <div class="kv-header-actions">
-          <button type="button" class="kv-icon-btn" id="kv-tts-toggle-btn" title="आवाज ऑन/ऑफ (Toggle Audio)">
+          <button type="button" class="kv-icon-btn" id="kv-tts-toggle-btn" title="Toggle Audio (Speech)">
             🔊
           </button>
-          <button type="button" class="kv-icon-btn" id="kv-reset-btn" title="बातचीत रीसेट करें (Clear)">
+          <button type="button" class="kv-icon-btn" id="kv-reset-btn" title="Clear Conversation">
             🔄
           </button>
-          <button type="button" class="kv-icon-btn" id="kv-minimize-btn" title="छोटा करें (Minimize)">
+          <button type="button" class="kv-icon-btn" id="kv-minimize-btn" title="Minimize">
             ➖
           </button>
-          <button type="button" class="kv-icon-btn" id="kv-close-btn" title="बंद करें (Close)">
+          <button type="button" class="kv-icon-btn" id="kv-close-btn" title="Close">
             ✕
           </button>
         </div>
@@ -209,7 +207,7 @@
 
       <!-- Status banner (Listening / Speaking) -->
       <div class="kv-status-banner" id="kv-status-banner" style="display: none;">
-        <span id="kv-status-text">🎤 सुन रहे हैं... कृपया बोलिए</span>
+        <span id="kv-status-text">🎤 Listening... please speak</span>
         <button type="button" id="kv-status-cancel-btn" style="background:none;border:none;cursor:pointer;font-weight:700;color:inherit;">✕</button>
       </div>
 
@@ -221,19 +219,19 @@
       <!-- Footer / Input -->
       <div class="kv-chat-footer">
         <div class="kv-input-row">
-          <button type="button" class="kv-mic-btn" id="kv-mic-btn" title="माइक से बोलें (Click to Speak)">
+          <button type="button" class="kv-mic-btn" id="kv-mic-btn" title="Click to Speak">
             🎙️
           </button>
-          <input type="text" class="kv-text-input" id="kv-text-input" placeholder="अपना सवाल पूछें या माइक दबाकर बोलें..." autocomplete="off" />
-          <button type="button" class="kv-send-btn" id="kv-send-btn" title="भेजें (Send)">
+          <input type="text" class="kv-text-input" id="kv-text-input" placeholder="Ask a question or click mic to speak..." autocomplete="off" />
+          <button type="button" class="kv-send-btn" id="kv-send-btn" title="Send">
             ➤
           </button>
         </div>
         <div class="kv-footer-sub">
           <span class="kv-lang-indicator">
-            <span>🇮🇳</span> <span id="kv-lang-label">हिन्दी / English</span>
+            <span>🌐</span> <span id="kv-lang-label">English (EN)</span>
           </span>
-          <span>वेबसाइट का साथ-साथ प्रयोग करें 🌐</span>
+          <span>Use alongside website 🌐</span>
         </div>
       </div>
     `;
@@ -272,7 +270,7 @@
     if (!SpeechRecognition) {
       console.warn("KisanVoiceAssistant: Web Speech Recognition API not supported in this browser.");
       if (UI.micBtn) {
-        UI.micBtn.title = "इस ब्राउज़र में वॉइस इनपुट समर्थित नहीं है (Type instead)";
+        UI.micBtn.title = "Voice input is not supported in this browser. Type instead.";
       }
       return;
     }
@@ -287,7 +285,7 @@
       UI.micBtn.classList.add('kv-listening');
       UI.statusBanner.className = 'kv-status-banner kv-listening';
       UI.statusBanner.style.display = 'flex';
-      UI.statusText.textContent = '🎤 सुन रहे हैं... कृपया बोलिए (Listening...)';
+      UI.statusText.textContent = '🎤 Listening... please speak';
       stopSpeaking();
     };
 
@@ -316,7 +314,7 @@
       console.warn("Speech recognition error:", event.error);
       stopListening();
       if (event.error === 'not-allowed') {
-        alert("माइक्रोफ़ोन अनुमति अस्वीकार कर दी गई है। कृपया ब्राउज़र सेटिंग्स में माइक्रोफ़ोन की अनुमति दें।");
+        alert("Microphone permission was denied. Please allow microphone access in your browser settings.");
       }
     };
 
@@ -329,7 +327,7 @@
 
   function startListening() {
     if (!State.recognition) {
-      alert("आपके ब्राउज़र में वॉइस रिकॉग्निशन समर्थित नहीं है। कृपया लिखकर सवाल पूछें।");
+      alert("Voice recognition is not supported in your browser. Please type your query.");
       return;
     }
     try {
@@ -358,13 +356,12 @@
   // 4. TEXT TO SPEECH (TTS) SETUP
   // -------------------------------------------------------------
   function speakText(text) {
-    // Only speak when assistant popup is open and TTS is enabled
     if (!State.isOpen) return;
     if (!State.ttsEnabled || !window.speechSynthesis) return;
 
     stopSpeaking();
 
-    // Clean markdown characters for pleasant speech
+    // Clean markdown characters for speech
     const cleanSpeech = text
       .replace(/[*_#`~[\]()•]/g, ' ')
       .replace(/\s+/g, ' ')
@@ -374,18 +371,16 @@
 
     const utterance = new SpeechSynthesisUtterance(cleanSpeech);
     utterance.lang = State.currentLanguage;
-    utterance.rate = 0.95; // Friendly cadence
+    utterance.rate = 0.95;
     utterance.pitch = 1.0;
 
-    // Pick a natural Indian/Hindi voice if available
     const voices = window.speechSynthesis.getVoices();
-    const hindiVoice = voices.find(v => v.lang && (v.lang.startsWith('hi') || v.lang.includes('IN')));
-    if (hindiVoice) {
-      utterance.voice = hindiVoice;
+    const englishVoice = voices.find(v => v.lang && (v.lang.startsWith('en-IN') || v.lang.startsWith('en-US') || v.lang.startsWith('en-GB') || v.lang.startsWith('en')));
+    if (englishVoice) {
+      utterance.voice = englishVoice;
     }
 
     utterance.onstart = () => {
-      // If closed between trigger and speech start, halt immediately
       if (!State.isOpen) {
         stopSpeaking();
         return;
@@ -395,7 +390,7 @@
       if (UI.statusBanner) {
         UI.statusBanner.className = 'kv-status-banner kv-speaking';
         UI.statusBanner.style.display = 'flex';
-        UI.statusText.innerHTML = '🔊 किसान वाणी बोल रही है... (Playing Voice)';
+        UI.statusText.innerHTML = '🔊 Kisan Vani is speaking...';
       }
     };
 
@@ -405,7 +400,7 @@
       if (UI.statusBanner && !State.isListening) UI.statusBanner.style.display = 'none';
       document.querySelectorAll('.kv-read-btn.kv-playing').forEach(btn => {
         btn.classList.remove('kv-playing');
-        btn.innerHTML = '🔊 सुनो (Listen)';
+        btn.innerHTML = '🔊 Listen';
       });
     };
 
@@ -415,7 +410,7 @@
       if (UI.statusBanner && !State.isListening) UI.statusBanner.style.display = 'none';
       document.querySelectorAll('.kv-read-btn.kv-playing').forEach(btn => {
         btn.classList.remove('kv-playing');
-        btn.innerHTML = '🔊 सुनो (Listen)';
+        btn.innerHTML = '🔊 Listen';
       });
     };
 
@@ -436,7 +431,6 @@
     if (window.speechSynthesis) {
       try {
         window.speechSynthesis.cancel();
-        // Chromium flush workaround for pending or active speech
         if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
           window.speechSynthesis.pause();
           window.speechSynthesis.cancel();
@@ -452,7 +446,7 @@
     if (UI.statusBanner && !State.isListening) UI.statusBanner.style.display = 'none';
     document.querySelectorAll('.kv-read-btn.kv-playing').forEach(btn => {
       btn.classList.remove('kv-playing');
-      btn.innerHTML = '🔊 सुनो (Listen)';
+      btn.innerHTML = '🔊 Listen';
     });
   }
 
@@ -489,10 +483,8 @@
     const msgEl = document.createElement('div');
     msgEl.className = 'kv-msg kv-msg-bot';
 
-    // Format body
     const bodyHtml = formatMarkdown(data.response);
 
-    // Format action chips
     let actionChipsHtml = '';
     if (data.quick_actions && data.quick_actions.length > 0) {
       actionChipsHtml = `
@@ -515,15 +507,14 @@
         ${bodyHtml}
         ${actionChipsHtml}
         <button type="button" class="kv-read-btn" data-audio="${audioTextEscaped}">
-          🔊 सुनो (Listen)
+          🔊 Listen
         </button>
       </div>
-      <span class="kv-msg-time">किसान वाणी • ${getTimeString()}</span>
+      <span class="kv-msg-time">Kisan Vani • ${getTimeString()}</span>
     `;
 
     UI.chatBody.appendChild(msgEl);
 
-    // Bind speech replay button
     const readBtn = msgEl.querySelector('.kv-read-btn');
     readBtn.addEventListener('click', () => {
       if (readBtn.classList.contains('kv-playing')) {
@@ -531,22 +522,20 @@
       } else {
         document.querySelectorAll('.kv-read-btn.kv-playing').forEach(b => {
           b.classList.remove('kv-playing');
-          b.innerHTML = '🔊 सुनो (Listen)';
+          b.innerHTML = '🔊 Listen';
         });
         readBtn.classList.add('kv-playing');
-        readBtn.innerHTML = '⏹️ रोकें (Stop)';
+        readBtn.innerHTML = '⏹️ Stop';
         speakText(data.audio_text || data.response);
       }
     });
 
-    // Render suggestions if present
     if (data.suggestions && data.suggestions.length > 0) {
       appendSuggestionChips(data.suggestions);
     }
 
     scrollToBottom();
 
-    // Auto speak ONLY if permitted, popup is currently open, and TTS enabled
     if (autoSpeak && State.isOpen && State.ttsEnabled && data.audio_text) {
       speakText(data.audio_text);
     }
@@ -559,7 +548,7 @@
     const container = document.createElement('div');
     container.className = 'kv-quick-prompts kv-quick-prompts-dynamic';
     container.innerHTML = `
-      <div class="kv-prompts-title">सुझाए गए प्रश्न (Suggested Queries):</div>
+      <div class="kv-prompts-title">Suggested Queries:</div>
       <div class="kv-prompts-grid">
         ${suggestions.map(s => `<button type="button" class="kv-prompt-chip">${s}</button>`).join('')}
       </div>
@@ -576,37 +565,36 @@
   }
 
   function showWelcomeMessage() {
-    let farmerName = "किसान भाई";
+    let farmerName = "Farmer";
     if (window.KisanAuth && window.KisanAuth.getCurrentUser()) {
       farmerName = window.KisanAuth.getCurrentUser().name || farmerName;
     }
 
     const welcomeData = {
-      response: `**नमस्ते ${farmerName}! 🙏 मैं 'किसान वाणी' (Kisan Vani) आपकी डिजिटल कृषि सहायिका हूँ।**\n\n` +
-        `मैं आपकी निम्न विषयों में मदद कर सकती हूँ:\n` +
-        `• 🌾 **फसलों के एमएसपी भाव व मंडी दरें**\n` +
-        `• 📅 **सरकारी खरीद शुरू होने की तारीखें (Procurement Schedule)**\n` +
-        `• 📍 **नजदीकी खरीद केंद्र व वर्तमान भीड़ की स्थिति**\n` +
-        `• ⚡ **डिजिटल टोकन व समय स्लॉट बुकिंग**\n` +
-        `• 💳 **भुगतान (DBT) प्रक्रिया व शिकायत निवारण**\n\n` +
-        `*आप सीधे माइक दबाकर बोल सकते हैं या नीचे दिए गए विकल्पों में से चुनें।*`,
-      audio_text: `नमस्ते ${farmerName}! मैं किसान वाणी हूँ। आप मुझसे फसलों के भाव, खरीद की तारीखें, नजदीकी मंडी और स्लॉट बुकिंग के बारे में पूछ सकते हैं।`,
+      response: `**Welcome ${farmerName}! 🙏 I am Kisan Vani, your digital agricultural assistant.**\n\n` +
+        `I can assist you with:\n` +
+        `• 🌾 **MSP Floor Prices & Mandi Rates**\n` +
+        `• 📅 **Official Procurement Schedules & Dates**\n` +
+        `• 📍 **Nearby Procurement Centers & Queue Congestion**\n` +
+        `• ⚡ **Digital Tokens & Weighbridge Slot Booking**\n` +
+        `• 💳 **Direct Benefit Transfer (DBT) & Grievance Redressal**\n\n` +
+        `*Click the microphone to speak, type your question, or choose an option below.*`,
+      audio_text: `Welcome ${farmerName}! I am Kisan Vani. You can ask me about crop MSP rates, procurement schedules, nearby mandis, and slot bookings.`,
       quick_actions: [
-        { label: "🌾 फसलों के भाव (MSP)", url: "farmer/centers.html" },
-        { label: "📍 नजदीकी खरीद केंद्र", url: "farmer/centers.html" },
-        { label: "⚡ स्लॉट बुक करें", url: "farmer/booking.html" }
+        { label: "🌾 MSP Floor Rates", url: "farmer/centers.html" },
+        { label: "📍 Nearby Centers", url: "farmer/centers.html" },
+        { label: "⚡ Book a Slot", url: "farmer/booking.html" }
       ],
       suggestions: [
-        "गेहूं का एमएसपी भाव क्या है?",
-        "सरसों की खरीद कब शुरू होगी?",
-        "करनाल मंडी में कितनी भीड़ है?",
-        "टोकन कैसे बुक करें?",
-        "पेमेंट कितने दिन में आएगा?"
+        "What is the MSP rate for wheat?",
+        "When does mustard procurement start?",
+        "How congested is Karnal mandi?",
+        "How do I book a token?",
+        "When will DBT payment be credited?"
       ]
     };
 
     State.welcomeAudioText = welcomeData.audio_text;
-    // Render the initial welcome message without auto-playing audio
     appendBotMessage(welcomeData, false);
   }
 
@@ -626,25 +614,23 @@
     appendUserMessage(cleanQuery);
     UI.textInput.value = '';
 
-    // Show loading indicator
     const loadingEl = document.createElement('div');
     loadingEl.className = 'kv-msg kv-msg-bot kv-loading-indicator';
     loadingEl.innerHTML = `
       <div class="kv-bubble" style="color: #64748b; font-style: italic;">
-        <span>🌾 उत्तर तैयार किया जा रहा है...</span>
+        <span>🌾 Preparing response...</span>
       </div>
     `;
     UI.chatBody.appendChild(loadingEl);
     scrollToBottom();
 
     try {
-      // 1. Attempt FastAPI backend call
       const res = await fetch('/api/v1/assistant/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: cleanQuery,
-          language: State.currentLanguage.startsWith('hi') ? 'hi' : 'en',
+          language: 'en',
           user_id: window.KisanAuth?.getCurrentUser()?.id || null,
           current_page: window.location.pathname
         })
@@ -658,8 +644,6 @@
     } catch (err) {
       console.warn("KisanVoiceAssistant: Backend query fallback triggered:", err.message);
       loadingEl.remove();
-
-      // 2. Intelligent local fallback engine
       const localResp = processLocalQuery(cleanQuery);
       appendBotMessage(localResp, State.isOpen);
     }
@@ -668,153 +652,152 @@
   function processLocalQuery(q) {
     const qLower = q.toLowerCase();
 
-    // Check crop
     let matchedCropKey = null;
-    if (qLower.includes('गेहूं') || qLower.includes('wheat') || qLower.includes('gehu')) matchedCropKey = 'wheat';
-    else if (qLower.includes('सरसों') || qLower.includes('mustard') || qLower.includes('sarson')) matchedCropKey = 'mustard';
-    else if (qLower.includes('चना') || qLower.includes('gram') || qLower.includes('chana')) matchedCropKey = 'gram';
-    else if (qLower.includes('जौ') || qLower.includes('barley')) matchedCropKey = 'barley';
-    else if (qLower.includes('धान') || qLower.includes('चावल') || qLower.includes('paddy') || qLower.includes('rice')) matchedCropKey = 'paddy';
-    else if (qLower.includes('बाजरा') || qLower.includes('bajra')) matchedCropKey = 'bajra';
-    else if (qLower.includes('कपास') || qLower.includes('cotton')) matchedCropKey = 'cotton';
+    if (qLower.includes('wheat') || qLower.includes('gehu')) matchedCropKey = 'wheat';
+    else if (qLower.includes('mustard') || qLower.includes('sarson')) matchedCropKey = 'mustard';
+    else if (qLower.includes('gram') || qLower.includes('chana') || qLower.includes('chickpea')) matchedCropKey = 'gram';
+    else if (qLower.includes('barley')) matchedCropKey = 'barley';
+    else if (qLower.includes('paddy') || qLower.includes('rice') || qLower.includes('dhan')) matchedCropKey = 'paddy';
+    else if (qLower.includes('bajra') || qLower.includes('millet')) matchedCropKey = 'bajra';
+    else if (qLower.includes('cotton') || qLower.includes('kapas')) matchedCropKey = 'cotton';
 
     // 1. Dates query
-    if (qLower.includes('तारीख') || qLower.includes('date') || qLower.includes('कब') || qLower.includes('shuru') || qLower.includes('schedule')) {
+    if (qLower.includes('date') || qLower.includes('when') || qLower.includes('start') || qLower.includes('schedule') || qLower.includes('procurement')) {
       if (matchedCropKey && LOCAL_KNOWLEDGE[matchedCropKey]) {
         const k = LOCAL_KNOWLEDGE[matchedCropKey];
         return {
-          response: `📅 **${k.crop} की खरीद समय-सारणी (${k.season})**:\n\n` +
-            `• **खरीद शुरू होने की तारीख:** **${k.start}**\n` +
-            `• **खरीद समाप्त होने की तारीख:** **${k.end}**\n` +
-            `• **न्यूनतम समर्थन मूल्य (MSP):** **${k.msp}**\n` +
-            `• **मान्य नमी सीमा:** ${k.moisture}\n\n` +
-            `💡 *मंडी जाने से पहले किसान सेतु पर अपना समय स्लॉट अवश्य बुक करें।*`,
-          audio_text: `${k.crop} की सरकारी खरीद ${k.start} से ${k.end} तक चलेगी। इसका समर्थन मूल्य ${k.msp} है।`,
+          response: `📅 **${k.crop} Procurement Schedule (${k.season})**:\n\n` +
+            `• **Start Date:** **${k.start}**\n` +
+            `• **End Date:** **${k.end}**\n` +
+            `• **Minimum Support Price (MSP):** **${k.msp}**\n` +
+            `• **Moisture Ceiling:** ${k.moisture}\n\n` +
+            `💡 *Ensure you reserve a time slot on KisanSetu before departing for the mandi.*`,
+          audio_text: `Government procurement of ${k.crop} runs from ${k.start} to ${k.end}. The support price is ${k.msp}.`,
           quick_actions: [
-            { label: "⚡ स्लॉट बुक करें", url: `farmer/booking.html?crop=${matchedCropKey}` },
-            { label: "📍 खरीद केंद्र देखें", url: "farmer/centers.html" }
+            { label: "⚡ Book a Slot", url: `farmer/booking.html?crop=${matchedCropKey}` },
+            { label: "📍 View Centers", url: "farmer/centers.html" }
           ],
-          suggestions: ["गेहूं का भाव क्या है?", "सरसों की खरीद कब शुरू होगी?", "टोकन कैसे मिलेगा?"]
+          suggestions: ["What is the MSP for wheat?", "When does mustard procurement start?", "How do I get a token?"]
         };
       } else {
         return {
-          response: `📅 **सरकारी खरीद 2026 समय-सारणी**:\n\n` +
-            `🌾 **रबी फसलें:**\n` +
-            `• सरसों: 15 मार्च 2026 से 30 अप्रैल 2026 (MSP: ₹5,650)\n` +
-            `• गेहूं: 1 अप्रैल 2026 से 15 मई 2026 (MSP: ₹2,275)\n` +
-            `• चना: 1 अप्रैल 2026 से 15 मई 2026 (MSP: ₹5,440)\n\n` +
-            `🌾 **खरीफ फसलें:**\n` +
-            `• धान: 1 अक्टूबर 2026 से 15 नवंबर 2026 (MSP: ₹2,183)\n` +
-            `• बाजरा: 1 अक्टूबर 2026 से 15 नवंबर 2026 (MSP: ₹2,500)\n\n` +
-            `🕒 मंडी समय: 09:00 AM से 05:00 PM (सोमवार - शनिवार)`,
-          audio_text: "रबी में सरसों की खरीद 15 मार्च से और गेहूं व चना की खरीद 1 अप्रैल 2026 से शुरू होगी। धान की खरीद 1 अक्टूबर से होगी।",
+          response: `📅 **Government Procurement Schedule 2026**:\n\n` +
+            `🌾 **Rabi Season:**\n` +
+            `• Mustard: 15 March 2026 to 30 April 2026 (MSP: ₹5,650)\n` +
+            `• Wheat: 1 April 2026 to 15 May 2026 (MSP: ₹2,275)\n` +
+            `• Gram: 1 April 2026 to 15 May 2026 (MSP: ₹5,440)\n\n` +
+            `🌾 **Kharif Season:**\n` +
+            `• Paddy: 1 October 2026 to 15 November 2026 (MSP: ₹2,183)\n` +
+            `• Bajra: 1 October 2026 to 15 November 2026 (MSP: ₹2,500)\n\n` +
+            `🕒 Mandi Operational Hours: 09:00 AM to 05:00 PM (Monday - Saturday)`,
+          audio_text: "Mustard procurement starts on 15 March, and wheat and gram begin on 1 April 2026. Paddy procurement starts on 1 October.",
           quick_actions: [
-            { label: "⚡ टोकन बुक करें", url: "farmer/booking.html" },
-            { label: "📍 केंद्र देखें", url: "farmer/centers.html" }
+            { label: "⚡ Book a Token", url: "farmer/booking.html" },
+            { label: "📍 View Centers", url: "farmer/centers.html" }
           ],
-          suggestions: ["गेहूं का भाव क्या है?", "टोकन कैसे बुक करें?"]
+          suggestions: ["What is the price of wheat?", "How do I book a token?"]
         };
       }
     }
 
     // 2. Price query
-    if (qLower.includes('भाव') || qLower.includes('रेट') || qLower.includes('price') || qLower.includes('msp') || qLower.includes('dam') || matchedCropKey) {
+    if (qLower.includes('price') || qLower.includes('msp') || qLower.includes('rate') || matchedCropKey) {
       if (matchedCropKey && LOCAL_KNOWLEDGE[matchedCropKey]) {
         const k = LOCAL_KNOWLEDGE[matchedCropKey];
         return {
-          response: `🌾 **${k.crop} का आधिकारिक मूल्य**:\n\n` +
-            `• **सरकारी एमएसपी:** **${k.msp}**\n` +
-            `• **डेमो मंडी दर:** ${k.demo}\n` +
-            `• **स्वीकार्य नमी:** ${k.moisture}\n` +
-            `• **भुगतान:** डीबीटी (DBT) द्वारा 48-72 घंटे में सीधे बैंक खाते में।`,
-          audio_text: `${k.crop} का सरकारी एमएसपी भाव ${k.msp} है।`,
+          response: `🌾 **${k.crop} Official MSP & Rate Structure**:\n\n` +
+            `• **Government MSP:** **${k.msp}**\n` +
+            `• **Demo Mandi Rate:** ${k.demo}\n` +
+            `• **Acceptable Moisture:** ${k.moisture}\n` +
+            `• **Payment:** Direct bank transfer (DBT) within 48-72 hours.`,
+          audio_text: `The government MSP rate for ${k.crop} is ${k.msp}.`,
           quick_actions: [
-            { label: "⚡ स्लॉट बुक करें", url: `farmer/booking.html?crop=${matchedCropKey}` }
+            { label: "⚡ Book a Slot", url: `farmer/booking.html?crop=${matchedCropKey}` }
           ],
-          suggestions: ["खरीद कब शुरू होगी?", "पेमेंट कितने दिन में आएगा?"]
+          suggestions: ["When does procurement start?", "How many days for DBT payout?"]
         };
       }
     }
 
     // 3. Booking query
-    if (qLower.includes('booking') || qLower.includes('बुकिंग') || qLower.includes('token') || qLower.includes('टोकन') || qLower.includes('slot')) {
+    if (qLower.includes('booking') || qLower.includes('book') || qLower.includes('token') || qLower.includes('slot')) {
       return {
-        response: `⚡ **टोकन बुक करने के आसान चरण**:\n\n` +
-          `1. 'खरीद केंद्र खोजें' पर जाकर अपनी मंडी चुनें।\n` +
-          `2. फसल का चयन करें और अनुमानित मात्रा भरें।\n` +
-          `3. तारीख और समय स्लॉट (जैसे 09:00 AM) चुनें।\n` +
-          `4. वाहन नंबर दर्ज करके पुष्टि करें और डिजिटल टोकन प्राप्त करें!`,
-        audio_text: "टोकन बुक करने के लिए खरीद केंद्र चुनें, फसल और समय चुनें, और तुरंत डिजिटल टोकन प्राप्त करें।",
+        response: `⚡ **Easy Steps to Book a Mandi Token**:\n\n` +
+          `1. Go to 'Find Procurement Center' and select your mandi.\n` +
+          `2. Choose your crop and enter estimated quantity in quintals.\n` +
+          `3. Pick a convenient date and time slot (e.g. 09:00 AM).\n` +
+          `4. Enter your vehicle number and confirm to receive your digital pass!`,
+        audio_text: "To book a token, select your procurement center, choose crop and arrival slot, and receive an instant digital token pass.",
         quick_actions: [
-          { label: "⚡ अभी स्लॉट बुक करें", url: "farmer/booking.html" },
-          { label: "🎫 मेरा डिजिटल टोकन", url: "farmer/token.html" }
+          { label: "⚡ Book Slot Now", url: "farmer/booking.html" },
+          { label: "🎫 My Digital Pass", url: "farmer/token.html" }
         ],
-        suggestions: ["गेहूं का भाव क्या है?", "मंडी में कतार कैसे देखें?"]
+        suggestions: ["What is the price of wheat?", "How do I track live queue?"]
       };
     }
 
-    // 4. Fertilizer / Urea / DAP Dosage Queries (Ported from Kisan-Setu)
-    if (qLower.includes('urea') || qLower.includes('यूरिया') || qLower.includes('खाद') || qLower.includes('fertilizer') || qLower.includes('dap') || qLower.includes('डीएपी') || qLower.includes('पोषण')) {
+    // 4. Fertilizer / Nutrition advisory
+    if (qLower.includes('urea') || qLower.includes('fertilizer') || qLower.includes('dap') || qLower.includes('nutrient') || qLower.includes('zinc')) {
       return {
-        response: `🌿 **वैज्ञानिक उर्वरक एवं पोषण प्रबंधन (Scientific Fertilizer Advisory)**:\n\n` +
-          `• **डीएपी (DAP):** 50 से 55 किलोग्राम प्रति एकड़ बुवाई के समय बेसल डोज के रूप में डालें।\n` +
-          `• **यूरिया (Urea) तीन चरणों में:** कुल 45 किग्रा/एकड़ (50% बुवाई पर, 25% प्रथम सिंचाई 21 दिन पर, 25% कल्ले फूटते समय)।\n` +
-          `• **जिंक सल्फेट:** 10 किग्रा प्रति एकड़ (21% जिंक)। डीएपी के साथ कभी न मिलाएं।\n` +
-          `• **मृदा रिपोर्ट आधारित लाभ:** सिफारिश अनुसार खाद का प्रयोग करने पर **Grade A खरीद बोनस** की पात्रता मिलती है।`,
-        audio_text: "गेहूं और रबी फसलों के लिए 50 किलो डीएपी बुवाई के समय तथा 45 किलो यूरिया तीन चरणों में पहली और दूसरी सिंचाई पर डालें।",
+        response: `🌿 **Scientific Fertilizer & Nutrition Management**:\n\n` +
+          `• **DAP:** Apply 50 to 55 kg per acre as a basal dose at sowing time.\n` +
+          `• **Urea in Three Splits:** Total 45 kg/acre (50% basal, 25% at first irrigation at 21 days, 25% at tillering).\n` +
+          `• **Zinc Sulphate:** 10 kg per acre (21% Zinc). Never mix directly with DAP.\n` +
+          `• **Soil Test Benefits:** Applying fertilizers per soil card recommendations qualifies you for **Grade A Procurement Bonus**.`,
+        audio_text: "For wheat and rabi crops, apply 50 kg DAP at sowing and 45 kg Urea split across first and second irrigation.",
         quick_actions: [
-          { label: "🧪 मृदा परीक्षण कार्ड", url: "farmer/soil-testing.html" }
+          { label: "🧪 Soil Health Card", url: "farmer/soil-testing.html" }
         ],
-        suggestions: ["यूरिया कब डालना चाहिए?", "मृदा परीक्षण के क्या नियम हैं?", "गेहूं का भाव क्या है?"]
+        suggestions: ["When should Urea be applied?", "What are the rules for soil testing?"]
       };
     }
 
-    // 5. Soil Testing & 48-Hour SLA Guarantee Queries
-    if (qLower.includes('मृदा') || qLower.includes('soil') || qLower.includes('मिट्टी') || qLower.includes('sla') || qLower.includes('testing') || qLower.includes('स्वास्थ्य कार्ड')) {
+    // 5. Soil testing & 48-hour SLA
+    if (qLower.includes('soil') || qLower.includes('test') || qLower.includes('sla') || qLower.includes('health card')) {
       return {
-        response: `🧪 **मृदा परीक्षण एवं 48-घंटे सेवा गारंटी (48-Hour Working SLA)**:\n\n` +
-          `• **48-घंटे सेवा गारंटी:** आवेदन के 48 कार्य घंटों के भीतर प्रयोगशाला टीम नमूना संकलित कर डिजिटल हेल्थ कार्ड जारी करती है।\n` +
-          `• **जांच घटक:** नाइट्रोजन (N), फास्फोरस (P), पोटाश (K), पीएच (pH), जैविक कार्बन (OC%), एवं ईसी (EC)।\n` +
-          `• **अनुपालन प्रमाणीकरण:** वैज्ञानिक सलाह का पालन करने पर किसान को 'प्रमाणित अनुपालन बैच' और बोनस मिलता है।`,
-        audio_text: "सरकारी सेवा गारंटी अनुसार 48 कार्य घंटों के भीतर प्रयोगशाला टीम मृदा स्वास्थ्य कार्ड और वैज्ञानिक खाद की सिफारिश जारी करती है।",
+        response: `🧪 **Soil Health Testing & 48-Hour Service Guarantee (SLA)**:\n\n` +
+          `• **48-Hour SLA Guarantee:** Within 48 working hours of application, the laboratory field team collects samples and issues your digital card.\n` +
+          `• **Tested Parameters:** Nitrogen (N), Phosphorus (P), Potassium (K), pH, Organic Carbon (OC%), and Electrical Conductivity (EC).\n` +
+          `• **Compliance Certification:** Farmers adhering to soil advice receive a 'Certified Compliance Badge' and MSP bonus.`,
+        audio_text: "Under the 48-hour SLA guarantee, the laboratory team collects soil samples and issues your digital health card within 48 working hours.",
         quick_actions: [
-          { label: "🧪 मृदा जांच आवेदन", url: "farmer/soil-testing.html" }
+          { label: "🧪 Apply for Soil Test", url: "farmer/soil-testing.html" }
         ],
-        suggestions: ["डीएपी की कितनी मात्रा डालें?", "टोकन कैसे बुक करें?"]
+        suggestions: ["How much DAP should I use?", "How do I book a token?"]
       };
     }
 
-    // 6. Real-time Weather Queries
-    if (qLower.includes('मौसम') || qLower.includes('weather') || qLower.includes('बारिश') || qLower.includes('rain') || qLower.includes('तापमान')) {
+    // 6. Weather query
+    if (qLower.includes('weather') || qLower.includes('rain') || qLower.includes('temp') || qLower.includes('forecast')) {
       const w = window.KisanAgriService?.weatherCache;
       if (w) {
         return {
-          response: `🌤️ **लाइव मौसम स्थिति (${w.location}, ${w.region})**:\n\n` +
-            `• **तापमान:** ${w.tempC}°C (अनुभूत: ${w.feelsLikeC}°C)\n` +
-            `• **आर्द्रता:** ${w.humidity}% • **हवा:** ${w.windKph} km/h (${w.windDir})\n` +
-            `• **स्थिति:** ${w.conditionText}\n` +
-            `• **कृषि सलाह:** ${w.agroAdvice?.desc || 'मौसम कृषि कार्यों के लिए अनुकूल है।'}`,
-          audio_text: `वर्तमान में तापमान ${w.tempC} डिग्री और मौसम ${w.conditionText} है। ${w.agroAdvice?.desc || ''}`,
+          response: `🌤️ **Live Agro-Weather (${w.location}, ${w.region})**:\n\n` +
+            `• **Temperature:** ${w.tempC}°C (Feels like: ${w.feelsLikeC}°C)\n` +
+            `• **Humidity:** ${w.humidity}% • **Wind:** ${w.windKph} km/h (${w.windDir})\n` +
+            `• **Condition:** ${w.conditionText}\n` +
+            `• **Agro Advisory:** ${w.agroAdvice?.desc || 'Weather is favorable for agricultural operations.'}`,
+          audio_text: `Current temperature is ${w.tempC} degrees with ${w.conditionText}. ${w.agroAdvice?.desc || ''}`,
           quick_actions: [
-            { label: "🌾 डैशबोर्ड देखें", url: "farmer/dashboard.html" }
+            { label: "🌾 View Dashboard", url: "farmer/dashboard.html" }
           ],
-          suggestions: ["आज बारिश होगी क्या?", "फसलों के भाव क्या हैं?"]
+          suggestions: ["Will it rain today?", "What are current crop prices?"]
         };
       }
     }
 
     // Default Fallback
     return {
-      response: `🌾 **किसान वाणी सहायता**:\n\n` +
-        `• **फसलों के भाव:** गेहूं ₹2,275/Q, सरसों ₹5,650/Q, चना ₹5,440/Q, धान ₹2,183/Q।\n` +
-        `• **खरीद शुरू:** सरसों 15 मार्च से, गेहूं 1 अप्रैल 2026 से।\n` +
-        `• **स्लॉट बुकिंग:** टोकन बुक करके मंडी में कतार से बचें।`,
-      audio_text: "किसान भाई, आप फसलों के भाव, खरीद की तारीखें और टोकन बुकिंग के बारे में पूछ सकते हैं।",
+      response: `🌾 **Kisan Vani Mandi Assistance**:\n\n` +
+        `• **Crop MSP Rates:** Wheat ₹2,275/Q, Mustard ₹5,650/Q, Gram ₹5,440/Q, Paddy ₹2,183/Q.\n` +
+        `• **Procurement Schedules:** Mustard from 15 March, Wheat from 1 April 2026.\n` +
+        `• **Slot Booking:** Book a digital pass to avoid waiting in long queues at the mandi.`,
+      audio_text: "You can ask about crop MSP prices, procurement schedules, and slot bookings.",
       quick_actions: [
-        { label: "🌾 फसलों के भाव", url: "farmer/centers.html" },
-        { label: "⚡ टोकन बुक करें", url: "farmer/booking.html" }
+        { label: "🌾 Crop MSP Prices", url: "farmer/centers.html" },
+        { label: "⚡ Book a Token", url: "farmer/booking.html" }
       ],
-      suggestions: ["गेहूं का भाव क्या है?", "सरसों की खरीद कब शुरू होगी?", "टोकन कैसे बुक करें?"]
+      suggestions: ["What is the price of wheat?", "When does mustard procurement start?", "How do I book a token?"]
     };
   }
 
@@ -829,7 +812,7 @@
     UI.popup.classList.remove('kv-minimized');
     if (UI.minimizeBtn) {
       UI.minimizeBtn.textContent = '➖';
-      UI.minimizeBtn.title = 'छोटा करें (Minimize)';
+      UI.minimizeBtn.title = 'Minimize';
     }
     setTimeout(() => {
       if (UI.textInput) UI.textInput.focus();
@@ -859,33 +842,26 @@
     if (State.isMinimized) {
       UI.popup.classList.add('kv-minimized');
       UI.minimizeBtn.textContent = '🗖';
-      UI.minimizeBtn.title = 'बड़ा करें (Expand)';
+      UI.minimizeBtn.title = 'Expand';
     } else {
       UI.popup.classList.remove('kv-minimized');
       UI.minimizeBtn.textContent = '➖';
-      UI.minimizeBtn.title = 'छोटा करें (Minimize)';
+      UI.minimizeBtn.title = 'Minimize';
       scrollToBottom();
     }
   }
 
   function bindEvents() {
-    // Launcher button toggle (opens if closed, closes if open)
     UI.launcher.addEventListener('click', togglePopup);
-
-    // Close button (always closes and immediately stops speech & mic)
     UI.closeBtn.addEventListener('click', closePopup);
-
-    // Minimize button
     UI.minimizeBtn.addEventListener('click', toggleMinimize);
 
-    // Close on Escape key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && State.isOpen) {
         closePopup();
       }
     });
 
-    // Close when tapping/clicking anywhere outside the assistant popup
     document.addEventListener('pointerdown', (e) => {
       if (!State.isOpen) return;
       const isInsidePopup = UI.popup && UI.popup.contains(e.target);
@@ -896,22 +872,20 @@
       }
     });
 
-    // TTS Mute toggle
     UI.ttsToggleBtn.addEventListener('click', () => {
       State.ttsEnabled = !State.ttsEnabled;
       if (State.ttsEnabled) {
         UI.ttsToggleBtn.textContent = '🔊';
         UI.ttsToggleBtn.classList.remove('kv-active');
-        UI.ttsToggleBtn.title = 'आवाज ऑन है (Voice Audio ON)';
+        UI.ttsToggleBtn.title = 'Voice Audio ON';
       } else {
         stopSpeaking();
         UI.ttsToggleBtn.textContent = '🔇';
         UI.ttsToggleBtn.classList.add('kv-active');
-        UI.ttsToggleBtn.title = 'आवाज म्यूट है (Voice Audio Muted)';
+        UI.ttsToggleBtn.title = 'Voice Audio Muted';
       }
     });
 
-    // Reset button
     UI.resetBtn.addEventListener('click', () => {
       stopListening();
       stopSpeaking();
@@ -920,7 +894,6 @@
       showWelcomeMessage();
     });
 
-    // Mic button
     UI.micBtn.addEventListener('click', () => {
       if (State.isListening) {
         stopListening();
@@ -929,18 +902,15 @@
       }
     });
 
-    // Status cancel button
     UI.statusCancelBtn.addEventListener('click', () => {
       stopListening();
       stopSpeaking();
     });
 
-    // Send button
     UI.sendBtn.addEventListener('click', () => {
       submitQuery(UI.textInput.value);
     });
 
-    // Input Enter key
     UI.textInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -948,7 +918,6 @@
       }
     });
 
-    // Header click in minimized state restores window
     UI.popup.querySelector('#kv-header').addEventListener('click', (e) => {
       if (State.isMinimized && !e.target.closest('.kv-icon-btn')) {
         toggleMinimize();
@@ -981,9 +950,8 @@
   function announceTokenPA(tokenNumber, gateNumber = 2, farmerName = '') {
     playAudioChime();
     setTimeout(() => {
-      const hiText = `कृपया ध्यान दें। टोकन नंबर ${tokenNumber}। कृपया प्रवेश गेट नंबर ${gateNumber} पर आगे बढ़ें।`;
       const enText = `Attention please. Token number ${tokenNumber}. Please proceed to Gate number ${gateNumber}.`;
-      speakText(`${hiText} ${enText}`);
+      speakText(enText);
     }, 450);
 
     if (window.KisanEventBus && typeof window.KisanEventBus.publish === 'function') {

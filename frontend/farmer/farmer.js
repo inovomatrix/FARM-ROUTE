@@ -94,7 +94,7 @@
           centerId: active.centerId || "CTR-HR-03",
           centerName: active.centerName || "Rohtak Central Procurement Center",
           district: active.district || "Rohtak",
-          date: active.bookingDate || "Today (आज)",
+          date: active.bookingDate || "Today",
           time: "10:30 AM",
           grossWeight: 58.20,
           tareWeight: 5.70,
@@ -108,7 +108,7 @@
           netAmount: 127312.50,
           procurementValue: 127312.50,
           status: "COMPLETED",
-          statusLabel: "खरीद पूर्ण • Procurement Completed",
+          statusLabel: "Procurement Completed",
           isDemo: true,
           completedAt: new Date().toISOString()
         };
@@ -201,7 +201,7 @@
       });
 
       const best = candidates[0];
-      const reason = "✓ फसल स्वीकृत (Crop accepted) • ✓ न्यूनतम कतार (Lower queue) • ✓ स्लॉट उपलब्ध (Slot available)";
+      const reason = "✓ Crop accepted • ✓ Lower queue • ✓ Slot available";
       
       // Return object that has center properties spread + recommendation metadata
       return Object.assign({}, best, {
@@ -290,14 +290,14 @@
         const queue = this.getQueueStatus();
         if (queue && queue.bookingId && b.bookingId && String(queue.bookingId).trim().toUpperCase() === String(b.bookingId).trim().toUpperCase()) {
           const qStatus = String(queue.status || "");
-          if (qStatus.includes("खरीद पूर्ण") || queue.procurementStage === "completed") {
+          if (qStatus.includes("Procurement Completed") || qStatus.includes(" ") || queue.procurementStage === "completed") {
             return "COMPLETED";
           }
-          if (qStatus.includes("खरीद प्रक्रिया") || queue.procurementStage === "in_progress" || queue.queuePosition === 0) {
+          if (qStatus.includes("Procurement in Progress") || qStatus.includes(" ") || queue.procurementStage === "in_progress" || queue.queuePosition === 0) {
             return "PROCUREMENT";
           }
           if (queue.arrivalStatus === "checked_in") {
-            if (qStatus.includes("कतार") || (typeof queue.queuePosition === 'number' && queue.queuePosition < 5)) {
+            if (qStatus.includes("Waiting") || qStatus.includes("Queue") || qStatus.includes("") || (typeof queue.queuePosition === 'number' && queue.queuePosition < 5)) {
               return "IN_QUEUE";
             }
             return "CHECKED_IN";
@@ -442,7 +442,7 @@
         case "CONFIRMED":
           return {
             status: "CONFIRMED",
-            labelHindi: "पुष्टि हुई",
+            labelHindi: "Confirmed",
             labelEnglish: "Confirmed",
             badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
             dotColor: "bg-emerald-500"
@@ -450,7 +450,7 @@
         case "ARRIVED":
           return {
             status: "ARRIVED",
-            labelHindi: "केंद्र पर पहुंचे",
+            labelHindi: "Arrived",
             labelEnglish: "Arrived",
             badgeClass: "bg-blue-50 text-blue-800 border-blue-200",
             dotColor: "bg-blue-500"
@@ -458,7 +458,7 @@
         case "CHECKED_IN":
           return {
             status: "CHECKED_IN",
-            labelHindi: "गेट सत्यापित",
+            labelHindi: "Checked In",
             labelEnglish: "Checked In",
             badgeClass: "bg-indigo-50 text-indigo-800 border-indigo-200",
             dotColor: "bg-indigo-500"
@@ -466,7 +466,7 @@
         case "IN_QUEUE":
           return {
             status: "IN_QUEUE",
-            labelHindi: "कतार में",
+            labelHindi: "In Queue",
             labelEnglish: "In Queue",
             badgeClass: "bg-amber-50 text-amber-800 border-amber-200",
             dotColor: "bg-amber-500"
@@ -474,7 +474,7 @@
         case "PROCUREMENT":
           return {
             status: "PROCUREMENT",
-            labelHindi: "खरीद प्रक्रिया में",
+            labelHindi: "Procurement",
             labelEnglish: "Procurement",
             badgeClass: "bg-purple-50 text-purple-800 border-purple-200",
             dotColor: "bg-purple-500"
@@ -482,7 +482,7 @@
         case "COMPLETED":
           return {
             status: "COMPLETED",
-            labelHindi: "पूर्ण",
+            labelHindi: "Completed",
             labelEnglish: "Completed",
             badgeClass: "bg-emerald-100 text-emerald-900 border-emerald-300",
             dotColor: "bg-emerald-600"
@@ -490,7 +490,7 @@
         case "CANCELLED":
           return {
             status: "CANCELLED",
-            labelHindi: "रद्द",
+            labelHindi: "Cancelled",
             labelEnglish: "Cancelled",
             badgeClass: "bg-rose-50 text-rose-800 border-rose-200",
             dotColor: "bg-rose-500"
@@ -498,7 +498,7 @@
         default:
           return {
             status: "CONFIRMED",
-            labelHindi: "पुष्टि हुई",
+            labelHindi: "Confirmed",
             labelEnglish: "Confirmed",
             badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
             dotColor: "bg-emerald-500"
@@ -528,7 +528,7 @@
         status: "active",
         acceptingBookings: true,
         reason: "",
-        labelHindi: "बुकिंग उपलब्ध",
+        labelHindi: "Booking Available",
         labelEnglish: "Booking Available",
         badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200"
       };
@@ -616,7 +616,7 @@
         queuePosition: 12,
         totalVehiclesAhead: 11,
         estimatedWaitMinutes: 45,
-        status: "बुकिंग की पुष्टि (Booking Confirmed)",
+        status: "Booking Confirmed",
         arrivalStatus: "not_arrived",
         lastUpdated: new Date().toISOString()
       };
@@ -626,7 +626,7 @@
     },
 
     /**
-     * Simulate arrival at procurement center: "मैं केंद्र पर पहुंच गया हूँ"
+     * Simulate arrival at procurement center
      */
     simulateArrival() {
       let queue = this.getQueueStatus();
@@ -636,13 +636,13 @@
         queue = this.initializeQueueForBooking(booking);
       }
       queue.arrivalStatus = "arrived";
-      queue.status = "केंद्र पर पहुंच गए (Arrived at Center)";
+      queue.status = "Arrived at Center";
       this.saveQueueStatus(queue);
       return queue;
     },
 
     /**
-     * Simulate gate verification: "गेट पर चेक-इन करें"
+     * Simulate gate verification
      */
     simulateGateCheckIn() {
       let queue = this.getQueueStatus();
@@ -652,7 +652,7 @@
         queue = this.initializeQueueForBooking(booking);
       }
       queue.arrivalStatus = "checked_in";
-      queue.status = "गेट सत्यापन पूर्ण (Gate Verification Complete)";
+      queue.status = "Gate Verification Complete";
       queue.queuePosition = 5;
       queue.totalVehiclesAhead = 4;
       queue.estimatedWaitMinutes = 20;
@@ -679,33 +679,33 @@
         queue.queuePosition = 8;
         queue.totalVehiclesAhead = 7;
         queue.estimatedWaitMinutes = 30;
-        queue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+        queue.status = "Waiting in Queue";
       } else if (pos > 5) {
         queue.queuePosition = 5;
         queue.totalVehiclesAhead = 4;
         queue.estimatedWaitMinutes = 20;
-        queue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+        queue.status = "Waiting in Queue";
       } else if (pos > 2) {
         queue.queuePosition = 2;
         queue.totalVehiclesAhead = 1;
         queue.estimatedWaitMinutes = 10;
-        queue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+        queue.status = "Waiting in Queue";
       } else if (pos === 2) {
         queue.queuePosition = 1;
         queue.totalVehiclesAhead = 0;
         queue.estimatedWaitMinutes = 5;
-        queue.status = "आपकी बारी जल्द है (Your Turn Is Next)";
+        queue.status = "Your Turn Is Next";
       } else if (pos === 1) {
         queue.queuePosition = 0;
         queue.totalVehiclesAhead = 0;
         queue.estimatedWaitMinutes = 0;
-        queue.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+        queue.status = "Procurement in Progress";
       } else {
         queue.queuePosition = 0;
         queue.totalVehiclesAhead = 0;
         queue.estimatedWaitMinutes = 0;
-        if (queue.status !== "खरीद पूर्ण (Procurement Completed)") {
-          queue.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+        if (queue.status !== "Procurement Completed") {
+          queue.status = "Procurement in Progress";
         }
       }
 
@@ -731,7 +731,7 @@
       queue.queuePosition = 0;
       queue.totalVehiclesAhead = 0;
       queue.estimatedWaitMinutes = 0;
-      queue.status = "खरीद पूर्ण (Procurement Completed)";
+      queue.status = "Procurement Completed";
       this.saveQueueStatus(queue);
       return queue;
     },
@@ -752,55 +752,55 @@
         {
           index: 1,
           id: "booking_confirmed",
-          nameHindi: "स्लॉट बुकिंग",
+          nameHindi: "Slot Booking",
           nameEnglish: "Booking Confirmed",
-          description: "खरीद केंद्र पर समय स्लॉट की पुष्टि हो चुकी है।"
+          description: "Procurement time slot confirmed at the center."
         },
         {
           index: 2,
           id: "arrived_center",
-          nameHindi: "केंद्र पर आगमन",
+          nameHindi: "Arrival at Center",
           nameEnglish: "Arrival at Center",
-          description: "किसान खरीद केंद्र पर पहुंच चुके हैं।"
+          description: "Farmer has arrived at the procurement center."
         },
         {
           index: 3,
           id: "gate_verification",
-          nameHindi: "गेट सत्यापन",
+          nameHindi: "Gate Verification",
           nameEnglish: "Gate Verification",
-          description: "गेट पर डिजिटल टोकन और दस्तावेज़ सत्यापन पूर्ण।"
+          description: "Digital token and identity verified at entry gate."
         },
         {
           index: 4,
           id: "waiting_queue",
-          nameHindi: "कतार में प्रतीक्षा",
+          nameHindi: "Waiting in Queue",
           nameEnglish: "Waiting in Queue",
-          description: "वेईब्रिज और अनलोडिंग हेतु कतार में प्रतीक्षारत।"
+          description: "Waiting in queue for weighbridge and sampling."
         },
         {
           index: 5,
           id: "procurement_processing",
-          nameHindi: "खरीद प्रक्रिया",
+          nameHindi: "Procurement Processing",
           nameEnglish: "Procurement Processing",
-          description: "फसल तौल, गुणवत्ता जांच एवं कागजी कार्रवाई प्रगति पर है।"
+          description: "Weighing, quality testing and paperwork underway."
         },
         {
           index: 6,
           id: "procurement_completed",
-          nameHindi: "खरीद पूर्ण",
+          nameHindi: "Procurement Completed",
           nameEnglish: "Procurement Completed",
-          description: "खरीद रसीद जारी एवं भुगतान प्रक्रिया आरंभ।"
+          description: "Receipt issued and payment processed."
         }
       ];
 
       let currentStageIndex = 1;
 
-      if (queue.status && queue.status.includes("खरीद पूर्ण")) {
+      if (queue.status && (queue.status.includes("Completed") || queue.status.includes(" "))) {
         currentStageIndex = 6;
-      } else if (queue.queuePosition === 0 || (queue.status && queue.status.includes("खरीद प्रक्रिया में"))) {
+      } else if (queue.queuePosition === 0 || (queue.status && (queue.status.includes("Procurement") || queue.status.includes("  ")))) {
         currentStageIndex = 5;
       } else if (queue.arrivalStatus === "checked_in") {
-        if (queue.queuePosition < 5 || (queue.status && (queue.status.includes("कतार") || queue.status.includes("आपकी बारी")))) {
+        if (queue.queuePosition < 5 || (queue.status && (queue.status.includes("Waiting") || queue.status.includes("Queue") || queue.status.includes("") || queue.status.includes("Your Turn") || queue.status.includes(" ")))) {
           currentStageIndex = 4;
         } else {
           currentStageIndex = 3;
@@ -848,7 +848,7 @@
      */
     getUpcomingDates(daysCount = 4) {
       const dates = [];
-      const hindiDays = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+      const hindiDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
       const now = new Date();
@@ -869,9 +869,9 @@
         let tag = dayOfWeek;
 
         if (i === 0) {
-          tag = "आज (Today)";
+          tag = "Today";
         } else if (i === 1) {
-          tag = "कल (Tomorrow)";
+          tag = "Tomorrow";
         }
 
         dates.push({
@@ -898,37 +898,37 @@
           id: "slot-0900",
           timeRange: "09:00 AM – 10:00 AM",
           state: "available",
-          stateLabel: "उपलब्ध (Available)"
+          stateLabel: "Available"
         },
         {
           id: "slot-1000",
           timeRange: "10:00 AM – 11:00 AM",
           state: "available",
-          stateLabel: "उपलब्ध (Available)"
+          stateLabel: "Available"
         },
         {
           id: "slot-1100",
           timeRange: "11:00 AM – 12:00 PM",
           state: "full",
-          stateLabel: "पूर्ण (Full - No slots)"
+          stateLabel: "Full (No slots)"
         },
         {
           id: "slot-1200",
           timeRange: "12:00 PM – 01:00 PM",
           state: "available",
-          stateLabel: "उपलब्ध (Available)"
+          stateLabel: "Available"
         },
         {
           id: "slot-1400",
           timeRange: "02:00 PM – 03:00 PM",
           state: "available",
-          stateLabel: "उपलब्ध (Available)"
+          stateLabel: "Available"
         },
         {
           id: "slot-1500",
           timeRange: "03:00 PM – 04:00 PM",
           state: "available",
-          stateLabel: "उपलब्ध (Available)"
+          stateLabel: "Available"
         }
       ];
     },
@@ -942,7 +942,7 @@
         return `
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            कम प्रतीक्षा (Low Wait)
+            Low Wait
           </span>
         `;
       }
@@ -950,14 +950,14 @@
         return `
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            मध्यम कतार (Moderate Queue)
+            Moderate Queue
           </span>
         `;
       }
       return `
         <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-800 border border-rose-200">
           <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-          भारी भीड़ (High Wait)
+          High Wait
         </span>
       `;
     },
@@ -971,7 +971,7 @@
       const isAvailable = this.isCenterAcceptingBookings(center.id);
       const avail = this.getCenterAvailability(center.id);
       const loadBadge = this.getLoadBadge(center.loadStatus);
-      const commodity = Array.isArray(center.commodities) ? center.commodities.join(", ") : (center.commodity || "विविध फसलें (Multiple Crops)");
+      const commodity = Array.isArray(center.commodities) ? center.commodities.join(", ") : (center.commodity || "Multiple Crops");
 
       const badgeHeader = isAvailable
         ? loadBadge
@@ -985,7 +985,7 @@
       const unavailableNotice = isAvailable ? '' : `
         <div class="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-200 text-center">
           <div class="text-xs font-bold text-amber-900 flex items-center justify-center gap-1">
-            <span>⚠️</span> <span>बुकिंग बंद है</span>
+            <span>⚠️</span> <span>Booking Unavailable</span>
           </div>
           <div class="text-[11px] font-semibold text-amber-800">Booking Unavailable</div>
           <div class="text-[10px] text-slate-500 mt-1">Center details can still be viewed.</div>
@@ -994,14 +994,14 @@
 
       const buttonHtml = !isAvailable
         ? `<a href="center-details.html?id=${encodeURIComponent(center.id)}" class="btn btn-outline btn-sm w-full text-xs font-semibold py-2 text-center text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1">
-             विवरण देखें (View Details) &rarr;
+             View Details &rarr;
            </a>`
         : (isCompact
           ? `<a href="center-details.html?id=${encodeURIComponent(center.id)}" class="btn btn-outline btn-sm w-full text-xs font-semibold py-2 text-center text-[#15803d] hover:bg-emerald-50 flex items-center justify-center gap-1">
-                 विवरण देखें (View Details) &rarr;
+                 View Details &rarr;
                </a>`
           : `<a href="center-details.html?id=${encodeURIComponent(center.id)}" class="btn btn-primary btn-sm w-full text-xs font-semibold py-2 text-center flex items-center justify-center gap-1">
-                 केंद्र देखें (View Center) &rarr;
+                 View Center &rarr;
                </a>`);
 
       // Compute load percentage for visual bar
@@ -1043,29 +1043,29 @@
 
             <!-- Commodity Tag -->
             <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-500">मुख्य फसल (Crop):</span>
+              <span class="text-slate-500">Main Crop:</span>
               <span class="font-semibold text-slate-800 text-right">${commodity}</span>
             </div>
 
             <!-- Demo Operational Data Indicators -->
             <div class="mt-3 bg-slate-50 rounded p-2.5 space-y-2 border border-slate-150">
               <div class="flex items-center justify-between text-[11px]">
-                <span class="text-slate-500">अनुमानित प्रतीक्षा (Wait):</span>
-                <span class="font-bold text-slate-800">~${center.estimatedWaitMinutes} मिनट</span>
+                <span class="text-slate-500">Est. Wait:</span>
+                <span class="font-bold text-slate-800">~${center.estimatedWaitMinutes} mins</span>
               </div>
               <div class="flex items-center justify-between text-[11px]">
-                <span class="text-slate-500">वर्तमान कतार (Queue):</span>
-                <span class="font-medium text-slate-700">${center.currentQueueVehicles} वाहन</span>
+                <span class="text-slate-500">Current Queue:</span>
+                <span class="font-medium text-slate-700">${center.currentQueueVehicles} vehicles</span>
               </div>
               <div class="flex items-center justify-between text-[11px]">
-                <span class="text-slate-500">दैनिक क्षमता (Capacity):</span>
+                <span class="text-slate-500">Daily Capacity:</span>
                 <span class="font-medium text-slate-700">${center.dailyCapacity || (center.dailyCapacityMT + ' MT')}</span>
               </div>
 
               <!-- Load Capacity Progress Indicator -->
               <div class="pt-1.5 border-t border-slate-200/80">
                 <div class="flex justify-between items-center text-[10px] text-slate-500 mb-1">
-                  <span>केंद्र भार (Center Load)</span>
+                  <span>Center Load</span>
                   <span class="font-bold ${loadTextColor}">${statusUpper}</span>
                 </div>
                 <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
@@ -1074,7 +1074,7 @@
               </div>
               <div class="pt-1 border-t border-slate-200 text-right">
                 <span class="text-[10px] text-amber-700 font-medium px-1.5 py-0.5 bg-amber-50 rounded border border-amber-200 inline-block">
-                  डेमो डेटा • Demo Data
+                  Demo Data
                 </span>
               </div>
             </div>
@@ -1111,7 +1111,7 @@
             ${message}
           </div>
           <button type="button" id="close-info-modal-btn" class="btn btn-primary w-full py-2.5 font-semibold text-sm">
-            ठीक है (Understood)
+            Understood
           </button>
         </div>
       `;
@@ -1131,7 +1131,7 @@
      */
     formatValue(val) {
       if (val === null || val === undefined || String(val).trim() === "") {
-        return `<span class="text-slate-400 italic">उपलब्ध नहीं (Not provided)</span>`;
+        return `<span class="text-slate-400 italic">Not provided</span>`;
       }
       return `<span class="text-slate-800 font-semibold">${val}</span>`;
     }

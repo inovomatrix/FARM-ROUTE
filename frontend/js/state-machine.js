@@ -13,155 +13,155 @@
       key: "BOOKED",
       step: 1,
       titleEn: "Slot Booked & Pass Issued",
-      titleHi: "स्लॉट बुक हुआ • गेट पास जारी",
+      titleHi: "Slot Booked & Pass Issued",
       icon: "📅",
       badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
       accentColor: "#2563eb",
       descriptionEn: "Digital token generated with tamper-evident HMAC QR payload.",
-      descriptionHi: "डिजिटल टोकन जारी, गेट पर सत्यापन हेतु तैयार।"
+      descriptionHi: "Digital token generated with tamper-evident HMAC QR payload."
     },
     "TRANSIT_DELAYED": {
       key: "TRANSIT_DELAYED",
       step: 1.2,
       titleEn: "Transit Delayed (+60m Grace Window)",
-      titleHi: "रास्ते में देरी • 60 मिनट ग्रेस विंडो",
+      titleHi: "Transit Delayed (+60m Grace Window)",
       icon: "🚨",
       badgeClass: "bg-amber-50 text-amber-900 border-amber-300 font-bold",
       accentColor: "#d97706",
       descriptionEn: "Farmer reported en-route transit delay. +60m arrival buffer granted; slot priority preserved.",
-      descriptionHi: "रास्ते में देरी दर्ज। स्लॉट रद्द नहीं हुआ — 60 मिनट का अतिरिक्त समय स्वीकृत।"
+      descriptionHi: "Farmer reported en-route transit delay. +60m arrival buffer granted; slot priority preserved."
     },
     "STANDBY_OVERDUE": {
       key: "STANDBY_OVERDUE",
       step: 1.5,
       titleEn: "Standby Lane (Buffer Overdue)",
-      titleHi: "प्रतीक्षा लेन (समय सीमा समाप्त)",
+      titleHi: "Standby Lane (Buffer Overdue)",
       icon: "⚠️",
       badgeClass: "bg-amber-100 text-amber-900 border-amber-300",
       accentColor: "#d97706",
       descriptionEn: "Vehicle arrived outside ±45m scheduled buffer. Held in standby lane awaiting supervisor admission.",
-      descriptionHi: "वाहन निर्धारित समय स्लॉट के बाहर आया। अधीक्षक अनुमति प्रतीक्षारत।"
+      descriptionHi: "Vehicle arrived outside ±45m scheduled buffer. Held in standby lane awaiting supervisor admission."
     },
     "GATE_SCANNED": {
       key: "GATE_SCANNED",
       step: 2,
       titleEn: "Gate Verified & Yard Entry",
-      titleHi: "गेट सत्यापन पूर्ण • यार्ड प्रवेश",
+      titleHi: "Gate Verified & Yard Entry",
       icon: "🚜",
       badgeClass: "bg-teal-50 text-teal-800 border-teal-200",
       accentColor: "#0f766e",
       descriptionEn: "QR code verified at gate; admitted to yard and assigned assay bay.",
-      descriptionHi: "गेट पर सत्यापन पूर्ण, परीक्षण बे आवंटित।"
+      descriptionHi: "QR code verified at gate; admitted to yard and assigned assay bay."
     },
     "ASSAY_TESTING": {
       key: "ASSAY_TESTING",
       step: 3,
       titleEn: "Quality & Moisture Assay",
-      titleHi: "गुणवत्ता एवं नमी परीक्षण (Assay Lab)",
+      titleHi: "Quality & Moisture Assay",
       icon: "🧪",
       badgeClass: "bg-purple-50 text-purple-800 border-purple-200",
       accentColor: "#7e22ce",
       descriptionEn: "Grain sample inspected for moisture content & FAQ grade standards.",
-      descriptionHi: "नमी और गुणवत्ता का परीक्षण जारी (FCI मानक)।"
+      descriptionHi: "Grain sample inspected for moisture content & FAQ grade standards."
     },
     "REJECTED_QUALITY": {
       key: "REJECTED_QUALITY",
       step: 3.5,
       titleEn: "Quality Assay Rejected",
-      titleHi: "गुणवत्ता परीक्षण में अस्वीकृत",
+      titleHi: "Quality Assay Rejected",
       icon: "❌",
       badgeClass: "bg-rose-100 text-rose-800 border-rose-300",
       accentColor: "#e11d48",
       descriptionEn: "Moisture exceeded 12% ceiling. Advised aeration before re-test.",
-      descriptionHi: "नमी 12% से अधिक, सुखाने के उपरांत पुनः परीक्षण संभव।"
+      descriptionHi: "Moisture exceeded 12% ceiling. Advised aeration before re-test."
     },
     "GROSS_WEIGHED": {
       key: "GROSS_WEIGHED",
       step: 4,
       titleEn: "Gross Weighing (Loaded)",
-      titleHi: "सकल इलेक्ट्रॉनिक तौल (Gross)",
+      titleHi: "Gross Weighing (Loaded)",
       icon: "⚖️",
       badgeClass: "bg-indigo-50 text-indigo-800 border-indigo-200",
       accentColor: "#4338ca",
       descriptionEn: "Loaded tractor-trolley weighed on electronic weighbridge (Scale 1).",
-      descriptionHi: "लोड वाहन का वजन दर्ज किया गया।"
+      descriptionHi: "Loaded tractor-trolley weighed on electronic weighbridge (Scale 1)."
     },
     "WEIGHBRIDGE_IN": {
       key: "GROSS_WEIGHED",
       step: 4,
       titleEn: "Gross Weighing (Loaded)",
-      titleHi: "सकल इलेक्ट्रॉनिक तौल (Gross)",
+      titleHi: "Gross Weighing (Loaded)",
       icon: "⚖️",
       badgeClass: "bg-indigo-50 text-indigo-800 border-indigo-200",
       accentColor: "#4338ca",
       descriptionEn: "Loaded tractor-trolley weighed on electronic weighbridge (Scale 1).",
-      descriptionHi: "लोड वाहन का वजन दर्ज किया गया।"
+      descriptionHi: "Loaded tractor-trolley weighed on electronic weighbridge (Scale 1)."
     },
     "UNLOADING_BAY": {
       key: "UNLOADING_BAY",
       step: 5,
       titleEn: "Unloading Bay / Shed",
-      titleHi: "अनलोडिंग शेड • बोरी खालीकरण",
+      titleHi: "Unloading Bay / Shed",
       icon: "📦",
       badgeClass: "bg-amber-50 text-amber-800 border-amber-200",
       accentColor: "#b45309",
       descriptionEn: "Grain sacks unloaded at designated godown storage shed / silo platform.",
-      descriptionHi: "निर्धारित गोदाम शेड पर बोरियां खाली की जा रही हैं।"
+      descriptionHi: "Grain sacks unloaded at designated godown storage shed / silo platform."
     },
     "TARE_WEIGHED": {
       key: "TARE_WEIGHED",
       step: 6,
       titleEn: "Tare Weighing (Empty)",
-      titleHi: "खाली वाहन तौल (Tare Tare)",
+      titleHi: "Tare Weighing (Empty)",
       icon: "🌾",
       badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
       accentColor: "#059669",
       descriptionEn: "Empty vehicle re-weighed on weighbridge (Scale 2) to compute net grain weight.",
-      descriptionHi: "खाली ट्रॉली का वजन दर्ज, शुद्ध उपज (Net Weight) की गणना पूर्ण।"
+      descriptionHi: "Empty vehicle re-weighed on weighbridge (Scale 2) to compute net grain weight."
     },
     "WEIGHBRIDGE_OUT": {
       key: "TARE_WEIGHED",
       step: 6,
       titleEn: "Tare Weighing (Empty)",
-      titleHi: "खाली वाहन तौल (Tare Tare)",
+      titleHi: "Tare Weighing (Empty)",
       icon: "🌾",
       badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
       accentColor: "#059669",
       descriptionEn: "Empty vehicle re-weighed on weighbridge (Scale 2) to compute net grain weight.",
-      descriptionHi: "खाली ट्रॉली का वजन दर्ज, शुद्ध उपज की गणना पूर्ण।"
+      descriptionHi: "Empty vehicle re-weighed on weighbridge (Scale 2) to compute net grain weight."
     },
     "J_FORM_ISSUED": {
       key: "J_FORM_ISSUED",
       step: 7,
       titleEn: "Statutory e-J-Form Generated",
-      titleHi: "डिजिटल जे-फॉर्म जारी (MSP रसीद)",
+      titleHi: "Statutory e-J-Form Generated",
       icon: "📜",
       badgeClass: "bg-cyan-50 text-cyan-800 border-cyan-300 font-bold",
       accentColor: "#0891b2",
       descriptionEn: "Official APMC Form 'J' procurement receipt issued with MSP rate, deductions & bank details.",
-      descriptionHi: "कृषि उपज मंडी नियम अंतर्गत कानूनी जे-फॉर्म खरीद रसीद जारी।"
+      descriptionHi: "Official APMC Form 'J' procurement receipt issued with MSP rate, deductions & bank details."
     },
     "DBT_DISPATCHED": {
       key: "DBT_DISPATCHED",
       step: 8,
       titleEn: "DBT Payment Dispatched",
-      titleHi: "प्रत्यक्ष लाभ अंतरण (DBT भुगतान पूर्ण)",
+      titleHi: "DBT Payment Dispatched",
       icon: "🏦",
       badgeClass: "bg-emerald-100 text-emerald-900 border-emerald-400 font-bold",
       accentColor: "#15803d",
       descriptionEn: "MSP funds disbursed directly to farmer bank account via PFMS/DBT.",
-      descriptionHi: "किसान के बैंक खाते में सीधा MSP भुगतान क्रेडिट।"
+      descriptionHi: "MSP funds disbursed directly to farmer bank account via PFMS/DBT."
     },
     "CANCELLED": {
       key: "CANCELLED",
       step: 0,
       titleEn: "Cancelled",
-      titleHi: "रद्द (Cancelled)",
+      titleHi: "Cancelled",
       icon: "🚫",
       badgeClass: "bg-slate-100 text-slate-600 border-slate-200",
       accentColor: "#64748b",
       descriptionEn: "Booking slot was cancelled.",
-      descriptionHi: "स्लॉट बुकिंग रद्द कर दी गई है।"
+      descriptionHi: "Booking slot was cancelled."
     }
   };
 
@@ -256,7 +256,7 @@
               ${isCompleted ? '✔' : stage.icon}
             </div>
             <div class="mt-1 text-[10px] leading-tight ${textClass}">
-              <div class="font-bold truncate max-w-[75px]">${stage.titleHi.split('•')[0].trim()}</div>
+              <div class="font-bold truncate max-w-[75px]">${(stage.titleEn || stage.titleHi).split('•')[0].trim()}</div>
             </div>
           </div>
         `;
@@ -271,10 +271,10 @@
           <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping"></span>
-              <span class="text-xs font-bold text-slate-800">भौतिक मंडी चक्र (Physical Mandi Cycle)</span>
+              <span class="text-xs font-bold text-slate-800">Physical Mandi Cycle</span>
             </div>
             <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
-              चरण ${activeStage.step} of 8 • ${activeStage.titleEn.split('(')[0].trim()}
+              Stage ${activeStage.step} of 8 • ${activeStage.titleEn.split('(')[0].trim()}
             </span>
           </div>
           <div class="flex items-center justify-between overflow-x-auto py-2">

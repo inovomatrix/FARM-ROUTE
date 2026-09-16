@@ -41,7 +41,7 @@
         return {
           tier: "GREEN",
           code: "green",
-          labelHindi: "कम भीड़ (सुगम प्रवेश)",
+          labelHindi: "Low Load (Fast-Track)",
           labelEnglish: "Low Load (Fast-Track)",
           colorHex: "#15803d",
           bgHex: "#dcfce7",
@@ -53,7 +53,7 @@
         return {
           tier: "AMBER",
           code: "amber",
-          labelHindi: "मध्यम भीड़ (सामान्य प्रतीक्षा)",
+          labelHindi: "Moderate Load (Standard Buffer)",
           labelEnglish: "Moderate Load (Standard Buffer)",
           colorHex: "#b45309",
           bgHex: "#fef3c7",
@@ -65,7 +65,7 @@
         return {
           tier: "RED",
           code: "red",
-          labelHindi: "अत्यधिक भीड़ (स्लॉट लॉक)",
+          labelHindi: "Heavy Congestion (Slot Locked)",
           labelEnglish: "Heavy Congestion (Slot Locked)",
           colorHex: "#b91c1c",
           bgHex: "#fee2e2",
@@ -170,7 +170,7 @@
       return [
         {
           centerId: "CTR-TARAORI-02",
-          name: "Taraori Grain Procurement Yard (तरावड़ी खरीद केंद्र)",
+          name: "Taraori Grain Procurement Yard",
           district: "Karnal",
           distanceKm: 14.5,
           driveTimeMinutes: 24,
@@ -179,13 +179,13 @@
           currentQueueVehicles: 3,
           utilizationPercent: 28.0,
           tierCode: "green",
-          tierLabel: "सुगम प्रवेश (Fast-Track)",
+          tierLabel: "Low Load (Fast-Track)",
           availableSlotsEstimate: 14,
-          recommendationReason: "केवल 14.5 किमी दूर • नगण्य प्रतीक्षा • त्वरित प्रवेश उपलब्ध"
+          recommendationReason: "Only 14.5 km away • Minimal wait time • Fast-track entry available"
         },
         {
           centerId: "CTR-GHARAUNDA-03",
-          name: "Gharaunda Kisan Mandi (घरौंडा किसान मंडी)",
+          name: "Gharaunda Kisan Mandi",
           district: "Karnal",
           distanceKm: 18.2,
           driveTimeMinutes: 30,
@@ -194,9 +194,9 @@
           currentQueueVehicles: 6,
           utilizationPercent: 48.0,
           tierCode: "green",
-          tierLabel: "सामान्य कतार (Normal)",
+          tierLabel: "Moderate Load (Normal)",
           availableSlotsEstimate: 10,
-          recommendationReason: "18.2 किमी दूर • 2 वेईब्रिज सक्रिय • आज ही स्लॉट उपलब्ध"
+          recommendationReason: "18.2 km away • 2 active weighbridges • Slots available today"
         }
       ];
     }

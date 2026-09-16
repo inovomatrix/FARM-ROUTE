@@ -89,7 +89,7 @@
           isWithinBuffer: false,
           status: "EARLY_ARRIVAL",
           diffMinutes: -diff,
-          message: `समय से ${diff} मिनट पहले पहुंचे हैं। (Early arrival by ${diff} mins)`
+          message: `Arrived early by ${diff} minutes.`
         };
       } else if (now > allowedEnd) {
         const diff = Math.round((now - allowedEnd) / (60 * 1000));
@@ -97,14 +97,14 @@
           isWithinBuffer: false,
           status: "STANDBY_OVERDUE",
           diffMinutes: diff,
-          message: `निर्धारित समय सीमा से ${diff} मिनट की देरी है। (Late by ${diff} mins - Standby Lane)`
+          message: `Arrived late by ${diff} minutes. Assigned to Standby Lane.`
         };
       } else {
         return {
           isWithinBuffer: true,
           status: "ON_TIME",
           diffMinutes: 0,
-          message: "समय पर आगमन • सत्यापन हेतु वैध (On Time • Verified Buffer)"
+          message: "On Time Arrival • Valid for Verification"
         };
       }
     },
@@ -138,7 +138,7 @@
         vehicleNo: booking.vehicleNumber || "HR-05-AB-1234",
         centerId: booking.centerId || "CTR-KARNAL-01",
         centerName: booking.centerName || "Karnal Mandi",
-        commodity: booking.commodity || "Wheat (गेहूं)",
+        commodity: booking.commodity || "Wheat",
         quantityQtl: booking.quantityQuintals || booking.quantity_qtl || 40.0,
         timeWindow: [startIso, endIso],
         slot: timeSlot,

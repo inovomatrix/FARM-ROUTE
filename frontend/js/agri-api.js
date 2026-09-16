@@ -9,14 +9,14 @@ const MANDI_API_KEY = '579b464db66ec23bdd00000173e83aa315cc48f34f878e70c03e500a'
 
 // Fallback Mandi Dataset (Agmarknet Live Structure for Haryana APMCs)
 const FALLBACK_MANDI_RECORDS = [
-  { state: "Haryana", district: "Rohtak", market: "नई अनाज मंडी, रोहतक (Main APMC)", commodity: "गेहूं (Wheat)", variety: "WH-1105 (CCSHAU)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 2275, max_price: 2475, modal_price: 2425 },
-  { state: "Haryana", district: "Rohtak", market: "नई अनाज मंडी, रोहतक (Main APMC)", commodity: "धान (Paddy Basmati)", variety: "PB-1121", grade: "Grade A", arrival_date: "15/09/2026", min_price: 3600, max_price: 4250, modal_price: 3950 },
-  { state: "Haryana", district: "Rohtak", market: "अनाज मंडी, महम (Meham APMC)", commodity: "सरसों (Mustard)", variety: "RH-725", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5400, max_price: 5950, modal_price: 5650 },
-  { state: "Haryana", district: "Rohtak", market: "अनाज मंडी, सांपला (Sampla APMC)", commodity: "गेहूं (Wheat FAQ)", variety: "HD-2967", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2275, max_price: 2425, modal_price: 2360 },
-  { state: "Haryana", district: "Rohtak", market: "अनाज मंडी, कलानौर (Kalanaur)", commodity: "चना (Gram / Chana)", variety: "HC-5 (Haryana)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5200, max_price: 5600, modal_price: 5420 },
-  { state: "Haryana", district: "Rohtak", market: "अनाज मंडी, महम (Meham APMC)", commodity: "बाजरा (Bajra)", variety: "HHB-67", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2150, max_price: 2350, modal_price: 2250 },
-  { state: "Haryana", district: "Karnal", market: "करनाल सेंट्रल यार्ड (Karnal Central)", commodity: "धान (Paddy)", variety: "PR-126", grade: "Grade A", arrival_date: "15/09/2026", min_price: 2320, max_price: 2480, modal_price: 2400 },
-  { state: "Haryana", district: "Hisar", market: "हिसार APMC मंडी", commodity: "कपास (Cotton)", variety: "RCH-659", grade: "Grade A", arrival_date: "15/09/2026", min_price: 6800, max_price: 7450, modal_price: 7150 }
+  { state: "Haryana", district: "Rohtak", market: "New Grain Market, Rohtak (Main APMC)", commodity: "Wheat", variety: "WH-1105 (CCSHAU)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 2275, max_price: 2475, modal_price: 2425 },
+  { state: "Haryana", district: "Rohtak", market: "New Grain Market, Rohtak (Main APMC)", commodity: "Paddy Basmati", variety: "PB-1121", grade: "Grade A", arrival_date: "15/09/2026", min_price: 3600, max_price: 4250, modal_price: 3950 },
+  { state: "Haryana", district: "Rohtak", market: "Grain Market, Meham (Meham APMC)", commodity: "Mustard", variety: "RH-725", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5400, max_price: 5950, modal_price: 5650 },
+  { state: "Haryana", district: "Rohtak", market: "Grain Market, Sampla (Sampla APMC)", commodity: "Wheat FAQ", variety: "HD-2967", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2275, max_price: 2425, modal_price: 2360 },
+  { state: "Haryana", district: "Rohtak", market: "Grain Market, Kalanaur", commodity: "Gram / Chana", variety: "HC-5 (Haryana)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5200, max_price: 5600, modal_price: 5420 },
+  { state: "Haryana", district: "Rohtak", market: "Grain Market, Meham (Meham APMC)", commodity: "Bajra", variety: "HHB-67", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2150, max_price: 2350, modal_price: 2250 },
+  { state: "Haryana", district: "Karnal", market: "Karnal Central Yard", commodity: "Paddy", variety: "PR-126", grade: "Grade A", arrival_date: "15/09/2026", min_price: 2320, max_price: 2480, modal_price: 2400 },
+  { state: "Haryana", district: "Hisar", market: "Hisar APMC Mandi", commodity: "Cotton", variety: "RCH-659", grade: "Grade A", arrival_date: "15/09/2026", min_price: 6800, max_price: 7450, modal_price: 7150 }
 ];
 
 class KisanAgriService {
@@ -66,14 +66,14 @@ class KisanAgriService {
         humidity: 58,
         windKph: 14,
         windDir: 'SSE',
-        conditionText: 'धूप व हल्के बादल (Partly Cloudy)',
+        conditionText: 'Partly Cloudy',
         iconUrl: 'https://cdn.weatherapi.com/weather/64x64/day/116.png',
         precipMm: 0.1,
         uv: 5,
         agroAdvice: {
           status: 'favorable',
-          title: 'अनुकूल कृषि मौसम (Favorable Conditions)',
-          desc: 'मृदा नमूना संग्रह, डीएपी बेसल डोज अनुप्रयोग एवं अनाज तुलाई हेतु मौसम बिल्कुल अनुकूल है। अगले 24 घंटों में वर्षा की संभावना नगण्य है।'
+          title: 'Favorable Conditions',
+          desc: 'Weather is fully favorable for soil sampling, basal fertilizer application, and grain transport. No rainfall expected in next 24 hours.'
         }
       };
       return this.weatherCache;
@@ -94,35 +94,35 @@ class KisanAgriService {
     if (precip > 5) {
       return {
         status: 'warning',
-        title: 'वर्षा चेतावनी (Precipitation Alert)',
-        desc: 'खेतों में भारी वर्षा सक्रिय। पत्तियों पर यूरिया/कीटनाशक का छिड़काव तुरंत स्थगित करें और मंडी ट्रॉलियों को तिरपाल से ढकें।'
+        title: 'Precipitation Alert',
+        desc: 'Heavy rainfall active. Postpone foliar spraying of urea/pesticides and protect mandi trolleys with tarpaulins.'
       };
     }
     if (humidity > 80 && temp > 28) {
       return {
         status: 'alert',
-        title: 'फफूंद रोग जोखिम (Fungal Blight Risk)',
-        desc: 'उच्च आर्द्रता एवं तापमान। शीथ ब्लाइट और रतुआ (Rust) की रोकथाम हेतु फसल की दैनिक निगरानी रखें।'
+        title: 'Fungal Blight Risk',
+        desc: 'High humidity and warm temperature. Monitor crops daily for sheath blight and rust prevention.'
       };
     }
     if (wind > 25) {
       return {
         status: 'caution',
-        title: 'तेज हवा चेतावनी (Wind Drift)',
-        desc: 'तेज सतही हवाएं। यूरिया छिड़काव से बचें ताकि खाद हवा में उड़कर नष्ट न हो।'
+        title: 'Wind Drift Caution',
+        desc: 'High surface winds. Avoid spray application of urea or liquid fertilizers to prevent wind drift.'
       };
     }
     if (temp > 36) {
       return {
         status: 'caution',
-        title: 'उच्च ताप सूचकांक (High Heat Index)',
-        desc: 'अत्यधिक तापमान। अंकुरण एवं पौधों को तनाव से बचाने हेतु शाम के समय हल्की सिंचाई करें।'
+        title: 'High Heat Index',
+        desc: 'High ambient temperature. Apply light evening irrigation to protect emerging seedlings from heat stress.'
       };
     }
     return {
       status: 'favorable',
-      title: 'अनुकूल कृषि मौसम (Favorable Field Conditions)',
-      desc: 'मृदा नमूना संग्रह, डीएपी बेसल डोज अनुप्रयोग एवं अनाज तुलाई हेतु मौसम बिल्कुल अनुकूल है।'
+      title: 'Favorable Field Conditions',
+      desc: 'Weather is favorable for soil testing, nutrient application, and mandi grain deliveries.'
     };
   }
 

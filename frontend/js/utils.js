@@ -150,27 +150,27 @@ const KisanUtils = {
     }
 
     let reason = "";
-    let labelHindi = "बुकिंग उपलब्ध";
+    let labelHindi = "Booking Available";
     let labelEnglish = "Booking Available";
     let badgeClass = "bg-emerald-50 text-emerald-800 border-emerald-200";
 
     if (status === "maintenance") {
-      labelHindi = "रखरखाव में";
+      labelHindi = "Under Maintenance";
       labelEnglish = "Under Maintenance";
       reason = "Maintenance";
       badgeClass = "bg-amber-50 text-amber-800 border-amber-200";
     } else if (status === "paused") {
-      labelHindi = "केंद्र अस्थायी रूप से बंद";
+      labelHindi = "Center Paused";
       labelEnglish = "Center Paused";
       reason = "Paused";
       badgeClass = "bg-amber-50 text-amber-800 border-amber-200";
     } else if (status === "closed") {
-      labelHindi = "केंद्र बंद";
+      labelHindi = "Center Closed";
       labelEnglish = "Center Closed";
       reason = "Closed";
       badgeClass = "bg-rose-50 text-rose-800 border-rose-200";
     } else if (!accepting) {
-      labelHindi = "बुकिंग बंद";
+      labelHindi = "Booking Paused";
       labelEnglish = "Booking Paused";
       reason = "Booking Paused";
       badgeClass = "bg-slate-100 text-slate-700 border-slate-200";

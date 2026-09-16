@@ -146,7 +146,7 @@
             banner.className = "fixed top-0 left-0 right-0 z-50 bg-amber-600 text-white text-xs font-bold py-2 px-4 text-center shadow-md flex items-center justify-center gap-2";
             banner.innerHTML = `
               <span>📡</span>
-              <span>ऑफ़लाइन मोड सक्रिय: इंटरनेट कनेक्शन उपलब्ध नहीं है। आपका जारी गेट पास व QR टोकन ऑफ़लाइन सुरक्षित एवं वैध है।</span>
+              <span>Offline Mode Active: No internet connection. Your issued gate pass and QR token remain securely cached and valid offline.</span>
               <span class="text-[10px] bg-black/20 px-2 py-0.5 rounded font-mono uppercase">Offline Mode</span>
             `;
             document.body.prepend(banner);

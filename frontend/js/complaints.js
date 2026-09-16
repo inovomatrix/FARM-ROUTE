@@ -16,31 +16,31 @@
   const NOTIFICATIONS_KEY = 'kisansetu_notifications';
 
   const CATEGORIES = [
-    { id: 'CENTER_ISSUE', labelHi: 'केंद्र संबंधी समस्या', labelEn: 'Center Issue' },
-    { id: 'QUEUE_ISSUE', labelHi: 'कतार / प्रतीक्षा समस्या', labelEn: 'Queue / Waiting Issue' },
-    { id: 'BOOKING_ISSUE', labelHi: 'स्लॉट / बुकिंग समस्या', labelEn: 'Booking / Slot Issue' },
-    { id: 'GATE_ISSUE', labelHi: 'गेट सत्यापन समस्या', labelEn: 'Gate Verification Issue' },
-    { id: 'WEIGHMENT_ISSUE', labelHi: 'तौल / वजन समस्या', labelEn: 'Weighment Issue' },
-    { id: 'PROCUREMENT_ISSUE', labelHi: 'खरीद / भुगतान समस्या', labelEn: 'Procurement / Payment Issue' },
-    { id: 'RECEIPT_ISSUE', labelHi: 'रसीद समस्या', labelEn: 'Receipt Issue' },
-    { id: 'OTHER', labelHi: 'अन्य', labelEn: 'Other' }
+    { id: 'CENTER_ISSUE', labelHi: 'Center Issue', labelEn: 'Center Issue' },
+    { id: 'QUEUE_ISSUE', labelHi: 'Queue / Waiting Issue', labelEn: 'Queue / Waiting Issue' },
+    { id: 'BOOKING_ISSUE', labelHi: 'Booking / Slot Issue', labelEn: 'Booking / Slot Issue' },
+    { id: 'GATE_ISSUE', labelHi: 'Gate Verification Issue', labelEn: 'Gate Verification Issue' },
+    { id: 'WEIGHMENT_ISSUE', labelHi: 'Weighment Issue', labelEn: 'Weighment Issue' },
+    { id: 'PROCUREMENT_ISSUE', labelHi: 'Procurement / Payment Issue', labelEn: 'Procurement / Payment Issue' },
+    { id: 'RECEIPT_ISSUE', labelHi: 'Receipt Issue', labelEn: 'Receipt Issue' },
+    { id: 'OTHER', labelHi: 'Other', labelEn: 'Other' }
   ];
 
   const PRIORITIES = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'];
 
   const STATUSES = {
-    OPEN: { hi: 'नई शिकायत', en: 'Open', badgeClass: 'badge-info' },
-    ACKNOWLEDGED: { hi: 'शिकायत प्राप्त', en: 'Acknowledged', badgeClass: 'badge-warning' },
-    IN_PROGRESS: { hi: 'समाधान प्रक्रिया में', en: 'In Progress', badgeClass: 'badge-medium' },
-    RESOLVED: { hi: 'समाधान किया गया', en: 'Resolved', badgeClass: 'badge-success' },
-    ESCALATED: { hi: 'उच्च स्तर पर भेजी गई', en: 'Escalated', badgeClass: 'badge-high' },
-    CLOSED: { hi: 'बंद', en: 'Closed', badgeClass: 'badge-low' }
+    OPEN: { hi: 'Open', en: 'Open', badgeClass: 'badge-info' },
+    ACKNOWLEDGED: { hi: 'Acknowledged', en: 'Acknowledged', badgeClass: 'badge-warning' },
+    IN_PROGRESS: { hi: 'In Progress', en: 'In Progress', badgeClass: 'badge-medium' },
+    RESOLVED: { hi: 'Resolved', en: 'Resolved', badgeClass: 'badge-success' },
+    ESCALATED: { hi: 'Escalated', en: 'Escalated', badgeClass: 'badge-high' },
+    CLOSED: { hi: 'Closed', en: 'Closed', badgeClass: 'badge-low' }
   };
 
   const LEVELS = {
-    OPERATOR: { hi: 'खरीद केंद्र ऑपरेटर', en: 'Procurement Operator', tier: 1 },
-    DISTRICT_ADMIN: { hi: 'जिला प्रशासन', en: 'District Admin', tier: 2 },
-    SUPER_ADMIN: { hi: 'Super Admin (अंतिम स्तर)', en: 'Super Admin (Final)', tier: 3 }
+    OPERATOR: { hi: 'Procurement Operator', en: 'Procurement Operator', tier: 1 },
+    DISTRICT_ADMIN: { hi: 'District Admin', en: 'District Admin', tier: 2 },
+    SUPER_ADMIN: { hi: 'Super Admin (Final)', en: 'Super Admin (Final)', tier: 3 }
   };
 
   /**
@@ -180,13 +180,13 @@
       }
 
       if (!data.subject || !data.subject.trim()) {
-        return { success: false, error: 'Subject is required / विषय अनिवार्य है।' };
+        return { success: false, error: 'Subject is required.' };
       }
       if (!data.description || !data.description.trim()) {
-        return { success: false, error: 'Description is required / विवरण अनिवार्य है।' };
+        return { success: false, error: 'Description is required.' };
       }
       if (!data.category) {
-        return { success: false, error: 'Complaint Category is required / शिकायत श्रेणी अनिवार्य है।' };
+        return { success: false, error: 'Complaint Category is required.' };
       }
 
       const list = readComplaints();
@@ -223,7 +223,7 @@
             actor: currentUser.name || 'Farmer',
             role: 'farmer',
             action: 'CREATED',
-            note: 'Complaint submitted / शिकायत दर्ज की गई'
+            note: 'Complaint submitted'
           }
         ]
       };
@@ -233,8 +233,8 @@
 
       // Send simulated notification to Operator
       dispatchNotification(
-        'नई शिकायत प्राप्त (New Complaint)',
-        `नई शिकायत ${complaintNumber} आपके खरीद केंद्र के लिए दर्ज की गई है।`,
+        'New Complaint Received',
+        `New complaint ${complaintNumber} has been filed for your procurement center.`,
         'info',
         'operator'
       );
@@ -242,7 +242,7 @@
       return {
         success: true,
         complaint: newComplaint,
-        message: 'आपकी शिकायत सफलतापूर्वक दर्ज कर ली गई है। संख्या: ' + complaintNumber
+        message: 'Your complaint has been successfully registered. Number: ' + complaintNumber
       };
     },
 
@@ -270,15 +270,15 @@
         actor: currentUser.name || 'Operator',
         role: 'operator',
         action: 'ACKNOWLEDGED',
-        note: 'Complaint acknowledged by Center Operator / ऑपरेटर द्वारा संज्ञान लिया गया'
+        note: 'Complaint acknowledged by Center Operator'
       });
 
       writeComplaints(list);
 
       // Notify Farmer
       dispatchNotification(
-        'शिकायत संज्ञान में ली गई',
-        `आपकी शिकायत ${complaint.complaintNumber} को खरीद केंद्र ऑपरेटर द्वारा देखा गया है।`,
+        'Complaint Acknowledged',
+        `Your complaint ${complaint.complaintNumber} has been acknowledged by the center operator.`,
         'info',
         'farmer',
         complaint.farmerId
@@ -318,7 +318,7 @@
         actor: currentUser.name || currentUser.role,
         role: currentUser.role,
         action: 'IN_PROGRESS',
-        note: `Investigation initiated by ${currentUser.name || currentUser.role} / समाधान प्रक्रिया शुरू`
+        note: `Investigation initiated by ${currentUser.name || currentUser.role}`
       });
 
       writeComplaints(list);
@@ -366,7 +366,7 @@
         return { success: false, error: 'Unauthorized role to resolve complaint.' };
       }
       if (!resolutionText || !resolutionText.trim()) {
-        return { success: false, error: 'Resolution details are required / समाधान विवरण आवश्यक है।' };
+        return { success: false, error: 'Resolution details are required.' };
       }
 
       const list = readComplaints();
@@ -400,8 +400,8 @@
 
       // Notify Farmer
       dispatchNotification(
-        'शिकायत का समाधान हुआ (Complaint Resolved)',
-        `आपकी शिकायत ${complaint.complaintNumber} का समाधान कर दिया गया है: ${resolutionText.trim().slice(0, 80)}`,
+        'Complaint Resolved',
+        `Your complaint ${complaint.complaintNumber} has been resolved: ${resolutionText.trim().slice(0, 80)}`,
         'success',
         'farmer',
         complaint.farmerId
@@ -420,7 +420,7 @@
     escalateComplaint(idOrNumber, reasonText, currentUser) {
       if (!currentUser) return { success: false, error: 'Authentication required.' };
       if (!reasonText || !reasonText.trim()) {
-        return { success: false, error: 'Escalation reason is required / उच्च स्तर पर भेजने का कारण अनिवार्य है।' };
+        return { success: false, error: 'Escalation reason is required.' };
       }
 
       const list = readComplaints();
@@ -458,15 +458,15 @@
 
         // Notifications
         dispatchNotification(
-          'शिकायत जिला प्रशासन को भेजी गई',
-          `आपकी शिकायत ${complaint.complaintNumber} जिला प्रशासन को भेज दी गई है।`,
+          'Complaint Escalated to District Admin',
+          `Your complaint ${complaint.complaintNumber} has been escalated to District Administration.`,
           'warning',
           'farmer',
           complaint.farmerId
         );
         dispatchNotification(
-          'नई शिकायत जिला स्तर पर प्राप्त',
-          `शिकायत ${complaint.complaintNumber} ऑपरेटर द्वारा जिला स्तर पर भेजी गई है।`,
+          'New Complaint Received at District Level',
+          `Complaint ${complaint.complaintNumber} has been escalated by the operator to district level.`,
           'info',
           'district_admin'
         );
@@ -498,15 +498,15 @@
 
         // Notifications
         dispatchNotification(
-          'शिकायत Super Admin को भेजी गई',
-          `आपकी शिकायत ${complaint.complaintNumber} राज्य/केंद्रीय स्तर (Super Admin) को भेज दी गई है।`,
+          'Complaint Escalated to Super Admin',
+          `Your complaint ${complaint.complaintNumber} has been escalated to Super Admin level.`,
           'warning',
           'farmer',
           complaint.farmerId
         );
         dispatchNotification(
-          'नई शिकायत Super Admin स्तर पर प्राप्त',
-          `शिकायत ${complaint.complaintNumber} जिला प्रशासन द्वारा Super Admin स्तर पर भेजी गई है।`,
+          'New Complaint Received at Super Admin Level',
+          `Complaint ${complaint.complaintNumber} has been escalated to Super Admin level.`,
           'warning',
           'super_admin'
         );
@@ -544,8 +544,8 @@
 
       // Notify Farmer
       dispatchNotification(
-        'शिकायत बंद की गई (Complaint Closed)',
-        `आपकी शिकायत ${complaint.complaintNumber} आधिकारिक रूप से बंद कर दी गई है।`,
+        'Complaint Closed',
+        `Your complaint ${complaint.complaintNumber} has been officially closed.`,
         'info',
         'farmer',
         complaint.farmerId
