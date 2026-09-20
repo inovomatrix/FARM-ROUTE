@@ -1,1335 +1,2927 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KisanSetu — Digital Procurement & Queue Intelligence</title>
-  <script src="js/i18n.js"></script>
-
-  <!-- Typography: Plus Jakarta Sans & Inter -->
+  <title>Harvest Hub - Next-Gen Digital Crop Procurement & Smart Mandi Ecosystem | SIH 2026</title>
+  <meta name="description" content="Harvest Hub - Unified Digital Platform for Pre-Sowing Soil Health Advisory, Direct MSP Crop Procurement, Live Mandi Queue Tokens, and Instant DBT Allotment for Rohtak APMCs (Haryana).">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
-          },
-          colors: {
-            'agri-dark': '#064e3b',
-            'agri-green': '#059669',
-            'agri-light': '#ecfdf5',
-            'mandi-sand': '#ffffff',
-            'mandi-border': '#e2e8f0',
-            'mandi-rule': '#f1f5f9'
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/voice-assistant.css">
+  <!-- Corporate Stylesheet -->
   <style>
-    /* Modern Clean Minimal Aesthetic */
-    body {
-      background-color: #f8fafc;
-      color: #0f172a;
-    }
-    .field-texture {
-      background-image: radial-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-    .hairline-b {
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .hairline-r {
-      border-right: 1px solid #e2e8f0;
-    }
-    .hairline-all {
-      border: 1px solid #e2e8f0;
-    }
-    .crop-chip.active {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      color: #ffffff;
-      border-color: #047857;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
-    }
-    .step-node.active {
-      border-color: #059669;
-      background-color: #ecfdf5;
-    }
-  </style>
+/* ===== INLINED CORPORATE STYLES ===== */
+/* ==========================================================================
+   HARVEST HUB - CORPORATE ENTERPRISE WEBSITE STYLESHEET
+   Smart India Hackathon 2026 • Problem Statement #26032
+   High-Impact GovTech / AgriTech Corporate Experience
+   ========================================================================== */
+
+/* Root Corporate Variables */
+:root {
+  --corp-primary: #047857;       /* Deep Emerald 700 */
+  --corp-primary-dark: #064e3b;  /* Deep Emerald 900 */
+  --corp-primary-light: #10b981; /* Emerald 500 */
+  --corp-primary-glow: rgba(16, 185, 129, 0.25);
+  
+  --corp-saffron: #f59e0b;       /* Amber/Saffron 500 */
+  --corp-saffron-dark: #d97706;  /* Amber 600 */
+  --corp-saffron-light: #fef3c7; /* Amber 100 */
+  
+  --corp-slate-900: #0f172a;
+  --corp-slate-800: #1e293b;
+  --corp-slate-700: #334155;
+  --corp-slate-600: #475569;
+  --corp-slate-500: #64748b;
+  --corp-slate-200: #e2e8f0;
+  --corp-slate-100: #f1f5f9;
+  --corp-slate-50: #f8fafc;
+
+  --corp-gradient-hero: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+  --corp-gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --corp-gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+
+  --corp-radius-sm: 8px;
+  --corp-radius-md: 14px;
+  --corp-radius-lg: 20px;
+  --corp-radius-xl: 28px;
+  --corp-radius-full: 9999px;
+
+  --corp-shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
+  --corp-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --corp-shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --corp-shadow-glow: 0 10px 30px rgba(16, 185, 129, 0.35);
+
+  --corp-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --corp-font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body.corp-body {
+  font-family: var(--corp-font-sans);
+  background-color: var(--corp-slate-50);
+  color: var(--corp-slate-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container */
+.corp-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Top National Tri-Color Accent */
+.corp-tricolor-bar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%);
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+/* Header & Sticky Navigation */
+.corp-header {
+  position: sticky;
+  top: 4px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+}
+
+.corp-header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.corp-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.corp-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.corp-logo-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--corp-gradient-hero);
+  border-radius: var(--corp-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
+}
+
+.corp-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.corp-logo-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.corp-logo-title span {
+  color: var(--corp-primary);
+}
+
+.corp-logo-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #047857;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Nav Menu Links */
+.corp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.corp-nav-link {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--corp-slate-700);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+  padding: 6px 0;
+}
+
+.corp-nav-link:hover {
+  color: var(--corp-primary);
+}
+
+.corp-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--corp-primary);
+  transition: width 0.2s ease;
+  border-radius: 2px;
+}
+
+.corp-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Nav Actions */
+.corp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.corp-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--corp-slate-800);
+  background: #ffffff;
+  border: 1.5px solid #a7f3d0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.corp-lang-pill:hover {
+  background: #ecfdf5;
+  border-color: var(--corp-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.2);
+}
+
+.corp-lang-pill .lang-globe {
+  font-size: 1.1rem;
+}
+
+.corp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--corp-slate-700);
+  background: var(--corp-slate-100);
+  border: 1px solid var(--corp-slate-200);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.corp-btn-secondary:hover {
+  background: #e2e8f0;
+  color: var(--corp-slate-900);
+}
+
+.corp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--corp-gradient-hero);
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.corp-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(4, 120, 87, 0.45);
+}
+
+.corp-btn-saffron {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--corp-gradient-gold);
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.corp-btn-saffron:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
+}
+
+/* Mobile Toggle */
+.corp-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--corp-slate-800);
+  cursor: pointer;
+}
+
+/* Hero Section */
+.corp-hero {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+  padding: 80px 0 60px 0;
+  overflow: hidden;
+  border-bottom: 1px solid #dcfce7;
+}
+
+.corp-hero::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.corp-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.corp-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.corp-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 20px;
+}
+
+.corp-hero-badge .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.corp-hero-title {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--corp-slate-900);
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.corp-hero-title .highlight {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.corp-hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--corp-slate-600);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+.corp-hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.corp-hero-partners {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 24px;
+}
+
+.corp-partner-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--corp-slate-500);
+  font-weight: 700;
+}
+
+.corp-partner-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.corp-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--corp-radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--corp-slate-700);
+}
+
+/* Hero Right Visual Mockup */
+.corp-hero-visual {
+  position: relative;
+  z-index: 2;
+}
+
+.corp-mockup-card {
+  background: #ffffff;
+  border-radius: var(--corp-radius-xl);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+  padding: 24px;
+  position: relative;
+}
+
+.corp-mockup-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.corp-mockup-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #ecfdf5;
+  border-radius: var(--corp-radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.corp-mockup-stat-box {
+  background: var(--corp-slate-900);
+  color: #ffffff;
+  border-radius: var(--corp-radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.corp-mockup-stat-box::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+}
+
+.corp-mockup-stat-lbl {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.corp-mockup-stat-val {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: var(--corp-font-mono);
+  color: #34d399;
+  line-height: 1.1;
+}
+
+.corp-mockup-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.corp-mockup-mini-tile {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--corp-radius-md);
+  padding: 12px;
+}
+
+.corp-tile-lbl {
+  font-size: 0.72rem;
+  color: var(--corp-slate-500);
+}
+
+.corp-tile-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--corp-slate-800);
+  margin-top: 2px;
+}
+
+.corp-floating-pill {
+  position: absolute;
+  padding: 10px 16px;
+  border-radius: var(--corp-radius-full);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--corp-slate-800);
+  animation: float-pill 4s ease-in-out infinite;
+}
+
+.corp-pill-1 {
+  bottom: -20px;
+  left: -24px;
+}
+
+.corp-pill-2 {
+  top: -16px;
+  right: -20px;
+  animation-delay: 2s;
+}
+
+@keyframes float-pill {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Stats Counter Section */
+.corp-stats-section {
+  background: #ffffff;
+  padding: 48px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.corp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.corp-stat-item {
+  text-align: center;
+  padding: 12px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.corp-stat-item:last-child {
+  border-right: none;
+}
+
+.corp-stat-number {
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-family: var(--corp-font-mono);
+  color: var(--corp-primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.corp-stat-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--corp-slate-900);
+  margin-bottom: 4px;
+}
+
+.corp-stat-desc {
+  font-size: 0.82rem;
+  color: var(--corp-slate-500);
+}
+
+/* Section Common Header */
+.corp-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px auto;
+}
+
+.corp-section-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--corp-primary);
+  background: #ecfdf5;
+  padding: 4px 12px;
+  border-radius: var(--corp-radius-full);
+  margin-bottom: 12px;
+}
+
+.corp-section-title {
+  font-size: 2.35rem;
+  font-weight: 900;
+  color: var(--corp-slate-900);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.corp-section-sub {
+  font-size: 1.05rem;
+  color: var(--corp-slate-600);
+  line-height: 1.6;
+}
+
+/* Problem vs Solution Section */
+.corp-comparison-section {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.corp-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.corp-compare-card {
+  background: #ffffff;
+  border-radius: var(--corp-radius-xl);
+  padding: 32px;
+  box-shadow: var(--corp-shadow-sm);
+  border: 1px solid #e2e8f0;
+}
+
+.corp-compare-card.crisis {
+  border-top: 5px solid #ef4444;
+}
+
+.corp-compare-card.solution {
+  border-top: 5px solid #10b981;
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.corp-compare-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.corp-compare-badge {
+  font-size: 1.8rem;
+}
+
+.corp-compare-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+}
+
+.corp-compare-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.corp-compare-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.corp-compare-bullet {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.crisis .corp-compare-bullet {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.solution .corp-compare-bullet {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.corp-compare-item-content h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--corp-slate-900);
+  margin-bottom: 2px;
+}
+
+.corp-compare-item-content p {
+  font-size: 0.86rem;
+  color: var(--corp-slate-600);
+}
+
+/* 5 Portals Ecosystem Section */
+.corp-ecosystem-section {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.corp-ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.corp-portal-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--corp-radius-lg);
+  padding: 28px;
+  box-shadow: var(--corp-shadow-sm);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.corp-portal-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--corp-shadow-lg);
+  border-color: var(--corp-primary-light);
+}
+
+.corp-portal-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--corp-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+}
+
+.corp-portal-card.p-farmer .corp-portal-icon-wrap { background: #dcfce7; color: #166534; }
+.corp-portal-card.p-officer .corp-portal-icon-wrap { background: #dbeafe; color: #1e40af; }
+.corp-portal-card.p-testing .corp-portal-icon-wrap { background: #f3e8ff; color: #6b21a8; }
+.corp-portal-card.p-warehouse .corp-portal-icon-wrap { background: #ffedd5; color: #c2410c; }
+.corp-portal-card.p-account .corp-portal-icon-wrap { background: #e0e7ff; color: #3730a3; }
+
+.corp-portal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+  margin-bottom: 6px;
+}
+
+.corp-portal-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--corp-slate-500);
+  margin-bottom: 12px;
+}
+
+.corp-portal-desc {
+  font-size: 0.88rem;
+  color: var(--corp-slate-600);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+.corp-portal-features {
+  list-style: none;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.corp-portal-features li {
+  font-size: 0.82rem;
+  color: var(--corp-slate-700);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.corp-portal-features li::before {
+  content: '✓';
+  color: var(--corp-primary);
+  font-weight: 800;
+}
+
+.corp-portal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: var(--corp-radius-sm);
+  background: var(--corp-slate-50);
+  border: 1px solid var(--corp-slate-200);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--corp-slate-800);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.corp-portal-link:hover {
+  background: var(--corp-primary);
+  color: #ffffff;
+  border-color: var(--corp-primary);
+}
+
+/* 6-Stage Process Workflow */
+.corp-workflow-section {
+  padding: 90px 0;
+  background: #f8fafc;
+}
+
+.corp-workflow-timeline {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+.corp-step-card {
+  background: #ffffff;
+  border-radius: var(--corp-radius-md);
+  padding: 20px 16px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.corp-step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--corp-shadow-md);
+  border-color: var(--corp-primary);
+}
+
+.corp-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--corp-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.corp-step-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.corp-step-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.corp-step-desc {
+  font-size: 0.76rem;
+  color: var(--corp-slate-500);
+  line-height: 1.45;
+}
+
+/* Interactive Calculator Section */
+.corp-calc-section {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.corp-calc-box {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  border-radius: var(--corp-radius-xl);
+  padding: 40px;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  box-shadow: var(--corp-shadow-lg);
+}
+
+.corp-calc-inputs h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.corp-calc-inputs p {
+  color: #a7f3d0;
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+}
+
+.corp-calc-group {
+  margin-bottom: 18px;
+}
+
+.corp-calc-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+}
+
+.corp-calc-select, .corp-calc-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--corp-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.corp-calc-select option {
+  background: #064e3b;
+  color: #ffffff;
+}
+
+.corp-calc-checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 16px;
+  border-radius: var(--corp-radius-sm);
+  cursor: pointer;
+}
+
+.corp-calc-checkbox-wrap input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Calculator Result Panel */
+.corp-calc-result-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--corp-radius-lg);
+  padding: 28px;
+  color: var(--corp-slate-900);
+}
+
+.corp-calc-result-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--corp-primary);
+  margin-bottom: 6px;
+}
+
+.corp-calc-total-amount {
+  font-size: 2.6rem;
+  font-weight: 900;
+  font-family: var(--corp-font-mono);
+  color: #065f46;
+  margin-bottom: 16px;
+}
+
+.corp-calc-breakdown {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.86rem;
+}
+
+.corp-calc-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.corp-calc-row strong {
+  font-family: var(--corp-font-mono);
+}
+
+.corp-calc-bonus-tag {
+  color: #15803d;
+  font-weight: 700;
+}
+
+/* Live Queue Simulator Section */
+.corp-queue-section {
+  padding: 90px 0;
+  background: #f8fafc;
+}
+
+.corp-queue-wrapper {
+  background: #ffffff;
+  border-radius: var(--corp-radius-xl);
+  padding: 32px;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--corp-shadow-md);
+}
+
+.corp-queue-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.corp-queue-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.corp-queue-tile {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--corp-radius-md);
+  padding: 16px;
+}
+
+.corp-queue-tile.calling {
+  border-color: #10b981;
+  background: #ecfdf5;
+}
+
+.corp-queue-tile-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--corp-slate-500);
+  margin-bottom: 6px;
+}
+
+.corp-queue-token-num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--corp-font-mono);
+  color: var(--corp-slate-900);
+}
+
+.corp-queue-vehicle {
+  font-size: 0.8rem;
+  color: var(--corp-slate-600);
+}
+
+/* Roadmap Section */
+.corp-roadmap-section {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.corp-roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.corp-roadmap-card {
+  background: #f8fafc;
+  border-radius: var(--corp-radius-lg);
+  padding: 32px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.corp-roadmap-card.active {
+  background: #ffffff;
+  border-color: var(--corp-primary);
+  box-shadow: var(--corp-shadow-md);
+}
+
+.corp-roadmap-phase {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--corp-primary);
+  margin-bottom: 8px;
+}
+
+.corp-roadmap-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+  margin-bottom: 12px;
+}
+
+.corp-roadmap-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--corp-slate-600);
+}
+
+.corp-roadmap-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.corp-roadmap-card ul li::before {
+  content: '▸';
+  color: var(--corp-primary);
+  font-weight: 800;
+}
+
+/* Team Section */
+.corp-team-section {
+  padding: 96px 0;
+  background: #f8fafc;
+  position: relative;
+}
+
+.corp-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.corp-team-card {
+  background: #ffffff;
+  border-radius: var(--corp-radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.corp-team-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+  opacity: 0.8;
+  transition: height 0.25s ease;
+}
+
+.corp-team-card:hover {
+  transform: translateY(-6px);
+  border-color: #a7f3d0;
+  box-shadow: 0 16px 36px rgba(4, 120, 87, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.corp-team-card:hover::before {
+  height: 6px;
+}
+
+.corp-team-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 16px auto;
+  border: 3px solid #a7f3d0;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.18);
+  transition: transform 0.3s ease;
+}
+
+.corp-team-card:hover .corp-team-avatar {
+  transform: scale(1.06);
+}
+
+.corp-team-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--corp-slate-900);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.corp-team-role {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--corp-primary);
+  margin-bottom: 12px;
+  display: inline-block;
+  padding: 3px 12px;
+  background: #ecfdf5;
+  border-radius: var(--corp-radius-full);
+}
+
+.corp-team-bio {
+  font-size: 0.84rem;
+  color: var(--corp-slate-600);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.corp-team-skills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+
+.corp-team-skill-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* FAQ Accordion Section */
+.corp-faq-section {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.corp-faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.corp-faq-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--corp-radius-md);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.corp-faq-item.active {
+  border-color: var(--corp-primary);
+  background: #ffffff;
+}
+
+.corp-faq-q {
+  padding: 18px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--corp-slate-800);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.corp-faq-icon {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+  color: var(--corp-primary);
+}
+
+.corp-faq-item.active .corp-faq-icon {
+  transform: rotate(180deg);
+}
+
+.corp-faq-a {
+  padding: 0 24px 18px 24px;
+  font-size: 0.88rem;
+  color: var(--corp-slate-600);
+  line-height: 1.6;
+  display: none;
+}
+
+.corp-faq-item.active .corp-faq-a {
+  display: block;
+}
+
+/* Contact / APMC Pilot CTA Banner */
+.corp-cta-banner {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+}
+
+.corp-cta-banner h2 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.corp-cta-banner p {
+  font-size: 1.15rem;
+  color: #a7f3d0;
+  max-width: 680px;
+  margin: 0 auto 32px auto;
+}
+
+.corp-cta-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.corp-footer {
+  background: var(--corp-slate-900);
+  color: #94a3b8;
+  padding: 70px 0 30px 0;
+  border-top: 1px solid var(--corp-slate-800);
+}
+
+.corp-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.corp-footer-brand h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.corp-footer-brand p {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.corp-footer-col h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.corp-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.corp-footer-col ul a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.86rem;
+  transition: color 0.2s ease;
+}
+
+.corp-footer-col ul a:hover {
+  color: #34d399;
+}
+
+.corp-footer-bottom {
+  border-top: 1px solid var(--corp-slate-800);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+
+/* Floating Voice Bot Widget on Corporate Page */
+.corp-voice-float-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  border-radius: var(--corp-radius-full);
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(217, 119, 6, 0.4);
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-decoration: none;
+  z-index: 999;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.corp-voice-float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(217, 119, 6, 0.5);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .corp-hero-grid { grid-template-columns: 1fr; }
+  .corp-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .corp-stat-item:nth-child(2) { border-right: none; }
+  .corp-ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+  .corp-workflow-timeline { grid-template-columns: repeat(3, 1fr); }
+  .corp-calc-box { grid-template-columns: 1fr; }
+  .corp-queue-slots { grid-template-columns: repeat(2, 1fr); }
+  .corp-team-grid { grid-template-columns: repeat(2, 1fr); }
+  .corp-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .corp-nav-links { display: none; }
+  .corp-menu-toggle { display: block; }
+  .corp-compare-grid { grid-template-columns: 1fr; }
+  .corp-ecosystem-grid { grid-template-columns: 1fr; }
+  .corp-workflow-timeline { grid-template-columns: 1fr; }
+  .corp-roadmap-grid { grid-template-columns: 1fr; }
+  .corp-team-grid { grid-template-columns: 1fr; }
+  .corp-hero-title { font-size: 2.2rem; }
+  .corp-footer-grid { grid-template-columns: 1fr; }
+  .corp-voice-float-btn span.label { display: none; }
+}
+</style>
 </head>
+<body class="corp-body">
 
-<body class="bg-[#f8fafc] text-[#0f172a] flex flex-col min-h-screen antialiased font-sans">
+  <!-- 1. National Tri-Color Accent Bar -->
+  <div class="corp-tricolor-bar"></div>
 
-  <!-- Hidden non-visual hook for regression compatibility -->
-  <div id="lang-toggle-btn" style="display:none" data-storage="kisansetu_language"></div>
-
-  <!-- 2. MAIN NAVBAR (FROSTED GLASS EFFECT) -->
-  <header class="bg-white/85 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40 transition-all shadow-xs">
-    <nav class="container mx-auto px-4 py-3 flex items-center justify-between" aria-label="Main Navigation">
-
-      <!-- Brand Logo / Wordmark -->
-      <a href="#home" class="flex items-center gap-3 group focus:outline-none">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white flex items-center justify-center font-bold text-sm shadow-xs transition-transform group-hover:scale-105">
-          K
-        </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">KisanSetu</span>
-            <span class="text-xs font-semibold text-slate-400">| Digital Mandi Platform</span>
-          </div>
-          <span class="block text-[9px] uppercase font-bold tracking-widest text-emerald-700 -mt-0.5">Digital Mandi Platform</span>
-        </div>
-      </a>
-
-      <!-- Desktop Nav Links -->
-      <ul class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-700">
-        <li><a href="#home" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.home">Home</a></li>
-        <li><a href="#crops" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.crops">Crops</a></li>
-        <li><a href="#centers" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.centers">Procurement Centers</a></li>
-        <li><a href="farmer/dashboard.html" class="hover:text-emerald-700 transition-colors py-1 text-emerald-700 font-bold" data-i18n="nav.farmerPortal">🌾 Farmer Portal</a></li>
+  <!-- 2. Sticky Corporate Navigation Header -->
+  <header class="corp-header">
+    <div class="corp-container">
+      <nav class="corp-nav-wrapper">
         
-        <!-- More Dropdown (ONLY: 7-Step Journey, Compare, FAQ, About) -->
-        <li class="relative group">
-          <button type="button" class="flex items-center gap-1 hover:text-emerald-700 py-1 cursor-pointer font-semibold">
-            <span data-i18n="nav.more">More</span>
-            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="absolute left-0 top-full pt-1.5 hidden group-hover:block w-48 z-50">
-            <div class="bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg rounded-xl py-1.5 text-xs font-semibold">
-              <a href="#journey" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.journey">7-Step Process</a>
-              <a href="#comparison" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.compare">Comparison</a>
-              <a href="#faq" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.faq">FAQ</a>
-              <a href="#about" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.about">Platform Details</a>
-            </div>
+        <!-- Logo Group -->
+        <a href="index.html" class="corp-logo-group">
+          <div class="corp-logo-icon">🌾</div>
+          <div class="corp-logo-text">
+            <div class="corp-logo-title" data-i18n="corp_brand_title">Harvest <span>Hub</span></div>
+            <div class="corp-logo-badge" data-i18n="corp_brand_badge">SIH 2026 • PS #26032 • APMC Rohtak</div>
           </div>
-        </li>
-      </ul>
+        </a>
 
-      <!-- Desktop Action Buttons -->
-      <div class="hidden sm:flex items-center gap-2.5">
-        <!-- Language Switcher Option (English / Hindi) -->
-        <div class="kisan-lang-switcher inline-flex items-center rounded-xl border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-          title="Language: English">
-          <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-            class="px-2.5 py-1 rounded-lg transition-all cursor-pointer">
-            EN
+        <!-- Desktop Navigation Menu -->
+        <ul class="corp-nav-links">
+          <li><a href="#overview" class="corp-nav-link" data-i18n="nav_overview">Overview</a></li>
+          <li><a href="#ecosystem" class="corp-nav-link" data-i18n="nav_ecosystem">5 Portals</a></li>
+          <li><a href="#workflow" class="corp-nav-link" data-i18n="nav_workflow">Process</a></li>
+          <li><a href="#calculator" class="corp-nav-link" data-i18n="nav_calculator">MSP Calculator</a></li>
+          <li><a href="#queue" class="corp-nav-link" data-i18n="nav_queue">Smart Queue</a></li>
+          <li><a href="#impact" class="corp-nav-link" data-i18n="nav_impact">Impact</a></li>
+          <li><a href="#team" class="corp-nav-link" data-i18n="nav_team">Team</a></li>
+          <li><a href="#faq" class="corp-nav-link" data-i18n="nav_faq">FAQ</a></li>
+        </ul>
+
+        <!-- Navigation Actions -->
+        <div class="corp-nav-actions">
+          <button class="corp-lang-pill" id="corpLangBtn" onclick="if(window.kisanI18n) { const l = window.kisanI18n.toggleLanguage(); if(window.corpWebsite) window.corpWebsite.showCorpToast(l === 'hi' ? '🌐 भाषा: हिंदी सक्रिय' : '🌐 Language: English Activated', 'info'); }" title="Switch Language / भाषा बदलें">
+            <span class="corp-lang-icon">🌐</span>
+            <span class="corp-lang-text" id="corpLangText">Hindi</span>
           </button>
-          
+          <a href="portal.html" class="corp-btn-primary" title="Launch Harvest Hub 5-Portal Application" data-i18n="nav_launch_app">
+            <span>🚀</span> Launch Portals
+          </a>
+          <button class="corp-menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
         </div>
 
-        <button type="button" onclick="window.KisanVoiceAssistant && window.KisanVoiceAssistant.open()"
-          class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3 rounded-xl border-emerald-300 text-emerald-700 bg-emerald-50/50 hover:bg-emerald-100/60 flex items-center gap-1.5 cursor-pointer">
-          <span>🎙️</span> <span data-i18n="nav.voiceAssistant">Kisan Vani AI</span>
-        </button>
-        <a href="farmer/dashboard.html" class="btn btn-primary btn-sm text-xs font-semibold py-1.5 px-3.5 rounded-xl shadow-xs" data-i18n="nav.farmerPortal">
-          Farmer Portal
-        </a>
-        <a href="pages/login.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3 rounded-xl border-slate-200" data-i18n="nav.login">
-          Login
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger Button -->
-      <button type="button" id="mobile-menu-toggle"
-        class="md:hidden p-2 text-slate-700 hover:text-slate-900 rounded-lg focus:outline-none"
-        aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
-        <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-        <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </nav>
-
-    <!-- Mobile Slide-Down Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 py-4 space-y-2.5 text-xs font-semibold text-slate-800">
-      <!-- Mobile Language Switcher -->
-      <div class="flex items-center justify-between p-2 rounded-xl bg-slate-100 text-xs font-semibold">
-        <span class="text-slate-600">🌐 Language: English</span>
-        <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-white p-0.5">
-          <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')" class="px-2.5 py-1 rounded-md">English</button>
-          
-        </div>
-      </div>
-      <a href="#home" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.home">Home</a>
-      <a href="#crops" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.crops">Crops</a>
-      <a href="#centers" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.centers">Procurement Centers</a>
-      <a href="#journey" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.journey">7-Step Process</a>
-      <a href="#comparison" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.compare">Comparison</a>
-      <a href="#faq" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.faq">FAQ</a>
-      <a href="#about" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.about">Platform Details</a>
-      <div class="pt-2 border-t border-slate-100 flex gap-2">
-        <a href="farmer/dashboard.html" class="btn btn-primary btn-sm flex-1 text-center py-2 nav-mobile-link" data-i18n="nav.farmerPortal">Farmer Portal</a>
-        <a href="pages/login.html" class="btn btn-outline btn-sm flex-1 text-center py-2 nav-mobile-link" data-i18n="nav.login">Login</a>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <!-- MAIN CONTENT CONTAINER -->
-  <main id="home" class="flex-1">
-
-    <!-- 3. HERO (SPLIT ASYMMETRIC OPERATIONAL LAYOUT) -->
-    <section class="py-12 md:py-20 border-b border-slate-200/80 bg-gradient-to-b from-emerald-50/30 via-white to-white relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-
-          <!-- Left Column: Editorial Headline & Actions -->
-          <div class="lg:col-span-7 space-y-5">
-            <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200/80 text-[11px] font-semibold text-emerald-800 rounded-full shadow-2xs">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Smart Government Procurement & Queue Intelligence Platform</span>
-            </div>
-
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              From Farm to Procurement Center <br>
-              <span class="text-emerald-700">The Complete Journey in One Place</span>
-            </h1>
-
-            <p class="text-base sm:text-lg text-slate-600 font-medium leading-normal">
-              Your complete journey from farm to procurement center
-            </p>
-
-            <!-- Practical Workflow Points (Clean List, No Blobs) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-1 text-xs text-slate-600 font-medium">
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">01.</span>
-                <span><strong>Find procurement center</strong> — Locate authorized local centers</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">02.</span>
-                <span><strong>Book slot</strong> — Reserve a fixed arrival time window</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">03.</span>
-                <span><strong>Get token</strong> — Generate a secure digital pass</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">04.</span>
-                <span><strong>Track queue</strong> — Real-time position tracking</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">05.</span>
-                <span><strong>Complete procurement</strong> — Electronic weighbridge & assay</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold font-mono">06.</span>
-                <span><strong>Receive digital receipt</strong> — Verified e-J-Form receipt</span>
-              </div>
-            </div>
-
-            <!-- Primary CTAs -->
-            <div class="flex flex-wrap items-center gap-3 pt-3">
-              <a href="farmer/centers.html" class="btn btn-primary btn-lg text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs flex items-center gap-2">
-                <span>📍</span> Find Centers &rarr;
-              </a>
-              <a href="farmer/dashboard.html" class="btn btn-outline btn-lg text-xs font-semibold py-2.5 px-5 rounded-xl bg-white border-slate-200 text-slate-700 hover:bg-slate-50">
-                <span>🌾</span> Farmer Portal
-              </a>
-            </div>
-
-            <div class="text-[11px] text-slate-400 pt-1 flex items-center gap-2">
-              <span class="font-bold text-emerald-600">✓</span> 
-              <span>Zero Congestion • Live Mobile Queue Tracking • Official MSP Floor Guarantee</span>
-            </div>
-          </div>
-
-          <!-- Right Column: Operational Live Center Preview Card -->
-          <div class="lg:col-span-5">
-            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-md p-6 font-sans relative hover:border-emerald-500/40 transition-all">
-              
-              <!-- Board Top Header -->
-              <div class="flex items-start justify-between pb-3 border-b border-slate-100 mb-4">
-                <div>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-700 block">
-                    LIVE OPERATIONAL CENTER PREVIEW
-                  </span>
-                  <h3 class="text-base font-bold text-slate-900 mt-0.5">Rohtak Grain Center</h3>
-                  <div class="text-xs text-slate-400 flex items-center gap-1 font-mono">
-                    <span>CTR-HR-03</span> • <span>Rohtak, Haryana</span>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  ● Booking Available
-                </span>
-              </div>
-
-              <!-- Operational Metrics Table -->
-              <div class="grid grid-cols-3 gap-2 py-3.5 bg-slate-50/70 border border-slate-200/70 rounded-xl text-center mb-4">
-                <div class="p-2 border-r border-slate-200/70">
-                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Queue</span>
-                  <span class="text-base font-mono font-bold text-slate-900 mt-0.5 block">12 vehicles</span>
-                  <span class="text-[10px] text-slate-400 font-medium">Vehicles in Queue</span>
-                </div>
-                <div class="p-2 border-r border-slate-200/70">
-                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Estimated Wait</span>
-                  <span class="text-base font-mono font-bold text-amber-600 mt-0.5 block">~35 min</span>
-                  <span class="text-[10px] text-slate-400 font-medium">Wait Time</span>
-                </div>
-                <div class="p-2">
-                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Today's Cap</span>
-                  <span class="text-base font-mono font-bold text-slate-900 mt-0.5 block">24 / 40 MT</span>
-                  <span class="text-[10px] text-slate-400 font-medium">Daily Intake</span>
-                </div>
-              </div>
-
-              <!-- Visual ASCII/Bar Load Meter -->
-              <div class="space-y-1.5 mb-4 p-3.5 bg-slate-50/50 border border-slate-100 rounded-xl">
-                <div class="flex items-center justify-between text-xs font-semibold text-slate-700">
-                  <span>Center Intake Load:</span>
-                  <span class="font-mono text-emerald-700 font-bold">70% (MODERATE)</span>
-                </div>
-                <div class="w-full bg-slate-200/80 h-2 rounded-full overflow-hidden">
-                  <div class="bg-amber-500 h-full rounded-full" style="width: 70%;"></div>
-                </div>
-              </div>
-
-              <!-- Mini Operational Action -->
-              <div class="flex items-center justify-between pt-2 text-xs">
-                <span class="text-[10px] text-amber-800 bg-amber-50 px-2.5 py-0.5 border border-amber-200 rounded-full font-mono font-semibold">
-                  Demo Simulation Data
-                </span>
-                <a href="farmer/booking.html?centerId=CTR-HR-03" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
-                  Book Slot at This Center &rarr;
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. INTERACTIVE CROPS SECTION (MINIMAL MODERN SELECTOR) -->
-    <section id="crops" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
-      <div class="container mx-auto px-4 max-w-6xl">
+  <!-- 3. Hero Section -->
+  <section class="corp-hero" id="overview">
+    <div class="corp-container">
+      <div class="corp-hero-grid">
         
-        <div class="max-w-2xl mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            🌱 MSP Reference Directory
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Key Supported Crops (MSP Directory)
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Select a crop to view official MSP procurement rates, categories, and acceptable moisture standards.
+        <!-- Left Hero Content -->
+        <div class="corp-hero-content">
+          <div class="corp-hero-badge">
+            <span class="pulse"></span>
+            <span>Smart India Hackathon 2026 • Problem Statement #26032</span>
+          </div>
+
+          <h1 class="corp-hero-title">
+            <span data-i18n="corp_hero_title_1">Pre-Sowing Soil Intelligence, Direct Crop Procurement &</span> <span class="highlight" data-i18n="corp_hero_title_highlight">Smart Mandi Queue Ecosystem</span>
+          </h1>
+
+          <p class="corp-hero-subtitle" data-i18n="corp_hero_sub">
+            Pre-sowing <strong>48-Hour SLA scientific fertilizer advisories</strong>, direct <strong>Base MSP + Soil Compliance Bonus</strong> with zero laboratory friction, live <strong>digital mandi gate tokens</strong>, and <strong>100% direct DBT bank settlements</strong>.
           </p>
-        </div>
 
-        <!-- Horizontal Scrollable / Wrap Chip Selector -->
-        <div class="flex flex-wrap items-center gap-2 mb-8 pb-3 border-b border-slate-100" id="crop-selector-container">
-          <button type="button" class="crop-chip active px-4 py-2 text-xs font-semibold border rounded-xl transition-all shadow-xs" data-crop="Wheat">Wheat</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Paddy">Paddy</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Mustard">Mustard</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Bajra">Bajra</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Cotton">Cotton</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Maize">Maize</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Barley">Barley</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Gram">Gram</button>
-          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Soybean">Soybean</button>
-        </div>
-
-        <!-- Dynamic Detailed Operational Panel for Selected Crop -->
-        <div id="crop-display-panel" class="bg-slate-50/70 border border-slate-200/80 p-6 md:p-8 rounded-2xl shadow-xs">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            
-            <div class="md:col-span-4 border-b md:border-b-0 md:border-r border-slate-200/80 pb-6 md:pb-0 md:pr-8">
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-100/60 px-2.5 py-0.5 rounded-full inline-block mb-2" id="panel-crop-season">Rabi Season Crop</span>
-              <h3 class="text-2xl font-bold text-slate-900 mt-1" id="panel-crop-name">WHEAT (GRADE A)</h3>
-              <p class="text-xs text-slate-500 font-medium mt-1" id="panel-crop-hindi">Grade A Certified Cereal</p>
-              <div class="mt-4 inline-flex items-center gap-2 bg-white border border-slate-200/80 px-3 py-1.5 rounded-xl shadow-xs">
-                <span class="text-[10px] font-semibold text-slate-400 uppercase">Category:</span>
-                <span class="text-xs font-semibold text-slate-800" id="panel-crop-category">Cereal Grain</span>
-              </div>
-            </div>
-
-            <div class="md:col-span-5 grid grid-cols-2 gap-4">
-              <div class="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs">
-                <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wide">MSP Floor Rate</span>
-                <span class="text-xl font-bold font-mono text-emerald-700 mt-1 block" id="panel-crop-rate">₹2,275 / Q</span>
-                <span class="text-[11px] text-slate-500 font-medium">Minimum Support Price</span>
-              </div>
-              <div class="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs">
-                <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wide">Moisture Tolerance</span>
-                <span class="text-xl font-bold font-mono text-slate-800 mt-1 block" id="panel-crop-moisture">12.0% Max</span>
-                <span class="text-[11px] text-slate-500 font-medium">Fair Average Quality (FAQ) Standard</span>
-              </div>
-            </div>
-
-            <div class="md:col-span-3 text-left md:text-right space-y-2.5">
-              <a id="panel-crop-action-btn" href="farmer/centers.html?commodity=Wheat" class="btn btn-primary w-full md:w-auto text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs inline-flex items-center justify-center gap-2">
-                <span>Find Procurement Centers</span> &rarr;
-              </a>
-              <div class="text-[11px] text-slate-400 block font-mono">
-                Official MSP Benchmark (Illustrative)
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 5. 7-STEP FARMER PROCESS TIMELINE (MINIMAL CONNECTED STEPS) -->
-    <section id="journey" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="max-w-2xl mb-10">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            ⚡ Operational Workflow
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            7-Step Farm to Procurement Mandi Journey
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Step-by-step verified timeline from initial center search to digital procurement receipt.
-          </p>
-        </div>
-
-        <!-- Connected Process Timeline -->
-        <div class="grid grid-cols-1 md:grid-cols-7 border border-slate-200/90 bg-white rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-slate-100 shadow-sm">
-
-          <!-- Step 1 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">01</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Center Discovery</h3>
-              <div class="text-[11px] font-medium text-slate-500">Find Center</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Discover nearest low-load centers by crop and district.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 1 of 7</div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">02</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Slot Booking</h3>
-              <div class="text-[11px] font-medium text-slate-500">Book Slot</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Reserve an arrival date and 1-hour time window.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 2 of 7</div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">03</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Digital Token</h3>
-              <div class="text-[11px] font-medium text-slate-500">Digital Pass</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Receive a verified digital token pass (#KS-TKN-xxxx).
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 3 of 7</div>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">04</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Live Queue</h3>
-              <div class="text-[11px] font-medium text-slate-500">Live Queue</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Monitor your live position in queue and wait time.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 4 of 7</div>
-          </div>
-
-          <!-- Step 5 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">05</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Gate Check-in</h3>
-              <div class="text-[11px] font-medium text-slate-500">Gate Check-in</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Operator scans QR token at entry gate for yard admission.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 5 of 7</div>
-          </div>
-
-          <!-- Step 6 -->
-          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-600 block">06</span>
-              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Weighment</h3>
-              <div class="text-[11px] font-medium text-slate-500">Weighment</div>
-              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
-                Accurate weighbridge measurement of gross and tare weight.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 6 of 7</div>
-          </div>
-
-          <!-- Step 7 -->
-          <div class="p-5 flex flex-col justify-between bg-emerald-50/60 hover:bg-emerald-50 transition-colors">
-            <div>
-              <span class="text-base font-mono font-bold text-emerald-800 block">07</span>
-              <h3 class="text-xs font-bold text-emerald-950 mt-1.5">Digital Receipt</h3>
-              <div class="text-[11px] font-medium text-emerald-700">Receipt</div>
-              <p class="text-[11px] text-emerald-800 mt-2.5 leading-relaxed">
-                Instant statutory e-J-Form receipt issued with DBT payout.
-              </p>
-            </div>
-            <div class="mt-4 pt-2.5 border-t border-emerald-200/80 text-[10px] font-mono text-emerald-700 font-bold">Complete</div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 6. LIVE QUEUE OPERATIONAL TIMELINE VISUAL -->
-    <section id="live-queue-preview" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <div class="lg:col-span-5 space-y-4">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
-              📊 Real-Time Queue Telemetry
-            </span>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              Transparent Queue Progression
-            </h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Every vehicle stage is digitally tracked from entry gate to weighbridge tare with zero queue jumping.
-            </p>
-            <div class="p-4 bg-slate-50/80 border border-slate-200/80 rounded-2xl text-xs space-y-1.5 shadow-xs">
-              <div class="font-bold text-slate-800">End-to-End Operational Pipeline</div>
-              <p class="text-slate-500 text-[11px] leading-relaxed">
-                From booking confirmation to final DBT dispatch, every transition is visible to both farmer and center staff.
-              </p>
-            </div>
-            <div class="pt-1">
-              <a href="farmer/queue.html" class="btn btn-primary text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs inline-flex items-center gap-2">
-                <span>⚡</span> View Live Queue Screen &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Operational Flow Indicator Board -->
-          <div class="lg:col-span-7 bg-slate-50/60 border border-slate-200/80 p-5 md:p-6 rounded-2xl shadow-sm">
-            <div class="space-y-2.5 font-sans text-xs">
-              
-              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
-                <span class="font-semibold text-slate-800">1. Booking Confirmed</span>
-                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ CONFIRMED</span>
-              </div>
-
-              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
-                <span class="font-semibold text-slate-800">2. Arrival at Center</span>
-                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ ARRIVED</span>
-              </div>
-
-              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
-                <span class="font-semibold text-slate-800">3. Gate Verification</span>
-                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ CHECKED_IN</span>
-              </div>
-
-              <div class="flex items-center justify-between p-3 bg-amber-50/70 border border-amber-200/80 rounded-xl shadow-xs">
-                <span class="font-semibold text-amber-950">4. Queue Position</span>
-                <span class="font-bold text-amber-800 bg-amber-200/60 px-2.5 py-0.5 rounded-full text-[11px]">POSITION 05 (Ahead: 4)</span>
-              </div>
-
-              <div class="flex items-center justify-between p-3 bg-emerald-100/70 border border-emerald-300 rounded-xl shadow-xs">
-                <span class="font-bold text-emerald-950">5. Procurement / Weighbridge</span>
-                <span class="font-bold text-emerald-800 animate-pulse text-[11px]">● LIVE AT WEIGHBRIDGE</span>
-              </div>
-
-              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl opacity-75">
-                <span class="font-medium text-slate-500">6. Digital Receipt Issued</span>
-                <span class="text-slate-400 font-medium text-[11px]">○ PENDING FINISH</span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 7. DIGITAL RECEIPT REALISTIC PREVIEW -->
-    <section id="receipt-preview" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/40">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="max-w-2xl mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            🧾 Certified Procurement Document
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Digital Procurement Receipt (e-J-Form)
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Official APMC electronic receipt detailing gross, tare, and net produce weight with verified payment amount.
-          </p>
-        </div>
-
-        <!-- Realistic Digital Receipt Slip -->
-        <div class="max-w-xl mx-auto bg-white border border-slate-200/90 shadow-md p-6 md:p-8 rounded-2xl font-sans text-xs">
-          
-          <div class="text-center pb-4 border-b border-slate-100">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-700 font-semibold block">GOVERNMENT PROCUREMENT INTAKE</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-1">KISANSETU DIGITAL PROCUREMENT RECEIPT</h3>
-            <span class="text-[11px] text-slate-500">Electronic Procurement & Weighbridge Certificate</span>
-          </div>
-
-          <div class="py-4 border-b border-slate-100 grid grid-cols-2 gap-3 text-[11px]">
-            <div>
-              <span class="text-slate-400 block text-[10px]">Farmer Name:</span>
-              <span class="font-bold text-slate-800">Ram Kumar (Farmer)</span>
-            </div>
-            <div class="text-right">
-              <span class="text-slate-400 block text-[10px]">Receipt ID:</span>
-              <span class="font-mono font-bold text-slate-800">KSP-RCP-2026-0842</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">Crop / Grade:</span>
-              <span class="font-bold text-slate-800">Wheat (FAQ Grade A)</span>
-            </div>
-            <div class="text-right">
-              <span class="text-slate-400 block text-[10px]">Procurement Center:</span>
-              <span class="font-medium text-slate-800">Rohtak Grain Center</span>
-            </div>
-          </div>
-
-          <!-- Itemized Weight Math Table -->
-          <div class="py-4 border-b border-slate-100 space-y-2 font-mono text-xs">
-            <div class="flex justify-between">
-              <span class="text-slate-500">Gross Weight (Loaded):</span>
-              <span class="font-semibold text-slate-800">58.20 Q</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-500">Tare Weight (Empty):</span>
-              <span class="font-semibold text-slate-800">5.70 Q</span>
-            </div>
-            <div class="flex justify-between pt-2 border-t border-slate-100 text-slate-900 font-bold">
-              <span>Net Produce Weight:</span>
-              <span class="text-emerald-700">52.50 Q</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-500">MSP Procurement Rate:</span>
-              <span class="font-semibold text-slate-800">₹2,275.00 / Q</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-500">Statutory Deductions:</span>
-              <span class="font-semibold text-slate-800">₹0.00</span>
-            </div>
-          </div>
-
-          <!-- Total Due -->
-          <div class="py-4 flex items-center justify-between border-b border-slate-100">
-            <div>
-              <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wider">Net Payable Amount (DBT)</span>
-              <span class="text-2xl font-mono font-bold text-emerald-700 mt-0.5 block">₹1,19,437.50</span>
-            </div>
-            <div class="w-14 h-14 border border-slate-200 bg-slate-50/80 rounded-xl p-1 flex items-center justify-center text-[9px] text-center font-mono text-slate-400 shadow-xs">
-              [QR VERIFIED]
-            </div>
-          </div>
-
-          <div class="pt-4 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Official e-J-Form Sample</span>
-            <a href="farmer/sales-history.html" class="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline">
-              View in Sales History &rarr;
+          <div class="corp-hero-ctas">
+            <a href="portal.html" class="corp-btn-primary" style="font-size:1.02rem; padding:12px 28px;" data-i18n="corp_hero_cta_portals">
+              <span>🌾</span> Launch 5-Portal Platform
+            </a>
+            <a href="#calculator" class="corp-btn-secondary" style="font-size:0.98rem; padding:12px 24px;" data-i18n="corp_hero_cta_calc">
+              <span>🧮</span> Procurement & Bonus Calculator
             </a>
           </div>
 
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 8. OPERATIONAL CENTERS DIRECTORY -->
-    <section id="centers" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="max-w-2xl mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            📍 Procurement Center Directory
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Procurement Center Directory
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Explore authorized local centers, compare live load saturation, and book a delivery slot.
-          </p>
-        </div>
-
-        <!-- Two Column Operational Directory -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          
-          <!-- Left Column: Filters -->
-          <div class="lg:col-span-4 bg-slate-50/70 border border-slate-200/80 p-5 rounded-2xl shadow-xs space-y-4 text-xs font-sans">
-            <div class="pb-3 border-b border-slate-200/80 flex items-center justify-between">
-              <span class="font-bold uppercase tracking-wider text-slate-700">Filters</span>
-              <button type="button" id="dir-reset-btn" class="text-emerald-700 font-semibold hover:underline">Reset</button>
-            </div>
-
-            <div>
-              <label class="font-semibold text-slate-700 block mb-1.5">Crop Commodity</label>
-              <select id="dir-crop-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
-                <option value="">All Crops</option>
-                <option value="Wheat">Wheat</option>
-                <option value="Mustard">Mustard</option>
-                <option value="Paddy">Paddy</option>
-                <option value="Bajra">Bajra</option>
-                <option value="Cotton">Cotton</option>
-                <option value="Maize">Maize</option>
-                <option value="Barley">Barley</option>
-                <option value="Gram">Gram</option>
-                <option value="Soybean">Soybean</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="font-semibold text-slate-700 block mb-1.5">District</label>
-              <select id="dir-district-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
-                <option value="">All Districts</option>
-                <option value="Karnal">Karnal</option>
-                <option value="Ambala">Ambala</option>
-                <option value="Rohtak">Rohtak</option>
-                <option value="Panipat">Panipat</option>
-                <option value="Kurukshetra">Kurukshetra</option>
-                <option value="Hisar">Hisar</option>
-                <option value="Sirsa">Sirsa</option>
-                <option value="Jind">Jind</option>
-                <option value="Rewari">Rewari</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="font-semibold text-slate-700 block mb-1.5">Availability Status</label>
-              <select id="dir-status-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
-                <option value="">All Centers</option>
-                <option value="available">Booking Available Only</option>
-              </select>
-            </div>
-
-            <div class="pt-2 text-[11px] text-slate-500">
-              Showing: <span id="dir-count" class="font-bold text-slate-800">17</span> / 17 centers
+          <div class="corp-hero-partners">
+            <span class="corp-partner-label" data-i18n="corp_partners_label">Affiliated Bodies & Pilot Mandis:</span>
+            <div class="corp-partner-badges">
+              <span class="corp-mini-badge">🏛️ Govt. of Haryana (Agri Dept)</span>
+              <span class="corp-mini-badge">🌾 APMC Grain Market Rohtak</span>
+              <span class="corp-mini-badge">🇮🇳 National Agriculture Market (e-NAM) Ready</span>
             </div>
           </div>
-
-          <!-- Right Column: Results List -->
-          <div class="lg:col-span-8 space-y-3" id="dir-results-container">
-            <!-- Rendered dynamically by JavaScript from MOCK_CENTERS -->
-          </div>
-
         </div>
 
-      </div>
-    </section>
-
-    <!-- 9. PROBLEM VS SOLUTION (EDITORIAL COMPARISON) -->
-    <section id="comparison" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="max-w-2xl mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200/60 mb-2">
-            ⚖️ Operational Impact Comparison
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Traditional Mandi vs. KisanSetu Platform
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Why KisanSetu brings operational dignity, predictability, and transparency to mandi procurement.
-          </p>
-        </div>
-
-        <!-- Editorial Split Comparison Table -->
-        <div class="grid grid-cols-1 md:grid-cols-2 border border-slate-200/90 bg-white rounded-2xl divide-y md:divide-y-0 md:divide-x divide-slate-100 shadow-sm overflow-hidden">
-          
-          <!-- Column 1: Traditional Mandi -->
-          <div class="p-6 md:p-8 space-y-4">
-            <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
-              <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold font-mono">✕</span>
-              <h3 class="text-xs font-bold text-rose-900 uppercase tracking-wide">TRADITIONAL MANDI SYSTEM</h3>
-            </div>
+        <!-- Right Hero Mockup Card -->
+        <div class="corp-hero-visual">
+          <div class="corp-mockup-card">
             
-            <ul class="space-y-3 text-xs text-slate-600">
-              <li class="flex items-start gap-2.5">
-                <span class="text-rose-500 font-bold mt-0.5">•</span>
-                <span><strong>Uncertain arrival:</strong> Hundreds of tractor-trolleys arrive unannounced simultaneously.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-rose-500 font-bold mt-0.5">•</span>
-                <span><strong>Protracted waiting:</strong> Farmers spend 12 to 36 hours waiting in overnight queues.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-rose-500 font-bold mt-0.5">•</span>
-                <span><strong>Zero queue visibility:</strong> No advance awareness of vehicles ahead or bay status.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-rose-500 font-bold mt-0.5">•</span>
-                <span><strong>Vulnerable paper passes:</strong> High risk of lost paper tokens and queue-jumping conflicts.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-rose-500 font-bold mt-0.5">•</span>
-                <span><strong>Opaque settlement:</strong> Handwritten receipts feature arbitrary deductions and delayed payments.</span>
-              </li>
+            <div class="corp-mockup-topbar">
+              <div class="corp-mockup-tag">
+                <span>🟢</span> Rohtak New Grain Market (Live Ticker)
+              </div>
+              <span style="font-size:0.75rem; color:#64748b; font-weight:700;">Updated: Just now (Real-Time)</span>
+            </div>
+
+            <div class="corp-mockup-stat-box">
+              <div class="corp-mockup-stat-lbl">Active Mandi Gate Pass</div>
+              <div class="corp-mockup-stat-val">Token #8294</div>
+              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:4px;">
+                Vehicle: HR-12-BZ-9481 (Tractor Trolley) | Farmer: Rameshwar Hooda
+              </div>
+            </div>
+
+            <div class="corp-mockup-mini-grid">
+              <div class="corp-mockup-mini-tile">
+                <div class="corp-tile-lbl">Soil Health Card (SHC)</div>
+                <div class="corp-tile-val" style="color:#047857;">Certified Compliance</div>
+                <small style="color:#10b981; font-size:0.72rem;">+₹115/Q Bonus Active</small>
+              </div>
+
+              <div class="corp-mockup-mini-tile">
+                <div class="corp-tile-lbl">Govt Procurement Rate (MSP)</div>
+                <div class="corp-tile-val" style="color:#1e40af;">₹2,390 / Q</div>
+                <small style="color:#64748b; font-size:0.72rem;">Base MSP + NPK Bonus</small>
+              </div>
+
+              <div class="corp-mockup-mini-tile">
+                <div class="corp-tile-lbl">Weighbridge Status</div>
+                <div class="corp-tile-val" style="color:#b45309;">Gross Weight Done</div>
+                <small style="color:#64748b; font-size:0.72rem;">Net Weight: 65.00 Q</small>
+              </div>
+
+              <div class="corp-mockup-mini-tile">
+                <div class="corp-tile-lbl">Estimated DBT Payout</div>
+                <div class="corp-tile-val" style="color:#15803d;">₹1,55,350</div>
+                <small style="color:#15803d; font-size:0.72rem;">Direct to PNB Bank Account</small>
+              </div>
+            </div>
+
+            <!-- Floating Badge 1 -->
+            <div class="corp-floating-pill corp-pill-1">
+              <span style="font-size:1.2rem;">⏱️</span>
+              <div>
+                <div style="font-size:0.72rem; color:#64748b;">Mandi Waiting Time</div>
+                <div><strong>&lt; 90 mins</strong> <small style="color:#10b981;">(70% Reduction)</small></div>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 -->
+            <div class="corp-floating-pill corp-pill-2">
+              <span style="font-size:1.2rem;">🛡️</span>
+              <div>
+                <div style="font-size:0.72rem; color:#64748b;">Zero Arbitrary Cuts</div>
+                <div><strong>100% Transparent Price</strong></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Quantifiable Impact Numbers Strip -->
+  <section class="corp-stats-section" id="impact">
+    <div class="corp-container">
+      <div class="corp-stats-grid">
+        
+        <div class="corp-stat-item">
+          <div class="corp-stat-number">48 Hr</div>
+          <div class="corp-stat-title" data-i18n="stat_sla_title">Guaranteed Advisory SLA</div>
+          <div class="corp-stat-desc" data-i18n="stat_sla_desc">Precise fertilizer & seed prescription delivered within 48 working hours</div>
+        </div>
+
+        <div class="corp-stat-item">
+          <div class="corp-stat-number">&lt; 90m</div>
+          <div class="corp-stat-title" data-i18n="stat_wait_title">Mandi Gate Waiting Time</div>
+          <div class="corp-stat-desc" data-i18n="stat_wait_desc">Drop from 24-48 hrs to &lt;90 mins via digital tokens & voice calling</div>
+        </div>
+
+        <div class="corp-stat-item">
+          <div class="corp-stat-number">+₹115</div>
+          <div class="corp-stat-title" data-i18n="stat_bonus_title">Soil Compliance Bonus per Quintal</div>
+          <div class="corp-stat-desc" data-i18n="stat_bonus_desc">Direct cash premium added over Base MSP for adhering to soil advisories</div>
+        </div>
+
+        <div class="corp-stat-item">
+          <div class="corp-stat-number">100%</div>
+          <div class="corp-stat-title" data-i18n="stat_dbt_title">Direct DBT Bank Settlement</div>
+          <div class="corp-stat-desc" data-i18n="stat_dbt_desc">Automated electronic weighment slip to UTR verified bank transfer</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Crisis vs. Solution (Before Harvest Hub vs. After) -->
+  <section class="corp-comparison-section" id="crisis-vs-solution">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Problem & Solution (Crisis vs Solution)</span>
+        <h2 class="corp-section-title">Traditional Manual Mandi Pitfalls vs. Harvest Hub Digital Solution</h2>
+        <p class="corp-section-sub">Eliminating middlemen, excessive chemical degradation, unscientific moisture cuts, and traffic gridlocks across Indian agricultural markets.</p>
+      </div>
+
+      <div class="corp-compare-grid">
+        
+        <!-- Crisis Column -->
+        <div class="corp-compare-card crisis">
+          <div class="corp-compare-head">
+            <span class="corp-compare-badge">⚠️</span>
+            <div>
+              <h3 class="corp-compare-title">Traditional Manual APMC System</h3>
+              <span style="font-size:0.8rem; color:#ef4444; font-weight:700;">Manual Paper Mandi Challenges</span>
+            </div>
+          </div>
+
+          <ul class="corp-compare-list">
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✗</span>
+              <div class="corp-compare-item-content">
+                <h4>Indiscriminate Chemical Use & Soil Degradation</h4>
+                <p>Over 78% of farmers overuse urea & DAP without testing, causing soil organic carbon to drop dangerously below 0.4%.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✗</span>
+              <div class="corp-compare-item-content">
+                <h4>Unscientific Quality Cuts & Zero Incentive</h4>
+                <p>Arbitrary deductions are made for moisture and foreign matter with zero reward for farmers practicing soil conservation.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✗</span>
+              <div class="corp-compare-item-content">
+                <h4>24 to 48 Hour Mandi Traffic Gridlocks</h4>
+                <p>Hundreds of tractor-trolleys line highways in scorching heat and rain, causing crop spoilage and heavy freight losses.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✗</span>
+              <div class="corp-compare-item-content">
+                <h4>Handwritten Paper Slips & Payment Delays</h4>
+                <p>Manual weighment slips are prone to manipulation, and bank settlements take weeks through intermediaries.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Solution Column -->
+        <div class="corp-compare-card solution">
+          <div class="corp-compare-head">
+            <span class="corp-compare-badge">✅</span>
+            <div>
+              <h3 class="corp-compare-title">Harvest Hub Modern Digital Ecosystem</h3>
+              <span style="font-size:0.8rem; color:#10b981; font-weight:700;">Next-Gen AgriTech Architecture</span>
+            </div>
+          </div>
+
+          <ul class="corp-compare-list">
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✓</span>
+              <div class="corp-compare-item-content">
+                <h4>48-Hour Scientific Soil Advisory SLA</h4>
+                <p>Pre-sowing on-farm sample collection with digital Soil Health Cards and exact seed & fertilizer prescriptions delivered within 48 hours.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✓</span>
+              <div class="corp-compare-item-content">
+                <h4>Direct Government MSP + Soil Compliance Bonus</h4>
+                <p>Post-harvest lot registration with zero lab delays; farmers adhering to soil advice receive an extra ₹50 to ₹115/Q cash bonus.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✓</span>
+              <div class="corp-compare-item-content">
+                <h4>Smart E-Mandi Gate Pass & Voice PA Queue</h4>
+                <p>Book 1-hour delivery slots from home; automated digital displays and voice announcements invite vehicles sequentially.</p>
+              </div>
+            </li>
+
+            <li class="corp-compare-item">
+              <span class="corp-compare-bullet">✓</span>
+              <div class="corp-compare-item-content">
+                <h4>Gross-to-Tare Automated Weighbridge & Instant DBT</h4>
+                <p>Digital sensor weighment creates an electronic slip sent straight to accounts for instant UTR direct bank settlement.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. 5-Portal Synchronized Ecosystem Showcase -->
+  <section class="corp-ecosystem-section" id="ecosystem">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Unified 5-Portal Architecture</span>
+        <h2 class="corp-section-title">Digital Bridge Connecting All 5 Agricultural Value Chain Stakeholders</h2>
+        <p class="corp-section-sub">From farmers to procurement officers, soil chemists, weighbridge operators, and accounts—all working on a synchronized real-time database.</p>
+      </div>
+
+      <div class="corp-ecosystem-grid">
+        
+        <!-- Portal 1: Farmer -->
+        <div class="corp-portal-card p-farmer">
+          <div>
+            <div class="corp-portal-icon-wrap">👨‍🌾</div>
+            <span class="corp-portal-tag">Portal 1 • Farmer Portal</span>
+            <h3 class="corp-portal-title">Farmer Portal</h3>
+            <p class="corp-portal-desc">Jamabandi Khasra parcel allocation, soil test requests, 48h advisory countdown, harvest lot registration, slot booking, and live DBT tracking.</p>
+            <ul class="corp-portal-features">
+              <li>Plot-wise multi-crop acreage mapping (Jamabandi)</li>
+              <li>48h scientific fertilizer prescription & compliance</li>
+              <li>Multi-crop e-mandi gate token booking from home</li>
+              <li>Live DBT bank settlement tracking by Bill Number</li>
             </ul>
           </div>
+          <a href="portal.html?role=farmer" class="corp-portal-link">
+            <span>Open Farmer Portal</span>
+            <span>→</span>
+          </a>
+        </div>
 
-          <!-- Column 2: KisanSetu -->
-          <div class="p-6 md:p-8 space-y-4 bg-emerald-50/30">
-            <div class="flex items-center gap-3 pb-3 border-b border-emerald-100/60">
-              <span class="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold font-mono">✓</span>
-              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide">KISANSETU SMART PLATFORM</h3>
-            </div>
-
-            <ul class="space-y-3 text-xs text-slate-700 font-medium">
-              <li class="flex items-start gap-2.5">
-                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
-                <span><strong>Dynamic throughput:</strong> Automatic diversion recommendations to nearby low-load centers.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
-                <span><strong>Guaranteed arrival slots:</strong> 45-minute arrival time slots matched to weighbridge capacity.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
-                <span><strong>Cryptographic tokens:</strong> HMAC-signed QR passes that eliminate tampering and line cutting.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
-                <span><strong>Live queue tracking:</strong> Real-time yard position, vehicles ahead, and estimated wait minutes.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
-                <span><strong>Statutory e-J-Forms:</strong> Instant digitally verifiable receipts with direct PFMS/DBT payout.</span>
-              </li>
+        <!-- Portal 2: Officer -->
+        <div class="corp-portal-card p-officer">
+          <div>
+            <div class="corp-portal-icon-wrap">📋</div>
+            <span class="corp-portal-tag">Portal 2 • Procurement Officer</span>
+            <h3 class="corp-portal-title">Procurement Officer</h3>
+            <p class="corp-portal-desc">Manage soil testing intakes across Rohtak APMCs, formulate 48h fertilizer prescriptions, and determine MSP + Soil Compliance Bonus rates.</p>
+            <ul class="corp-portal-features">
+              <li>Soil sample intake & 20km route cluster assignment</li>
+              <li>48h working hours countdown timer audit</li>
+              <li>Official procurement quotation: Base MSP + Soil Bonus</li>
+              <li>Farmer sowing deviation verification & compliance</li>
             </ul>
           </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 10. COMPACT EDITORIAL BENEFITS LIST -->
-    <section id="benefits" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
-      <div class="container mx-auto px-4 max-w-6xl">
-        
-        <div class="max-w-2xl mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            ✨ Platform Capabilities
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Key Operational Benefits
-          </h2>
-        </div>
-
-        <!-- 2-Column Editorial Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-100 pt-8 text-xs">
-          
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">1. Easy Booking</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Reserve arrival dates and guaranteed hourly weighbridge slots at your convenience.</p>
-          </div>
-
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">2. Digital Token</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Paperless HMAC-signed digital pass for seamless check-in at the yard gate.</p>
-          </div>
-
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">3. Live Queue</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Track your vehicle's live place in the queue and weighbridge progress in real time.</p>
-          </div>
-
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">4. Transparent Procurement</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Automated capture of gross loaded weight, tare vehicle weight, and net crop tonnage.</p>
-          </div>
-
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">5. Digital Receipt</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Instant statutory procurement receipt (e-J-Form) generated upon tare weighment.</p>
-          </div>
-
-          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
-            <span class="font-bold text-slate-900 block text-sm">6. Center Information</span>
-            <p class="text-slate-500 mt-1 leading-relaxed">Transparent insight into daily mandi tonnage thresholds, accepted crops, and queue loads.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 11. 10-QUESTION EDITORIAL ACCESSIBLE FAQ ACCORDION -->
-    <section id="faq" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
-      <div class="container mx-auto px-4 max-w-4xl">
-        
-        <div class="mb-10">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
-            💡 Frequently Asked Questions
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
-            Operational FAQ & Help
-          </h2>
-          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            Clear operational answers to common questions about slot booking, digital tokens, and procurement.
-          </p>
-        </div>
-
-        <!-- 10 Accessible FAQ Accordion Items -->
-        <div class="border-t border-slate-200/80 divide-y divide-slate-200/70" id="faq-accordion-group">
-
-          <!-- FAQ 1 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-1">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                1. What is KisanSetu and how does it work?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-1" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              KisanSetu is a digital agricultural procurement and queue management platform. It allows farmers to reserve arrival time slots at government-authorized centers, receive cryptographic digital tokens, and track real-time queue status directly from their mobile phones.
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-2">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                2. Is there any fee for slot booking or using the platform?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-2" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              No, KisanSetu is entirely free for all farmers. There are no fees for searching centers, reserving time slots, tracking queue positions, or downloading digital procurement receipts.
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-3">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                3. How do I find the best procurement center for my crop?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-3" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              Navigate to 'Procurement Centers', choose your crop (e.g., Wheat, Mustard, Paddy) and district. The dynamic throughput engine highlights low-congestion alternative centers with minimal wait times.
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-4">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                4. What is a digital token and how is it used?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-4" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              When you book a slot, you receive an HMAC-signed digital pass with an ID (#KS-TKN-xxxx) and QR code. Center operators scan this QR code at the entrance gate to verify your arrival and grant priority lane entry.
-            </div>
-          </div>
-
-          <!-- FAQ 5 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-5">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                5. What happens if I am delayed and arrive outside my scheduled window?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-2" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              The system provides a grace buffer. If delayed on the road, you can report a transit delay (+60 min window) from your portal. Vehicles arriving past their buffer are accommodated via the Standby Lane without disrupting scheduled arrivals.
-            </div>
-          </div>
-
-          <!-- FAQ 6 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-6">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                6. How does live queue tracking work?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-6" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              In the 'Live Queue' section of the Farmer Portal, you can see your vehicle's exact place in line, the count of vehicles ahead, the active weighbridge scale, and estimated wait minutes.
-            </div>
-          </div>
-
-          <!-- FAQ 7 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-7">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                7. Can I reschedule or cancel an active booking?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-7" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              Yes. As long as your booking is in CONFIRMED status and you haven't yet checked in at the entry gate, you can cancel or rebook at any time from your Farmer Dashboard.
-            </div>
-          </div>
-
-          <!-- FAQ 8 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-8">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                8. What is the weighment and quality inspection process?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-8" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              Upon gate entry, the vehicle undergoes moisture testing at the assay lab. It is then weighed on an electronic weighbridge (Gross Loaded Weight). After grain unloading at the storage shed, the empty trolley is weighed (Tare Weight) to calculate exact net grain tonnage.
-            </div>
-          </div>
-
-          <!-- FAQ 9 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-9">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                9. When and how do I receive the procurement receipt?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-9" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              As soon as tare weighing is verified by the operator, an official statutory APMC Form 'J' e-receipt (#KSP-RCP-xxxx) is generated instantly. You can view, download, or print it from your portal, and payment is processed via DBT.
-            </div>
-          </div>
-
-          <!-- FAQ 10 -->
-          <div class="py-4">
-            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-10">
-              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                10. Is this a live government procurement portal?
-              </span>
-              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
-            </button>
-            <div id="faq-ans-10" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
-              This platform is developed as a production-grade working prototype and proof-of-concept for Smart India Hackathon (SIH). It operates with realistic simulated data and API connectivity to demonstrate the complete end-to-end digital mandi workflow.
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 12. MINIMAL CALL TO ACTION -->
-    <section class="py-16 md:py-20 relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 text-white">
-      <div class="container mx-auto px-4 text-center max-w-2xl space-y-4 relative z-10">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-          Reserve Your Mandi Delivery Slot Today
-        </h2>
-        <p class="text-sm text-emerald-100/80 leading-relaxed">
-          Find nearest low-load centers, check live queue conditions, and reserve a guaranteed time window for hassle-free procurement.
-        </p>
-        <div class="pt-3 flex flex-wrap items-center justify-center gap-3">
-          <a href="farmer/centers.html" class="btn bg-white text-emerald-950 hover:bg-slate-100 border-white text-xs font-semibold py-2.5 px-6 rounded-xl shadow-md transition-all">
-            Find Procurement Centers &rarr;
-          </a>
-          <a href="farmer/dashboard.html" class="btn bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 text-xs font-semibold py-2.5 px-6 rounded-xl transition-all">
-            Explore Farmer Portal
+          <a href="portal.html?role=officer" class="corp-portal-link">
+            <span>Open Officer Portal</span>
+            <span>→</span>
           </a>
         </div>
-        <div class="text-[11px] text-emerald-300/80 font-mono pt-2">
-          Zero Platform Fee • Operates on Any Smartphone Browser
+
+        <!-- Portal 3: Testing Lab -->
+        <div class="corp-portal-card p-testing">
+          <div>
+            <div class="corp-portal-icon-wrap">🔬</div>
+            <span class="corp-portal-tag">Portal 3 • Soil Testing Lab</span>
+            <h3 class="corp-portal-title">Soil Testing Laboratory</h3>
+            <p class="corp-portal-desc">Regional Agri Soil Testing Lab Rohtak: NPK, pH, EC, Organic Carbon, Zinc & Sulphur testing with digital Soil Health Cards (SHC).</p>
+            <ul class="corp-portal-features">
+              <li>Accurate lab testing for NPK, pH & micronutrients</li>
+              <li>Digital Soil Health Cards (SHC-ROH-2026-XXXX)</li>
+              <li>20km vehicle cluster route optimization</li>
+              <li>Historical soil nutrient mapping & analytics</li>
+            </ul>
+          </div>
+          <a href="portal.html?role=testing" class="corp-portal-link">
+            <span>Open Soil Lab Portal</span>
+            <span>→</span>
+          </a>
         </div>
+
+        <!-- Portal 4: Warehouse & Mandi -->
+        <div class="corp-portal-card p-warehouse">
+          <div>
+            <div class="corp-portal-icon-wrap">🏬</div>
+            <span class="corp-portal-tag">Portal 4 • Mandi & Warehouse</span>
+            <h3 class="corp-portal-title">Mandi & Warehouse Operator</h3>
+            <p class="corp-portal-desc">New Grain Market Rohtak (Delhi Road): Live gate entry barcode verification, voice PA announcements, gross-to-tare weighing, and silo storage management.</p>
+            <ul class="corp-portal-features">
+              <li>Digital token barcode verification at Gate 2</li>
+              <li>Voice PA announcement: "Call Next Token"</li>
+              <li>4-step automated weighbridge: Gate → Gross → Tare</li>
+              <li>Instant print-ready electronic weighment slips</li>
+            </ul>
+          </div>
+          <a href="portal.html?role=warehouse" class="corp-portal-link">
+            <span>Open Mandi Portal</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- Portal 5: Accounts & Finance -->
+        <div class="corp-portal-card p-account">
+          <div>
+            <div class="corp-portal-icon-wrap">👨‍💼</div>
+            <span class="corp-portal-tag">Portal 5 • Accounts Officer</span>
+            <h3 class="corp-portal-title">Accounts & Finance Officer</h3>
+            <p class="corp-portal-desc">APMC Rohtak: Final review of electronic weighment bills, bank account IFSC verification, and 1-click Direct Benefit Transfer (DBT) disbursement.</p>
+            <ul class="corp-portal-features">
+              <li>Weighment slip & beneficiary bank auto-verification</li>
+              <li>1-click Direct Benefit Transfer (DBT) allotment</li>
+              <li>Unique UTR reference number generation & audit logs</li>
+              <li>Transparent public procurement financial archives</li>
+            </ul>
+          </div>
+          <a href="portal.html?role=account" class="corp-portal-link">
+            <span>Open Accounts Portal</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- 6th Special Card: All-In-One Unified Launch -->
+        <div class="corp-portal-card" style="background:linear-gradient(135deg, #064e3b 0%, #047857 100%); color:#ffffff; border:none;">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:rgba(255,255,255,0.15); color:#ffffff;">🚀</div>
+            <span class="corp-portal-tag" style="color:#a7f3d0;">SIH 2026 Live Prototype</span>
+            <h3 class="corp-portal-title" style="color:#ffffff;">1-Click Instant Demo Login</h3>
+            <p class="corp-portal-desc" style="color:#e2e8f0;">Designed for evaluators, jury members, and officials: explore any of the 5 stakeholder roles instantly without typing passwords.</p>
+            <ul class="corp-portal-features" style="color:#f8fafc;">
+              <li style="color:#ffffff;"><span style="color:#34d399;">✓</span> Farmer (Rameshwar Hooda)</li>
+              <li style="color:#ffffff;"><span style="color:#34d399;">✓</span> Procurement Officer (Anjali Sharma)</li>
+              <li style="color:#ffffff;"><span style="color:#34d399;">✓</span> Soil Chemist (Dr. V. K. Verma)</li>
+              <li style="color:#ffffff;"><span style="color:#34d399;">✓</span> Mandi Secretary (Ravindra Nath)</li>
+            </ul>
+          </div>
+          <a href="portal.html" class="corp-btn-saffron" style="justify-content:center;">
+            <span>⚡</span> Launch All Portals
+          </a>
+        </div>
+
       </div>
-    </section>
 
-  </main>
+    </div>
+  </section>
 
-  <!-- 13. MINIMAL TRUSTWORTHY FOOTER -->
-  <footer id="about" class="bg-white border-t border-slate-200/80 pt-10 pb-8 text-xs text-slate-500 font-sans">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+  <!-- 7. End-to-End 6-Stage Process Workflow -->
+  <section class="corp-workflow-section" id="workflow">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">End-to-End Workflow</span>
+        <h2 class="corp-section-title">6-Stage Journey from Pre-Sowing Soil Intelligence to Direct Bank Settlement</h2>
+        <p class="corp-section-sub">Transparent and scientific technology ensuring fair pricing, soil preservation, and frictionless delivery at every phase.</p>
+      </div>
+
+      <div class="corp-workflow-timeline">
         
-        <div>
-          <div class="flex items-center gap-2.5 mb-2.5">
-            <div class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">K</div>
-            <span class="font-bold text-slate-900 text-sm">KisanSetu</span>
-            <span class="text-slate-400">| Digital Mandi Platform</span>
-          </div>
-          <p class="text-xs leading-relaxed text-slate-500">
-            Digital Mandi & Agricultural Queue Intelligence Platform — engineered for zero-congestion procurement, verified time slots, and tamper-evident digital receipts.
-          </p>
+        <div class="corp-step-card">
+          <div class="corp-step-num">1</div>
+          <div class="corp-step-icon">🧪</div>
+          <h4 class="corp-step-title">Soil Test Request</h4>
+          <p class="corp-step-desc">Farmer submits pre-sowing soil test request with Jamabandi Khasra. The 48-hour SLA begins.</p>
         </div>
 
-        <div>
-          <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-3">Navigation</h4>
-          <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-            <a href="#home" class="hover:text-emerald-700 transition-colors">Home</a>
-            <a href="#crops" class="hover:text-emerald-700 transition-colors">Crops</a>
-            <a href="#centers" class="hover:text-emerald-700 transition-colors">Procurement Centers</a>
-            <a href="#journey" class="hover:text-emerald-700 transition-colors">7-Step Process</a>
-            <a href="#faq" class="hover:text-emerald-700 transition-colors">FAQ</a>
-            <a href="farmer/dashboard.html" class="hover:text-emerald-700 transition-colors">Farmer Portal</a>
-          </div>
+        <div class="corp-step-card">
+          <div class="corp-step-num">2</div>
+          <div class="corp-step-icon">🔬</div>
+          <h4 class="corp-step-title">Soil Testing & SHC</h4>
+          <p class="corp-step-desc">Rohtak lab tests NPK, pH, and organic carbon to issue the digital Soil Health Card (SHC).</p>
         </div>
 
-        <div>
-          <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-3">Platform Standards</h4>
-          <p class="text-xs leading-relaxed text-slate-500">
-            SIH Innovation Prototype 2026. Built with client-side localStorage simulation and verified operational workflows.
-          </p>
+        <div class="corp-step-card">
+          <div class="corp-step-num">3</div>
+          <div class="corp-step-icon">📋</div>
+          <h4 class="corp-step-title">48h Advisory & Confirm</h4>
+          <p class="corp-step-desc">Officer issues exact fertilizer dosage. Farmer confirms compliance to qualify for bonus.</p>
+        </div>
+
+        <div class="corp-step-card">
+          <div class="corp-step-num">4</div>
+          <div class="corp-step-icon">🌾</div>
+          <h4 class="corp-step-title">Harvest Lot Registration</h4>
+          <p class="corp-step-desc">Immediate post-harvest registration without lab delays: Base MSP + Soil Bonus locked.</p>
+        </div>
+
+        <div class="corp-step-card">
+          <div class="corp-step-num">5</div>
+          <div class="corp-step-icon">🚚</div>
+          <h4 class="corp-step-title">Mandi Token & Queue</h4>
+          <p class="corp-step-desc">Farmer books time slot from home and enters the gate smoothly upon sequential voice PA call.</p>
+        </div>
+
+        <div class="corp-step-card">
+          <div class="corp-step-num">6</div>
+          <div class="corp-step-icon">💳</div>
+          <h4 class="corp-step-title">Weighbridge & Instant DBT</h4>
+          <p class="corp-step-desc">Gross-to-tare electronic weighment generates digital bill; instant DBT is credited to the bank.</p>
         </div>
 
       </div>
 
-      <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-400">
-        <div>
-          &copy; 2026 KisanSetu. Built for SIH / Mentor Demonstration.
+    </div>
+  </section>
+
+  <!-- 8. Interactive Procurement & Soil Compliance Bonus Calculator -->
+  <section class="corp-calc-section" id="calculator">
+    <div class="corp-container">
+      
+      <div class="corp-calc-box">
+        
+        <!-- Left Calculator Controls -->
+        <div class="corp-calc-inputs">
+          <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#a7f3d0;">Smart Simulator • Interactive Tool</span>
+          <h3>Government MSP & Soil Compliance Bonus Calculator</h3>
+          <p>See how adhering to pre-sowing scientific soil advisory unlocks direct cash bonuses over Base MSP for your crop:</p>
+
+          <div class="corp-calc-group">
+            <label for="calcCrop">Select Crop:</label>
+            <select id="calcCrop" class="corp-calc-select">
+              <option value="wheat">Wheat (WH-1105) - Base MSP ₹2,275 + Bonus ₹115</option>
+              <option value="mustard">Mustard (RH-725) - Base MSP ₹5,650 + Bonus ₹100</option>
+              <option value="paddy">Paddy / Basmati (PB-1121) - Base MSP ₹2,300 + Bonus ₹90</option>
+              <option value="gram">Gram / Chickpea (HC-5) - Base MSP ₹5,440 + Bonus ₹80</option>
+              <option value="millet">Pearl Millet / Bajra (HHB-67) - Base MSP ₹2,625 + Bonus ₹75</option>
+            </select>
+          </div>
+
+          <div class="corp-calc-group">
+            <label for="calcQty">Estimated Yield (Quantity in Quintals):</label>
+            <input type="number" id="calcQty" class="corp-calc-input" value="65" min="1" max="500">
+          </div>
+
+          <div class="corp-calc-group">
+            <label class="corp-calc-checkbox-wrap">
+              <input type="checkbox" id="calcCompliance" checked>
+              <span>✅ <strong>Followed certified soil health advisory</strong> (Certified Soil Compliance)</span>
+            </label>
+          </div>
         </div>
-        <div class="font-mono text-amber-800 bg-amber-50 px-2.5 py-1 border border-amber-200/80 rounded-full">
-          Illustrative Prototype Simulation • Demo Data
+
+        <!-- Right Live Calculation Panel -->
+        <div class="corp-calc-result-panel">
+          <div class="corp-calc-result-title">Total Estimated Government Payout (Total DBT Payout)</div>
+          <div class="corp-calc-total-amount" id="calcGrandTotal">₹1,55,350</div>
+
+          <div class="corp-calc-breakdown">
+            <div class="corp-calc-row">
+              <span>Total Crop Quantity:</span>
+              <strong id="calcDisplayQty">65 Quintals</strong>
+            </div>
+            <div class="corp-calc-row">
+              <span>Base Minimum Support Price (Base MSP):</span>
+              <strong id="calcBaseMsp">₹2,275/Q</strong>
+            </div>
+            <div class="corp-calc-row">
+              <span>Soil Health Compliance Bonus:</span>
+              <strong id="calcBonusRate" class="corp-calc-bonus-tag">+₹115/Q (Applied)</strong>
+            </div>
+            <div class="corp-calc-row" style="border-top:1px dashed #cbd5e1; padding-top:6px; font-weight:700;">
+              <span>Effective Procurement Rate:</span>
+              <strong id="calcEffectiveRate" style="color:#047857;">₹2,390/Q</strong>
+            </div>
+          </div>
+
+          <div style="margin-top:18px; padding-top:14px; border-top:1px solid #e2e8f0; text-align:center;">
+            <a href="portal.html?role=farmer" class="corp-btn-primary" style="width:100%; justify-content:center;">
+              Lock this Rate & Book Mandi Slot →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. Live Mandi Queue Simulator -->
+  <section class="corp-queue-section" id="queue">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Smart Mandi Technology</span>
+        <h2 class="corp-section-title">Rohtak Grain Market Live Gate Queue & Announcement Simulator</h2>
+        <p class="corp-section-sub">Experience how digital tokens and voice PA systems call vehicles to the gate without congestion or highway gridlocks.</p>
+      </div>
+
+      <div class="corp-queue-wrapper">
+        
+        <div class="corp-queue-head">
+          <div>
+            <h3 style="font-size:1.2rem; font-weight:800; color:#0f172a;">📍 New Grain Market, Delhi Road Rohtak (Main Gate)</h3>
+            <span style="font-size:0.8rem; color:#64748b;">Operating Hours: Mon to Fri, 9:00 AM to 5:00 PM (Lunch Break 1:00 - 2:00 PM excluded)</span>
+          </div>
+
+          <button type="button" class="corp-btn-primary" onclick="window.corpWebsite.advanceQueueSimulator()">
+            <span>📢</span> Call Next Token (Simulate Next Call)
+          </button>
+        </div>
+
+        <div class="corp-queue-slots" id="queueSlotsContainer">
+          <!-- Dynamically populated by js/corporate.js -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. Technology & Core Innovations Grid -->
+  <section class="corp-ecosystem-section" style="background:#ffffff;">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Core Innovations</span>
+        <h2 class="corp-section-title">State-of-the-Art Architecture Tailored for Indian Agriculture</h2>
+        <p class="corp-section-sub">Engineered for low internet connectivity, feature phones, multi-crop parcel allocation, and direct direct-to-bank settlements.</p>
+      </div>
+
+      <div class="corp-ecosystem-grid">
+        
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#fef3c7; color:#b45309;">🎙️</div>
+            <h3 class="corp-portal-title">"Kisan Vani" AI Bilingual Voicebot</h3>
+            <p class="corp-portal-desc">Web Speech API powered bilingual voice assistant, enabling rural farmers to check mandi prices, weather, and advisories simply by speaking.</p>
+          </div>
+        </div>
+
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#dbeafe; color:#1d4ed8;">🔄</div>
+            <h3 class="corp-portal-title">Firebase Multi-Device Cloud Sync</h3>
+            <p class="corp-portal-desc">Real-time reactive synchronization across mobile phones, tablets, and desktops with seamless offline-first caching.</p>
+          </div>
+        </div>
+
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#dcfce7; color:#15803d;">🌦️</div>
+            <h3 class="corp-portal-title">WeatherAPI.com Micro-Weather</h3>
+            <p class="corp-portal-desc">Live Rohtak district temperature, precipitation forecast, humidity, and agro-meteorological advisories for optimal harvesting.</p>
+          </div>
+        </div>
+
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#ede9fe; color:#6d28d9;">📊</div>
+            <h3 class="corp-portal-title">Agmarknet Live Daily Mandi Rates</h3>
+            <p class="corp-portal-desc">Real-time daily modal price feeds for Rohtak, Meham, and Sampla mandis integrated directly from Data.gov.in / Agmarknet.</p>
+          </div>
+        </div>
+
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#fee2e2; color:#b91c1c;">🚜</div>
+            <h3 class="corp-portal-title">Small Farmer Transport Pooling (&lt;4 MT)</h3>
+            <p class="corp-portal-desc">Shared logistics pooling for small & marginal farmers within a 20 km radius, saving up to 40% on tractor transport costs.</p>
+          </div>
+        </div>
+
+        <div class="corp-portal-card">
+          <div>
+            <div class="corp-portal-icon-wrap" style="background:#e0f2fe; color:#0369a1;">⚖️</div>
+            <h3 class="corp-portal-title">E-Weighbridge Gross/Tare Automation</h3>
+            <p class="corp-portal-desc">Digital sensor weighment deducting tare from gross weight to yield 100% accurate net quintals with zero handwritten paper manipulation.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11. Scalability & Deployment Roadmap -->
+  <section class="corp-roadmap-section">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Deployment Roadmap</span>
+        <h2 class="corp-section-title">From Rohtak Pilot to Pan-India e-NAM Expansion</h2>
+        <p class="corp-section-sub">A phased, scalable deployment blueprint to scale Harvest Hub across all 22 districts of Haryana and nationwide e-NAM mandis.</p>
+      </div>
+
+      <div class="corp-roadmap-grid">
+        
+        <div class="corp-roadmap-card active">
+          <div class="corp-roadmap-phase">Phase 1 • Live Now</div>
+          <h3 class="corp-roadmap-title">Rohtak District APMC Pilot</h3>
+          <ul>
+            <li>Full deployment across 4 key mandis (New Grain Market, Meham, Sampla, Kalanaur).</li>
+            <li>5 integrated stakeholder portals, Kisan Vani voicebot, and live Agmarknet & weather feeds.</li>
+            <li>Soil Health Card (SHC) 48h SLA and Base MSP + Bonus procurement model.</li>
+            <li>Firebase real-time multi-device cloud synchronization.</li>
+          </ul>
+        </div>
+
+        <div class="corp-roadmap-card">
+          <div class="corp-roadmap-phase">Phase 2 • 6 Months</div>
+          <h3 class="corp-roadmap-title">Statewide Haryana Expansion</h3>
+          <ul>
+            <li>Full API integration with Haryana's 'Meri Fasal Mera Byora' portal.</li>
+            <li>SMS-based slot and queue alert fallback for basic feature phones.</li>
+            <li>Automated spectroscopy device integration in regional soil testing labs.</li>
+            <li>State-level APMC real-time procurement monitoring dashboard.</li>
+          </ul>
+        </div>
+
+        <div class="corp-roadmap-card">
+          <div class="corp-roadmap-phase">Phase 3 • 18 Months</div>
+          <h3 class="corp-roadmap-title">Pan-India e-NAM & Satellite Integration</h3>
+          <ul>
+            <li>Interoperability with the National Agriculture Market (e-NAM) cloud platform.</li>
+            <li>AI voice assistance in 12 regional Indian languages.</li>
+            <li>ISRO Bhuvan satellite remote sensing data for crop acreage and yield verification.</li>
+            <li>Direct PFMS direct bank-to-bank DBT auto-clearing.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 12. SIH 2026 Team Section -->
+  <section class="corp-team-section" id="team">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag" data-i18n="team_section_tag">Innovation Team • SIH 2026</span>
+        <h2 class="corp-section-title" data-i18n="team_section_title">Builders & Specialists Behind Harvest Hub</h2>
+        <p class="corp-section-sub" data-i18n="team_section_sub">A multidisciplinary team dedicated to transforming Indian agricultural procurement for Smart India Hackathon 2026.</p>
+      </div>
+
+      <div class="corp-team-grid">
+        
+        <!-- 1. Chirag (Team Leader) -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">👨‍💼</div>
+          <h4 class="corp-team-name" data-i18n="team_member_1_name">Chirag</h4>
+          <div class="corp-team-role" data-i18n="team_member_1_role">Team Leader & Cloud Systems Engineer</div>
+          <p class="corp-team-bio" data-i18n="team_member_1_bio">Team leadership, high-concurrency API endpoints, cloud database scaling, cryptographic data validation, and automated test pipelines.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_1_skill1">Team Leadership</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_1_skill2">Cloud Backend</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_1_skill3">REST APIs & Security</span>
+          </div>
+        </div>
+
+        <!-- 2. Shivam Goyal -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">👨‍💻</div>
+          <h4 class="corp-team-name" data-i18n="team_member_2_name">Shivam Goyal</h4>
+          <div class="corp-team-role" data-i18n="team_member_2_role">Full-Stack Systems Architect</div>
+          <p class="corp-team-bio" data-i18n="team_member_2_bio">Core 5-portal architecture, real-time reactive state management, e-NAM API integration, and scalable web infrastructure.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_2_skill1">System Architecture</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_2_skill2">Full-Stack Web</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_2_skill3">e-NAM Integration</span>
+          </div>
+        </div>
+
+        <!-- 3. Ameena -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">👩‍🔬</div>
+          <h4 class="corp-team-name" data-i18n="team_member_3_name">Ameena</h4>
+          <div class="corp-team-role" data-i18n="team_member_3_role">Agronomy & Soil Intelligence Lead</div>
+          <p class="corp-team-bio" data-i18n="team_member_3_bio">NPK and micronutrient optimization algorithms, 48-hour scientific SLA advisory engine, and Soil Health Card compliance analytics.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_3_skill1">Soil Health Card</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_3_skill2">48h SLA Engine</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_3_skill3">NPK Analytics</span>
+          </div>
+        </div>
+
+        <!-- 4. Manoti -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">🎨</div>
+          <h4 class="corp-team-name" data-i18n="team_member_4_name">Manoti</h4>
+          <div class="corp-team-role" data-i18n="team_member_4_role">Lead UI/UX & Product Design Specialist</div>
+          <p class="corp-team-bio" data-i18n="team_member_4_bio">Multilingual farmer-first interfaces, glassmorphic GovTech dashboard aesthetics, accessibility compliance, and ergonomic flows.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_4_skill1">UI/UX Design Systems</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_4_skill2">Farmer Accessibility</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_4_skill3">Glassmorphism Tokens</span>
+          </div>
+        </div>
+
+        <!-- 5. Sumit -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">🚛</div>
+          <h4 class="corp-team-name" data-i18n="team_member_5_name">Sumit</h4>
+          <div class="corp-team-role" data-i18n="team_member_5_role">Smart Mandi Logistics Coordinator</div>
+          <p class="corp-team-bio" data-i18n="team_member_5_bio">Digital gate token algorithms, E-Weighbridge gross-to-tare automation, and Rohtak APMC yard vehicle congestion optimization.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_5_skill1">Mandi Queue Algorithms</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_5_skill2">E-Weighbridge Flow</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_5_skill3">Yard Logistics</span>
+          </div>
+        </div>
+
+        <!-- 6. Sahil -->
+        <div class="corp-team-card">
+          <div class="corp-team-avatar">💳</div>
+          <h4 class="corp-team-name" data-i18n="team_member_6_name">Sahil</h4>
+          <div class="corp-team-role" data-i18n="team_member_6_role">FinTech DBT & Quality Assurance Lead</div>
+          <p class="corp-team-bio" data-i18n="team_member_6_bio">Base MSP + soil compliance bonus calculation engine, UTR-based Direct Benefit Transfer (DBT) verification, and system QA.</p>
+          <div class="corp-team-skills">
+            <span class="corp-team-skill-pill" data-i18n="team_member_6_skill1">FinTech DBT Automation</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_6_skill2">MSP Bonus Calculator</span>
+            <span class="corp-team-skill-pill" data-i18n="team_member_6_skill3">Quality Assurance (QA)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 13. Frequently Asked Questions (FAQ) Accordion -->
+  <section class="corp-faq-section" id="faq">
+    <div class="corp-container">
+      
+      <div class="corp-section-header">
+        <span class="corp-section-tag">Frequently Asked Questions</span>
+        <h2 class="corp-section-title">Key Questions About Harvest Hub</h2>
+        <p class="corp-section-sub">Answers to common inquiries from farmers, procurement officers, and researchers.</p>
+      </div>
+
+      <div class="corp-faq-list">
+        
+        <div class="corp-faq-item active">
+          <div class="corp-faq-q">
+            <span>1. How does the 48-Hour Scientific Advisory SLA work?</span>
+            <span class="corp-faq-icon">▼</span>
+          </div>
+          <div class="corp-faq-a">
+            When a farmer requests pre-sowing soil testing, the lab team collects soil samples and records NPK & pH parameters. An automated 48-working-hour countdown timer is activated. The agricultural procurement officer must formulate and issue a certified seed variety and fertilizer prescription (Urea/DAP/Zinc) within 48 working hours.
+          </div>
+        </div>
+
+        <div class="corp-faq-item">
+          <div class="corp-faq-q">
+            <span>2. Why was post-harvest laboratory testing eliminated?</span>
+            <span class="corp-faq-icon">▼</span>
+          </div>
+          <div class="corp-faq-a">
+            In traditional systems, post-harvest lab testing causes days of delay, and farmers face arbitrary cuts for moisture or grade. In Harvest Hub, quality is established pre-sowing through soil testing and certified compliance. Post-harvest lot registration is immediate, locking in guaranteed Base MSP + Soil Compliance Bonus without delays.
+          </div>
+        </div>
+
+        <div class="corp-faq-item">
+          <div class="corp-faq-q">
+            <span>3. What is the Soil Compliance Bonus?</span>
+            <span class="corp-faq-icon">▼</span>
+          </div>
+          <div class="corp-faq-a">
+            Farmers who 100% adhere to the prescribed fertilizer and seed advisories earn a 'Certified Compliance' badge. When delivering their harvest to the mandi, they receive a direct cash bonus of ₹50 to ₹115 per quintal added on top of the government Minimum Support Price (MSP), paid straight to their bank account via DBT.
+          </div>
+        </div>
+
+        <div class="corp-faq-item">
+          <div class="corp-faq-q">
+            <span>4. Can multiple crops be sold in a single vehicle?</span>
+            <span class="corp-faq-icon">▼</span>
+          </div>
+          <div class="corp-faq-a">
+            Yes! Harvest Hub supports multi-crop token bookings. If a farmer has harvested both wheat and mustard from different parcels, both crops can be selected in a single gate pass and transported in the same tractor-trolley. Sequential gross-tare weighments generate a unified transparent digital bill.
+          </div>
+        </div>
+
+        <div class="corp-faq-item">
+          <div class="corp-faq-q">
+            <span>5. Does this platform work with poor rural internet connectivity?</span>
+            <span class="corp-faq-icon">▼</span>
+          </div>
+          <div class="corp-faq-a">
+            Yes. Harvest Hub is engineered to offline-first web standards and loads rapidly on rural 2G/3G connections. Furthermore, the 'Kisan Vani' voice assistant enables farmers to inquire about mandi rates, weather, and advisories simply by speaking into their phones without typing.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 14. Pilot Request / Contact CTA Banner -->
+  <section class="corp-cta-banner">
+    <div class="corp-container">
+      <h2>Deploy Harvest Hub in Your Grain Market</h2>
+      <p>APMC officers, agricultural scientists, and district administrators can contact APMC Rohtak for pilot demonstrations or deployment in their jurisdiction.</p>
+      
+      <div class="corp-cta-btn-group">
+        <a href="portal.html" class="corp-btn-saffron" style="font-size:1.05rem; padding:14px 32px;">
+          <span>🚀</span> Launch 5-Portal Platform
+        </a>
+        <a href="mailto:apmc-rohtak@haryana.gov.in" class="corp-btn-secondary" style="background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.3); font-size:1.05rem; padding:14px 28px;">
+          <span>✉️</span> Contact APMC Rohtak
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. Comprehensive Corporate Footer -->
+  <footer class="corp-footer">
+    <div class="corp-container">
+      
+      <div class="corp-footer-grid">
+        
+        <!-- Brand Info -->
+        <div class="corp-footer-brand">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <span style="font-size:1.8rem;">🌾</span>
+            <span style="font-size:1.4rem; font-weight:900; color:#ffffff;" data-i18n="footer_brand">Harvest Hub</span>
+          </div>
+          <p>
+            Smart India Hackathon 2026 Innovation Project • Problem Statement #26032. Developed in collaboration with the Department of Agriculture & Farmers Welfare, Government of Haryana and APMC Rohtak.
+          </p>
+          <div style="font-size:0.8rem; color:#64748b;">
+            Pilot Locations: New Grain Market (Delhi Road, Rohtak) • Grain Market Meham • Grain Market Sampla • Grain Market Kalanaur
+          </div>
+        </div>
+
+        <!-- Quick Portal Links -->
+        <div class="corp-footer-col">
+          <h4>5 Stakeholder Portals</h4>
+          <ul>
+            <li><a href="portal.html?role=farmer">👨‍🌾 Farmer Portal</a></li>
+            <li><a href="portal.html?role=officer">📋 Procurement Officer</a></li>
+            <li><a href="portal.html?role=testing">🔬 Soil Testing Lab</a></li>
+            <li><a href="portal.html?role=warehouse">🏬 Mandi Operator</a></li>
+            <li><a href="portal.html?role=account">👨‍💼 Accounts Officer</a></li>
+          </ul>
+        </div>
+
+        <!-- Tech & Features -->
+        <div class="corp-footer-col">
+          <h4>Key Innovations</h4>
+          <ul>
+            <li><a href="#workflow">48-Hour Soil Advisory SLA</a></li>
+            <li><a href="#calculator">Base MSP + Compliance Bonus</a></li>
+            <li><a href="#queue">Live Gate Token & Voice PA</a></li>
+            <li><a href="portal.html">Kisan Vani AI Voicebot</a></li>
+            <li><a href="portal.html">Gross-to-Tare E-Weighbridge</a></li>
+          </ul>
+        </div>
+
+        <!-- Official Support & Helpline -->
+        <div class="corp-footer-col">
+          <h4>Support & Contact</h4>
+          <ul style="font-size:0.86rem; color:#94a3b8;">
+            <li>📍 <strong>Office:</strong> APMC Rohtak, New Grain Market, Delhi Road, Rohtak, Haryana - 124001</li>
+            <li>📞 <strong>Helpline:</strong> 1800-180-2117 (Toll-Free - Haryana Agri)</li>
+            <li>✉️ <strong>Email:</strong> agricoop-rohtak@haryana.gov.in</li>
+            <li>⏰ <strong>Mandi Hours:</strong> 9:00 AM - 5:00 PM (Monday to Friday)</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Strip -->
+      <div class="corp-footer-bottom">
+        <div>
+          <span data-i18n="footer_copyright">© 2026 <strong>Harvest Hub</strong> • Smart India Hackathon 2026. All rights reserved.</span>
+        </div>
+        <div style="display:flex; gap:18px;">
+          <a href="portal.html" style="color:#a7f3d0; text-decoration:none;">Portal Entry</a>
+          <a href="#overview" style="color:#94a3b8; text-decoration:none;">Back to Top ↑</a>
         </div>
       </div>
+
     </div>
   </footer>
 
-  <!-- Scripts: Mock Data, Utils, API, and Operational Interactivity -->
-  <script src="js/mock-data.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/voice-assistant.js"></script>
+  <!-- Floating Voice Assistant Launch Button on Corporate Page -->
+  <a href="portal.html?role=farmer" class="corp-voice-float-btn" title="Kisan Vani AI Voice Assistant">
+    <span>🎙️</span>
+    <span class="corp-voice-pulse"></span>
+  </a>
 
+  <!-- Inlined Language & Corporate Scripts -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Mobile Menu Toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const openIcon = document.getElementById('menu-open-icon');
-      const closeIcon = document.getElementById('menu-close-icon');
+/* ===== INLINED KISAN I18N ENGINE ===== */
+const I18N_TRANSLATIONS = {
+  hi: {
+    // Top Bar & Branding
+    gov_title: 'हरियाणा सरकार | कृषि एवं किसान कल्याण विभाग (जिला रोहतक)',
+    sih_badge: 'SIH 2026 • PS #26032 • रोहतक कृषि नवाचार',
+    reset_demo: '🔄 डेटा सिंक करें',
+    lang_switch: '🌐 English',
+    live_ticker: 'लाइव मंडी भाव',
+    logout: '🚪 लॉगआउट',
 
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-          const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-          mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-          mobileMenu.classList.toggle('hidden');
-          if (openIcon && closeIcon) {
-            openIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-          }
-        });
+    // Brand & Logo
+    corp_brand_title: 'हार्वेस्ट <span>हब</span>',
+    corp_brand_badge: 'SIH 2026 • PS #26032 • APMC रोहतक',
+    footer_brand: 'हार्वेस्ट हब',
+    footer_copyright: '© 2026 <strong>हार्वेस्ट हब</strong> • Smart India Hackathon 2026. सर्वाधिकार सुरक्षित।',
 
-        document.querySelectorAll('.nav-mobile-link').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            if (openIcon && closeIcon) {
-              openIcon.classList.remove('hidden');
-              closeIcon.classList.add('hidden');
-            }
-          });
-        });
-      }
+    // Corporate Navigation
+    nav_overview: 'अवलोकन',
+    nav_ecosystem: '5 पोर्टल',
+    nav_workflow: 'कार्यप्रणाली',
+    nav_calculator: 'एमएसपी कैलकुलेटर',
+    nav_queue: 'स्मार्ट कतार',
+    nav_impact: 'प्रभाव',
+    nav_team: 'टीम',
+    nav_faq: 'प्रश्नोत्तरी',
+    nav_launch_app: '🚀 पोर्टल खोलें',
 
-      // 2. Interactive Crop Selector (Item 3)
-      const cropChips = document.querySelectorAll('.crop-chip');
-      const commodities = (window.MOCK_COMMODITIES) || [];
+    // Corporate Hero
+    corp_hero_badge: 'Smart India Hackathon 2026 • Problem Statement #26032',
+    corp_hero_title_1: 'वैज्ञानिक मृदा परामर्श, पारदर्शी फसल खरीद एवं',
+    corp_hero_title_highlight: 'स्मार्ट मंडी कतार प्रणाली',
+    corp_hero_sub: 'बुवाई पूर्व 48 कार्य घंटों में सटीक वैज्ञानिक खाद परामर्श, बिना किसी प्रयोगशाला विलंब के सीधे Base MSP + मृदा अनुपालन बोनस, लाइव डिजिटल मंडी गेट टोकन, एवं शत-प्रतिशत प्रत्यक्ष DBT बैंक भुगतान।',
+    corp_hero_cta_portals: '🌾 लाइव 5 पोर्टल में प्रवेश करें',
+    corp_hero_cta_calc: '🧮 सरकारी दर व बोनस कैलकुलेटर',
+    corp_partners_label: 'संबद्ध संस्थान व पायलट:',
 
-      function selectCrop(cropKey) {
-        const found = commodities.find(c => 
-          (c.nameEnglish && c.nameEnglish.toLowerCase() === cropKey.toLowerCase()) ||
-          (c.name && c.name.toLowerCase().includes(cropKey.toLowerCase()))
-        );
+    // Corporate Stats
+    stat_sla_title: 'गारंटीकृत परामर्श समय सीमा',
+    stat_sla_desc: 'मृदा परीक्षण उपरांत 48 कार्य घंटों में सटीक खाद व बीज पर्चा',
+    stat_wait_title: 'मंडी गेट प्रतीक्षा समय',
+    stat_wait_desc: '24 से 48 घंटे की कतारों से मुक्ति, डिजिटल स्लॉट व वॉइस उद्घोषणा',
+    stat_bonus_title: 'मृदा अनुपालन बोनस प्रति क्विंटल',
+    stat_bonus_desc: 'वैज्ञानिक सलाह मानने वाले किसानों को न्यूनतम समर्थन मूल्य पर सीधा प्रीमियम',
+    stat_dbt_title: 'पारदर्शी DBT बैंक भुगतान',
+    stat_dbt_desc: 'धर्मकांटा पर्ची से सीधे बैंक खाते में UTR आधारित ऑडिटेड अंतरण',
 
-        if (!found) return;
+    // Corporate Team Header
+    team_section_tag: 'नवाचार टीम • SIH 2026',
+    team_section_title: 'हार्वेस्ट हब के निर्माणकर्ता एवं विशेषज्ञ',
+    team_section_sub: 'Smart India Hackathon 2026 के अंतर्गत भारतीय किसानों के सशक्तिकरण हेतु समर्पित बहुविषयक टीम।',
 
-        // Update active chip UI
-        cropChips.forEach(chip => {
-          if (chip.dataset.crop.toLowerCase() === cropKey.toLowerCase()) {
-            chip.classList.add('active');
-            chip.classList.remove('bg-white', 'text-slate-700');
-          } else {
-            chip.classList.remove('active');
-            chip.classList.add('bg-white', 'text-slate-700');
-          }
-        });
+    // Team Members
+    team_member_1_name: 'चिराग',
+    team_member_1_role: 'टीम लीडर व क्लाउड सिस्टम्स इंजीनियर',
+    team_member_1_bio: 'टीम नेतृत्व, उच्च-समवर्ती एपीआई एंडपॉइंट्स, फायरबेस/क्लाउड डेटाबेस स्केलिंग, डेटा ऑथेंटिकेशन और ऑटोमेटेड परीक्षण पाइपलाइन।',
+    team_member_1_skill1: 'टीम लीडरशिप',
+    team_member_1_skill2: 'क्लाउड बैकएंड',
+    team_member_1_skill3: 'REST APIs व सुरक्षा',
 
-        // Update panel info
-        const panelName = document.getElementById('panel-crop-name');
-        const panelHindi = document.getElementById('panel-crop-hindi');
-        const panelSeason = document.getElementById('panel-crop-season');
-        const panelCategory = document.getElementById('panel-crop-category');
-        const panelRate = document.getElementById('panel-crop-rate');
-        const panelMoisture = document.getElementById('panel-crop-moisture');
-        const panelBtn = document.getElementById('panel-crop-action-btn');
+    team_member_2_name: 'शिवम गोयल',
+    team_member_2_role: 'फुल-स्टैक सिस्टम्स आर्किटेक्ट',
+    team_member_2_bio: 'कोर 5-पोर्टल वास्तुकला, रियल-टाइम स्टेट सिंक्रनाइज़ेशन, e-NAM एपीआई एकीकरण व स्केलेबल वेब इन्फ्रास्ट्रक्चर डिज़ाइन।',
+    team_member_2_skill1: 'सिस्टम आर्किटेक्चर',
+    team_member_2_skill2: 'फुल-स्टैक वेब',
+    team_member_2_skill3: 'e-NAM एकीकरण',
 
-        if (panelName) panelName.textContent = (found.nameEnglish || found.name || '').toUpperCase();
-        if (panelHindi) panelHindi.textContent = `${found.nameEnglish || found.name} (Grade A Certified)`;
-        if (panelSeason) panelSeason.textContent = found.season || 'Rabi Crop';
-        if (panelCategory) panelCategory.textContent = found.category || 'Grain';
-        if (panelRate) panelRate.textContent = `₹${(found.mspPerQuintal || found.demoRate).toLocaleString('en-IN')} / Q`;
-        if (panelMoisture) panelMoisture.textContent = `${found.moistureMaxPercent || 12.0}% Max`;
-        if (panelBtn) panelBtn.href = `farmer/centers.html?commodity=${encodeURIComponent(found.nameEnglish || found.name)}`;
-      }
+    team_member_3_name: 'अमीना',
+    team_member_3_role: 'मृदा विज्ञान व AI एल्गोरिदम लीड',
+    team_member_3_bio: 'NPK व सूक्ष्म पोषक तत्व अनुकूलन मॉडल, 48-घंटे की वैज्ञानिक परामर्श प्रणाली एवं मृदा स्वास्थ्य कार्ड अनुपालन सत्यापन।',
+    team_member_3_skill1: 'मृदा स्वास्थ्य कार्ड',
+    team_member_3_skill2: '48h परामर्श इंजन',
+    team_member_3_skill3: 'NPK विश्लेषण',
 
-      cropChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          selectCrop(chip.dataset.crop);
-        });
-      });
+    team_member_4_name: 'मनोती',
+    team_member_4_role: 'UI/UX व प्रोडक्ट डिज़ाइन स्पेशलिस्ट',
+    team_member_4_bio: 'बहुभाषी किसान-अनुकूल इंटरफ़ेस, आधुनिक डैशबोर्ड सौंदर्यशास्त्र, सुगमता अनुपालन एवं सहज मोबाइल लेआउट।',
+    team_member_4_skill1: 'UI/UX डिज़ाइन',
+    team_member_4_skill2: 'किसान सुगमता',
+    team_member_4_skill3: 'डिज़ाइन सिस्टम',
 
-      // 4. Operational Centers Directory Listing (Item 4)
-      const centers = (window.MOCK_CENTERS) || [];
-      const dirContainer = document.getElementById('dir-results-container');
-      const dirCropFilter = document.getElementById('dir-crop-filter');
-      const dirDistrictFilter = document.getElementById('dir-district-filter');
-      const dirStatusFilter = document.getElementById('dir-status-filter');
-      const dirResetBtn = document.getElementById('dir-reset-btn');
-      const dirCount = document.getElementById('dir-count');
+    team_member_5_name: 'सुमित',
+    team_member_5_role: 'स्मार्ट मंडी लॉजिस्टिक्स व टोकन समन्वयक',
+    team_member_5_bio: 'डिजिटल गेट पास एल्गोरिदम, इलेक्ट्रॉनिक धर्मकांटा तुलाई स्वचालन, रोहतक APMC यार्ड वाहन नियंत्रण।',
+    team_member_5_skill1: 'मंडी कतार प्रणाली',
+    team_member_5_skill2: 'धर्मकांटा तुलाई',
+    team_member_5_skill3: 'यार्ड लॉजिस्टिक्स',
 
-      function renderCentersDirectory() {
-        if (!dirContainer) return;
+    team_member_6_name: 'साहिल',
+    team_member_6_role: 'फिनटेक डीबीटी एवं गुणवत्ता आश्वासन लीड',
+    team_member_6_bio: 'मूल समर्थन मूल्य + मृदा अनुपालन बोनस गणना इंजन, UTR-आधारित प्रत्यक्ष बैंक अंतरण (DBT) सत्यापन एवं परीक्षण।',
+    team_member_6_skill1: 'फिनटेक DBT स्वचालन',
+    team_member_6_skill2: 'MSP बोनस कैलकुलेटर',
+    team_member_6_skill3: 'गुणवत्ता आश्वासन (QA)'
+  },
 
-        const selCrop = dirCropFilter ? dirCropFilter.value.toLowerCase() : '';
-        const selDist = dirDistrictFilter ? dirDistrictFilter.value.toLowerCase() : '';
-        const selStatus = dirStatusFilter ? dirStatusFilter.value : '';
+  en: {
+    // Top Bar & Branding
+    gov_title: 'Govt. of Haryana | Department of Agriculture & Farmers Welfare (Rohtak District)',
+    sih_badge: 'SIH 2026 • PS #26032 • Rohtak Agri Innovation',
+    reset_demo: '🔄 Sync Data',
+    lang_switch: '🌐 Hindi',
+    live_ticker: 'LIVE MANDI TICKER',
+    logout: '🚪 Logout',
 
-        const filtered = centers.filter(c => {
-          // Crop check
-          const cropsList = [
-            c.commodity,
-            ...(Array.isArray(c.commodities) ? c.commodities : []),
-            ...(Array.isArray(c.acceptedCrops) ? c.acceptedCrops : [])
-          ].filter(Boolean).join(' ').toLowerCase();
-          const matchCrop = !selCrop || cropsList.includes(selCrop);
+    // Brand & Logo
+    corp_brand_title: 'Harvest <span>Hub</span>',
+    corp_brand_badge: 'SIH 2026 • PS #26032 • APMC Rohtak',
+    footer_brand: 'Harvest Hub',
+    footer_copyright: '© 2026 <strong>Harvest Hub</strong> • Smart India Hackathon 2026. All rights reserved.',
 
-          // District check
-          const matchDist = !selDist || (c.district && c.district.toLowerCase() === selDist);
+    // Corporate Navigation
+    nav_overview: 'Overview',
+    nav_ecosystem: '5 Portals',
+    nav_workflow: 'Process',
+    nav_calculator: 'MSP Calculator',
+    nav_queue: 'Smart Queue',
+    nav_impact: 'Impact',
+    nav_team: 'Team',
+    nav_faq: 'FAQ',
+    nav_launch_app: '🚀 Launch Portals',
 
-          // Status check
-          const isAvail = typeof window.KisanUtils !== 'undefined' ? window.KisanUtils.isCenterAcceptingBookings(c.id) : true;
-          const matchStatus = !selStatus || isAvail;
+    // Corporate Hero
+    corp_hero_badge: 'Smart India Hackathon 2026 • Problem Statement #26032',
+    corp_hero_title_1: 'Pre-Sowing Soil Intelligence, Direct Crop Procurement &',
+    corp_hero_title_highlight: 'Smart Mandi Queue Ecosystem',
+    corp_hero_sub: 'Pre-sowing 48-Hour SLA scientific fertilizer advisories, direct Base MSP + Soil Compliance Bonus with zero laboratory friction, live e-Mandi gate tokens, and 100% direct DBT bank settlements.',
+    corp_hero_cta_portals: '🌾 Launch 5-Portal Platform',
+    corp_hero_cta_calc: '🧮 Procurement & Bonus Calculator',
+    corp_partners_label: 'Affiliated Bodies & Pilot Mandis:',
 
-          return matchCrop && matchDist && matchStatus;
-        });
+    // Corporate Stats
+    stat_sla_title: 'Guaranteed Advisory SLA',
+    stat_sla_desc: 'Precise fertilizer & seed prescription delivered within 48 working hours',
+    stat_wait_title: 'Mandi Gate Waiting Time',
+    stat_wait_desc: 'Drop from 24-48 hrs to <90 mins via digital tokens & voice calling',
+    stat_bonus_title: 'Soil Compliance Bonus per Quintal',
+    stat_bonus_desc: 'Direct cash premium added over Base MSP for adhering to soil advisories',
+    stat_dbt_title: 'Direct DBT Bank Settlement',
+    stat_dbt_desc: 'Automated electronic weighment slip to UTR verified bank transfer',
 
-        if (dirCount) dirCount.textContent = filtered.length;
+    // Corporate Team Header
+    team_section_tag: 'Innovation Team • SIH 2026',
+    team_section_title: 'Builders & Specialists Behind Harvest Hub',
+    team_section_sub: 'A multidisciplinary team dedicated to transforming Indian agricultural procurement for Smart India Hackathon 2026.',
 
-        if (filtered.length === 0) {
-          dirContainer.innerHTML = `
-            <div class="p-8 bg-white border border-slate-200/80 text-center text-xs text-slate-500 rounded-2xl shadow-xs">
-              No procurement centers match the selected criteria. Please adjust your filters.
-            </div>
-          `;
-          return;
+    // Team Members
+    team_member_1_name: 'Chirag',
+    team_member_1_role: 'Team Leader & Cloud Systems Engineer',
+    team_member_1_bio: 'Team leadership, high-concurrency API endpoints, cloud database scaling, cryptographic data validation, and automated test pipelines.',
+    team_member_1_skill1: 'Team Leadership',
+    team_member_1_skill2: 'Cloud Backend',
+    team_member_1_skill3: 'REST APIs & Security',
+
+    team_member_2_name: 'Shivam Goyal',
+    team_member_2_role: 'Full-Stack Systems Architect',
+    team_member_2_bio: 'Core 5-portal architecture, real-time reactive state management, e-NAM API integration, and scalable web infrastructure.',
+    team_member_2_skill1: 'System Architecture',
+    team_member_2_skill2: 'Full-Stack Web',
+    team_member_2_skill3: 'e-NAM Integration',
+
+    team_member_3_name: 'Ameena',
+    team_member_3_role: 'Agronomy & Soil Intelligence Lead',
+    team_member_3_bio: 'NPK and micronutrient optimization algorithms, 48-hour scientific SLA advisory engine, and Soil Health Card compliance analytics.',
+    team_member_3_skill1: 'Soil Health Card',
+    team_member_3_skill2: '48h SLA Engine',
+    team_member_3_skill3: 'NPK Analytics',
+
+    team_member_4_name: 'Manoti',
+    team_member_4_role: 'Lead UI/UX & Product Design Specialist',
+    team_member_4_bio: 'Multilingual farmer-first interfaces, glassmorphic GovTech dashboard aesthetics, accessibility compliance, and ergonomic flows.',
+    team_member_4_skill1: 'UI/UX Design Systems',
+    team_member_4_skill2: 'Farmer Accessibility',
+    team_member_4_skill3: 'Glassmorphism Tokens',
+
+    team_member_5_name: 'Sumit',
+    team_member_5_role: 'Smart Mandi Logistics Coordinator',
+    team_member_5_bio: 'Digital gate token algorithms, E-Weighbridge gross-to-tare automation, and Rohtak APMC yard vehicle congestion optimization.',
+    team_member_5_skill1: 'Mandi Queue Algorithms',
+    team_member_5_skill2: 'E-Weighbridge Flow',
+    team_member_5_skill3: 'Yard Logistics',
+
+    team_member_6_name: 'Sahil',
+    team_member_6_role: 'FinTech DBT & Quality Assurance Lead',
+    team_member_6_bio: 'Base MSP + soil compliance bonus calculation engine, UTR-based Direct Benefit Transfer (DBT) verification, and system QA.',
+    team_member_6_skill1: 'FinTech DBT Automation',
+    team_member_6_skill2: 'MSP Bonus Calculator',
+    team_member_6_skill3: 'Quality Assurance (QA)'
+  }
+};
+
+class I18nManager {
+  constructor() {
+    // Strictly default to English unless explicitly changed by user
+    const saved = localStorage.getItem('HARVEST_HUB_LANG_v2');
+    this.currentLang = (saved === 'hi') ? 'hi' : 'en';
+    localStorage.setItem('HARVEST_HUB_LANG_v2', this.currentLang);
+    localStorage.setItem('HARVEST_HUB_LANG', this.currentLang);
+  }
+
+  get lang() {
+    return this.currentLang;
+  }
+
+  setLanguage(lang) {
+    if (lang === 'hi' || lang === 'en') {
+      this.currentLang = lang;
+      localStorage.setItem('HARVEST_HUB_LANG_v2', lang);
+      localStorage.setItem('HARVEST_HUB_LANG', lang);
+      localStorage.setItem('KISAN_SETU_LANG', lang);
+      document.documentElement.lang = lang;
+      this.translatePage();
+    }
+  }
+
+  toggleLanguage() {
+    const nextLang = this.currentLang === 'hi' ? 'en' : 'hi';
+    this.setLanguage(nextLang);
+    return nextLang;
+  }
+
+  translatePage() {
+    const isHi = this.currentLang === 'hi';
+    const t = I18N_TRANSLATIONS[this.currentLang] || I18N_TRANSLATIONS.en;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = t[key];
+        } else {
+          el.innerHTML = t[key];
         }
-
-        dirContainer.innerHTML = filtered.slice(0, 5).map(c => {
-          const isAvail = typeof window.KisanUtils !== 'undefined' ? window.KisanUtils.isCenterAcceptingBookings(c.id) : true;
-          const statusBadge = isAvail 
-            ? `<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full">● Booking Available</span>`
-            : `<span class="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/70 px-2.5 py-0.5 rounded-full">⚠️ Booking Paused</span>`;
-
-          const loadUpper = String(c.loadStatus || 'MODERATE').toUpperCase();
-          const loadMeter = loadUpper === 'LOW' ? '███░░░░░░░ 30%' : (loadUpper === 'HIGH' ? '█████████░ 90%' : '██████░░░░ 60%');
-
-          const bookBtn = isAvail
-            ? `<a href="farmer/booking.html?centerId=${encodeURIComponent(c.id)}" class="btn btn-primary text-[11px] font-semibold py-1.5 px-3.5 rounded-xl shadow-xs">Book Slot</a>`
-            : `<button disabled class="btn btn-outline text-[11px] font-semibold py-1.5 px-3.5 rounded-xl opacity-50 cursor-not-allowed">Unavailable</button>`;
-
-          return `
-            <div class="bg-white border border-slate-200/80 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-xs hover:shadow-sm hover:border-emerald-500/40 transition-all">
-              <div class="space-y-1.5 flex-1">
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-mono font-bold text-slate-400">${c.id}</span>
-                  <h4 class="text-sm font-bold text-slate-900">${c.name}</h4>
-                  ${statusBadge}
-                </div>
-                <div class="text-[11px] text-slate-500 flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <span>${c.district}, ${c.state}</span>
-                  <span>•</span>
-                  <span>Crop: <strong>${c.commodity || 'Mixed'}</strong></span>
-                  <span>•</span>
-                  <span class="font-mono">Queue: <strong>${c.currentQueueVehicles} vehicles</strong></span>
-                  <span>•</span>
-                  <span class="font-mono text-amber-800">Wait: <strong>~${c.estimatedWaitMinutes} min</strong></span>
-                </div>
-                <div class="text-[10px] font-mono text-slate-400 pt-0.5">
-                  Load: ${loadMeter} • Daily Cap: ${c.dailyCapacity || (c.dailyCapacityMT + ' MT')}
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                <a href="farmer/center-details.html?id=${encodeURIComponent(c.id)}" class="btn btn-outline text-[11px] font-semibold py-1.5 px-3 rounded-xl border-slate-200 hover:bg-slate-50">
-                  View
-                </a>
-                ${bookBtn}
-              </div>
-            </div>
-          `;
-        }).join('');
       }
-
-      dirCropFilter?.addEventListener('change', renderCentersDirectory);
-      dirDistrictFilter?.addEventListener('change', renderCentersDirectory);
-      dirStatusFilter?.addEventListener('change', renderCentersDirectory);
-      dirResetBtn?.addEventListener('click', () => {
-        if (dirCropFilter) dirCropFilter.value = '';
-        if (dirDistrictFilter) dirDistrictFilter.value = '';
-        if (dirStatusFilter) dirStatusFilter.value = '';
-        renderCentersDirectory();
-      });
-
-      renderCentersDirectory();
-
-      // 5. Accessible FAQ Accordion (Item 9)
-      const faqToggles = document.querySelectorAll('.faq-toggle');
-      faqToggles.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-          const targetId = btn.getAttribute('aria-controls');
-          const content = document.getElementById(targetId);
-          const icon = btn.querySelector('.faq-icon');
-
-          // Single-open accordion
-          faqToggles.forEach(otherBtn => {
-            if (otherBtn !== btn) {
-              otherBtn.setAttribute('aria-expanded', 'false');
-              const otherTarget = document.getElementById(otherBtn.getAttribute('aria-controls'));
-              if (otherTarget) otherTarget.classList.add('hidden');
-              const otherIcon = otherBtn.querySelector('.faq-icon');
-              if (otherIcon) otherIcon.textContent = '[+]';
-            }
-          });
-
-          if (isExpanded) {
-            btn.setAttribute('aria-expanded', 'false');
-            content?.classList.add('hidden');
-            if (icon) icon.textContent = '[+]';
-          } else {
-            btn.setAttribute('aria-expanded', 'true');
-            content?.classList.remove('hidden');
-            if (icon) icon.textContent = '[−]';
-          }
-        });
-      });
-
     });
+
+    const langBtnText = document.getElementById('corpLangText');
+    if (langBtnText) {
+      langBtnText.textContent = isHi ? 'English' : 'Hindi';
+    }
+
+    document.title = isHi 
+      ? 'हार्वेस्ट हब - डिजिटल फसल खरीद एवं स्मार्ट मंडी तंत्र | SIH 2026'
+      : 'Harvest Hub - Next-Gen Digital Crop Procurement & Smart Mandi Ecosystem | SIH 2026';
+
+    window.dispatchEvent(new CustomEvent('kisan-lang-changed', { detail: { lang: this.currentLang } }));
+  }
+}
+
+window.kisanI18n = new I18nManager();
+
+/* ===== INLINED CORPORATE CONTROLLER ===== */
+(function() {
+  'use strict';
+
+  const CROP_RATES = {
+    wheat: { name: 'Wheat (WH-1105)', baseMsp: 2275, bonus: 115 },
+    mustard: { name: 'Mustard (RH-725)', baseMsp: 5650, bonus: 100 },
+    paddy: { name: 'Paddy / Basmati (PB-1121)', baseMsp: 2300, bonus: 90 },
+    gram: { name: 'Gram / Chickpea (HC-5)', baseMsp: 5440, bonus: 80 },
+    millet: { name: 'Pearl Millet / Bajra (HHB-67)', baseMsp: 2625, bonus: 75 }
+  };
+
+  function updateCalculator() {
+    const cropSelect = document.getElementById('calcCrop');
+    const qtyInput = document.getElementById('calcQty');
+    const compCheckbox = document.getElementById('calcCompliance');
+
+    if (!cropSelect || !qtyInput || !compCheckbox) return;
+
+    const cropKey = cropSelect.value || 'wheat';
+    const qty = parseFloat(qtyInput.value) || 0;
+    const isCompliant = compCheckbox.checked;
+
+    const cropData = CROP_RATES[cropKey] || CROP_RATES.wheat;
+    const baseMsp = cropData.baseMsp;
+    const bonusPerQ = isCompliant ? cropData.bonus : 0;
+    const effectiveRate = baseMsp + bonusPerQ;
+
+    const totalBasePayout = qty * baseMsp;
+    const totalBonusPayout = qty * bonusPerQ;
+    const grandTotalPayout = totalBasePayout + totalBonusPayout;
+
+    const totalEl = document.getElementById('calcGrandTotal');
+    const baseRateEl = document.getElementById('calcBaseMsp');
+    const bonusRateEl = document.getElementById('calcBonusRate');
+    const effRateEl = document.getElementById('calcEffectiveRate');
+    const totalQtyEl = document.getElementById('calcDisplayQty');
+
+    const isHi = window.kisanI18n && window.kisanI18n.lang === 'hi';
+    if (totalEl) totalEl.textContent = '₹' + grandTotalPayout.toLocaleString('en-IN');
+    if (baseRateEl) baseRateEl.textContent = '₹' + baseMsp + '/Q';
+    if (bonusRateEl) {
+      const notAppText = isHi ? '₹0 (लागू नहीं)' : '₹0 (Not Applicable)';
+      const appText = isHi ? `+₹${bonusPerQ}/Q (लागू)` : `+₹${bonusPerQ}/Q (Applied)`;
+      bonusRateEl.textContent = isCompliant ? appText : notAppText;
+      bonusRateEl.style.color = isCompliant ? '#15803d' : '#94a3b8';
+    }
+    if (effRateEl) effRateEl.textContent = '₹' + effectiveRate + '/Q';
+    if (totalQtyEl) totalQtyEl.textContent = qty + (isHi ? ' क्विंटल' : ' Quintals');
+  }
+
+  let simulatedTokens = [
+    { num: 8294, vehicle: 'HR-12-BZ-9481 (Tractor)', crop: 'Wheat', status: 'weighbridge_in', statusLabel: 'Weighbridge (Gross Wt)', calling: true },
+    { num: 8293, vehicle: 'HR-12-AK-1029 (Tata 407)', crop: 'Mustard', status: 'unloading', statusLabel: 'Silo Unloading (Silo 2)', calling: false },
+    { num: 8292, vehicle: 'HR-12-CX-4491 (Tractor)', crop: 'Paddy', status: 'gate_entry', statusLabel: 'Gate Entry (Gate 2)', calling: false },
+    { num: 8291, vehicle: 'HR-12-DF-7812 (Canter)', crop: 'Wheat', status: 'waiting', statusLabel: 'Waiting in Queue', calling: false }
+  ];
+
+  function renderQueueSimulator() {
+    const container = document.getElementById('queueSlotsContainer');
+    if (!container) return;
+    const isHi = window.kisanI18n && window.kisanI18n.lang === 'hi';
+
+    container.innerHTML = simulatedTokens.map(t => `
+      <div class="corp-queue-tile ${t.calling ? 'calling' : ''}">
+        <div class="corp-queue-tile-head">
+          <span>${t.calling ? (isHi ? '📢 सक्रिय (Calling)' : '📢 Active (Calling)') : (isHi ? 'कतार में' : 'In Queue')}</span>
+          <span style="font-weight:700; color:${t.calling ? '#10b981' : '#64748b'};">${t.statusLabel}</span>
+        </div>
+        <div class="corp-queue-token-num">#${t.num}</div>
+        <div class="corp-queue-vehicle">🚛 ${t.vehicle}</div>
+        <div style="font-size:0.75rem; color:#64748b; margin-top:4px;">${isHi ? 'फसल:' : 'Crop:'} <strong>${t.crop}</strong></div>
+      </div>
+    `).join('');
+  }
+
+  function advanceQueueSimulator() {
+    const nextNum = Math.floor(8295 + Math.random() * 50);
+    const vehicles = ['HR-12-ER-3391 (Tractor)', 'HR-12-MN-4421 (Tata Ace)', 'HR-12-PQ-8812 (Tractor)', 'HR-12-ST-1945 (Pickup)'];
+    const crops = ['Wheat', 'Mustard', 'Paddy', 'Gram'];
+    const isHi = window.kisanI18n && window.kisanI18n.lang === 'hi';
+
+    const newCallingToken = {
+      num: nextNum,
+      vehicle: vehicles[Math.floor(Math.random() * vehicles.length)],
+      crop: crops[Math.floor(Math.random() * crops.length)],
+      status: 'gate_entry',
+      statusLabel: isHi ? 'गेट प्रवेश (Now Calling)' : 'Gate Entry (Now Calling)',
+      calling: true
+    };
+
+    simulatedTokens = [newCallingToken, ...simulatedTokens.slice(0, 3)];
+    renderQueueSimulator();
+
+    showCorpToast(isHi ? `📢 टोकन #${nextNum} को रोहतक मंडी गेट 1 पर आमंत्रित किया गया!` : `📢 Token #${nextNum} called to Rohtak Mandi Gate 1!`, 'success');
+  }
+
+  function setupFaqAccordions() {
+    const items = document.querySelectorAll('.corp-faq-item');
+    items.forEach(item => {
+      const q = item.querySelector('.corp-faq-q');
+      if (q) {
+        q.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          items.forEach(i => i.classList.remove('active'));
+          if (!isActive) item.classList.add('active');
+        });
+      }
+    });
+  }
+
+  function showCorpToast(message, type) {
+    let toast = document.getElementById('corpToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'corpToast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0f172a;
+        color: #ffffff;
+        padding: 12px 24px;
+        border-radius: 9999px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: opacity 0.3s ease;
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = type === 'success' ? `✅ ${message}` : `ℹ️ ${message}`;
+    toast.style.display = 'flex';
+    toast.style.opacity = '1';
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => { toast.style.display = 'none'; }, 300);
+    }, 3500);
+  }
+
+  function setupHeaderScroll() {
+    const header = document.querySelector('.corp-header');
+    if (!header) return;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+
+  function setupMobileMenu() {
+    const toggle = document.querySelector('.corp-menu-toggle');
+    const navLinks = document.querySelector('.corp-nav-links');
+    if (!toggle || !navLinks) return;
+
+    toggle.addEventListener('click', () => {
+      const isVisible = navLinks.style.display === 'flex';
+      navLinks.style.display = isVisible ? 'none' : 'flex';
+      if (!isVisible) {
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '72px';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = '#ffffff';
+        navLinks.style.padding = '20px';
+        navLinks.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+      }
+    });
+  }
+
+  window.corpWebsite = {
+    updateCalculator,
+    advanceQueueSimulator,
+    showCorpToast
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.kisanI18n) {
+      window.kisanI18n.translatePage();
+    }
+
+    updateCalculator();
+    renderQueueSimulator();
+    setupFaqAccordions();
+    setupHeaderScroll();
+    setupMobileMenu();
+
+    window.addEventListener('kisan-lang-changed', () => {
+      updateCalculator();
+      renderQueueSimulator();
+    });
+
+    const cropSelect = document.getElementById('calcCrop');
+    const qtyInput = document.getElementById('calcQty');
+    const compCheckbox = document.getElementById('calcCompliance');
+    if (cropSelect) cropSelect.addEventListener('change', updateCalculator);
+    if (qtyInput) qtyInput.addEventListener('input', updateCalculator);
+    if (compCheckbox) compCheckbox.addEventListener('change', updateCalculator);
+  });
+})();
   </script>
 </body>
-
 </html>
