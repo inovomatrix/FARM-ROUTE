@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Offline-Resilient Rural Service Worker
+ * Farm Route — Offline-Resilient Rural Service Worker
  * Ensures digital gate passes, signed tokens, and UI scaffolding
  * remain fully interactive without internet access.
  */

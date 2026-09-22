@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 app = FastAPI(
-    title="KisanSetu Platform API",
+    title="Farm Route Platform API",
     description="Smart Agricultural Procurement & Queue Intelligence Platform — RESTful Microservice",
     version="1.0.0",
     docs_url="/docs",
@@ -85,7 +85,7 @@ def health_check():
     db_name = "Supabase PostgreSQL" if IS_SUPABASE else "SQLite (data/kisansetu.db)"
     return {
         "status": "healthy",
-        "service": "KisanSetu Backend Engine",
+        "service": "Farm Route Backend Engine",
         "version": "1.0.0",
         "database": db_name,
         "is_supabase": IS_SUPABASE,

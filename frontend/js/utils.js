@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Reusable Utility Helpers
+ * Farm Route — Reusable Utility Helpers
  * Standardized utility functions for formatting, UI states, and queue calculations.
  */
 

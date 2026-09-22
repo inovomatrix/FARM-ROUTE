@@ -236,7 +236,7 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
                 f"• **Benchmark Market Rate:** {sc['demo_rate']}\n"
                 f"• **Maximum Permissible Moisture:** {sc['moisture']}\n"
                 f"• **Current Status:** {sc['status']}\n\n"
-                f"💡 *Advice: Before heading to the mandi, please book a digital token and time slot on KisanSetu to eliminate long queue waiting times.*"
+                f"💡 *Advice: Before heading to the mandi, please book a digital token and time slot on Farm Route to eliminate long queue waiting times.*"
             )
             audio_text = f"Government procurement for {sc['crop_name']} runs from {sc['start_date']} to {sc['end_date']}. The minimum support price is {sc['msp']} and maximum permissible moisture is {sc['moisture']}."
             return AssistantQueryResponse(
@@ -430,7 +430,7 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
     booking_keywords = ["booking", "book", "slot", "token", "pass", "how to book", "how do i book", "receipt", "qr pass"]
     if any(k in q_lower for k in booking_keywords):
         resp_text = (
-            "⚡ **How to Book a Digital Token & Delivery Slot on KisanSetu**:\n\n"
+            "⚡ **How to Book a Digital Token & Delivery Slot on Farm Route**:\n\n"
             "1. **Log in:** Sign in to the Farmer Portal with your registered mobile number.\n"
             "2. **Choose Center:** Select 'Procurement Centers' and pick the nearest facility in your district.\n"
             "3. **Select Crop & Quantity:** Specify your commodity (Wheat, Mustard, etc.) and estimated quintals.\n"
@@ -528,10 +528,10 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
             "1. **Aadhaar Card:** For farmer identity verification.\n"
             "2. **Land Records (Jamabandi / Fard / Girdawari):** For registered acreage and crop verification.\n"
             "3. **Bank Passbook Copy:** Showing bank account number and IFSC code.\n"
-            "4. **Digital Token Pass:** SMS message, printed pass, or mobile QR code from KisanSetu.\n"
+            "4. **Digital Token Pass:** SMS message, printed pass, or mobile QR code from Farm Route.\n"
             "5. **Vehicle Registration / Driver Info:** Tractor-trolley registration number."
         )
-        audio_text = "Please bring your Aadhaar Card, land record fard or jamabandi, bank passbook copy, and your KisanSetu digital token QR pass on your mobile phone."
+        audio_text = "Please bring your Aadhaar Card, land record fard or jamabandi, bank passbook copy, and your Farm Route digital token QR pass on your mobile phone."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
@@ -554,7 +554,7 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
     complaint_keywords = ["complaint", "grievance", "issue", "problem", "dispute", "help", "fraud", "irregularity", "delay"]
     if any(k in q_lower for k in complaint_keywords):
         resp_text = (
-            "⚖️ **KisanSetu Grievance Redressal System**:\n\n"
+            "⚖️ **Farm Route Grievance Redressal System**:\n\n"
             "If you experience any operational difficulties (payment delays, incorrect moisture deductions, weighbridge discrepancies, or staff misconduct):\n\n"
             "• **Multi-Tier Escalation:** Grievances automatically escalate from Mandi Operator to District Administrative Officer, and up to State Super Admin if unresolved.\n"
             "• **Resolution Timeframe:** Mandatory turnaround resolution within 24 to 48 hours.\n"

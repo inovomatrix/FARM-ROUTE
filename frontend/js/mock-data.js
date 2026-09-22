@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Minimal Mock Data Structure
+ * Farm Route — Minimal Mock Data Structure
  * Provides realistic structural blueprints for development before FastAPI integration.
  */
 

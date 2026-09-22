@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Reactive Real-Time Event Bus
+ * Farm Route — Reactive Real-Time Event Bus
  * Synchronizes token transitions, gate scans, and circuit breaker alerts across tabs & screens
  * using BroadcastChannel (zero latency cross-tab) + WebSocket backend stream.
  */

@@ -1,5 +1,5 @@
 /**
- * KisanSetu — District Admin Shared Oversight & Management Engine
+ * Farm Route — District Admin Shared Oversight & Management Engine
  * Version: 2.0.0 (Phase E.2: Advanced District Admin Features)
  *
  * ARCHITECTURAL NOTICE:
@@ -1045,7 +1045,7 @@
      */
     generateCSV(type) {
       const timestamp = new Date().toISOString();
-      const headerComments = `# KisanSetu Demo Report — District Oversight Console\n# Generated: ${timestamp}\n# Disclaimer: Prototype Demo Data for Evaluation Only\n\n`;
+      const headerComments = `# Farm Route Demo Report — District Oversight Console\n# Generated: ${timestamp}\n# Disclaimer: Prototype Demo Data for Evaluation Only\n\n`;
 
       if (type === 'operations') {
         const rows = this.getDailyOperationsReport();

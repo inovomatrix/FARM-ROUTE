@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Dynamic UI Localization Engine
+ * Farm Route — Dynamic UI Localization Engine
  * Standardized 100% English Language Platform.
  */
 
@@ -12,7 +12,7 @@
 
   const DICTIONARY = {
     // Brand & App
-    "app.title": { en: "KisanSetu", hi: "KisanSetu" },
+    "app.title": { en: "Farm Route", hi: "Farm Route" },
     "app.subtitle": { en: "Smart Agricultural Logistics & Procurement Platform", hi: "Smart Agricultural Logistics & Procurement Platform" },
     "app.tagline": { en: "Digital Market Platform", hi: "Digital Market Platform" },
 
@@ -228,7 +228,7 @@
       const docTitleKey = document.querySelector("meta[name='i18n-title-key']");
       if (docTitleKey) {
         const t = this.t(docTitleKey.getAttribute("content"));
-        if (t) document.title = `${t} | KisanSetu`;
+        if (t) document.title = `${t} | Farm Route`;
       }
     },
 

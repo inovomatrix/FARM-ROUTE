@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Bookings — KisanSetu</title>
+  <title>My Bookings — Farm Route</title>
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,11 +28,11 @@
       <div class="flex items-center gap-3">
         <a href="dashboard.html"
           class="w-9 h-9 rounded-lg bg-[#15803d] text-white flex items-center justify-center font-bold text-sm shadow-xs">
-          K
+          FR
         </a>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-base font-bold text-slate-900 tracking-tight">KisanSetu</span>
+            <span class="text-base font-bold text-slate-900 tracking-tight">Farm Route</span>
             <span class="text-xs text-slate-400"></span>
           </div>
           <div class="text-[11px] font-semibold text-[#15803d] -mt-0.5">
@@ -151,7 +151,7 @@
       </p>
       <div class="mt-5">
         <a href="centers.html" class="btn btn-primary btn-sm text-xs font-semibold py-2 px-4 shadow-xs inline-flex items-center gap-1.5">
-          <span>📍</span> Find Procurement Centers (Find Procurement Center)
+          <span>📍</span> Find Procurement Centers
         </a>
       </div>
     </div>
@@ -171,7 +171,7 @@
         </div>
         <div>
           <h3 class="text-base font-bold text-slate-900">
-            Cancel Booking? (Confirm Cancellation)
+            Cancel Booking?
           </h3>
           <p class="text-xs text-slate-500 mt-1 leading-relaxed">
             Are you sure you want to cancel this booking? The slot will be released and pass invalidated.
@@ -209,12 +209,12 @@
   <div id="toast"
     class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 border border-slate-700 hidden transition-opacity duration-300">
     <span class="text-emerald-400">✔</span>
-    <span id="toast-message">Booking cancelled successfully. (Booking cancelled successfully)</span>
+    <span id="toast-message">Booking cancelled successfully.</span>
   </div>
 
   <!-- Footer -->
   <footer class="py-4 text-center text-xs text-slate-400 border-t border-slate-200 bg-white">
-    KisanSetu &copy; 2026 • SIH Innovation Project
+    Farm Route &copy; 2026 • SIH Innovation Project
   </footer>
 
   <!-- Scripts -->
@@ -305,7 +305,7 @@
           const cancelActionHtml = canCancel
             ? `<button type="button" data-action="cancel" data-id="${b.bookingId}" data-center="${b.centerName || ''}" data-slot="${b.bookingDate || ''} • ${b.timeSlot || ''}"
                  class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3 text-rose-700 hover:bg-rose-50 border-rose-200 flex items-center gap-1">
-                 <span>✕</span> Cancel Booking (Cancel)
+                 <span>✕</span> Cancel Booking
                </button>`
             : '';
 

@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Deterministic State Machine (Live Market Flow)
+ * Farm Route — Deterministic State Machine (Live Market Flow)
  * Strict Physical Market Cycle (SIH26032):
  * BOOKED -> GATE_SCANNED -> ASSAY_TESTING -> GROSS_WEIGHED -> UNLOADING_BAY -> TARE_WEIGHED -> J_FORM_ISSUED -> DBT_DISPATCHED
  * Grace / Edge States: TRANSIT_DELAYED, STANDBY_OVERDUE, REJECTED_QUALITY, CANCELLED

@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Kisan Vani AI Voice Assistant & Chatbot
+ * Farm Route — Kisan Vani AI Voice Assistant & Chatbot
  * Non-blocking floating popup widget with Speech-to-Text (STT) & Text-to-Speech (TTS).
  * Answers questions about Crop Prices (MSP), Procurement Starting Dates/Schedules,
  * Mandi Centers, Slot Booking, Live Queues, and Farmer Grievance Redressal.
@@ -671,7 +671,7 @@
             `• **End Date:** **${k.end}**\n` +
             `• **Minimum Support Price (MSP):** **${k.msp}**\n` +
             `• **Moisture Ceiling:** ${k.moisture}\n\n` +
-            `💡 *Ensure you reserve a time slot on KisanSetu before departing for the market.*`,
+            `💡 *Ensure you reserve a time slot on Farm Route before departing for the market.*`,
           audio_text: `Government procurement of ${k.crop} runs from ${k.start} to ${k.end}. The support price is ${k.msp}.`,
           quick_actions: [
             { label: "⚡ Book a Slot", url: `farmer/booking.html?crop=${matchedCropKey}` },

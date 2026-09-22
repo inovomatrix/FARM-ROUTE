@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Client-Side API Client
+ * Farm Route — Client-Side API Client
  * Seamlessly interfaces with the FastAPI REST backend (/api/v1)
  * with graceful fallback to client-side data structures.
  */

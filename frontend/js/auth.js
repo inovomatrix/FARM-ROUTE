@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Client-Side Mock Authentication & Session Layer
+ * Farm Route — Client-Side Mock Authentication & Session Layer
  * 
  * ARCHITECTURAL DISCLAIMER:
  * Frontend route protection and localStorage session management implemented here

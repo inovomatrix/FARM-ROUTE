@@ -1,4 +1,4 @@
 """
-KisanSetu Backend Package
+Farm Route Backend Package
 FastAPI + SQLAlchemy Architecture
 """

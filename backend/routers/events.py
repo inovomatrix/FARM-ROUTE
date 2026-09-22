@@ -49,7 +49,7 @@ async def yard_websocket_endpoint(websocket: WebSocket, center_id: str):
         await websocket.send_json({
             "type": "CONNECTION_ESTABLISHED",
             "centerId": center_id.upper(),
-            "message": "Connected to KisanSetu Real-time Yard Event Stream"
+            "message": "Connected to Farm Route Real-time Yard Event Stream"
         })
         while True:
             # Keep connection alive and accept incoming pings or simulated events

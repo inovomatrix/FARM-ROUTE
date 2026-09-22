@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Dynamic Market Throughput Engine (Anti-Bottleneck Core)
+ * Farm Route — Dynamic Market Throughput Engine (Anti-Bottleneck Core)
  * Modular mathematical slot allocation and capacity meter.
  * Hourly Capacity = (Active Weighbridges * Avg Weighing Rate per Hr) + Buffer Adjustment
  */

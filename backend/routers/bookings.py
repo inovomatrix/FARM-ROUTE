@@ -214,7 +214,7 @@ def get_token_details(token_id: str, db: Session = Depends(get_db)):
     queue_pos = queue_entry.queue_position if queue_entry else booking.queue_position
     est_wait = queue_entry.estimated_wait_minutes if queue_entry else 15
 
-    qr_payload = f"KISANSETU|TOKEN:{booking.token_id}|BOOKING:{booking.id}|CENTER:{booking.center_id}|CROP:{booking.commodity}|VEHICLE:{booking.vehicle_number}"
+    qr_payload = f"FARM ROUTE|TOKEN:{booking.token_id}|BOOKING:{booking.id}|CENTER:{booking.center_id}|CROP:{booking.commodity}|VEHICLE:{booking.vehicle_number}"
 
     return {
         "success": True,

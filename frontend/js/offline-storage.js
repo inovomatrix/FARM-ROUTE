@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Offline-Resilient & Rural-First UX (Offline Storage Layer)
+ * Farm Route — Offline-Resilient & Rural-First UX (Offline Storage Layer)
  * Uses IndexedDB (with localStorage fallback) to ensure issued gate passes & QR tokens
  * remain 100% viewable and verifiable even with zero network connectivity.
  */

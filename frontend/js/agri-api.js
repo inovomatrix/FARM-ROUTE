@@ -1,5 +1,5 @@
 /**
- * KisanSetu Agri-Intelligence API Service
+ * Farm Route Agri-Intelligence API Service
  * Real-time Weather API (WeatherAPI.com) & Agmarknet Market Prices (Data.gov.in)
  * Ported & Enhanced from shivamgoyal45/kisan-setu-
  */

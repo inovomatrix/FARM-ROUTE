@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Anti-Hoarding & Gate Verification Protocol (QR Security Layer)
+ * Farm Route — Anti-Hoarding & Gate Verification Protocol (QR Security Layer)
  * 1. Cryptographic HMAC digital signature generation & tamper validation.
  * 2. Slot arrival window buffer validation (±45 minutes).
  * 3. Self-contained pure JS QR Code generator for 100% offline & rural resilience.

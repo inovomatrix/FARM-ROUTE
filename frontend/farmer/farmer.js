@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Farmer Portal Shared Utilities & UI Engine
+ * Farm Route — Farmer Portal Shared Utilities & UI Engine
  * Version: 2.0.0 (Phase B: Center Details, Slot Booking & Digital Token)
  * 
  * ARCHITECTURAL NOTICE:
@@ -222,6 +222,66 @@
     },
 
     /**
+     * Internal sanitizer to ensure legacy Hindi booking strings are automatically translated to pure English
+     */
+    _sanitizeBooking(b) {
+      if (!b || typeof b !== 'object') return b;
+      const copy = { ...b };
+
+      if (copy.commodity) {
+        copy.commodity = String(copy.commodity)
+          .replace(/गेहूं/g, 'Wheat')
+          .replace(/सरसों/g, 'Mustard')
+          .replace(/धान/g, 'Paddy')
+          .replace(/चना/g, 'Gram (Chickpea)')
+          .replace(/बाजरा/g, 'Bajra (Pearl Millet)')
+          .replace(/कपास/g, 'Cotton')
+          .replace(/\(Gehun\)/gi, '')
+          .replace(/\(Dhan\)/gi, '')
+          .replace(/\(Sarson\)/gi, '')
+          .replace(/\(Chana\)/gi, '')
+          .replace(/Chana/gi, 'Gram (Chickpea)')
+          .trim();
+      }
+
+      if (copy.centerName) {
+        copy.centerName = String(copy.centerName)
+          .replace(/अनाज मंडी/g, 'Grain Market')
+          .replace(/कृषि मंडी/g, 'Agricultural Market')
+          .replace(/किसान मंडी/g, 'Farmer Market')
+          .replace(/मंडी/g, 'Market')
+          .replace(/Anaj Mandi/gi, 'Grain Market')
+          .replace(/Krishi Mandi/gi, 'Agricultural Market')
+          .replace(/Kisan Mandi/gi, 'Farmer Market')
+          .replace(/\bMandi\b/gi, 'Market')
+          .trim();
+      }
+
+      if (copy.status) {
+        const rawStatus = String(copy.status).toLowerCase();
+        if (rawStatus.includes('पुष्टि') || rawStatus.includes('confirmed')) copy.status = 'confirmed';
+        else if (rawStatus.includes('कतार') || rawStatus.includes('queue')) copy.status = 'in_queue';
+        else if (rawStatus.includes('पूर्ण') || rawStatus.includes('complete')) copy.status = 'completed';
+        else if (rawStatus.includes('रद्द') || rawStatus.includes('cancel')) copy.status = 'cancelled';
+      }
+
+      if (copy.bookingDate) {
+        copy.bookingDate = String(copy.bookingDate)
+          .replace(/सोमवार/g, 'Monday')
+          .replace(/मंगलवार/g, 'Tuesday')
+          .replace(/बुधवार/g, 'Wednesday')
+          .replace(/गुरुवार/g, 'Thursday')
+          .replace(/शुक्रवार/g, 'Friday')
+          .replace(/शनिवार/g, 'Saturday')
+          .replace(/रविवार/g, 'Sunday')
+          .replace(/आज/g, 'Today')
+          .replace(/कल/g, 'Tomorrow');
+      }
+
+      return copy;
+    },
+
+    /**
      * Retrieve the current active booking from localStorage with defensive parsing
      */
     getActiveBooking() {
@@ -229,9 +289,16 @@
         const raw = localStorage.getItem(ACTIVE_BOOKING_KEY);
         if (!raw) return null;
         const parsed = JSON.parse(raw);
-        return (parsed && parsed.bookingId) ? parsed : null;
+        if (parsed && parsed.bookingId) {
+          const sanitized = this._sanitizeBooking(parsed);
+          if (JSON.stringify(sanitized) !== raw) {
+            localStorage.setItem(ACTIVE_BOOKING_KEY, JSON.stringify(sanitized));
+          }
+          return sanitized;
+        }
+        return null;
       } catch (e) {
-        console.warn("KisanSetu: Invalid JSON in active booking, falling back cleanly.", e);
+        console.warn("Farm Route: Invalid JSON in active booking, falling back cleanly.", e);
         return null;
       }
     },
@@ -244,9 +311,19 @@
         const raw = localStorage.getItem(BOOKINGS_HISTORY_KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
+        if (!Array.isArray(parsed)) return [];
+        let updated = false;
+        const sanitizedList = parsed.map(b => {
+          const s = this._sanitizeBooking(b);
+          if (JSON.stringify(s) !== JSON.stringify(b)) updated = true;
+          return s;
+        });
+        if (updated) {
+          localStorage.setItem(BOOKINGS_HISTORY_KEY, JSON.stringify(sanitizedList));
+        }
+        return sanitizedList;
       } catch (e) {
-        console.warn("KisanSetu: Invalid JSON in bookings history.", e);
+        console.warn("Farm Route: Invalid JSON in bookings history.", e);
         return [];
       }
     },
@@ -268,7 +345,7 @@
         }
         return null;
       } catch (e) {
-        console.warn("KisanSetu: Error retrieving booking by ID.", e);
+        console.warn("Farm Route: Error retrieving booking by ID.", e);
         return null;
       }
     },
@@ -408,7 +485,7 @@
 
         return { success: true, booking: targetBooking };
       } catch (e) {
-        console.error("KisanSetu: Error cancelling booking.", e);
+        console.error("Farm Route: Error cancelling booking.", e);
         return { success: false, error: "Internal error while cancelling booking" };
       }
     },
@@ -541,7 +618,7 @@
       try {
         // 0. Enforce center booking availability check
         if (bookingData && bookingData.centerId && this.isCenterAcceptingBookings && !this.isCenterAcceptingBookings(bookingData.centerId)) {
-          console.warn("KisanSetu: Cannot save booking for center with unavailable status.", bookingData.centerId);
+          console.warn("Farm Route: Cannot save booking for center with unavailable status.", bookingData.centerId);
           return false;
         }
 
@@ -560,7 +637,7 @@
 
         return true;
       } catch (e) {
-        console.error("KisanSetu: Error saving booking to localStorage.", e);
+        console.error("Farm Route: Error saving booking to localStorage.", e);
         return false;
       }
     },
@@ -575,7 +652,7 @@
         const parsed = JSON.parse(raw);
         return (parsed && parsed.bookingId) ? parsed : null;
       } catch (e) {
-        console.warn("KisanSetu: Invalid JSON in queue status, falling back cleanly.", e);
+        console.warn("Farm Route: Invalid JSON in queue status, falling back cleanly.", e);
         return null;
       }
     },
@@ -590,7 +667,7 @@
         localStorage.setItem(QUEUE_STATUS_KEY, JSON.stringify(queueData));
         return true;
       } catch (e) {
-        console.error("KisanSetu: Error saving queue status to localStorage.", e);
+        console.error("Farm Route: Error saving queue status to localStorage.", e);
         return false;
       }
     },
