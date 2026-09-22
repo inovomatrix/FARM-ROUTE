@@ -125,7 +125,7 @@ def generate_statutory_j_form(
     # Bank DBT details
     bank_acc = f"XXXXXX{phone_digits}"
     bank_ifsc = "PUNB0123400"
-    bank_name = "Punjab National Bank (कृषि खाता)"
+    bank_name = "Punjab National Bank (Agri Account)"
     dbt_txn_id = f"PFMS-DBT-{datetime.utcnow().strftime('%Y%m%d')}-{random.randint(10000, 99999)}"
 
     # Cryptographic payload for validation
@@ -176,7 +176,8 @@ def generate_statutory_j_form(
             "gradeDeductionINR": metrics["gradeDeduction"],
             "totalDeductionsINR": metrics["totalDeductions"],
             "netPayableAmountINR": metrics["netPayableAmount"],
-            "amountInWordsHindi": f"रुपये {int(metrics['netPayableAmount'])} मात्र"
+            "amountInWords": f"Rupees {int(metrics['netPayableAmount'])} Only",
+            "amountInWordsHindi": f"Rupees {int(metrics['netPayableAmount'])} Only"
         },
         "settlement": {
             "bankName": bank_name,

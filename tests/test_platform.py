@@ -78,7 +78,7 @@ class TestThroughputEngine(unittest.TestCase):
             district="Karnal",
             state="Haryana",
             address="Near Railway Station, Karnal",
-            commodity="Wheat (गेहूं)",
+            commodity="Wheat (Grade A)",
             daily_capacity_mt=600,
             active_weighbridges=3,
             avg_weighing_rate_per_hr=10,
@@ -105,9 +105,9 @@ class TestThroughputEngine(unittest.TestCase):
         SessionLocal = sessionmaker(bind=engine)
         db = SessionLocal()
 
-        c1 = Center(id="CTR-KARNAL-01", name="Karnal Main", district="Karnal", state="Haryana", address="GT Road Karnal", commodity="Wheat (गेहूं)", load_status="high", current_queue_vehicles=25)
-        c2 = Center(id="CTR-TARAORI-02", name="Taraori Yard", district="Karnal", state="Haryana", address="Taraori Anaj Mandi", commodity="Wheat (गेहूं)", load_status="low", current_queue_vehicles=3)
-        c3 = Center(id="CTR-GHARAUNDA-03", name="Gharaunda Depo", district="Karnal", state="Haryana", address="Gharaunda Station Rd", commodity="Wheat (गेहूं)", load_status="medium", current_queue_vehicles=8)
+        c1 = Center(id="CTR-KARNAL-01", name="Karnal Main", district="Karnal", state="Haryana", address="GT Road Karnal", commodity="Wheat (Grade A)", load_status="high", current_queue_vehicles=25)
+        c2 = Center(id="CTR-TARAORI-02", name="Taraori Yard", district="Karnal", state="Haryana", address="Taraori Grain Market", commodity="Wheat (Grade A)", load_status="low", current_queue_vehicles=3)
+        c3 = Center(id="CTR-GHARAUNDA-03", name="Gharaunda Depo", district="Karnal", state="Haryana", address="Gharaunda Station Rd", commodity="Wheat (Grade A)", load_status="medium", current_queue_vehicles=8)
         db.add_all([c1, c2, c3])
         db.commit()
 
@@ -185,7 +185,7 @@ class TestStateMachine(unittest.TestCase):
             district="Karnal",
             state="Haryana",
             address="Mandi Road",
-            commodity="Wheat (गेहूं)",
+            commodity="Wheat (Grade A)",
             daily_capacity_mt=500
         )
         db.add(center)
@@ -405,7 +405,7 @@ class TestJFormService(unittest.TestCase):
             district="Karnal",
             state="Haryana",
             address="GT Road",
-            commodity="Wheat (गेहूं)"
+            commodity="Wheat (Grade A)"
         )
         db.add(center)
 
@@ -555,7 +555,7 @@ class TestCircuitBreaker(unittest.TestCase):
             district="Karnal",
             state="Haryana",
             address="Karnal GT Rd",
-            commodity="Wheat (गेहूं)"
+            commodity="Wheat (Grade A)"
         )
         db.add(center)
         db.commit()
@@ -567,10 +567,10 @@ class TestCircuitBreaker(unittest.TestCase):
             center_name="Test Mandi CB",
             is_halted=True,
             reason="RAIN",
-            reason_label="अचानक भारी बारिश व जलभराव",
+            reason_label="Sudden Heavy Rain & Flooding",
             defer_hours=3,
             sms_count_sent=45,
-            operator_notes="Covering godown grain piles"
+            operator_notes="Covering warehouse grain piles"
         )
         db.add(cb_event)
         db.commit()

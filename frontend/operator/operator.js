@@ -27,13 +27,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "09:00 AM – 10:00 AM",
       queuePosition: 3,
       totalVehiclesAhead: 2,
       estimatedWaitMinutes: 15,
       arrivalStatus: "checked_in",
-      status: "कतार में प्रतीक्षा (Waiting in Queue)",
+      status: "Waiting in Queue",
       isDemoStatic: true
     },
     {
@@ -44,13 +44,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Paddy (Common)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "09:00 AM – 10:00 AM",
       queuePosition: 1,
       totalVehiclesAhead: 0,
       estimatedWaitMinutes: 5,
       arrivalStatus: "checked_in",
-      status: "आपकी बारी जल्द है (Your Turn Is Next)",
+      status: "Your Turn Is Next",
       isDemoStatic: true
     },
     {
@@ -61,13 +61,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "10:00 AM – 11:00 AM",
       queuePosition: 7,
       totalVehiclesAhead: 6,
       estimatedWaitMinutes: 30,
       arrivalStatus: "arrived",
-      status: "केंद्र पर पहुंच गए (Arrived at Center)",
+      status: "Arrived at Center",
       isDemoStatic: true
     },
     {
@@ -78,13 +78,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "08:00 AM – 09:00 AM",
       queuePosition: 0,
       totalVehiclesAhead: 0,
       estimatedWaitMinutes: 0,
       arrivalStatus: "checked_in",
-      status: "खरीद पूर्ण (Procurement Completed)",
+      status: "Procurement Completed",
       isDemoStatic: true
     }
   ];
@@ -196,13 +196,13 @@
             centerName: activeBooking.centerName || opCenterName,
             farmerName: activeBooking.farmerName || "Demo Farmer",
             commodity: activeBooking.commodity || "Wheat (Grade A)",
-            bookingDate: activeBooking.bookingDate || "Today (आज)",
+            bookingDate: activeBooking.bookingDate || "Today",
             timeSlot: activeBooking.timeSlot || "10:00 AM – 11:00 AM",
             queuePosition: 12,
             totalVehiclesAhead: 11,
             estimatedWaitMinutes: 45,
             arrivalStatus: "not_arrived",
-            status: "बुकिंग की पुष्टि (Booking Confirmed)",
+            status: "Booking Confirmed",
             lastUpdated: new Date().toISOString()
           };
           this.saveQueueStatus(liveQueue);
@@ -240,8 +240,8 @@
 
       // Sort: Completed at bottom, active by queue position ascending
       queueList.sort((a, b) => {
-        const aCompleted = (a.status || "").includes("खरीद पूर्ण");
-        const bCompleted = (b.status || "").includes("खरीद पूर्ण");
+        const aCompleted = (a.status || "").includes("Procurement Completed") ;
+        const bCompleted = (b.status || "").includes("Procurement Completed") ;
         if (aCompleted && !bCompleted) return 1;
         if (!aCompleted && bCompleted) return -1;
         return (a.queuePosition || 99) - (b.queuePosition || 99);
@@ -264,8 +264,8 @@
       let completed = 0;
 
       queueList.forEach(item => {
-        const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-        const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
+        const isCompleted = (item.status || "").includes("Procurement Completed") ;
+        const isInProgress = ((item.status || "").includes("Procurement in Progress") ) || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
 
         if (isCompleted) {
           completed++;
@@ -314,7 +314,7 @@
         }
 
         liveQueue.arrivalStatus = "checked_in";
-        liveQueue.status = "गेट सत्यापन पूर्ण (Gate Verification Complete)";
+        liveQueue.status = "Gate Verification Complete";
         liveQueue.queuePosition = 5;
         liveQueue.totalVehiclesAhead = 4;
         liveQueue.estimatedWaitMinutes = 20;
@@ -328,7 +328,7 @@
       const demoItem = DEFAULT_DEMO_QUEUE_ENTRIES.find(d => d.bookingId === bookingId);
       if (demoItem) {
         demoItem.arrivalStatus = "checked_in";
-        demoItem.status = "गेट सत्यापन पूर्ण (Gate Verification Complete)";
+        demoItem.status = "Gate Verification Complete";
         demoItem.queuePosition = Math.min(demoItem.queuePosition, 5);
         this.logActivity("gate_verified", bookingId, { tokenId: demoItem.tokenId, farmerName: demoItem.farmerName, centerId: demoItem.centerId });
         return { success: true, message: "Gate verified successfully", queue: demoItem };
@@ -351,33 +351,33 @@
           liveQueue.queuePosition = 8;
           liveQueue.totalVehiclesAhead = 7;
           liveQueue.estimatedWaitMinutes = 30;
-          liveQueue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+          liveQueue.status = "Waiting in Queue";
         } else if (pos > 5) {
           liveQueue.queuePosition = 5;
           liveQueue.totalVehiclesAhead = 4;
           liveQueue.estimatedWaitMinutes = 20;
-          liveQueue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+          liveQueue.status = "Waiting in Queue";
         } else if (pos > 2) {
           liveQueue.queuePosition = 2;
           liveQueue.totalVehiclesAhead = 1;
           liveQueue.estimatedWaitMinutes = 10;
-          liveQueue.status = "कतार में प्रतीक्षा (Waiting in Queue)";
+          liveQueue.status = "Waiting in Queue";
         } else if (pos === 2) {
           liveQueue.queuePosition = 1;
           liveQueue.totalVehiclesAhead = 0;
           liveQueue.estimatedWaitMinutes = 5;
-          liveQueue.status = "आपकी बारी जल्द है (Your Turn Is Next)";
+          liveQueue.status = "Your Turn Is Next";
         } else if (pos === 1) {
           liveQueue.queuePosition = 0;
           liveQueue.totalVehiclesAhead = 0;
           liveQueue.estimatedWaitMinutes = 0;
-          liveQueue.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+          liveQueue.status = "Procurement in Progress";
         } else {
           liveQueue.queuePosition = 0;
           liveQueue.totalVehiclesAhead = 0;
           liveQueue.estimatedWaitMinutes = 0;
-          if (liveQueue.status !== "खरीद पूर्ण (Procurement Completed)") {
-            liveQueue.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+          if (liveQueue.status !== "Procurement Completed") {
+            liveQueue.status = "Procurement in Progress";
           }
         }
 
@@ -398,9 +398,9 @@
         demoItem.totalVehiclesAhead = Math.max(0, demoItem.queuePosition - 1);
         demoItem.estimatedWaitMinutes = demoItem.queuePosition * 5;
         if (demoItem.queuePosition === 1) {
-          demoItem.status = "आपकी बारी जल्द है (Your Turn Is Next)";
+          demoItem.status = "Your Turn Is Next";
         } else if (demoItem.queuePosition === 0) {
-          demoItem.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+          demoItem.status = "Procurement in Progress";
         }
         this.logActivity("queue_advanced", bookingId, { tokenId: demoItem.tokenId, farmerName: demoItem.farmerName, centerId: demoItem.centerId });
         return { success: true, queue: demoItem };
@@ -429,7 +429,7 @@
         liveQueue.queuePosition = 0;
         liveQueue.totalVehiclesAhead = 0;
         liveQueue.estimatedWaitMinutes = 0;
-        liveQueue.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+        liveQueue.status = "Procurement in Progress";
 
         this.saveQueueStatus(liveQueue);
         this.logActivity("procurement_started", bookingId, { tokenId: liveQueue.tokenId, farmerName: liveQueue.farmerName || activeBooking.farmerName, centerId: liveQueue.centerId });
@@ -439,7 +439,7 @@
       const demoItem = DEFAULT_DEMO_QUEUE_ENTRIES.find(d => d.bookingId === bookingId);
       if (demoItem) {
         demoItem.queuePosition = 0;
-        demoItem.status = "खरीद प्रक्रिया में (Procurement in Progress)";
+        demoItem.status = "Procurement in Progress";
         this.logActivity("procurement_started", bookingId, { tokenId: demoItem.tokenId, farmerName: demoItem.farmerName, centerId: demoItem.centerId });
         return { success: true, queue: demoItem };
       }
@@ -502,7 +502,7 @@
         const list = raw ? JSON.parse(raw) : [];
         const entry = {
           id: "NOTIF-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
-          title: notif.title || "सूचना (Notice)",
+          title: notif.title || "Notice",
           message: notif.message || "",
           type: notif.type || "info",
           timestamp: new Date().toISOString(),
@@ -534,7 +534,7 @@
         }
 
         // Prevent duplicate completion
-        if (liveQueue.status === "खरीद पूर्ण (Procurement Completed)") {
+        if (liveQueue.status === "Procurement Completed") {
           const existingReceipt = this.getReceiptById(bookingId);
           return { success: true, message: "Procurement already completed", queue: liveQueue, receipt: existingReceipt };
         }
@@ -579,7 +579,7 @@
           netAmount: netAmount,
           procurementValue: netAmount,
           status: "COMPLETED",
-          statusLabel: "खरीद पूर्ण • Procurement Completed",
+          statusLabel: "Procurement Completed",
           isDemo: true,
           completedAt: new Date().toISOString()
         };
@@ -589,7 +589,7 @@
         liveQueue.queuePosition = 0;
         liveQueue.totalVehiclesAhead = 0;
         liveQueue.estimatedWaitMinutes = 0;
-        liveQueue.status = "खरीद पूर्ण (Procurement Completed)";
+        liveQueue.status = "Procurement Completed";
         liveQueue.procurementStage = "completed";
         liveQueue.receiptId = receiptId;
 
@@ -628,8 +628,8 @@
         });
 
         this.addNotification({
-          title: "डिजिटल खरीद रसीद जारी (Receipt Issued)",
-          message: `फसल खरीद पूर्ण। रसीद आईडी ${receiptId} (${netWeight} क्विंटल) जारी की गई।`,
+          title: "Procurement Receipt Issued",
+          message: `Procurement complete. Digital receipt ID ${receiptId} (${netWeight} Qtl) has been generated.`,
           type: "success"
         });
 
@@ -638,7 +638,7 @@
 
       const demoItem = DEFAULT_DEMO_QUEUE_ENTRIES.find(d => d.bookingId === bookingId);
       if (demoItem) {
-        if (demoItem.status === "खरीद पूर्ण (Procurement Completed)") {
+        if (demoItem.status === "Procurement Completed") {
           const existingReceipt = this.getReceiptById(bookingId);
           return { success: true, message: "Procurement already completed", queue: demoItem, receipt: existingReceipt };
         }
@@ -681,7 +681,7 @@
           netAmount: netAmount,
           procurementValue: netAmount,
           status: "COMPLETED",
-          statusLabel: "खरीद पूर्ण • Procurement Completed",
+          statusLabel: "Procurement Completed",
           isDemo: true,
           completedAt: new Date().toISOString()
         };
@@ -691,7 +691,7 @@
         demoItem.queuePosition = 0;
         demoItem.totalVehiclesAhead = 0;
         demoItem.estimatedWaitMinutes = 0;
-        demoItem.status = "खरीद पूर्ण (Procurement Completed)";
+        demoItem.status = "Procurement Completed";
         demoItem.receiptId = receiptId;
 
         this.logActivity("procurement_completed", bookingId, {

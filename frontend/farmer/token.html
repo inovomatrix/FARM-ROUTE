@@ -54,26 +54,22 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-base font-bold text-slate-900 tracking-tight">KisanSetu</span>
-            <span class="text-xs text-slate-400">| किसान सेतु</span>
+            <span class="text-xs text-slate-400"></span>
           </div>
           <div class="text-[11px] font-semibold text-[#15803d] -mt-0.5">
-            मेरा डिजिटल टोकन (My Digital Token)
+            My Digital Token
           </div>
         </div>
       </div>
 
       <!-- Navigation & Logout -->
       <div class="flex items-center gap-3">
-        <!-- Language Switcher Option (English / Hindi) -->
+        <!-- Language Switcher Option (English) -->
         <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-          title="Change language / भाषा बदलें">
+          title="Language: English">
           <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-            class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
+            class="px-2.5 py-1 rounded-md transition-all bg-emerald-600 text-white cursor-default">
             EN
-          </button>
-          <button type="button" data-lang="hi" onclick="window.KisanI18n && window.KisanI18n.setLanguage('hi')"
-            class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
-            हिन्दी
           </button>
         </div>
 
@@ -84,11 +80,11 @@
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
             </path>
           </svg>
-          डैशबोर्ड (Dashboard)
+          Dashboard
         </a>
 
         <button type="button" id="logout-btn" class="btn btn-outline btn-sm text-xs py-1.5 px-3">
-          लॉगआउट (Logout)
+          Logout
         </button>
       </div>
     </div>
@@ -107,12 +103,12 @@
           </path>
         </svg>
       </div>
-      <h2 class="text-xl font-bold text-slate-900 mb-1">कोई सक्रिय टोकन नहीं है</h2>
+      <h2 class="text-xl font-bold text-slate-900 mb-1">No Active Token Found</h2>
       <p class="text-xs text-slate-500 mb-6">
         (No active digital token found. Please book a procurement slot first.)
       </p>
       <a href="centers.html" class="btn btn-primary text-xs font-semibold py-2.5 px-5 inline-flex items-center gap-1.5">
-        ← खरीद केंद्र खोजें और स्लॉट बुक करें (Find Centers)
+        ← Find Centers & Book Slot
       </a>
     </div>
 
@@ -122,9 +118,9 @@
       <!-- Breadcrumbs & Actions Bar -->
       <div class="flex items-center justify-between no-print text-xs">
         <nav class="flex items-center gap-2 text-slate-500 font-medium" aria-label="Breadcrumb">
-          <a href="dashboard.html" class="hover:text-[#15803d]">डैशबोर्ड</a>
+          <a href="dashboard.html" class="hover:text-[#15803d]">Dashboard</a>
           <span>/</span>
-          <span class="text-slate-900 font-bold">मेरा डिजिटल टोकन</span>
+          <span class="text-slate-900 font-bold">My Digital Token</span>
         </nav>
 
         <button type="button" id="print-token-btn"
@@ -134,7 +130,7 @@
               d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
             </path>
           </svg>
-          टोकन प्रिंट करें (Print Slip)
+          Print Token Slip
         </button>
       </div>
 
@@ -149,23 +145,23 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <div class="flex items-center gap-2">
-                <span class="text-xs font-bold tracking-wider uppercase opacity-90">KisanSetu • किसान सेतु</span>
+                <span class="text-xs font-bold tracking-wider uppercase opacity-90">KisanSetu Platform</span>
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 text-white border border-white/30">
-                  डिजिटल गेट पास (SIH26032)
+                  Digital Gate Pass (SIH26032)
                 </span>
               </div>
               <h1 class="text-lg sm:text-xl font-bold mt-1" id="token-center-name">
-                खरीद केंद्र
+                Procurement Center
               </h1>
               <p class="text-xs opacity-90 mt-0.5" id="token-center-loc">
-                ज़िला, राज्य
+                District, State
               </p>
             </div>
 
             <!-- Status Badge -->
             <div class="bg-white/10 backdrop-blur-xs border border-white/20 px-3 py-1 rounded-lg text-right shrink-0">
-              <span class="text-[10px] uppercase font-bold tracking-wider block opacity-80">स्थिति (Status)</span>
-              <span class="text-xs font-bold text-emerald-200" id="token-status-badge">जारी (Active)</span>
+              <span class="text-[10px] uppercase font-bold tracking-wider block opacity-80">Status</span>
+              <span class="text-xs font-bold text-emerald-200" id="token-status-badge">Active</span>
             </div>
           </div>
         </div>
@@ -173,7 +169,7 @@
         <!-- Token Number Hero Block -->
         <div class="p-6 bg-slate-50 border-b border-dashed border-slate-200 text-center">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-            डिजिटल टोकन क्रमांक (Digital Token Number)
+            Digital Token Number
           </span>
           <div class="text-3xl sm:text-4xl font-mono font-black text-slate-900 tracking-wider my-1.5" id="token-number">
             KS-TKN-XXXX
@@ -181,7 +177,7 @@
           <div
             class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-            सत्यापन हेतु वैध (Valid for Verification)
+            Valid for Verification
           </div>
         </div>
 
@@ -189,28 +185,27 @@
         <div class="p-6 space-y-5">
           <div class="grid grid-cols-2 gap-4 text-xs">
             <div>
-              <span class="text-slate-400 block text-[10px] uppercase font-bold">किसान (Farmer)</span>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Farmer Name</span>
               <span class="font-bold text-slate-800 text-sm block mt-0.5" id="token-farmer-name">-</span>
             </div>
 
             <div>
-              <span class="text-slate-400 block text-[10px] uppercase font-bold">बुकिंग आईडी (Booking ID)</span>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Booking ID</span>
               <span class="font-mono font-bold text-slate-800 text-sm block mt-0.5" id="token-booking-id">-</span>
             </div>
 
             <div>
-              <span class="text-slate-400 block text-[10px] uppercase font-bold">फसल (Commodity)</span>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Crop / Commodity</span>
               <span class="font-bold text-slate-800 block mt-0.5" id="token-commodity">-</span>
             </div>
 
             <div>
-              <span class="text-slate-400 block text-[10px] uppercase font-bold">आगमन तिथि (Date)</span>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Arrival Date</span>
               <span class="font-bold text-slate-800 block mt-0.5" id="token-date">-</span>
             </div>
 
             <div class="col-span-2 p-3 rounded-lg bg-emerald-50/60 border border-emerald-200">
-              <span class="text-emerald-800 block text-[10px] uppercase font-bold">निर्धारित आगमन समय स्लॉट (Allocated
-                Time Slot)</span>
+              <span class="text-emerald-800 block text-[10px] uppercase font-bold">Allocated Time Slot</span>
               <span class="text-base font-bold text-[#15803d] block mt-0.5" id="token-timeslot">-</span>
             </div>
           </div>
@@ -221,22 +216,22 @@
             
             <!-- Digital Signature Pill -->
             <div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-600">
-              <span>🔐 डिजिटल हस्ताक्षर:</span>
+              <span>🔐 Digital Signature:</span>
               <span id="token-digital-sig" class="font-bold text-emerald-700">e4f7a91b8c24</span>
-              <span class="text-[10px] font-bold text-emerald-600">✔ सत्यापित (HMAC-SHA256)</span>
+              <span class="text-[10px] font-bold text-emerald-600">✔ Verified (HMAC-SHA256)</span>
             </div>
 
             <!-- Arrival Window Buffer Alert Box -->
             <div class="mt-3 p-3 bg-emerald-50/80 rounded-xl border border-emerald-200 text-left flex items-center justify-between text-xs text-emerald-900">
               <div>
-                <span class="font-bold block text-[11px] text-emerald-900">अनुमत आगमन समय सीमा (±45m Buffer Window):</span>
+                <span class="font-bold block text-[11px] text-emerald-900">Allowed Arrival Window (±45m Buffer Window):</span>
                 <span class="font-bold text-emerald-700" id="token-buffer-window">08:15 AM – 10:45 AM</span>
               </div>
               <span class="px-2 py-0.5 rounded bg-emerald-200 text-emerald-900 text-[10px] font-bold">Buffer Active</span>
             </div>
 
             <p class="text-[11px] text-slate-500 mt-2">
-              प्रवेश द्वार पर ऑपरेटर स्कैनर द्वारा सत्यापन हेतु यह QR कोड प्रस्तुत करें
+              Present this QR code to the gate operator scanner for entrance verification.
             </p>
           </div>
 
@@ -245,8 +240,8 @@
             <div class="flex items-center gap-2">
               <span class="text-base animate-bounce">🚨</span>
               <div>
-                <span class="font-bold block text-[11px] text-amber-900">रास्ते में देरी दर्ज (+60 मिनट ग्रेस सक्रिय)</span>
-                <span class="text-[10px] text-amber-800" id="transit-delayed-reason-text">कारण: वाहन खराबी • आपका स्लॉट सुरक्षित है</span>
+                <span class="font-bold block text-[11px] text-amber-900">Transit Delay Recorded (+60 min Grace Active)</span>
+                <span class="text-[10px] text-amber-800" id="transit-delayed-reason-text">Reason: Vehicle Breakdown • Your slot is secure</span>
               </div>
             </div>
             <span class="px-2 py-0.5 rounded bg-amber-500 text-white font-mono text-[10px] font-bold uppercase">+60M GRACE</span>
@@ -255,17 +250,17 @@
           <!-- Arrival Notice Box -->
           <div class="p-3.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs space-y-1">
             <div class="font-bold flex items-center gap-1.5">
-              <span>⏱</span> कतार स्थिति सूचना (Queue Activation Notice):
+              <span>⏱</span> Queue Activation Notice:
             </div>
             <p class="text-slate-700 leading-relaxed text-[11px]">
-              कतार सक्रियता केंद्र पर आगमन और गेट सत्यापन के बाद उपलब्ध होगी। निर्धारित आगमन विंडो के भीतर गेट पर पहुंचें।
+              Queue activation is available after arrival and gate verification at the center. Please reach the gate within your arrival window.
             </p>
           </div>
 
           <!-- Footer Badge Inside Pass -->
           <div class="text-center pt-2">
             <span class="text-[10px] font-mono text-slate-400">
-              खाद्य एवं सार्वजनिक वितरण मंत्रालय • SIH26032 • KisanSetu Platform
+              Ministry of Consumer Affairs, Food & Public Distribution • SIH26032 • KisanSetu Platform
             </span>
           </div>
         </div>
@@ -278,14 +273,14 @@
         <button type="button" id="open-transit-delay-btn"
           class="btn bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-xs">
           <span>🚨</span>
-          <span>रास्ते में देरी दर्ज करें (Report Transit Delay)</span>
+          <span>Report Transit Delay</span>
         </button>
 
         <!-- e-J-Form Receipt Trigger -->
         <button type="button" id="open-j-form-btn"
           class="btn bg-cyan-50 hover:bg-cyan-100 text-cyan-950 border border-cyan-300 font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-xs">
           <span>📜</span>
-          <span>डिजिटल जे-फॉर्म रसीद (View e-JForm)</span>
+          <span>View e-JForm Receipt</span>
         </button>
       </div>
 
@@ -293,16 +288,16 @@
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3 no-print pt-2">
         <a href="dashboard.html"
           class="btn btn-outline text-xs font-semibold py-2.5 px-4 w-full sm:w-auto text-center order-2 sm:order-1">
-          ← डैशबोर्ड पर वापस जाएं (Dashboard)
+          ← Back to Dashboard
         </a>
 
         <div class="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
           <a href="centers.html" class="btn btn-outline text-xs font-semibold py-2.5 px-4 w-full sm:w-auto text-center">
-            अन्य केंद्र
+            Other Centers
           </a>
           <a href="queue.html"
             class="btn btn-primary text-xs font-semibold py-2.5 px-5 w-full sm:w-auto text-center flex items-center justify-center gap-1.5 shadow-xs">
-            <span>⚡</span> लाइव कतार देखें (View Live Queue) &rarr;
+            <span>⚡</span> View Live Queue &rarr;
           </a>
         </div>
       </div>
@@ -316,8 +311,8 @@
           <div class="flex items-center gap-2">
             <span class="text-2xl">🚨</span>
             <div>
-              <h3 class="text-base font-bold text-slate-900">रास्ते में देरी दर्ज करें (Transit Delay)</h3>
-              <p class="text-xs text-slate-500">स्लॉट रद्द नहीं होगा — 60 मिनट की ग्रेस विंडो मिलेगी</p>
+              <h3 class="text-base font-bold text-slate-900">Report Transit Delay</h3>
+              <p class="text-xs text-slate-500">Slot will not be cancelled — 60-minute grace window will be granted</p>
             </div>
           </div>
           <button type="button" onclick="document.getElementById('transit-delay-modal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 text-lg font-bold">
@@ -327,38 +322,38 @@
 
         <form id="transit-delay-form" class="space-y-4 text-xs">
           <div>
-            <label class="block font-bold text-slate-700 mb-2">देरी का मुख्य कारण चुनें (Select Reason):</label>
+            <label class="block font-bold text-slate-700 mb-2">Select Primary Reason for Delay:</label>
             <div class="space-y-2">
               <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
                 <input type="radio" name="delay-reason" value="VEHICLE_BREAKDOWN" checked class="text-emerald-600 focus:ring-emerald-500">
-                <span class="font-medium text-slate-800">🚜 ट्रैक्टर-ट्रॉली खराबी / पंचर (Vehicle Breakdown)</span>
+                <span class="font-medium text-slate-800">🚜 Vehicle / Tractor Breakdown</span>
               </label>
               <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
                 <input type="radio" name="delay-reason" value="SEVERE_WEATHER_MUD" class="text-emerald-600 focus:ring-emerald-500">
-                <span class="font-medium text-slate-800">🌧️ भारी वर्षा / रास्ते में जलभराव (Weather / Muddy Roads)</span>
+                <span class="font-medium text-slate-800">🌧️ Heavy Rain / Road Waterlogging</span>
               </label>
               <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
                 <input type="radio" name="delay-reason" value="ROAD_BLOCKAGE" class="text-emerald-600 focus:ring-emerald-500">
-                <span class="font-medium text-slate-800">🚧 सड़क जाम / यातायात अवरोध (Traffic Congestion)</span>
+                <span class="font-medium text-slate-800">🚧 Road Traffic Congestion</span>
               </label>
             </div>
           </div>
 
           <div>
-            <label class="block font-bold text-slate-700 mb-1">अतिरिक्त विवरण (Optional Notes):</label>
-            <input type="text" id="delay-notes" placeholder="उदा. करनाल बाईपास पर जाम..." class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-xs">
+            <label class="block font-bold text-slate-700 mb-1">Optional Notes:</label>
+            <input type="text" id="delay-notes" placeholder="e.g., Traffic jam near Karnal bypass..." class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-xs">
           </div>
 
           <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-amber-900 leading-relaxed text-[11px]">
-            <strong>सुरक्षा नियम:</strong> आपका डिजिटल टोकन सक्रिय रहेगा। मंडी गेट पर पहुंचने पर आपका टोकन सामान्य प्राथमिकता के साथ स्वतः प्रवेश के लिए मान्य होगा।
+            <strong>Safety Rule:</strong> Your digital token remains active. Upon arrival at the market gate, your token will be valid for entry with standard priority.
           </div>
 
           <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
             <button type="button" onclick="document.getElementById('transit-delay-modal').classList.add('hidden')" class="btn btn-outline py-2 px-3 text-xs">
-              रद्द करें (Cancel)
+              Cancel
             </button>
             <button type="submit" id="submit-delay-btn" class="btn btn-primary py-2 px-4 text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white border-none shadow-xs">
-              देरी दर्ज करें (+60m Grace लें)
+              Submit Delay (+60m Grace)
             </button>
           </div>
         </form>
@@ -373,11 +368,11 @@
         <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 no-print">
           <div class="flex items-center gap-2">
             <span class="text-xl">📜</span>
-            <span class="text-xs font-bold text-slate-600 uppercase tracking-wider">कानूनी खरीद प्रमाण पत्र (Statutory e-J-Form)</span>
+            <span class="text-xs font-bold text-slate-600 uppercase tracking-wider">Statutory Procurement Certificate (e-J-Form)</span>
           </div>
           <div class="flex items-center gap-2">
             <button type="button" onclick="window.print()" class="btn btn-primary btn-sm text-xs font-bold py-1.5 px-3 flex items-center gap-1.5">
-              <span>🖨️</span> प्रिंट / PDF डाउनलोड
+              <span>🖨️</span> Print / Download PDF
             </button>
             <button type="button" onclick="document.getElementById('j-form-modal').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 text-xl font-bold px-2">
               &times;
@@ -391,38 +386,38 @@
           <!-- State APMC Header -->
           <div class="text-center pb-3 border-b-2 border-slate-800">
             <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-              खाद्य, नागरिक आपूर्ति एवं उपभोक्ता मामले विभाग • कृषि उपज मंडी समिति (APMC)
+              Department of Food, Civil Supplies & Consumer Affairs • Agricultural Produce Market Committee (APMC)
             </div>
             <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1 uppercase tracking-tight">
-              फॉर्म 'J' • FORM 'J'
+              FORM 'J'
             </h2>
             <div class="text-xs font-bold text-slate-700">
-              [कृषि उपज मंडी नियम 24(1) के अंतर्गत जारी बिक्री रसीद • Sale Receipt Under Rule 24(1)]
+              [Sale Receipt Issued Under Rule 24(1) of Agricultural Produce Markets Rules]
             </div>
             <div class="flex items-center justify-between text-xs font-mono font-bold mt-3 px-2 pt-2 border-t border-slate-200">
-              <div>जे-फॉर्म क्रमांक: <span id="jf-number" class="text-emerald-700 font-black">JF-HR-2026-10492</span></div>
-              <div>जारी तिथि: <span id="jf-date">14-09-2026</span></div>
+              <div>e-JForm No: <span id="jf-number" class="text-emerald-700 font-black">JF-HR-2026-10492</span></div>
+              <div>Issue Date: <span id="jf-date">14-09-2026</span></div>
             </div>
           </div>
 
           <!-- Mandi & Farmer Info Grid -->
           <div class="grid grid-cols-2 gap-3 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200">
             <div>
-              <span class="text-slate-500 block text-[10px] uppercase font-bold">खरीद केंद्र (Procurement Center)</span>
-              <span class="font-bold text-slate-900" id="jf-center-name">करनाल मुख्य अनाज मंडी (CTR-KARNAL-01)</span>
-              <span class="text-[10px] text-slate-500 block" id="jf-center-loc">करनाल, हरियाणा</span>
+              <span class="text-slate-500 block text-[10px] uppercase font-bold">Procurement Center (Procurement Center)</span>
+              <span class="font-bold text-slate-900" id="jf-center-name">Karnal Main Grain Market (CTR-KARNAL-01)</span>
+              <span class="text-[10px] text-slate-500 block" id="jf-center-loc">Karnal, Haryana</span>
             </div>
             <div>
-              <span class="text-slate-500 block text-[10px] uppercase font-bold">किसान का नाम (Farmer Name)</span>
-              <span class="font-bold text-slate-900" id="jf-farmer-name">सुरेश कुमार (Suresh Kumar)</span>
-              <span class="text-[10px] text-slate-500 block">आधार: <span id="jf-aadhaar">XXXX-XXXX-4819</span> • फोन: <span id="jf-phone">9876543210</span></span>
+              <span class="text-slate-500 block text-[10px] uppercase font-bold">Farmer Name</span>
+              <span class="font-bold text-slate-900" id="jf-farmer-name">Suresh Kumar</span>
+              <span class="text-[10px] text-slate-500 block">Aadhaar: <span id="jf-aadhaar">XXXX-XXXX-4819</span> • Phone: <span id="jf-phone">9876543210</span></span>
             </div>
             <div>
-              <span class="text-slate-500 block text-[10px] uppercase font-bold">फसल एवं किस्म (Commodity & Variety)</span>
-              <span class="font-bold text-slate-900" id="jf-crop">गेहूं (Wheat - Sharbati FAQ-1)</span>
+              <span class="text-slate-500 block text-[10px] uppercase font-bold">Commodity & Variety</span>
+              <span class="font-bold text-slate-900" id="jf-crop">Wheat (Sharbati FAQ-1)</span>
             </div>
             <div>
-              <span class="text-slate-500 block text-[10px] uppercase font-bold">वाहन नंबर (Vehicle / Trolley No.)</span>
+              <span class="text-slate-500 block text-[10px] uppercase font-bold">Vehicle / Trolley No.</span>
               <span class="font-mono font-bold text-slate-900" id="jf-vehicle">HR-05-AB-1234</span>
             </div>
           </div>
@@ -430,36 +425,36 @@
           <!-- Physical Two-Stage Weighment Table -->
           <div>
             <div class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1 flex items-center justify-between">
-              <span>1. भौतिक तौल विवरण (Two-Stage Electronic Weighment)</span>
-              <span class="text-[10px] font-mono text-slate-500">वेईब्रिज स्केल 1 एवं 2 प्रमाणित</span>
+              <span>1. Two-Stage Electronic Weighment Details</span>
+              <span class="text-[10px] font-mono text-slate-500">Certified by Weighbridge Scales 1 & 2</span>
             </div>
             <table class="w-full text-xs text-left border border-slate-300 rounded-lg overflow-hidden">
               <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-300 text-[11px]">
                 <tr>
-                  <th class="p-2">विवरण (Description)</th>
-                  <th class="p-2 text-right">किलोग्राम (Kg)</th>
-                  <th class="p-2 text-right">क्विंटल (Quintals)</th>
-                  <th class="p-2 text-right">स्केल आईडी (Scale ID)</th>
+                  <th class="p-2">Description</th>
+                  <th class="p-2 text-right">Kilograms (Kg)</th>
+                  <th class="p-2 text-right">Quintals</th>
+                  <th class="p-2 text-right">Scale ID</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <tr>
-                  <td class="p-2 font-medium">सकल भार (Loaded Vehicle - Gross)</td>
+                  <td class="p-2 font-medium">Gross Weight (Loaded Vehicle)</td>
                   <td class="p-2 text-right font-mono font-bold" id="jf-gross-kg">45,800 kg</td>
                   <td class="p-2 text-right font-mono" id="jf-gross-qtl">458.00</td>
                   <td class="p-2 text-right font-mono text-slate-500">WB-SCALE-01</td>
                 </tr>
                 <tr>
-                  <td class="p-2 font-medium">खाली भार (Empty Vehicle - Tare)</td>
+                  <td class="p-2 font-medium">Tare Weight (Empty Vehicle)</td>
                   <td class="p-2 text-right font-mono font-bold" id="jf-tare-kg">14,200 kg</td>
                   <td class="p-2 text-right font-mono" id="jf-tare-qtl">142.00</td>
                   <td class="p-2 text-right font-mono text-slate-500">WB-SCALE-02</td>
                 </tr>
                 <tr class="bg-emerald-50/80 font-bold text-emerald-950">
-                  <td class="p-2">शुद्ध वजन (Net Procured Grain)</td>
+                  <td class="p-2">Net Procured Grain Weight</td>
                   <td class="p-2 text-right font-mono text-emerald-800" id="jf-net-kg">31,600 kg</td>
                   <td class="p-2 text-right font-mono text-base text-emerald-800" id="jf-net-qtl">316.00 Qtl</td>
-                  <td class="p-2 text-right text-emerald-700">सत्यापित (Certified)</td>
+                  <td class="p-2 text-right text-emerald-700">Certified</td>
                 </tr>
               </tbody>
             </table>
@@ -468,23 +463,23 @@
           <!-- Quality & Financial Settlement Table -->
           <div>
             <div class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1 flex items-center justify-between">
-              <span>2. गुणवत्ता एवं वित्तीय भुगतान विवरण (MSP Settlement & Deductions)</span>
-              <span class="text-[10px] text-slate-600">नमी: <strong id="jf-moisture">11.4%</strong> (मानक सीमा ≤12.0%)</span>
+              <span>2. MSP Settlement & Quality Deductions</span>
+              <span class="text-[10px] text-slate-600">Moisture: <strong id="jf-moisture">11.4%</strong> (Standard Limit ≤12.0%)</span>
             </div>
             <table class="w-full text-xs text-left border border-slate-300 rounded-lg overflow-hidden">
               <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-300 text-[11px]">
                 <tr>
-                  <th class="p-2">मद (Item)</th>
-                  <th class="p-2 text-right">दर (MSP Rate)</th>
-                  <th class="p-2 text-right">कटौती (Deduction)</th>
-                  <th class="p-2 text-right">कुल देय राशि (Net Amount INR)</th>
+                  <th class="p-2">Item</th>
+                  <th class="p-2 text-right">MSP Rate</th>
+                  <th class="p-2 text-right">Deduction</th>
+                  <th class="p-2 text-right">Net Amount (INR)</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <tr>
                   <td class="p-2">
-                    <div class="font-bold">न्यूनतम समर्थन मूल्य (MSP Value)</div>
-                    <div class="text-[10px] text-slate-500">316.00 क्विंटल @ ₹2,425.00 प्रति क्विंटल</div>
+                    <div class="font-bold">Minimum Support Price (MSP Value)</div>
+                    <div class="text-[10px] text-slate-500">316.00 Quintals @ ₹2,425.00 per Quintal</div>
                   </td>
                   <td class="p-2 text-right font-mono font-bold" id="jf-msp-rate">₹2,425.00</td>
                   <td class="p-2 text-right font-mono text-slate-500" id="jf-deductions">₹0.00</td>
@@ -492,8 +487,8 @@
                 </tr>
                 <tr class="bg-emerald-100/70 text-slate-900 font-black text-sm">
                   <td class="p-2.5" colspan="3">
-                    <div>कुल शुद्ध देय राशि (Total Net Payable to Farmer):</div>
-                    <div class="text-[10px] font-normal text-slate-600" id="jf-amount-words">रुपये सात लाख छियासठ हजार तीन सौ मात्र</div>
+                    <div>Total Net Payable to Farmer:</div>
+                    <div class="text-[10px] font-normal text-slate-600" id="jf-amount-words">Rupees Seven Lakh Sixty-Six Thousand Three Hundred Only</div>
                   </td>
                   <td class="p-2.5 text-right font-mono text-emerald-800 text-base" id="jf-net-payable">
                     ₹7,66,300.00
@@ -506,24 +501,24 @@
           <!-- Direct Benefit Transfer (DBT) Banking Order -->
           <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs">
             <div class="text-[11px] font-bold text-slate-800 uppercase tracking-wider mb-1 flex items-center justify-between">
-              <span>3. प्रत्यक्ष लाभ अंतरण आदेश (PFMS / DBT Payment Order)</span>
+              <span>3. Direct Benefit Transfer Order (PFMS / DBT)</span>
               <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">DBT AUTHORIZED</span>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-600 mt-2">
               <div>
-                <span class="text-slate-400 block text-[9px] uppercase font-bold">बैंक (Bank)</span>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">Bank</span>
                 <span class="font-bold text-slate-900" id="jf-bank-name">Punjab National Bank</span>
               </div>
               <div>
-                <span class="text-slate-400 block text-[9px] uppercase font-bold">खाता (Account)</span>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">Account</span>
                 <span class="font-mono font-bold text-slate-900" id="jf-bank-acc">XXXXXX4819</span>
               </div>
               <div>
-                <span class="text-slate-400 block text-[9px] uppercase font-bold">IFSC कोड</span>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">IFSC Code</span>
                 <span class="font-mono font-bold text-slate-900">PUNB0123400</span>
               </div>
               <div>
-                <span class="text-slate-400 block text-[9px] uppercase font-bold">लेनदेन आईडी (PFMS Txn)</span>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">PFMS Txn ID</span>
                 <span class="font-mono font-bold text-slate-900 truncate block" id="jf-dbt-txn">PFMS-DBT-20260914-99121</span>
               </div>
             </div>
@@ -532,8 +527,8 @@
           <!-- Cryptographic Seal Footer -->
           <div class="pt-3 border-t border-slate-300 flex items-center justify-between text-[10px] text-slate-500">
             <div>
-              <div>डिजिटल हस्ताक्षर: <span class="font-mono text-slate-800 font-bold" id="jf-sig">e4f7a91b8c24</span> (Certified)</div>
-              <div>यह एक कंप्यूटर जनित कानूनी दस्तावेज है। हस्ताक्षर की आवश्यकता नहीं है।</div>
+              <div>Digital Signature: <span class="font-mono text-slate-800 font-bold" id="jf-sig">e4f7a91b8c24</span> (Certified)</div>
+              <div>This is a computer-generated statutory document. No signature required.</div>
             </div>
             <div class="text-right font-mono text-[9px]">
               KisanSetu e-JForm v2.0 • Form J Under APMC Rules
@@ -645,7 +640,7 @@
         const bufferEl = document.getElementById('token-buffer-window');
         if (bufferEl) {
           const slot = booking.timeSlot || "09:00 AM – 10:00 AM";
-          bufferEl.textContent = `08:15 AM – 10:45 AM (±45m बफर अनुमत)`;
+          bufferEl.textContent = `08:15 AM – 10:45 AM (±45m buffer allowed)`;
         }
 
         // Cache into offline storage
@@ -678,7 +673,7 @@
         if (delayedBanner) {
           delayedBanner.classList.remove('hidden');
           if (delayReasonText && booking.transitDelayReason) {
-            delayReasonText.textContent = `कारण: ${booking.transitDelayReason} • आपका स्लॉट सुरक्षित है`;
+            delayReasonText.textContent = `Reason: ${booking.transitDelayReason} • Your slot is secure`;
           }
         }
       }
@@ -696,7 +691,7 @@
           const notes = document.getElementById('delay-notes').value;
           const submitBtn = document.getElementById('submit-delay-btn');
           submitBtn.disabled = true;
-          submitBtn.textContent = "देरी दर्ज की जा रही है...";
+          submitBtn.textContent = "Submitting delay...";
 
           try {
             const res = await fetch("/api/v1/queue/transit-delay", {
@@ -719,25 +714,25 @@
               if (delayedBanner) {
                 delayedBanner.classList.remove('hidden');
                 if (delayReasonText) {
-                  delayReasonText.textContent = `कारण: ${selectedReason} • +60 मिनट अतिरिक्त ग्रेस विंडो स्वीकृत`;
+                  delayReasonText.textContent = `Reason: ${selectedReason} • +60 mins grace window approved`;
                 }
               }
               const bufferEl = document.getElementById('token-buffer-window');
               if (bufferEl) {
-                bufferEl.textContent = `08:15 AM – 11:45 AM (ग्रेस विंडो: +60m अनुमत)`;
+                bufferEl.textContent = `08:15 AM – 11:45 AM (Grace window: +60m allowed)`;
               }
-              alert("रास्ते में देरी दर्ज हुई! आपका स्लॉट सुरक्षित है और 60 मिनट की ग्रेस विंडो प्रदान की गई है।");
+              alert("Transit delay recorded! Your slot is secure and a 60-minute grace window has been granted.");
             } else {
-              alert(data.detail || "देरी दर्ज करने में समस्या आई।");
+              alert(data.detail || "Failed to report transit delay.");
             }
           } catch (err) {
             console.warn("Transit delay API fallback:", err);
             delayModal.classList.add('hidden');
             if (delayedBanner) delayedBanner.classList.remove('hidden');
-            alert("रास्ते में देरी स्थानीय रूप से दर्ज की गई। (+60m Grace Granted)");
+            alert("Transit delay recorded locally. (+60m Grace Granted)");
           } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = "देरी दर्ज करें (+60m Grace लें)";
+            submitBtn.textContent = "Submit Delay (+60m Grace)";
           }
         });
       }

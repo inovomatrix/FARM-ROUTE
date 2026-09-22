@@ -10,7 +10,7 @@ router = APIRouter(prefix="/assistant", tags=["Voice Assistant & Farmer Chatbot"
 
 class AssistantQueryRequest(BaseModel):
     query: str
-    language: Optional[str] = "hi"
+    language: Optional[str] = "en"
     user_id: Optional[str] = None
     user_role: Optional[str] = "farmer"
     current_page: Optional[str] = None
@@ -31,149 +31,146 @@ class AssistantQueryResponse(BaseModel):
 # Knowledge base for procurement calendars & schedules
 PROCUREMENT_SCHEDULES = {
     "wheat": {
-        "crop_hi": "गेहूं (Wheat)",
-        "season": "रबी (Rabi 2026)",
-        "start_date": "1 अप्रैल 2026",
-        "end_date": "15 मई 2026",
-        "msp": "₹2,275 / क्विंटल",
-        "demo_rate": "₹2,425 / क्विंटल",
-        "moisture": "12.0% अधिकतम",
-        "status": "सक्रिय (खरीद जारी / पंजीकरण खुला)"
+        "crop_name": "Wheat (Grade A)",
+        "season": "Rabi 2026",
+        "start_date": "1 April 2026",
+        "end_date": "15 May 2026",
+        "msp": "₹2,275 / Quintal",
+        "demo_rate": "₹2,425 / Quintal",
+        "moisture": "12.0% Maximum",
+        "status": "Active (Procurement Ongoing / Registration Open)"
     },
     "mustard": {
-        "crop_hi": "सरसों (Mustard)",
-        "season": "रबी (Rabi 2026)",
-        "start_date": "15 मार्च 2026",
-        "end_date": "30 अप्रैल 2026",
-        "msp": "₹5,650 / क्विंटल",
-        "demo_rate": "₹5,650 / क्विंटल",
-        "moisture": "9.0% अधिकतम",
-        "status": "सक्रिय (खरीद आरंभ)"
+        "crop_name": "Mustard",
+        "season": "Rabi 2026",
+        "start_date": "15 March 2026",
+        "end_date": "30 April 2026",
+        "msp": "₹5,650 / Quintal",
+        "demo_rate": "₹5,650 / Quintal",
+        "moisture": "9.0% Maximum",
+        "status": "Active (Intake Started)"
     },
     "gram": {
-        "crop_hi": "चना (Gram)",
-        "season": "रबी (Rabi 2026)",
-        "start_date": "1 अप्रैल 2026",
-        "end_date": "15 मई 2026",
-        "msp": "₹5,440 / क्विंटल",
-        "demo_rate": "₹5,440 / क्विंटल",
-        "moisture": "10.0% अधिकतम",
-        "status": "आगामी / सक्रिय"
+        "crop_name": "Gram / Chickpea",
+        "season": "Rabi 2026",
+        "start_date": "1 April 2026",
+        "end_date": "15 May 2026",
+        "msp": "₹5,440 / Quintal",
+        "demo_rate": "₹5,440 / Quintal",
+        "moisture": "10.0% Maximum",
+        "status": "Active / Scheduled"
     },
     "barley": {
-        "crop_hi": "जौ (Barley)",
-        "season": "रबी (Rabi 2026)",
-        "start_date": "1 अप्रैल 2026",
-        "end_date": "15 मई 2026",
-        "msp": "₹1,850 / क्विंटल",
-        "demo_rate": "₹1,980 / क्विंटल",
-        "moisture": "12.0% अधिकतम",
-        "status": "आगामी / सक्रिय"
+        "crop_name": "Barley",
+        "season": "Rabi 2026",
+        "start_date": "1 April 2026",
+        "end_date": "15 May 2026",
+        "msp": "₹1,850 / Quintal",
+        "demo_rate": "₹1,980 / Quintal",
+        "moisture": "12.0% Maximum",
+        "status": "Active / Scheduled"
     },
     "paddy": {
-        "crop_hi": "धान / चावल (Paddy)",
-        "season": "खरीफ (Kharif 2026)",
-        "start_date": "1 अक्टूबर 2026",
-        "end_date": "15 नवंबर 2026",
-        "msp": "₹2,183 / क्विंटल",
-        "demo_rate": "₹2,320 / क्विंटल",
-        "moisture": "17.0% अधिकतम",
-        "status": "खरीफ सीजन शेड्यूल"
+        "crop_name": "Paddy (Common)",
+        "season": "Kharif 2026",
+        "start_date": "1 October 2026",
+        "end_date": "15 November 2026",
+        "msp": "₹2,183 / Quintal",
+        "demo_rate": "₹2,320 / Quintal",
+        "moisture": "17.0% Maximum",
+        "status": "Kharif Season Scheduled"
     },
     "bajra": {
-        "crop_hi": "बाजरा (Bajra)",
-        "season": "खरीफ (Kharif 2026)",
-        "start_date": "1 अक्टूबर 2026",
-        "end_date": "15 नवंबर 2026",
-        "msp": "₹2,500 / क्विंटल",
-        "demo_rate": "₹2,625 / क्विंटल",
-        "moisture": "12.0% अधिकतम",
-        "status": "खरीफ सीजन शेड्यूल"
+        "crop_name": "Bajra (Pearl Millet)",
+        "season": "Kharif 2026",
+        "start_date": "1 October 2026",
+        "end_date": "15 November 2026",
+        "msp": "₹2,500 / Quintal",
+        "demo_rate": "₹2,625 / Quintal",
+        "moisture": "12.0% Maximum",
+        "status": "Kharif Season Scheduled"
     },
     "cotton": {
-        "crop_hi": "कपास (Cotton)",
-        "season": "खरीफ (Kharif 2026)",
-        "start_date": "15 अक्टूबर 2026",
-        "end_date": "31 दिसंबर 2026",
-        "msp": "₹6,620 / क्विंटल",
-        "demo_rate": "₹7,122 / क्विंटल",
-        "moisture": "8.5% अधिकतम",
-        "status": "खरीफ सीजन शेड्यूल"
+        "crop_name": "Cotton",
+        "season": "Kharif 2026",
+        "start_date": "15 October 2026",
+        "end_date": "31 December 2026",
+        "msp": "₹6,620 / Quintal",
+        "demo_rate": "₹7,122 / Quintal",
+        "moisture": "8.5% Maximum",
+        "status": "Kharif Season Scheduled"
     },
     "maize": {
-        "crop_hi": "मक्का (Maize)",
-        "season": "खरीफ (Kharif 2026)",
-        "start_date": "1 अक्टूबर 2026",
-        "end_date": "30 नवंबर 2026",
-        "msp": "₹2,090 / क्विंटल",
-        "demo_rate": "₹2,225 / क्विंटल",
-        "moisture": "14.0% अधिकतम",
-        "status": "खरीफ सीजन शेड्यूल"
+        "crop_name": "Maize",
+        "season": "Kharif 2026",
+        "start_date": "1 October 2026",
+        "end_date": "30 November 2026",
+        "msp": "₹2,090 / Quintal",
+        "demo_rate": "₹2,225 / Quintal",
+        "moisture": "14.0% Maximum",
+        "status": "Kharif Season Scheduled"
     },
     "soybean": {
-        "crop_hi": "सोयाबीन (Soybean)",
-        "season": "खरीफ (Kharif 2026)",
-        "start_date": "15 अक्टूबर 2026",
-        "end_date": "30 नवंबर 2026",
-        "msp": "₹4,892 / क्विंटल",
-        "demo_rate": "₹4,892 / क्विंटल",
-        "moisture": "12.0% अधिकतम",
-        "status": "खरीफ सीजन शेड्यूल"
+        "crop_name": "Soybean",
+        "season": "Kharif 2026",
+        "start_date": "15 October 2026",
+        "end_date": "30 November 2026",
+        "msp": "₹4,892 / Quintal",
+        "demo_rate": "₹4,892 / Quintal",
+        "moisture": "12.0% Maximum",
+        "status": "Kharif Season Scheduled"
     }
 }
 
 def detect_crop_key(text: str) -> Optional[str]:
     t = text.lower()
-    if any(w in t for w in ["गेहूं", "गेहु", "wheat", "gehu", "gehun"]):
+    if any(w in t for w in ["wheat", "gehu", "gehun"]):
         return "wheat"
-    if any(w in t for w in ["सरसों", "सरसो", "mustard", "sarson", "sarsho"]):
+    if any(w in t for w in ["mustard", "sarson", "sarsho"]):
         return "mustard"
-    if any(w in t for w in ["चना", "gram", "chana"]):
+    if any(w in t for w in ["gram", "chana", "chickpea"]):
         return "gram"
-    if any(w in t for w in ["जौ", "barley", "jau"]):
+    if any(w in t for w in ["barley", "jau"]):
         return "barley"
-    if any(w in t for w in ["धान", "चावल", "paddy", "rice", "dhan", "chawal"]):
+    if any(w in t for w in ["paddy", "rice", "dhan", "chawal", "basmati"]):
         return "paddy"
-    if any(w in t for w in ["बाजरा", "bajra"]):
+    if any(w in t for w in ["bajra", "millet"]):
         return "bajra"
-    if any(w in t for w in ["कपास", "cotton", "kapas"]):
+    if any(w in t for w in ["cotton", "kapas"]):
         return "cotton"
-    if any(w in t for w in ["मक्का", "maize", "makka"]):
+    if any(w in t for w in ["maize", "makka", "corn"]):
         return "maize"
-    if any(w in t for w in ["सोयाबीन", "soybean", "soya"]):
+    if any(w in t for w in ["soybean", "soya"]):
         return "soybean"
     return None
 
 DISTRICT_TRANSLITERATIONS = {
-    "करनाल": "karnal",
-    "अंबाला": "ambala",
-    "रोहतक": "rohtak",
-    "झज्जर": "jhajjar",
-    "सोनीपत": "sonipat",
-    "पानीपत": "panipat",
-    "हिसार": "hisar",
-    "भिवानी": "bhiwani",
-    "जींद": "jind",
-    "रेवाड़ी": "rewari",
-    "रेवाडी": "rewari",
-    "सिरसा": "sirsa",
-    "कैथल": "kaithal",
-    "कुरुक्षेत्र": "kurukshetra",
-    "फतेहाबाद": "fatehabad",
-    "इंदौर": "indore",
-    "भोपाल": "bhopal",
-    "पटियाला": "patiala",
+    "karnal": "karnal",
+    "ambala": "ambala",
+    "rohtak": "rohtak",
+    "jhajjar": "jhajjar",
+    "sonipat": "sonipat",
+    "panipat": "panipat",
+    "hisar": "hisar",
+    "bhiwani": "bhiwani",
+    "jind": "jind",
+    "rewari": "rewari",
+    "sirsa": "sirsa",
+    "kaithal": "kaithal",
+    "kurukshetra": "kurukshetra",
+    "fatehabad": "fatehabad",
+    "indore": "indore",
+    "bhopal": "bhopal",
+    "patiala": "patiala",
 }
 
 def detect_district_or_center(text: str, centers: List[Center]) -> Optional[Center]:
     t = text.lower()
-    # Check Hindi transliterations
-    for hi_name, en_name in DISTRICT_TRANSLITERATIONS.items():
-        if hi_name in t or en_name in t:
+    for name, en_name in DISTRICT_TRANSLITERATIONS.items():
+        if name in t or en_name in t:
             for c in centers:
                 if c.district.lower() == en_name:
                     return c
-    # Check direct substring
     for c in centers:
         if c.district.lower() in t or c.name.lower() in t:
             return c
@@ -191,457 +188,457 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
     # -------------------------------------------------------------
     # 1. GREETINGS & INTRO
     # -------------------------------------------------------------
-    if re.search(r"^(नमस्ते|नमस्कार|hello|hi|hey|राम राम|प्रणाम|kisan vani|who are you|आप कौन हो)", q_lower):
+    if re.search(r"^(hello|hi|hey|greetings|good morning|good afternoon|good evening|kisan vani|who are you|help)", q_lower):
         resp_text = (
-            "**नमस्ते किसान भाई! 🙏 मैं 'किसान वाणी' (Kisan Vani) आपकी डिजिटल कृषि सहायिका हूँ।**\n\n"
-            "मैं आपकी निम्न विषयों में मदद कर सकती हूँ:\n"
-            "• 🌾 **फसलों के न्यूनतम समर्थन मूल्य (MSP) व मंडी भाव**\n"
-            "• 📅 **सरकारी खरीद शुरू होने की तारीखें व समय-सारणी**\n"
-            "• 📍 **नजदीकी खरीद केंद्र व वर्तमान भीड़ की स्थिति**\n"
-            "• ⚡ **डिजिटल टोकन व स्लॉट बुकिंग सहायता**\n"
-            "• 💳 **भुगतान (DBT) स्थिति व शिकायत निवारण**\n\n"
-            "आप बोलकर या लिखकर अपना कोई भी सवाल पूछ सकते हैं!"
+            "**Welcome Farmer! 🙏 I am Kisan Vani, your digital agricultural assistant.**\n\n"
+            "I can assist you with:\n"
+            "• 🌾 **Minimum Support Prices (MSP) & Benchmark Mandi Rates**\n"
+            "• 📅 **Official Government Procurement Schedules & Dates**\n"
+            "• 📍 **Nearby Procurement Centers & Live Yard Congestion**\n"
+            "• ⚡ **Digital Tokens & Weighbridge Slot Booking Guidance**\n"
+            "• 💳 **Payment (DBT) Status Tracking & Grievance Redressal**\n\n"
+            "You can type your query or click the microphone to speak."
         )
-        audio_text = "नमस्ते किसान भाई! मैं किसान वाणी हूँ। आप मुझसे फसलों के भाव, सरकारी खरीद की तारीखें, नजदीकी मंडी और स्लॉट बुकिंग के बारे में पूछ सकते हैं।"
+        audio_text = "Welcome Farmer! I am Kisan Vani. You can ask me about crop MSP rates, government procurement schedules, nearby mandis, and digital slot bookings."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="general",
             quick_actions=[
-                AssistantAction(label="🌾 फसलों का भाव (MSP)", url="farmer/centers.html"),
-                AssistantAction(label="📅 खरीद तिथियां (Dates)", url="#dates"),
-                AssistantAction(label="📍 नजदीकी खरीद केंद्र", url="farmer/centers.html"),
-                AssistantAction(label="⚡ टोकन बुक करें", url="farmer/booking.html")
+                AssistantAction(label="🌾 Crop Rates & MSP", url="farmer/centers.html"),
+                AssistantAction(label="📅 Procurement Calendar", url="#dates"),
+                AssistantAction(label="📍 Procurement Centers", url="farmer/centers.html"),
+                AssistantAction(label="⚡ Book a Slot", url="farmer/booking.html")
             ],
             suggestions=[
-                "गेहूं का एमएसपी भाव क्या है?",
-                "सरसों की खरीद कब शुरू होगी?",
-                "करनाल मंडी में कितनी भीड़ है?",
-                "टोकन कैसे बुक करें?"
+                "What is the MSP rate for wheat?",
+                "When does mustard procurement start?",
+                "How congested is Karnal mandi?",
+                "How do I book a token?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 2. PROCUREMENT STARTING DATES & SCHEDULES (खरीद तिथियां)
+    # 2. PROCUREMENT STARTING DATES & SCHEDULES
     # -------------------------------------------------------------
-    date_keywords = ["तारीख", "तारीखें", "शुरू", "कब शुरू", "कब से", "दिनांक", "schedule", "date", "starting date", "start date", "kab hogi", "kab shuru", "shuru kab", "kab se shuru"]
+    date_keywords = ["date", "dates", "schedule", "start", "starting date", "start date", "when does", "when will", "procurement start", "season"]
     crop_found = detect_crop_key(q_lower)
 
-    if any(k in q_lower for k in date_keywords) or (crop_found and any(w in q_lower for w in ["खरीद", "procurement", "mandi kab"])):
+    if any(k in q_lower for k in date_keywords) or (crop_found and any(w in q_lower for w in ["buy", "procure", "procurement", "mandi when"])):
         if crop_found and crop_found in PROCUREMENT_SCHEDULES:
             sc = PROCUREMENT_SCHEDULES[crop_found]
             resp_text = (
-                f"📅 **{sc['crop_hi']} की सरकारी खरीद समय-सारणी ({sc['season']})**:\n\n"
-                f"• **खरीद शुरू होने की तारीख:** **{sc['start_date']}**\n"
-                f"• **खरीद समाप्त होने की तारीख:** **{sc['end_date']}**\n"
-                f"• **न्यूनतम समर्थन मूल्य (MSP):** **{sc['msp']}**\n"
-                f"• **डेमो मंडी दर:** {sc['demo_rate']}\n"
-                f"• **अधिकतम मान्य नमी (Moisture):** {sc['moisture']}\n"
-                f"• **स्थिति:** {sc['status']}\n\n"
-                f"💡 *सलाह: खरीद केंद्र पर जाने से पहले KisanSetu पोर्टल पर अपना समय स्लॉट और डिजिटल टोकन अवश्य बुक करें ताकि मंडी में लाइन में न लगना पड़े।*"
+                f"📅 **Official Procurement Schedule for {sc['crop_name']} ({sc['season']})**:\n\n"
+                f"• **Procurement Start Date:** **{sc['start_date']}**\n"
+                f"• **Procurement End Date:** **{sc['end_date']}**\n"
+                f"• **Minimum Support Price (MSP):** **{sc['msp']}**\n"
+                f"• **Benchmark Market Rate:** {sc['demo_rate']}\n"
+                f"• **Maximum Permissible Moisture:** {sc['moisture']}\n"
+                f"• **Current Status:** {sc['status']}\n\n"
+                f"💡 *Advice: Before heading to the mandi, please book a digital token and time slot on KisanSetu to eliminate long queue waiting times.*"
             )
-            audio_text = f"{sc['crop_hi']} की सरकारी खरीद {sc['start_date']} से {sc['end_date']} तक चलेगी। इसका न्यूनतम समर्थन मूल्य {sc['msp']} है और अधिकतम नमी {sc['moisture']} स्वीकार्य है।"
+            audio_text = f"Government procurement for {sc['crop_name']} runs from {sc['start_date']} to {sc['end_date']}. The minimum support price is {sc['msp']} and maximum permissible moisture is {sc['moisture']}."
             return AssistantQueryResponse(
                 success=True,
                 response=resp_text,
                 audio_text=audio_text,
                 category="procurement_dates",
                 quick_actions=[
-                    AssistantAction(label="⚡ इस फसल के लिए टोकन बुक करें", url=f"farmer/booking.html?crop={crop_found}"),
-                    AssistantAction(label="📍 खरीद केंद्र देखें", url="farmer/centers.html")
+                    AssistantAction(label=f"⚡ Book Slot for {sc['crop_name']}", url=f"farmer/booking.html?crop={crop_found}"),
+                    AssistantAction(label="📍 View Procurement Centers", url="farmer/centers.html")
                 ],
                 suggestions=[
-                    "गेहूं का भाव क्या है?",
-                    "सरसों खरीद कब शुरू होगी?",
-                    "मंडी का समय क्या है?",
-                    "दस्तावेज क्या लगेंगे?"
+                    "What is the MSP rate for wheat?",
+                    "When does mustard procurement start?",
+                    "What are the operating hours?",
+                    "What documents are required?"
                 ]
             )
         else:
             # Overall Procurement Calendar
             resp_text = (
-                "📅 **सरकारी खरीद 2026 (खरीद शुरू होने की तिथियां व समय-सारणी)**:\n\n"
-                "🌾 **रबी फसलें (Rabi Procurement):**\n"
-                "• **सरसों (Mustard):** 15 मार्च 2026 से 30 अप्रैल 2026 (MSP: ₹5,650/Q)\n"
-                "• **गेहूं (Wheat):** 1 अप्रैल 2026 से 15 मई 2026 (MSP: ₹2,275/Q)\n"
-                "• **चना (Gram):** 1 अप्रैल 2026 से 15 मई 2026 (MSP: ₹5,440/Q)\n"
-                "• **जौ (Barley):** 1 अप्रैल 2026 से 15 मई 2026 (MSP: ₹1,850/Q)\n\n"
-                "🌾 **खरीफ फसलें (Kharif Procurement):**\n"
-                "• **धान (Paddy):** 1 अक्टूबर 2026 से 15 नवंबर 2026 (MSP: ₹2,183/Q)\n"
-                "• **बाजरा (Bajra):** 1 अक्टूबर 2026 से 15 नवंबर 2026 (MSP: ₹2,500/Q)\n"
-                "• **कपास (Cotton):** 15 अक्टूबर 2026 से 31 दिसंबर 2026 (MSP: ₹6,620/Q)\n"
-                "• **मक्का (Maize):** 1 अक्टूबर 2026 से 30 नवंबर 2026 (MSP: ₹2,090/Q)\n"
-                "• **सोयाबीन (Soybean):** 15 अक्टूबर 2026 से 30 नवंबर 2026 (MSP: ₹4,892/Q)\n\n"
-                "🕒 **मंडी का समय:** प्रातः 09:00 बजे से सायं 05:00/06:00 बजे तक (सोमवार से शनिवार)।"
+                "📅 **Official Procurement Calendar 2026 (Starting Dates & Schedules)**:\n\n"
+                "🌾 **Rabi Harvest Procurement:**\n"
+                "• **Mustard:** 15 March 2026 to 30 April 2026 (MSP: ₹5,650/Q)\n"
+                "• **Wheat:** 1 April 2026 to 15 May 2026 (MSP: ₹2,275/Q)\n"
+                "• **Gram / Chickpea:** 1 April 2026 to 15 May 2026 (MSP: ₹5,440/Q)\n"
+                "• **Barley:** 1 April 2026 to 15 May 2026 (MSP: ₹1,850/Q)\n\n"
+                "🌾 **Kharif Harvest Procurement:**\n"
+                "• **Paddy:** 1 October 2026 to 15 November 2026 (MSP: ₹2,183/Q)\n"
+                "• **Bajra:** 1 October 2026 to 15 November 2026 (MSP: ₹2,500/Q)\n"
+                "• **Cotton:** 15 October 2026 to 31 December 2026 (MSP: ₹6,620/Q)\n"
+                "• **Maize:** 1 October 2026 to 30 November 2026 (MSP: ₹2,090/Q)\n"
+                "• **Soybean:** 15 October 2026 to 30 November 2026 (MSP: ₹4,892/Q)\n\n"
+                "🕒 **Operating Hours:** 09:00 AM to 05:00 PM (Monday to Saturday)."
             )
-            audio_text = "रबी फसलों में सरसों की खरीद 15 मार्च से और गेहूं, चना और जौ की खरीद 1 अप्रैल 2026 से शुरू होगी। धान और बाजरे की खरीद 1 अक्टूबर से शुरू होगी।"
+            audio_text = "For Rabi crops, mustard procurement begins on 15 March, and wheat, gram, and barley begin on 1 April 2026. Paddy and bajra procurement begins on 1 October."
             return AssistantQueryResponse(
                 success=True,
                 response=resp_text,
                 audio_text=audio_text,
                 category="procurement_dates",
                 quick_actions=[
-                    AssistantAction(label="⚡ स्लॉट बुक करें (Book Slot)", url="farmer/booking.html"),
-                    AssistantAction(label="📍 नजदीकी खरीद केंद्र (Centers)", url="farmer/centers.html")
+                    AssistantAction(label="⚡ Book Delivery Slot", url="farmer/booking.html"),
+                    AssistantAction(label="📍 Nearby Centers", url="farmer/centers.html")
                 ],
                 suggestions=[
-                    "गेहूं की खरीद कब शुरू होगी?",
-                    "सरसों का एमएसपी भाव कितना है?",
-                    "मंडी जाने के लिए क्या दस्तावेज चाहिए?"
+                    "When does wheat procurement start?",
+                    "What is the MSP rate for mustard?",
+                    "What documents do I need to bring?"
                 ]
             )
 
     # -------------------------------------------------------------
-    # 3. CROP PRICES & MSP RATES (फसलों के भाव व एमएसपी)
+    # 3. CROP PRICES & MSP RATES
     # -------------------------------------------------------------
-    price_keywords = ["भाव", "कीमत", "दाम", "रेट", "rate", "price", "msp", "एमएसपी", "kitna rate", "kya bhav", "bhav kya hai", "prati quintal"]
+    price_keywords = ["price", "rate", "cost", "msp", "floor price", "per quintal", "how much rate", "rates"]
     if any(k in q_lower for k in price_keywords) or crop_found:
         if crop_found:
             matched_comm = next((c for c in commodities if crop_found in c.name.lower() or crop_found in (c.name_english or "").lower()), None)
             if matched_comm:
-                c_name = matched_comm.hindi_name or matched_comm.name
+                c_name = matched_comm.name_english or matched_comm.name
                 c_msp = matched_comm.msp_per_quintal
                 c_demo = matched_comm.demo_rate
                 c_moist = matched_comm.moisture_max_percent
                 resp_text = (
-                    f"🌾 **{c_name} का आधिकारिक मूल्य विवरण**:\n\n"
-                    f"• **सरकारी न्यूनतम समर्थन मूल्य (MSP):** **₹{c_msp:,.2f} / क्विंटल**\n"
-                    f"• **डेमो प्रचलित मंडी दर (Demo Rate):** ₹{c_demo:,.2f} / क्विंटल\n"
-                    f"• **अधिकतम मान्य नमी (Max Moisture):** **{c_moist}%**\n"
-                    f"• **फसल श्रेणी (Category):** {matched_comm.category}\n"
-                    f"• **सीजन:** {matched_comm.season}\n\n"
-                    f"ℹ️ *नमी मानक: यदि आपकी उपज में नमी {c_moist}% या उससे कम है, तो आपको पूरा समर्थन मूल्य बिना किसी कटौती के मिलेगा। भुगतान सीधा बैंक खाते में डीबीटी (DBT) द्वारा 48-72 घंटों में किया जाता है।*"
+                    f"🌾 **Official Price Details for {c_name}**:\n\n"
+                    f"• **Government MSP Floor Price:** **₹{c_msp:,.2f} / Quintal**\n"
+                    f"• **Current Benchmark Mandi Rate:** ₹{c_demo:,.2f} / Quintal\n"
+                    f"• **Maximum Permissible Moisture:** **{c_moist}%**\n"
+                    f"• **Category:** {matched_comm.category}\n"
+                    f"• **Season:** {matched_comm.season}\n\n"
+                    f"ℹ️ *Moisture Norms: If your produce moisture is {c_moist}% or below, you receive 100% full MSP without quality deductions. Payments are disbursed directly to your bank account via DBT within 48-72 hours.*"
                 )
-                audio_text = f"{c_name} का सरकारी एमएसपी भाव ₹{int(c_msp)} प्रति क्विंटल है। इसमें अधिकतम स्वीकार्य नमी {c_moist} प्रतिशत है।"
+                audio_text = f"The official MSP rate for {c_name} is {int(c_msp)} rupees per quintal, with a maximum permissible moisture limit of {c_moist} percent."
                 return AssistantQueryResponse(
                     success=True,
                     response=resp_text,
                     audio_text=audio_text,
                     category="prices",
                     quick_actions=[
-                        AssistantAction(label="⚡ इस भाव पर स्लॉट बुक करें", url=f"farmer/booking.html?crop={crop_found}"),
-                        AssistantAction(label="📍 नजदीकी मंडी में रेट देखें", url="farmer/centers.html")
+                        AssistantAction(label=f"⚡ Book Slot for {c_name}", url=f"farmer/booking.html?crop={crop_found}"),
+                        AssistantAction(label="📍 Check Center Rates", url="farmer/centers.html")
                     ],
                     suggestions=[
-                        f"{c_name} की खरीद कब शुरू होगी?",
-                        "नमी ज्यादा होने पर क्या होगा?",
-                        "पेमेंट कितने दिन में आएगा?",
-                        "अन्य फसलों के भाव"
+                        f"When does {c_name} procurement start?",
+                        "What if moisture is higher than limit?",
+                        "How long does payment take?",
+                        "View rates for other crops"
                     ]
                 )
 
         # General Rates List
         lines = []
         for com in commodities[:6]:
-            hname = com.hindi_name or com.name
-            lines.append(f"• **{hname}:** MSP **₹{com.msp_per_quintal:,.0f}** / Q (नमी सीमा: {com.moisture_max_percent}%)")
+            cname = com.name_english or com.name
+            lines.append(f"• **{cname}:** MSP **₹{com.msp_per_quintal:,.0f}** / Quintal (Moisture limit: {com.moisture_max_percent}%)")
 
         resp_text = (
-            "🌾 **मुख्य फसलों के चालू न्यूनतम समर्थन मूल्य (MSP Rates 2026)**:\n\n"
+            "🌾 **Current Official Minimum Support Prices (MSP 2026)**:\n\n"
             + "\n".join(lines)
             + "\n\n"
-            "• **भुगतान प्रणाली:** डिजिटल वेईब्रिज रसीद के बाद 48-72 घंटे में सीधे आपके बैंक खाते में DBT अंतरण।\n"
-            "• **कटौती नियम:** मानक नमी सीमा के अंदर लाने पर पूरा भाव मिलता है।"
+            "• **Payment System:** Direct Benefit Transfer (DBT) credited within 48-72 hours after electronic weighment.\n"
+            "• **Deduction Policy:** 100% full floor rate is guaranteed if moisture content complies with FAQ norms."
         )
-        audio_text = "वर्तमान में गेहूं का एमएसपी 2275 रुपये, सरसों का 5650 रुपये, धान का 2183 रुपये और बाजरा का 2500 रुपये प्रति क्विंटल है।"
+        audio_text = "Current government MSP rates are 2275 rupees for wheat, 5650 rupees for mustard, 2183 rupees for paddy, and 2500 rupees per quintal for bajra."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="prices",
             quick_actions=[
-                AssistantAction(label="🌾 सभी फसलें व केंद्र देखें", url="farmer/centers.html"),
-                AssistantAction(label="⚡ स्लॉट बुक करें", url="farmer/booking.html")
+                AssistantAction(label="🌾 View All Crops & Centers", url="farmer/centers.html"),
+                AssistantAction(label="⚡ Book Slot Online", url="farmer/booking.html")
             ],
             suggestions=[
-                "गेहूं का भाव क्या है?",
-                "सरसों का भाव क्या है?",
-                "चना का भाव क्या है?",
-                "कपास का भाव क्या है?"
+                "What is the wheat rate?",
+                "What is the mustard rate?",
+                "What is the gram rate?",
+                "What is the cotton rate?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 4. CENTERS & LIVE QUEUE / BHEED (खरीद केंद्र व कतार)
+    # 4. CENTERS & LIVE QUEUE / CONGESTION
     # -------------------------------------------------------------
-    center_keywords = ["मंडी", "केंद्र", "center", "mandi", "bheed", "भीड़", "wait", "waiting", "कतार", "लाइन", "wait time", "traffic", "kitni bheed"]
+    center_keywords = ["center", "mandi", "yard", "queue", "line", "crowd", "wait", "waiting", "wait time", "traffic", "congestion", "how busy"]
     if any(k in q_lower for k in center_keywords):
         matched_c = detect_district_or_center(q_lower, centers)
         if matched_c:
-            load_hi = {"low": "कम भीड़ (ग्रीन)", "medium": "मध्यम भीड़ (ऑरेंज)", "high": "अधिक भीड़ (रेड)"}.get(matched_c.load_status, "सामान्य")
+            load_label = {"low": "Low Load (Fast Track)", "medium": "Moderate Load (Standard Buffer)", "high": "Heavy Congestion (Slow Intake)"}.get(matched_c.load_status, "Normal")
             resp_text = (
                 f"📍 **{matched_c.name} ({matched_c.district}, {matched_c.state})**:\n\n"
-                f"• **पता:** {matched_c.address}\n"
-                f"• **ऑपरेटिंग समय:** {matched_c.operating_hours}\n"
-                f"• **कतार की वर्तमान स्थिति:** **{load_hi}**\n"
-                f"• **लाइन में वाहन:** {matched_c.current_queue_vehicles} वाहन\n"
-                f"• **अनुमानित प्रतीक्षा समय (Wait Time):** लगभग **{matched_c.estimated_wait_minutes} मिनट**\n"
-                f"• **दैनिक क्षमता:** {matched_c.daily_capacity_mt} MT\n"
-                f"• **मुख्य फसल:** {matched_c.commodity}\n\n"
-                f"⚡ *सुझाव: आप इस केंद्र पर अपनी फसल बेचने के लिए ऑनलाइन टोकन प्राप्त कर सकते हैं।*"
+                f"• **Address:** {matched_c.address}\n"
+                f"• **Operating Hours:** {matched_c.operating_hours}\n"
+                f"• **Current Queue Status:** **{load_label}**\n"
+                f"• **Vehicles in Yard:** {matched_c.current_queue_vehicles} vehicles\n"
+                f"• **Estimated Wait Time:** Approximately **{matched_c.estimated_wait_minutes} minutes**\n"
+                f"• **Daily Intake Capacity:** {matched_c.daily_capacity_mt} MT\n"
+                f"• **Primary Commodity:** {matched_c.commodity}\n\n"
+                f"⚡ *Tip: You can book an online delivery slot at this facility to reserve your queue priority.*"
             )
-            audio_text = f"{matched_c.name} में अभी {matched_c.current_queue_vehicles} वाहन कतार में हैं और अनुमानित प्रतीक्षा समय लगभग {matched_c.estimated_wait_minutes} मिनट है।"
+            audio_text = f"{matched_c.name} currently has {matched_c.current_queue_vehicles} vehicles in yard, with an estimated wait time of approximately {matched_c.estimated_wait_minutes} minutes."
             return AssistantQueryResponse(
                 success=True,
                 response=resp_text,
                 audio_text=audio_text,
                 category="centers",
                 quick_actions=[
-                    AssistantAction(label="⚡ इस केंद्र पर टोकन बुक करें", url=f"farmer/booking.html?centerId={matched_c.id}"),
-                    AssistantAction(label="📊 लाइव कतार देखें", url=f"farmer/queue.html?centerId={matched_c.id}")
+                    AssistantAction(label="⚡ Book Token at This Center", url=f"farmer/booking.html?centerId={matched_c.id}"),
+                    AssistantAction(label="📊 View Live Queue Status", url=f"farmer/queue.html?centerId={matched_c.id}")
                 ],
                 suggestions=[
-                    "स्लॉट कैसे बुक करें?",
-                    "टोकन कैसे मिलेगा?",
-                    "गेहूं का भाव क्या है?"
+                    "How do I book a delivery slot?",
+                    "How do I get my token pass?",
+                    "What is the wheat price?"
                 ]
             )
 
         # Overview of active centers
         c_lines = []
         for c in centers[:4]:
-            load_hi = "कम भीड़" if c.load_status == "low" else ("मध्यम" if c.load_status == "medium" else "भारी भीड़")
-            c_lines.append(f"• **{c.name} ({c.district}):** {c.current_queue_vehicles} वाहन कतार में • प्रतीक्षा ~{c.estimated_wait_minutes} मिनट ({load_hi})")
+            load_label = "Low Congestion" if c.load_status == "low" else ("Moderate" if c.load_status == "medium" else "Heavy Congestion")
+            c_lines.append(f"• **{c.name} ({c.district}):** {c.current_queue_vehicles} vehicles in yard • Wait ~{c.estimated_wait_minutes} mins ({load_label})")
 
         resp_text = (
-            "📍 **प्रमुख खरीद केंद्र (Live Mandi Queue Overview)**:\n\n"
+            "📍 **Key Procurement Centers (Live Queue Telemetry Overview)**:\n\n"
             + "\n".join(c_lines)
             + "\n\n"
-            "💡 आप किसी भी जिले (जैसे 'करनाल', 'अंबाला', 'रोहतक', 'हिसार') का नाम लिखकर उस मंडी की लाइव स्थिति जान सकते हैं।"
+            "💡 You can specify any district (e.g. 'Karnal', 'Ambala', 'Rohtak', 'Hisar') to check live queue telemetry for that yard."
         )
-        audio_text = "हरियाणा के प्रमुख केंद्रों में करनाल, अंबाला, रोहतक और सोनीपत मंडियां सक्रिय हैं। आप किसी भी जिले का नाम बोलकर वहां की स्थिति जान सकते हैं।"
+        audio_text = "Major procurement yards in Karnal, Ambala, Rohtak, and Sonipat are operating normally. Speak or type any district name to inspect live queue status."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="centers",
             quick_actions=[
-                AssistantAction(label="📍 सभी 15+ खरीद केंद्र देखें", url="farmer/centers.html"),
-                AssistantAction(label="⚡ लाइव कतार मॉनिटर", url="farmer/queue.html")
+                AssistantAction(label="📍 View All 15+ Procurement Centers", url="farmer/centers.html"),
+                AssistantAction(label="⚡ Live Queue Monitor", url="farmer/queue.html")
             ],
             suggestions=[
-                "करनाल मंडी की स्थिति बताओ",
-                "अंबाला मंडी में कितनी भीड़ है?",
-                "रोहतक खरीद केंद्र"
+                "Check status of Karnal center",
+                "How busy is Ambala center?",
+                "Rohtak procurement center status"
             ]
         )
 
     # -------------------------------------------------------------
-    # 5. HOW TO BOOK SLOT / TOKEN (स्लॉट बुकिंग व टोकन पर्ची)
+    # 5. HOW TO BOOK SLOT / TOKEN PASS
     # -------------------------------------------------------------
-    booking_keywords = ["बुकिंग", "स्लॉट", "booking", "slot", "token", "टोकन", "kaise book", "kaise kare", "book kaise", "number lagana", "parchi"]
+    booking_keywords = ["booking", "book", "slot", "token", "pass", "how to book", "how do i book", "receipt", "qr pass"]
     if any(k in q_lower for k in booking_keywords):
         resp_text = (
-            "⚡ **KisanSetu पर डिजिटल टोकन व स्लॉट बुक करने के 5 आसान चरण**:\n\n"
-            "1. **लॉगिन करें:** किसान पोर्टल में अपने मोबाइल नंबर से लॉगिन करें।\n"
-            "2. **केंद्र चुनें:** 'खरीद केंद्र खोजें' पर जाकर अपने जिले की नजदीकी मंडी चुनें।\n"
-            "3. **फसल व मात्रा भरें:** अपनी फसल (गेहूं, सरसों आदि) और अनुमानित वजन (क्विंटल) दर्ज करें।\n"
-            "4. **समय स्लॉट चुनें:** अपनी सुविधानुसार तारीख और समय (जैसे 09:00 AM - 10:00 AM) चुनें।\n"
-            "5. **डिजिटल टोकन प्राप्त करें:** पुष्टि करते ही आपको **टोकन आईडी (जैसे KS-TKN-1011)** और क्यूआर कोड मिल जाएगा!\n\n"
-            "📱 *मंडी गेट पर केवल यह टोकन नंबर या क्यूआर कोड दिखाना होगा, जिससे सीधी वेईब्रिज एंट्री मिलेगी।*"
+            "⚡ **How to Book a Digital Token & Delivery Slot on KisanSetu**:\n\n"
+            "1. **Log in:** Sign in to the Farmer Portal with your registered mobile number.\n"
+            "2. **Choose Center:** Select 'Procurement Centers' and pick the nearest facility in your district.\n"
+            "3. **Select Crop & Quantity:** Specify your commodity (Wheat, Mustard, etc.) and estimated quintals.\n"
+            "4. **Pick Delivery Time Window:** Select your preferred date and time slot (e.g., 10:00 AM – 11:00 AM).\n"
+            "5. **Generate Pass:** Confirm to instantly generate your **Digital Token (e.g., KS-TKN-1011)** and cryptographically signed QR pass!\n\n"
+            "📱 *At the mandi gate, present this digital token or QR code on your phone for immediate fast-track check-in.*"
         )
-        audio_text = "टोकन बुक करने के लिए पोर्टल पर खरीद केंद्र चुनें, अपनी फसल और तारीख का समय चुनें, और वाहन नंबर डालकर तुरंत डिजिटल टोकन प्राप्त करें।"
+        audio_text = "To book a delivery slot, choose a procurement center on the portal, select your crop and delivery date, and confirm your vehicle number to generate your digital pass."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="booking",
             quick_actions=[
-                AssistantAction(label="⚡ अभी स्लॉट बुक करें (Book Now)", url="farmer/booking.html"),
-                AssistantAction(label="📋 मेरी बुकिंग देखें (My Bookings)", url="farmer/bookings.html"),
-                AssistantAction(label="🎫 मेरा डिजिटल टोकन (View Token)", url="farmer/token.html")
+                AssistantAction(label="⚡ Book a Slot Now", url="farmer/booking.html"),
+                AssistantAction(label="📋 View My Bookings", url="farmer/bookings.html"),
+                AssistantAction(label="🎫 View Digital Token Pass", url="farmer/token.html")
             ],
             suggestions=[
-                "टोकन रद्द कैसे करें?",
-                "गेट पर क्या दिखाना होगा?",
-                "गेहूं का भाव क्या है?",
-                "लाइव कतार कैसे देखें?"
+                "How can I cancel a booking?",
+                "What do I need to present at the gate?",
+                "What is the wheat price?",
+                "How do I track live queue position?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 6. MANDI ARRIVAL & WEIGHBRIDGE PROCESS (मंडी आगमन व प्रक्रिया)
+    # 6. MANDI ARRIVAL & WEIGHBRIDGE PROCESS
     # -------------------------------------------------------------
-    arrival_keywords = ["गेट", "प्रक्रिया", "पहुंचने पर", "वजन", "कांटा", "gate", "arrival", "weighbridge", "kaise hoga", "process"]
+    arrival_keywords = ["gate", "process", "arrival", "arrived", "weighbridge", "scale", "workflow", "steps", "intake"]
     if any(k in q_lower for k in arrival_keywords):
         resp_text = (
-            "🚛 **मंडी पहुंचने पर खरीद प्रक्रिया (Mandi Arrival & Weighment Process)**:\n\n"
-            "1. **गेट सुरक्षा चेक-इन:** मंडी प्रवेश द्वार पर ऑपरेटर को अपना डिजिटल टोकन नंबर या क्यूआर कोड दिखाएं।\n"
-            "2. **ग्रॉस वेईब्रिज (Gross Weight):** वाहन सहित कुल वजन कंप्यूटर कांटे पर दर्ज होगा।\n"
-            "3. **नमी परीक्षण (Moisture Lab):** गुणवत्ता जांच टीम फसल के नमूने की नमी मापेगी (गेहूं ≤12%, सरसों ≤9%)।\n"
-            "4. **फसल अनलोडिंग (Unloading):** आवंटित शेड में उपज खाली की जाएगी।\n"
-            "5. **टेयर वजन (Tare Weight):** खाली वाहन का वजन लिया जाएगा।\n"
-            "6. **डिजिटल रसीद (J-Form / Receipt):** शुद्ध वजन और कुल राशि की एसएमएस/पोर्टल रसीद तुरंत मिल जाएगी!"
+            "🚛 **Procurement & Weighment Process at the Mandi Yard**:\n\n"
+            "1. **Gate Verification & Security Check-In:** Present your digital token pass or QR code at the entry terminal.\n"
+            "2. **Gross Weighing (Scale 1):** Loaded tractor-trolley weight is recorded on the electronic weighbridge.\n"
+            "3. **Assay Moisture Testing:** Quality team collects a grain sample and measures moisture content.\n"
+            "4. **Unloading Bay:** Grain is unloaded at your assigned warehouse shed or silo bay.\n"
+            "5. **Tare Weighing (Scale 2):** Empty vehicle is weighed to calculate certified net crop weight.\n"
+            "6. **Statutory e-JForm Issuance:** Digital receipt is generated with price and dockage details."
         )
-        audio_text = "मंडी पहुंचने पर गेट पर टोकन दिखाएं, फिर कांटे पर भरा वाहन तुलवाएं, नमी जांच करवाएं, माल खाली करके खाली गाड़ी का वजन कराएं और डिजिटल रसीद प्राप्त करें।"
+        audio_text = "When arriving at the mandi, scan your digital token at the gate, proceed to Gross Scale 1, complete moisture testing, unload at your assigned bay, weigh empty at Scale 2, and receive your digital e-JForm receipt."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="process",
             quick_actions=[
-                AssistantAction(label="⚡ लाइव कतार स्थिति", url="farmer/queue.html"),
-                AssistantAction(label="🧾 मेरी रसीदें देखें", url="farmer/sales-history.html")
+                AssistantAction(label="⚡ Live Queue Telemetry", url="farmer/queue.html"),
+                AssistantAction(label="🧾 View Sales History & Receipts", url="farmer/sales-history.html")
             ],
             suggestions=[
-                "नमी अधिक होने पर क्या होगा?",
-                "पेमेंट कब तक खाते में आएगी?",
-                "शिकायत कैसे दर्ज करें?"
+                "What if moisture is higher than limit?",
+                "When will payment be credited?",
+                "How do I submit a grievance?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 7. PAYMENT, DBT & BANK TRANSFERS (भुगतान व डीबीटी)
+    # 7. PAYMENT, DBT & BANK TRANSFERS
     # -------------------------------------------------------------
-    payment_keywords = ["भुगतान", "पैसा", "रुपया", "payment", "dbt", "bank", "khate me", "paisa kab aayega", "account", "dbt payment"]
+    payment_keywords = ["payment", "dbt", "bank", "money", "transfer", "payout", "when will i get paid", "account", "credit"]
     if any(k in q_lower for k in payment_keywords):
         resp_text = (
-            "💳 **फसल भुगतान प्रक्रिया व समय-सीमा (Direct Benefit Transfer)**:\n\n"
-            "• **समय-सीमा:** खरीद रसीद जारी होने के **48 से 72 घंटों के भीतर** राशि आपके पंजीकृत बैंक खाते में भेज दी जाती है।\n"
-            "• **माध्यम:** आधार-लिंक्ड बैंक खाता (Direct Benefit Transfer - DBT)।\n"
-            "• **बैंक सत्यापन:** कृपया सुनिश्चित करें कि आपका बैंक खाता आधार से लिंक और डीबीटी सक्षम (DBT Enabled) है।\n"
-            "• **भुगतान स्थिति:** आप किसान पोर्टल पर 'विक्रय इतिहास (Sales History)' में जाकर हर रसीद का यूटीआर नंबर और भुगतान स्थिति देख सकते हैं।\n\n"
-            "⚠️ *यदि 72 घंटे के बाद भी भुगतान न आए, तो आप सीधे पोर्टल से शिकायत दर्ज कर सकते हैं।*"
+            "💳 **Direct Benefit Transfer (DBT) Payment Process & Timeline**:\n\n"
+            "• **Disbursement Window:** Proceeds are transferred directly into your registered bank account within **48 to 72 hours** of e-JForm generation.\n"
+            "• **Mechanism:** Aadhaar-enabled Direct Benefit Transfer (DBT) via PFMS/Public Financial Management System.\n"
+            "• **Bank Verification:** Ensure your bank account is Aadhaar-seeded and active for DBT payouts.\n"
+            "• **Tracking:** Visit 'Sales History' in your Farmer Portal to inspect transaction UTR reference numbers and payment statuses.\n\n"
+            "⚠️ *If payment is not credited after 72 business hours, you can lodge an escalated grievance directly on the platform.*"
         )
-        audio_text = "फसल बिक्री का भुगतान डिजिटल रसीद कटने के 48 से 72 घंटों के भीतर सीधे आपके आधार लिंक्ड बैंक खाते में डीबीटी द्वारा जमा हो जाता है।"
+        audio_text = "Sales proceeds are transferred via DBT directly to your Aadhaar-linked bank account within 48 to 72 hours of digital receipt issuance."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="payment",
             quick_actions=[
-                AssistantAction(label="🌾 विक्रय इतिहास व भुगतान देखें", url="farmer/sales-history.html"),
-                AssistantAction(label="⚖️ भुगतान शिकायत दर्ज करें", url="farmer/complaints.html")
+                AssistantAction(label="🌾 View Sales History & DBT", url="farmer/sales-history.html"),
+                AssistantAction(label="⚖️ File Payment Grievance", url="farmer/complaints.html")
             ],
             suggestions=[
-                "शिकायत कैसे दर्ज करें?",
-                "बैंक खाता कैसे बदलें?",
-                "गेहूं का भाव क्या है?"
+                "How do I file a grievance?",
+                "How do I update my bank details?",
+                "What is the wheat MSP rate?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 8. REQUIRED DOCUMENTS (आवश्यक दस्तावेज)
+    # 8. REQUIRED DOCUMENTS
     # -------------------------------------------------------------
-    doc_keywords = ["दस्तावेज", "कागजात", "document", "kya chahiye", "documents", "aadhaar", "fard", "jamabandi"]
+    doc_keywords = ["document", "documents", "checklist", "what to bring", "aadhaar", "papers", "id proof"]
     if any(k in q_lower for k in doc_keywords):
         resp_text = (
-            "📋 **मंडी खरीद हेतु आवश्यक दस्तावेज (Checklist)**:\n\n"
-            "1. **आधार कार्ड (Aadhaar Card):** किसान पहचान सत्यापन हेतु।\n"
-            "2. **भूमि रिकॉर्ड (जमाबंदी / फर्द / गिरदावरी):** फसल सत्यापन हेतु।\n"
-            "3. **बैंक पासबुक प्रति:** जिसमें खाता संख्या और IFSC कोड स्पष्ट हो।\n"
-            "4. **डिजिटल टोकन पर्ची:** मोबाइल में एसएमएस या स्क्रीनशॉट मान्य है।\n"
-            "5. **वाहन आरसी / चालक विवरण:** वाहन का नंबर।"
+            "📋 **Farmer Document Checklist for Mandi Procurement**:\n\n"
+            "1. **Aadhaar Card:** For farmer identity verification.\n"
+            "2. **Land Records (Jamabandi / Fard / Girdawari):** For registered acreage and crop verification.\n"
+            "3. **Bank Passbook Copy:** Showing bank account number and IFSC code.\n"
+            "4. **Digital Token Pass:** SMS message, printed pass, or mobile QR code from KisanSetu.\n"
+            "5. **Vehicle Registration / Driver Info:** Tractor-trolley registration number."
         )
-        audio_text = "मंडी में बिक्री के लिए आधार कार्ड, जमीन की फर्द या जमाबंदी, बैंक पासबुक और मोबाइल पर किसान सेतु का डिजिटल टोकन आवश्यक है।"
+        audio_text = "Please bring your Aadhaar Card, land record fard or jamabandi, bank passbook copy, and your KisanSetu digital token QR pass on your mobile phone."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="documents",
             quick_actions=[
-                AssistantAction(label="⚡ टोकन बुक करें", url="farmer/booking.html"),
-                AssistantAction(label="👤 किसान प्रोफाइल देखें", url="farmer/dashboard.html#profile-summary")
+                AssistantAction(label="⚡ Book Delivery Token", url="farmer/booking.html"),
+                AssistantAction(label="👤 View Farmer Profile", url="farmer/dashboard.html#profile-summary")
             ],
             suggestions=[
-                "स्लॉट कैसे बुक करें?",
-                "गेहूं का भाव क्या है?",
-                "सरसों की खरीद कब शुरू होगी?"
+                "How do I book a delivery slot?",
+                "What is the wheat floor price?",
+                "When does mustard procurement start?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 9. COMPLAINTS & GRIEVANCE REDRESSAL (शिकायत निवारण)
+    # 9. COMPLAINTS & GRIEVANCE REDRESSAL
     # -------------------------------------------------------------
-    complaint_keywords = ["शिकायत", "समस्या", "complaint", "grivance", "help", "madad", "fraud", "dhandhli", "katoti", "operator problem"]
+    complaint_keywords = ["complaint", "grievance", "issue", "problem", "dispute", "help", "fraud", "irregularity", "delay"]
     if any(k in q_lower for k in complaint_keywords):
         resp_text = (
-            "⚖️ **किसान सेतु शिकायत निवारण प्रणाली (Grievance Redressal)**:\n\n"
-            "यदि आपको खरीद केंद्र पर किसी भी प्रकार की परेशानी है (जैसे: भुगतान में देरी, अनुचित नमी कटौती, कांटे में गड़बड़ी, या ऑपरेटर का दुर्व्यवहार), तो आप तुरंत शिकायत दर्ज कर सकते हैं:\n\n"
-            "• **स्तरीय निवारण:** आपकी शिकायत पहले मंडी ऑपरेटर, फिर जिला कृषि अधिकारी (District Admin), और आवश्यकता पड़ने पर स्टेट सुपर एडमिन तक स्वचालित एस्केलेट होती है।\n"
-            "• **समाधान अवधि:** सामान्य शिकायतों का समाधान 24 से 48 घंटे में अनिवार्य है।\n"
-            "• **ट्रैकिंग:** आपको एक यूनिक शिकायत आईडी (जैसे CMP-2026-001) मिलती है जिससे आप लाइव स्टेटस देख सकते हैं।"
+            "⚖️ **KisanSetu Grievance Redressal System**:\n\n"
+            "If you experience any operational difficulties (payment delays, incorrect moisture deductions, weighbridge discrepancies, or staff misconduct):\n\n"
+            "• **Multi-Tier Escalation:** Grievances automatically escalate from Mandi Operator to District Administrative Officer, and up to State Super Admin if unresolved.\n"
+            "• **Resolution Timeframe:** Mandatory turnaround resolution within 24 to 48 hours.\n"
+            "• **Tracking:** You receive a unique tracking reference (e.g. CMP-2026-001) for live timeline updates."
         )
-        audio_text = "किसी भी समस्या जैसे भुगतान में देरी या वजन में गड़बड़ी के लिए आप किसान सेतु शिकायत पोर्टल पर सीधे शिकायत दर्ज कर सकते हैं। 24 से 48 घंटे में समाधान किया जाता है।"
+        audio_text = "For issues such as payment delays or weight discrepancies, you can file a grievance directly on the portal. Cases are resolved within 24 to 48 hours."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="complaints",
             quick_actions=[
-                AssistantAction(label="⚖️ नई शिकायत दर्ज करें (File Complaint)", url="farmer/complaints.html"),
-                AssistantAction(label="🔍 दर्ज शिकायत की स्थिति देखें", url="farmer/complaints.html")
+                AssistantAction(label="⚖️ File New Grievance", url="farmer/complaints.html"),
+                AssistantAction(label="🔍 Track Grievance Status", url="farmer/complaints.html")
             ],
             suggestions=[
-                "भुगतान नहीं मिला तो क्या करें?",
-                "नमी कटौती के नियम क्या हैं?",
-                "हेल्पलाइन नंबर क्या है?"
+                "What if payment is not received?",
+                "What are the moisture deduction norms?",
+                "What is the superintendent helpline?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 10. MOISTURE DEDUCTION RULES (नमी कटौती नियम)
+    # 10. MOISTURE DEDUCTION RULES
     # -------------------------------------------------------------
-    moisture_keywords = ["नमी", "moisture", "nami", "geela", "sukha", "katoti"]
+    moisture_keywords = ["moisture", "damp", "wet", "water content", "deduction", "faq"]
     if any(k in q_lower for k in moisture_keywords):
         resp_text = (
-            "💧 **नमी मापदंड व मूल्य नियम (Moisture Guidelines)**:\n\n"
-            "• **गेहूं (Wheat):** अधिकतम **12%** नमी स्वीकार्य है। 12% से कम होने पर पूरा एमएसपी (₹2,275) मिलता है।\n"
-            "• **सरसों (Mustard):** अधिकतम **9%** नमी। तेल की मात्रा की भी जांच होती है।\n"
-            "• **धान (Paddy):** अधिकतम **17%** नमी।\n"
-            "• **बाजरा (Bajra):** अधिकतम **12%** नमी।\n"
-            "• **कपास (Cotton):** अधिकतम **8.5%** नमी।\n\n"
-            "💡 *सलाह: फसल को मंडी लाने से पहले 1-2 दिन धूप में अच्छी तरह सुखा लें। यदि नमी सीमा से 1-2% अधिक हो, तो मामूली मूल्य कटौती (Discount) हो सकती है; अत्यधिक नमी होने पर फसल रिजेक्ट हो सकती है।*"
+            "💧 **Moisture Standards & Fair Average Quality (FAQ) Norms**:\n\n"
+            "• **Wheat:** Maximum **12.0%** moisture permissible. Full MSP guaranteed at or below 12%.\n"
+            "• **Mustard:** Maximum **9.0%** moisture limit (oil content also tested).\n"
+            "• **Paddy:** Maximum **17.0%** moisture limit.\n"
+            "• **Bajra:** Maximum **12.0%** moisture limit.\n"
+            "• **Cotton:** Maximum **8.5%** moisture limit.\n\n"
+            "💡 *Tip: Sun-dry your harvested crop for 1-2 days before transporting to the mandi. Excess moisture causes dockage deductions or lot rejection.*"
         )
-        audio_text = "गेहूं में 12 प्रतिशत, सरसों में 9 प्रतिशत और धान में 17 प्रतिशत तक नमी स्वीकार्य है। मंडी लाने से पहले फसल को अच्छी तरह सुखा लें ताकि पूरा समर्थन मूल्य मिले।"
+        audio_text = "Permissible moisture limits are 12 percent for wheat, 9 percent for mustard, and 17 percent for paddy. Ensure your crop is properly dried before delivery."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="moisture",
             quick_actions=[
-                AssistantAction(label="🌾 सभी फसलों के मानक देखें", url="farmer/centers.html"),
-                AssistantAction(label="⚡ स्लॉट बुक करें", url="farmer/booking.html")
+                AssistantAction(label="🌾 View Crop Standards", url="farmer/centers.html"),
+                AssistantAction(label="⚡ Book Delivery Slot", url="farmer/booking.html")
             ],
             suggestions=[
-                "गेहूं का भाव क्या है?",
-                "सरसों की खरीद कब शुरू होगी?",
-                "मंडी में कांटे की जांच कैसे होती है?"
+                "What is the wheat MSP rate?",
+                "When does mustard procurement start?",
+                "How does the weighbridge scale operate?"
             ]
         )
 
     # -------------------------------------------------------------
-    # 11. SOIL TESTING & FERTILIZER / PESTICIDE ADVISORY (मृदा परीक्षण व खाद सलाह)
+    # 11. SOIL TESTING & FERTILIZER ADVISORY
     # -------------------------------------------------------------
-    soil_keywords = ["मिट्टी", "मृदा", "soil", "soil test", "खाद", "fertilizer", "urea", "यूरिया", "dap", "डीएपी", "कीटनाशक", "pesticide", "कब खाद न", "when not to use", "khad"]
+    soil_keywords = ["soil", "soil test", "fertilizer", "urea", "dap", "pesticide", "potash", "zinc", "when not to use", "dosage"]
     if any(k in q_lower for k in soil_keywords):
         resp_text = (
-            "🧪 **मृदा परीक्षण एवं वैज्ञानिक उर्वरक सलाह (Soil Testing & Fertilizer Guide)**:\n\n"
-            "1. **मृदा परीक्षण बुकिंग:** आप किसान पोर्टल पर अपनी नजदीकी मंडी प्रयोगशाला में सैंपल परीक्षण के लिए तारीख बुक कर सकते हैं।\n"
-            "2. **मृदा स्वास्थ्य कार्ड:** इसमें pH स्तर, नाइट्रोजन (N), फास्फोरस (P), पोटाश (K), कार्बन और जिंक की वास्तविक मात्रा दर्ज होती है।\n"
-            "3. **फसल अनुसार खाद:** गेहूं हेतु 110kg यूरिया + 55kg DAP + 6kg जिंक प्रति एकड़; सरसों हेतु 50kg यूरिया + 35kg DAP + 10kg सल्फर।\n\n"
-            "⚠️ **कब खाद का प्रयोग बिल्कुल न करें (When NOT to use fertilizers):**\n"
-            "• ❌ **फूल आने / बाली निकलने के बाद यूरिया न डालें**: इससे फसल गिर (Lodging) जाती है और कीट-रोग बढ़ जाते हैं।\n"
-            "• ❌ **DAP और जिंक सल्फेट कभी मिलाकर न डालें**: दोनों मिलकर अघुलनशील हो जाते हैं और खाद व्यर्थ हो जाती है।\n"
-            "• ❌ **चने में टॉप-ड्रेसिंग यूरिया कभी न डालें**: दलहनी फसल में यूरिया डालने से गांठें नहीं बनतीं और फली नहीं लगती।\n"
-            "• ❌ **सूखी मिट्टी या तेज धूप में यूरिया न छिड़कें**: अमोनिया उड़ जाती है और पत्तियां झुलस जाती हैं।"
+            "🧪 **Soil Testing & Scientific Fertilizer Advisory**:\n\n"
+            "1. **Book Soil Test:** You can schedule a soil sample testing appointment at your local mandi laboratory.\n"
+            "2. **Soil Health Card:** Quantifies soil pH, Organic Carbon, Nitrogen (N), Phosphorus (P), Potassium (K), and Zinc levels.\n"
+            "3. **Crop Dosage Schedules:** e.g., Wheat requires 110 kg Urea + 55 kg DAP + 6 kg Zinc per acre; Mustard requires 50 kg Urea + 35 kg DAP + 10 kg Sulphur.\n\n"
+            "⚠️ **Crucial Rules - When NOT to use fertilizers:**\n"
+            "• ❌ **Never apply Urea after flowering/heading stage**: Causes severe crop lodging and disease susceptibility.\n"
+            "• ❌ **Never mix DAP and Zinc Sulphate**: Forms insoluble Zinc Phosphate, rendering both nutrients unusable.\n"
+            "• ❌ **Never top-dress Urea on standing chickpea crops**: Legumes fix atmospheric nitrogen; extra nitrogen inhibits root nodules.\n"
+            "• ❌ **Never broadcast Urea on dry soil in harsh sun**: Ammonia evaporates rapidly and scorches foliage."
         )
-        audio_text = "मृदा परीक्षण कराने से खाद की सही मात्रा पता चलती है। ध्यान रहे कि फूल आने के बाद यूरिया न डालें और DAP तथा जिंक सल्फेट को कभी एक साथ मिलाकर न डालें।"
+        audio_text = "Soil testing reveals precise nutrient requirements. Never apply urea after flowering, and do not mix DAP with zinc sulphate."
         return AssistantQueryResponse(
             success=True,
             response=resp_text,
             audio_text=audio_text,
             category="soil_testing",
             quick_actions=[
-                AssistantAction(label="🧪 मृदा परीक्षण स्लॉट बुक करें", url="farmer/soil-testing.html"),
-                AssistantAction(label="📋 मेरी मृदा स्वास्थ्य रिपोर्ट देखें", url="farmer/soil-testing.html#health-card")
+                AssistantAction(label="🧪 Book Soil Testing Appointment", url="farmer/soil-testing.html"),
+                AssistantAction(label="📋 View My Soil Health Card", url="farmer/soil-testing.html#health-card")
             ],
             suggestions=[
-                "गेहूं में कितना खाद डालें?",
-                "सरसों के लिए कौन सा कीटनाशक छिड़कें?",
-                "मृदा परीक्षण कैसे बुक करें?",
-                "खाद कब नहीं डालनी चाहिए?"
+                "What fertilizer dosage is recommended for wheat?",
+                "Which pesticide should I spray for mustard aphids?",
+                "How do I book a soil test appointment?",
+                "When should I not apply fertilizers?"
             ]
         )
 
@@ -649,14 +646,14 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
     # 12. DEFAULT INTELLIGENT FALLBACK
     # -------------------------------------------------------------
     fallback_resp = (
-        f"🌾 **किसान वाणी सहायता (Kisan Vani Assistant)**\n\n"
-        f"आपके सवाल **'{q}'** के संदर्भ में:\n"
-        f"• **फसलों के भाव:** गेहूं ₹2,275/Q, सरसों ₹5,650/Q, चना ₹5,440/Q, धान ₹2,183/Q, बाजरा ₹2,500/Q।\n"
-        f"• **खरीद तिथियां:** सरसों खरीद 15 मार्च से, गेहूं व चना खरीद 1 अप्रैल 2026 से जारी है।\n"
-        f"• **समय स्लॉट:** मंडी में लाइन से बचने के लिए किसान पोर्टल से पहले टोकन बुक करें।\n\n"
-        f"आप नीचे दिए गए विकल्पों में से चुन सकते हैं या दोबारा अधिक स्पष्ट सवाल पूछ सकते हैं।"
+        f"🌾 **Kisan Vani AI Assistance**\n\n"
+        f"Regarding your query **'{q}'**:\n"
+        f"• **Current Crop MSP Rates:** Wheat ₹2,275/Q, Mustard ₹5,650/Q, Gram ₹5,440/Q, Paddy ₹2,183/Q, Bajra ₹2,500/Q.\n"
+        f"• **Procurement Schedules:** Mustard procurement active from 15 March; Wheat and Gram active from 1 April 2026.\n"
+        f"• **Queue Priority:** Reserve your delivery time window online to avoid yard wait times.\n\n"
+        f"Please select from the options below or ask a more specific question."
     )
-    fallback_audio = "किसान भाई, आप फसलों के भाव, खरीद की तारीखें, नजदीकी मंडी और टोकन बुकिंग के बारे में पूछ सकते हैं।"
+    fallback_audio = "Welcome! You can ask me about crop MSP rates, procurement schedules, nearby procurement centers, and digital delivery token bookings."
 
     return AssistantQueryResponse(
         success=True,
@@ -664,17 +661,17 @@ def process_assistant_query(req: AssistantQueryRequest, db: Session = Depends(ge
         audio_text=fallback_audio,
         category="general",
         quick_actions=[
-            AssistantAction(label="🌾 फसलों के भाव (MSP)", url="farmer/centers.html"),
-            AssistantAction(label="📅 खरीद की तारीखें", url="#dates"),
-            AssistantAction(label="📍 नजदीकी खरीद केंद्र", url="farmer/centers.html"),
-            AssistantAction(label="⚡ टोकन बुक करें", url="farmer/booking.html"),
-            AssistantAction(label="⚖️ शिकायत दर्ज करें", url="farmer/complaints.html")
+            AssistantAction(label="🌾 Crop Rates & MSP", url="farmer/centers.html"),
+            AssistantAction(label="📅 Procurement Calendar", url="#dates"),
+            AssistantAction(label="📍 Procurement Centers", url="farmer/centers.html"),
+            AssistantAction(label="⚡ Book a Slot", url="farmer/booking.html"),
+            AssistantAction(label="⚖️ File a Grievance", url="farmer/complaints.html")
         ],
         suggestions=[
-            "गेहूं का एमएसपी भाव क्या है?",
-            "सरसों की खरीद कब शुरू होगी?",
-            "करनाल मंडी में कितनी भीड़ है?",
-            "टोकन कैसे बुक करें?",
-            "पेमेंट कितने दिन में आएगा?"
+            "What is the MSP rate for wheat?",
+            "When does mustard procurement start?",
+            "How congested is Karnal mandi?",
+            "How do I book a delivery token?",
+            "How long does payment take?"
         ]
     )

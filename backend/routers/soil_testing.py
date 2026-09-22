@@ -27,7 +27,7 @@ class SoilTestBookingRequest(BaseModel):
     preferred_slot: Optional[str] = None
     crop_planned: Optional[str] = "Wheat (Grade A)"
     land_area_acres: Optional[float] = 5.0
-    soil_type: Optional[str] = "Alluvial Loam (दोमट मिट्टी)"
+    soil_type: Optional[str] = "Alluvial Loam"
 
 class SoilTestUpdateRequest(BaseModel):
     record_id: Optional[str] = None
@@ -52,242 +52,242 @@ class SoilTestUpdateRequest(BaseModel):
 # -------------------------------------------------------------
 CROP_ADVISORY_DB = {
     "wheat": {
-        "crop_name": "Wheat (गेहूं)",
+        "crop_name": "Wheat (Grade A)",
         "ideal_ph": "6.5 – 7.8",
         "fertilizers": [
             {
                 "name": "DAP (Di-Ammonium Phosphate)",
                 "per_acre_kg": 55,
-                "application_timing": "बुआई के समय बेसल ड्रेसिंग (At Sowing - Basal)",
-                "purpose": "जड़ों के प्रारंभिक विकास और कल्ले फूटने (Tillering) के लिए फास्फोरस आपूर्ति।"
+                "application_timing": "At Sowing - Basal Dressing",
+                "purpose": "Phosphorus supply for early root development and active tillering."
             },
             {
-                "name": "यूरिया (Urea - 46% N)",
+                "name": "Urea (46% N)",
                 "per_acre_kg": 110,
-                "application_timing": "दो बराबर किस्तों में (1st split at 21 days with 1st irrigation; 2nd split at 45 days)",
-                "purpose": "पौधे के वानस्पतिक विकास और कल्लों की संख्या बढ़ाने हेतु।"
+                "application_timing": "Two equal splits (1st split at 21 days with 1st irrigation; 2nd split at 45 days)",
+                "purpose": "Supports vegetative plant growth and maximum tiller count."
             },
             {
                 "name": "MOP (Muriate of Potash)",
                 "per_acre_kg": 20,
-                "application_timing": "बुआई के समय बेसल (At Sowing)",
-                "purpose": "तने को मजबूती देने, रोग प्रतिरोधक क्षमता और दाने के भराव (Grain weight) के लिए।"
+                "application_timing": "At Sowing (Basal)",
+                "purpose": "Stem strengthening, disease resistance, and optimum grain filling."
             },
             {
-                "name": "जिंक सल्फेट (Zinc Sulphate 33%)",
+                "name": "Zinc Sulphate 33%",
                 "per_acre_kg": 6,
-                "application_timing": "पहली सिंचाई पर यूरिया के साथ अलग से (With 1st Irrigation)",
-                "purpose": "जिंक की कमी से होने वाले खैरा रोग व पत्तियों के पीलेपन से बचाव।"
+                "application_timing": "Applied separately with 1st irrigation",
+                "purpose": "Prevents Khaira disease, chlorosis, and yellowing of wheat leaves."
             }
         ],
         "pesticides": [
             {
-                "name": "प्रोपिकोनाजोल 25% EC (Tilt)",
-                "dosage_per_acre": "200 ml (200 लीटर पानी में)",
-                "target_pest": "पीला रतुआ (Yellow Rust) व करनाल बंट",
-                "safety_interval": "लक्षण दिखते ही शाम के समय छिड़काव करें।"
+                "name": "Propiconazole 25% EC (Tilt)",
+                "dosage_per_acre": "200 ml in 200 liters of water",
+                "target_pest": "Yellow Rust and Karnal Bunt",
+                "safety_interval": "Spray in the evening as soon as early foliar symptoms appear."
             },
             {
-                "name": "इमिडाक्लोप्रिड 17.8% SL (Confidor)",
-                "dosage_per_acre": "60 ml (150 लीटर पानी में)",
-                "target_pest": "माहू / चेपा (Aphids) कीट",
-                "safety_interval": "दिसंबर-जनवरी में जब माहू की संख्या 5-10 कीट प्रति बाली हो।"
+                "name": "Imidacloprid 17.8% SL (Confidor)",
+                "dosage_per_acre": "60 ml in 150 liters of water",
+                "target_pest": "Aphids / Chepa",
+                "safety_interval": "Apply in Dec-Jan when aphid count exceeds 5-10 insects per earhead."
             }
         ],
         "when_not_to_use": [
-            "❌ **फूल आने या बालियां निकलने (Flowering / Heading) के बाद यूरिया कभी न डालें**: इससे फसल गिर (Lodging) जाती है, दाना पतला रह जाता है और फफूंद रोग बढ़ते हैं।",
-            "❌ **DAP और जिंक सल्फेट को कभी एक साथ मिलाकर न डालें**: दोनों के मिलने से जिंक फॉस्फेट बन जाता है जो पौधे को नहीं मिलता और खाद व्यर्थ हो जाती है।",
-            "❌ **सूखी जमीन या तेज धूप / गर्म हवा में यूरिया न छिड़कें**: अमोनिया गैस बनकर उड़ जाती है और पत्तियों पर खाद जलने (Burn) के धब्बे पड़ जाते हैं।",
-            "❌ **भारी वर्षा की संभावना होने पर नाइट्रोजन न डालें**: पानी के बहाव के साथ सारा खाद बह जाता है।"
+            "❌ **Never apply Urea after flowering or heading**: Causes crop lodging, shriveled grains, and invites fungal blights.",
+            "❌ **Never mix DAP and Zinc Sulphate together**: Mixing forms insoluble Zinc Phosphate, locking both nutrients from the plant.",
+            "❌ **Do not broadcast Urea in dry soil or scorching afternoon sun**: Leads to volatile ammonia loss and severe leaf scorching.",
+            "❌ **Do not apply Nitrogen when heavy rain is forecast**: Nitrogen washes away through surface runoff and deep leaching."
         ]
     },
     "mustard": {
-        "crop_name": "Mustard (सरसों / राया)",
+        "crop_name": "Mustard",
         "ideal_ph": "6.0 – 7.5",
         "fertilizers": [
             {
                 "name": "DAP (Di-Ammonium Phosphate)",
                 "per_acre_kg": 35,
-                "application_timing": "बुआई के समय (Basal at sowing)",
-                "purpose": "जड़ों की मजबूती व शाखाएं बढ़ाने के लिए।"
+                "application_timing": "Basal at sowing",
+                "purpose": "Strong taproot establishment and early branching."
             },
             {
-                "name": "यूरिया (Urea)",
+                "name": "Urea",
                 "per_acre_kg": 50,
-                "application_timing": "पहली सिंचाई (30-35 दिन) के समय",
-                "purpose": "फूल आने से पहले शाखाओं के प्रसार हेतु।"
+                "application_timing": "At first irrigation (30-35 days after sowing)",
+                "purpose": "Promotes vigorous branching prior to flower initiation."
             },
             {
-                "name": "बेंटोनाइट सल्फर 90% (Sulphur)",
+                "name": "Bentonite Sulphur 90%",
                 "per_acre_kg": 10,
-                "application_timing": "बुआई के समय मिट्टी में मिलाएं",
-                "purpose": "सरसों में तेल की मात्रा (Oil Content) 2-3% बढ़ाने हेतु अनिवार्य।"
+                "application_timing": "Incorporate into soil at sowing",
+                "purpose": "Crucial for increasing mustard oil content by 2-3%."
             }
         ],
         "pesticides": [
             {
-                "name": "डाइमेथोएट 30% EC (Rogor) या थायमेथोक्सम 25% WG",
-                "dosage_per_acre": "250 ml या 40 ग्राम प्रति एकड़",
-                "target_pest": "सरसों का चेपा / माहू (Mustard Aphid)",
-                "safety_interval": "दिसंबर-जनवरी में बादल छाए रहने पर तुरंत छिड़काव करें।"
+                "name": "Dimethoate 30% EC (Rogor) or Thiamethoxam 25% WG",
+                "dosage_per_acre": "250 ml or 40g per acre",
+                "target_pest": "Mustard Aphid (Lipaphis erysimi)",
+                "safety_interval": "Spray promptly during cloudy overcast weather in Dec-Jan."
             },
             {
-                "name": "मैंकोजेब 75% WP (Dithane M-45)",
-                "dosage_per_acre": "600 ग्राम (200 लीटर पानी में)",
-                "target_pest": "सफेद रतुआ (White Rust) व अल्टरनेरिया पत्ती धब्बा",
-                "safety_interval": "सुबह ओस सूखने के बाद ही छिड़कें।"
+                "name": "Mancozeb 75% WP (Dithane M-45)",
+                "dosage_per_acre": "600g in 200 liters of water",
+                "target_pest": "White Rust and Alternaria Leaf Spot",
+                "safety_interval": "Spray in the morning after morning dew has evaporated."
             }
         ],
         "when_not_to_use": [
-            "❌ **फूल आने की पूर्ण अवस्था (Full Flowering Stage) में यूरिया न डालें**: इससे माहू (चेपा) का प्रकोप कई गुना बढ़ जाता है और फलियां देर से पकती हैं।",
-            "❌ **सल्फर का प्रयोग बिना मिट्टी जांच के अत्यधिक मात्रा में न करें**: अत्यधिक सल्फर से मृदा अम्लीय हो सकती है।",
-            "❌ **ओस गीली पत्तियों पर दानेदार खाद न फेंकें**: यूरिया पत्तियों पर चिपक कर उन्हें झुलसा (Scorch) देता है।"
+            "❌ **Never apply Urea during full flowering**: Attracts severe aphid attacks and delays pod maturation.",
+            "❌ **Do not apply excessive Sulphur without prior soil testing**: Excess Sulphur can induce unwanted soil acidification.",
+            "❌ **Never broadcast granular fertilizer over dew-drenched leaves**: Granules stick to leaves and burn foliage."
         ]
     },
     "paddy": {
-        "crop_name": "Paddy (धान / चावल)",
+        "crop_name": "Paddy (Common / Basmati)",
         "ideal_ph": "6.0 – 7.2",
         "fertilizers": [
             {
                 "name": "DAP",
                 "per_acre_kg": 40,
-                "application_timing": "अंतिम कद्दू (Puddling) के समय",
-                "purpose": "प्रारंभिक जड़ स्थापना और फुटाव।"
+                "application_timing": "At puddling / final field preparation",
+                "purpose": "Early root establishment and active tillering."
             },
             {
-                "name": "यूरिया (Urea)",
+                "name": "Urea",
                 "per_acre_kg": 90,
-                "application_timing": "3 बराबर किस्तों में (रोपाई के 7 दिन, 21 दिन और 42 दिन बाद)",
-                "purpose": "समान वानस्पतिक बढ़वार और कल्ले।"
+                "application_timing": "Three equal splits (7, 21, and 42 days after transplanting)",
+                "purpose": "Uniform vegetative canopy growth and productive tillers."
             },
             {
-                "name": "जिंक सल्फेट 33%",
+                "name": "Zinc Sulphate 33%",
                 "per_acre_kg": 6,
-                "application_timing": "रोपाई के 15-20 दिन बाद यूरिया के साथ",
-                "purpose": "धान के खैरा रोग (Khaira Disease) की अचूक रोकथाम।"
+                "application_timing": "15-20 days after transplanting with Urea",
+                "purpose": "Effective prevention of Khaira physiological disorder in rice."
             }
         ],
         "pesticides": [
             {
-                "name": "कार्टाप हाइड्रोक्लोराइड 4G (Padan)",
-                "dosage_per_acre": "7.5 kg प्रति एकड़ (खेत में पानी खड़ा हो)",
-                "target_pest": "तना छेदक (Stem Borer) व पत्ता लपेटक (Leaf Folder)",
-                "safety_interval": "रोपाई के 25-30 दिन बाद डालें।"
+                "name": "Cartap Hydrochloride 4G (Padan)",
+                "dosage_per_acre": "7.5 kg per acre in standing water",
+                "target_pest": "Stem Borer and Leaf Folder",
+                "safety_interval": "Apply 25-30 days after transplanting."
             },
             {
-                "name": "स्ट्रेप्टोसाइक्लिन (6g) + कॉपर ऑक्सीक्लोराइड (500g)",
-                "dosage_per_acre": "प्रति एकड़ 200 लीटर पानी में",
-                "target_pest": "जीवाणु झुलसा (Bacterial Leaf Blight)",
-                "safety_interval": "पत्तियों के किनारे पीले-सफेद पड़ने पर तुरंत प्रयोग करें।"
+                "name": "Streptocycline (6g) + Copper Oxychloride (500g)",
+                "dosage_per_acre": "In 200 liters of water per acre",
+                "target_pest": "Bacterial Leaf Blight (BLB)",
+                "safety_interval": "Spray immediately upon seeing yellow-white streaks on leaf margins."
             }
         ],
         "when_not_to_use": [
-            "❌ **खेत में 5 सेमी से अधिक गहरा पानी भरा होने पर यूरिया न डालें**: इससे पानी बहने या गहराई में रिसाव (Leaching) से खाद बर्बाद हो जाती है। पानी कम होने पर ही खाद डालें।",
-            "❌ **खेत से पानी निकालते (Drainage) समय कभी खाद न डालें**: सारी खाद खेत से बाहर बह जाएगी।",
-            "❌ **गोभ निकलने या बाली निकलने (Panicle Emergence) के बाद यूरिया न डालें**: इससे गर्दन तोड़ (Neck Blast) रोग और दाने में कालापन आता है।"
+            "❌ **Never broadcast Urea in more than 5 cm of standing water**: Leads to extensive leaching loss. Drain field to thin layer first.",
+            "❌ **Never apply fertilizer while draining the field**: Nutrients will be carried out into irrigation drains.",
+            "❌ **Do not apply Urea after panicle emergence**: Causes neck blast and black discolored kernels."
         ]
     },
     "cotton": {
-        "crop_name": "Cotton (कपास / नरमा)",
+        "crop_name": "Cotton",
         "ideal_ph": "6.5 – 8.0",
         "fertilizers": [
             {
                 "name": "DAP",
                 "per_acre_kg": 40,
-                "application_timing": "बुआई के समय कतारों में (At Sowing)",
-                "purpose": "जड़ विकास और मजबूत तना।"
+                "application_timing": "Band placement in rows at sowing",
+                "purpose": "Root penetration and sturdy main stem."
             },
             {
-                "name": "यूरिया (Urea)",
+                "name": "Urea",
                 "per_acre_kg": 95,
-                "application_timing": "3 किस्तों में (पहली निराई, फूल आने पर, और टिंडे बनते समय)",
-                "purpose": "टिंडों की संख्या और वजन में वृद्धि।"
+                "application_timing": "Three splits (1st weeding, flowering, and early boll formation)",
+                "purpose": "Maximizes boll retention and individual boll weight."
             },
             {
-                "name": "मैग्नीशियम सल्फेट",
+                "name": "Magnesium Sulphate",
                 "per_acre_kg": 10,
-                "application_timing": "टिंडे बनने के समय (Boll formation)",
-                "purpose": "पत्तियों का लाल होना (Red Leaf Disease) रोकने हेतु।"
+                "application_timing": "At early boll formation stage",
+                "purpose": "Prevents Red Leaf Disease and premature senescence."
             }
         ],
         "pesticides": [
             {
-                "name": "फ्लोनिकामिड 50% WG (Ulala)",
-                "dosage_per_acre": "80 ग्राम (150 लीटर पानी में)",
-                "target_pest": "सफेद मक्खी (Whitefly) व हरा तेला (Jassid)",
-                "safety_interval": "कीटों का आर्थिक नुकसान स्तर (ETL) पार होने पर छिड़कें।"
+                "name": "Flonicamid 50% WG (Ulala)",
+                "dosage_per_acre": "80g in 150 liters of water",
+                "target_pest": "Whitefly and Jassids",
+                "safety_interval": "Spray when sucking pests cross Economic Threshold Levels (ETL)."
             },
             {
-                "name": "स्पिनटोरम 11.7% SC",
-                "dosage_per_acre": "170 ml प्रति एकड़",
-                "target_pest": "गुलाबी सुंडी (Pink Bollworm)",
-                "safety_interval": "फूलों में रोसेट फूल (Rosette flower) दिखने पर छिड़काव करें।"
+                "name": "Spinetoram 11.7% SC",
+                "dosage_per_acre": "170 ml per acre",
+                "target_pest": "Pink Bollworm (Pectinophora gossypiella)",
+                "safety_interval": "Spray when rosette flowers or green boll damage appears."
             }
         ],
         "when_not_to_use": [
-            "❌ **जब पौधे बहुत तेजी से केवल पत्ते और कद बढ़ा रहे हों (Rank Growth), तब यूरिया बिल्कुल न डालें**: इससे फूल और टिंडे झड़ जाते हैं तथा सफेद मक्खी का हमला बढ़ता है।",
-            "❌ **जलभराव (Waterlogging) वाली स्थिति में खाद न डालें**: जब तक खेत से अतिरिक्त पानी न निकले, खाद डालने से पौधे की जड़ें सड़ने लगती हैं।",
-            "❌ **कीटनाशक और खरपतवारनाशक को खाद में बिना कृषि विशेषज्ञ की सलाह के मिलाकर न डालें**।"
+            "❌ **Never apply Urea during excessive vegetative rank growth**: Promotes leaf shedding, boll drop, and invites heavy whitefly infestation.",
+            "❌ **Do not apply fertilizers under waterlogged conditions**: Wait until excess water is removed to avoid root rot.",
+            "❌ **Never tank-mix pesticides and fertilizers without scientific agronomic advice**."
         ]
     },
     "gram": {
-        "crop_name": "Gram (चना / Chickpea)",
+        "crop_name": "Gram / Chickpea",
         "ideal_ph": "6.0 – 7.8",
         "fertilizers": [
             {
                 "name": "DAP",
                 "per_acre_kg": 30,
-                "application_timing": "बुआई के समय (Basal at Sowing)",
-                "purpose": "दलहनी फसल में जड़ों की ग्रंथियों (Nodules) के विकास के लिए प्रारंभिक नाइट्रोजन व फास्फोरस।"
+                "application_timing": "Basal at sowing",
+                "purpose": "Initial nitrogen and phosphorus for rhizobial root nodule development."
             },
             {
-                "name": "जिप्सम (Gypsum)",
+                "name": "Gypsum",
                 "per_acre_kg": 50,
-                "application_timing": "खेत की अंतिम तैयारी के समय",
-                "purpose": "सल्फर और कैल्शियम की आपूर्ति जिससे दाना चमकदार बनता है।"
+                "application_timing": "During final land preparation",
+                "purpose": "Supplies Sulphur and Calcium for bright, plump pulse grains."
             }
         ],
         "pesticides": [
             {
-                "name": "एमामेक्टिन बेंजोएट 5% SG (Proclaim)",
-                "dosage_per_acre": "100 ग्राम (150 लीटर पानी में)",
-                "target_pest": "फली छेदक सुंडी (Gram Pod Borer - Helicoverpa)",
-                "safety_interval": "फूल से फली बनते समय जब छोटी सुंडी दिखे।"
+                "name": "Emamectin Benzoate 5% SG (Proclaim)",
+                "dosage_per_acre": "100g in 150 liters of water",
+                "target_pest": "Gram Pod Borer (Helicoverpa armigera)",
+                "safety_interval": "Spray at pod initiation when small larvae appear."
             }
         ],
         "when_not_to_use": [
-            "❌ **चने की फसल में बाद में टॉप-ड्रेसिंग यूरिया कभी न डालें**: चना एक दलहनी फसल है जो वायुमंडल से स्वयं नाइट्रोजन ग्रहण करती है। यूरिया डालने से गांठें बनना बंद हो जाती हैं, केवल पत्ते बढ़ते हैं और फली नहीं लगती!",
-            "❌ **उकठा (Wilt) रोगग्रस्त खेत में नाइट्रोजन युक्त खाद न डालें**: इससे फफूंद तेजी से फैलती है।"
+            "❌ **Never top-dress Urea on standing chickpea crops**: As a legume, chickpea fixes atmospheric nitrogen. Top-dressing halts nodulation and causes excessive vegetative growth with zero pod set.",
+            "❌ **Do not apply nitrogen fertilizers in wilt-infected plots**: Excess nitrogen accelerates fungal spreading."
         ]
     },
     "bajra": {
-        "crop_name": "Bajra (बाजरा / Pearl Millet)",
+        "crop_name": "Bajra (Pearl Millet)",
         "ideal_ph": "6.5 – 8.5",
         "fertilizers": [
             {
                 "name": "DAP",
                 "per_acre_kg": 30,
-                "application_timing": "बुआई के समय",
-                "purpose": "जड़ों की मजबूती हेतु।"
+                "application_timing": "At sowing",
+                "purpose": "Root anchorage and drought resilience."
             },
             {
-                "name": "यूरिया",
+                "name": "Urea",
                 "per_acre_kg": 45,
-                "application_timing": "पहली सिंचाई / बारिश के बाद (25-30 दिन)",
-                "purpose": "कल्ले बढ़ाने और सिट्टे की लंबाई हेतु।"
+                "application_timing": "After 1st rain or irrigation (25-30 days)",
+                "purpose": "Promotes tillering and longer earheads."
             }
         ],
         "pesticides": [
             {
-                "name": "क्लोरोपायरीफॉस 20% EC",
-                "dosage_per_acre": "1 लीटर प्रति एकड़ (सिंचाई के साथ)",
-                "target_pest": "दीमक (Termite) व तना मक्खी",
-                "safety_interval": "बुआई के समय या पहली सिंचाई पर।"
+                "name": "Chlorpyrifos 20% EC",
+                "dosage_per_acre": "1 liter per acre with irrigation",
+                "target_pest": "Termites and Shoot Fly",
+                "safety_interval": "Apply at sowing or with the first irrigation."
             }
         ],
         "when_not_to_use": [
-            "❌ **सूखा पड़ने (Drought / Moister stress) के दौरान यूरिया कभी न डालें**: बिना पानी के खाद डालने से पौधे की जड़ें जल जाती हैं और फसल सूख जाती है।",
-            "❌ **सिट्टा (Earhead) पकने की अवस्था में खाद न डालें**।"
+            "❌ **Never apply Urea during severe drought or moisture stress**: Fertilizing dry soil burns roots and dries out the crop.",
+            "❌ **Do not apply fertilizers during the earhead ripening stage**."
         ]
     }
 }
@@ -308,13 +308,13 @@ def _calculate_crop_advisory(crop_key: str, land_area_acres: float, soil_data: O
     for f in crop_info["fertilizers"]:
         total_kg = round(f["per_acre_kg"] * acres, 1)
         bags_50kg = round(total_kg / 50.0, 1)
-        bags_45kg = round(total_kg / 45.0, 1) # Urea standard bag is 45kg in India
-        is_urea = "यूरिया" in f["name"] or "Urea" in f["name"]
+        bags_45kg = round(total_kg / 45.0, 1)  # Urea standard bag is 45kg in India
+        is_urea = "urea" in f["name"].lower()
         bag_count = bags_45kg if is_urea else bags_50kg
         bag_weight = 45 if is_urea else 50
 
         # Adjust recommendation if soil test data is available
-        adjustment_note = "मानक वैज्ञानिक मात्रा (Recommended Dosage)"
+        adjustment_note = "Standard Scientific Recommended Dosage"
         if soil_data:
             n_val = soil_data.get("nitrogen_kg_ha", 240)
             p_val = soil_data.get("phosphorus_kg_ha", 16.5)
@@ -325,27 +325,27 @@ def _calculate_crop_advisory(crop_key: str, land_area_acres: float, soil_data: O
                 if n_val > 500:
                     total_kg = round(total_kg * 0.75, 1)
                     bag_count = round(total_kg / bag_weight, 1)
-                    adjustment_note = "⚠️ मिट्टी में नाइट्रोजन उच्च (>500 kg/ha) होने के कारण यूरिया 25% कम किया गया।"
+                    adjustment_note = "⚠️ High soil nitrogen (>500 kg/ha); Urea dosage reduced by 25%."
                 elif n_val < 200:
                     total_kg = round(total_kg * 1.15, 1)
                     bag_count = round(total_kg / bag_weight, 1)
-                    adjustment_note = "ℹ️ मिट्टी में नाइट्रोजन कम (<200 kg/ha) होने से 15% अतिरिक्त यूरिया अनुशंसित।"
+                    adjustment_note = "ℹ️ Low soil nitrogen (<200 kg/ha); 15% extra Urea recommended."
             elif "DAP" in f["name"]:
                 if p_val > 25:
                     total_kg = round(total_kg * 0.8, 1)
                     bag_count = round(total_kg / bag_weight, 1)
-                    adjustment_note = "⚠️ मिट्टी में फास्फोरस प्रचुर मात्रा में है; DAP 20% घटाया गया।"
+                    adjustment_note = "⚠️ High available phosphorus; DAP dosage reduced by 20%."
             elif "MOP" in f["name"]:
                 if k_val > 280:
                     total_kg = round(total_kg * 0.5, 1)
                     bag_count = round(total_kg / bag_weight, 1)
-                    adjustment_note = "ℹ️ मिट्टी में पोटाश भरपूर (>280 kg/ha) है; MOP 50% घटाया गया।"
+                    adjustment_note = "ℹ️ High available potassium (>280 kg/ha); MOP reduced by 50%."
 
         fertilizer_list.append({
             "fertilizer_name": f["name"],
-            "dose_per_acre": f"{f['per_acre_kg']} kg/एकड़",
+            "dose_per_acre": f"{f['per_acre_kg']} kg/acre",
             "total_quantity_kg": total_kg,
-            "total_bags": f"{bag_count} बोरी ({bag_weight} kg प्रति बोरी)",
+            "total_bags": f"{bag_count} bags ({bag_weight} kg per bag)",
             "timing": f["application_timing"],
             "purpose": f["purpose"],
             "adjustment_note": adjustment_note
@@ -366,11 +366,11 @@ def _calculate_crop_advisory(crop_key: str, land_area_acres: float, soil_data: O
     mop_bags_50kg = 0.0
     for f in fertilizer_list:
         fname = f["fertilizer_name"].lower()
-        if "यूरिया" in f["fertilizer_name"] or "urea" in fname:
+        if "urea" in fname:
             urea_bags_50kg = round(f["total_quantity_kg"] / 50.0, 1)
-        elif "dap" in fname or "डीएपी" in f["fertilizer_name"]:
+        elif "dap" in fname:
             dap_bags_50kg = round(f["total_quantity_kg"] / 50.0, 1)
-        elif "mop" in fname or "पोटाश" in f["fertilizer_name"] or "potash" in fname:
+        elif "mop" in fname or "potash" in fname:
             mop_bags_50kg = round(f["total_quantity_kg"] / 50.0, 1)
 
     fertilizers_dict = {
@@ -469,9 +469,8 @@ def book_soil_testing_slot(req: SoilTestBookingRequest, db: Session = Depends(ge
         time_slot=req.preferred_slot or req.time_slot or "10:00 AM – 11:30 AM",
         crop_planned=req.crop_planned or "Wheat (Grade A)",
         land_area_acres=req.land_area_acres,
-        soil_type=req.soil_type or "Alluvial Loam (दोमट मिट्टी)",
+        soil_type=req.soil_type or "Alluvial Loam",
         status="BOOKED",
-        # Default placeholder values until tested in lab
         ph_level=7.2,
         ec_level=0.45,
         organic_carbon_percent=0.52,
@@ -481,7 +480,7 @@ def book_soil_testing_slot(req: SoilTestBookingRequest, db: Session = Depends(ge
         zinc_ppm=0.55,
         sulphur_ppm=8.2,
         health_status="PENDING_TEST",
-        advisory_notes="सैंपल प्रयोगशाला में जमा करने के 24-48 घंटों में मृदा स्वास्थ्य कार्ड रिपोर्ट जारी होगी।",
+        advisory_notes="Soil health card report will be issued within 24-48 hours after sample submission at the lab.",
         created_at=datetime.datetime.utcnow(),
         tested_at=datetime.datetime.utcnow()
     )
@@ -493,7 +492,7 @@ def book_soil_testing_slot(req: SoilTestBookingRequest, db: Session = Depends(ge
     return {
         "success": True,
         "sample_id": record.sample_id,
-        "message": "मृदा परीक्षण स्लॉट सफलतापूर्वक बुक किया गया! (Soil testing slot booked successfully)",
+        "message": "Soil testing slot booked successfully!",
         "booking": {
             "record_id": record.id,
             "sample_id": record.sample_id,
@@ -530,8 +529,8 @@ def get_farmer_soil_status(farmer_id_or_phone: str, crop_override: Optional[str]
             "is_completed": False,
             "status": "NOT_DONE",
             "test_status": "NOT_DONE",
-            "status_label": "परीक्षण नहीं हुआ (Soil Testing NOT Done)",
-            "message": "इस किसान का कोई पंजीकृत मृदा परीक्षण रिकॉर्ड नहीं मिला। कृपया परीक्षण स्लॉट बुक करें।"
+            "status_label": "Soil Testing NOT Done",
+            "message": "No registered soil test record found for this farmer. Please book an appointment slot."
         }
 
     record = next((r for r in records if r.status == "COMPLETED"), records[0])
@@ -568,21 +567,21 @@ def get_farmer_soil_status(farmer_id_or_phone: str, crop_override: Optional[str]
         "crop_planned": target_crop,
         "land_area_acres": record.land_area_acres,
         "soil_type": record.soil_type,
-        "status_label": "परीक्षण संपन्न (Soil Testing Completed)" if is_completed else "प्रक्रियाधीन (Sample In Lab)",
+        "status_label": "Soil Testing Completed" if is_completed else "Sample In Lab / In Progress",
         "soil_health_card": {
             "ph_level": record.ph_level,
-            "ph_status": "सामान्य (Neutral)" if 6.5 <= record.ph_level <= 7.8 else ("अम्लीय (Acidic)" if record.ph_level < 6.5 else "क्षारीय (Alkaline)"),
+            "ph_status": "Neutral" if 6.5 <= record.ph_level <= 7.8 else ("Acidic" if record.ph_level < 6.5 else "Alkaline"),
             "ec_level": record.ec_level,
             "organic_carbon_percent": record.organic_carbon_percent,
-            "oc_status": "मध्यम (Medium)" if record.organic_carbon_percent >= 0.5 else "निम्न (Low)",
+            "oc_status": "Medium" if record.organic_carbon_percent >= 0.5 else "Low",
             "nitrogen_kg_ha": record.nitrogen_kg_ha,
-            "n_status": "निम्न (Low)" if record.nitrogen_kg_ha < 280 else ("मध्यम (Medium)" if record.nitrogen_kg_ha <= 560 else "उच्च (High)"),
+            "n_status": "Low" if record.nitrogen_kg_ha < 280 else ("Medium" if record.nitrogen_kg_ha <= 560 else "High"),
             "phosphorus_kg_ha": record.phosphorus_kg_ha,
-            "p_status": "मध्यम (Medium)" if 10 <= record.phosphorus_kg_ha <= 25 else ("निम्न (Low)" if record.phosphorus_kg_ha < 10 else "उच्च (High)"),
+            "p_status": "Medium" if 10 <= record.phosphorus_kg_ha <= 25 else ("Low" if record.phosphorus_kg_ha < 10 else "High"),
             "potassium_kg_ha": record.potassium_kg_ha,
-            "k_status": "मध्यम (Medium)" if 110 <= record.potassium_kg_ha <= 280 else ("निम्न (Low)" if record.potassium_kg_ha < 110 else "उच्च (High)"),
+            "k_status": "Medium" if 110 <= record.potassium_kg_ha <= 280 else ("Low" if record.potassium_kg_ha < 110 else "High"),
             "zinc_ppm": record.zinc_ppm,
-            "zinc_status": "कमी (Deficient)" if record.zinc_ppm < 0.6 else "पर्याप्त (Sufficient)",
+            "zinc_status": "Deficient" if record.zinc_ppm < 0.6 else "Sufficient",
             "sulphur_ppm": record.sulphur_ppm,
             "health_grade": record.health_status
         },
@@ -685,7 +684,7 @@ def update_soil_test_report(req: SoilTestUpdateRequest, db: Session = Depends(ge
             id=f"STR-{uuid.uuid4().hex[:8].upper()}",
             sample_id=req.sample_id or f"SHC-2026-{random.randint(1000, 9999)}",
             farmer_id=farmer.id if farmer else "USR-FARMER-01",
-            farmer_name=farmer.name if farmer else "किसान",
+            farmer_name=farmer.name if farmer else "Farmer",
             farmer_phone=farmer_phone,
             district="Karnal",
             state="Haryana",
@@ -711,14 +710,14 @@ def update_soil_test_report(req: SoilTestUpdateRequest, db: Session = Depends(ge
     record.health_status = req.health_status or "GOOD"
     record.status = "COMPLETED"
     record.tested_at = datetime.datetime.utcnow()
-    record.advisory_notes = req.advisory_notes or "परीक्षण पूर्ण। अनुशंसित उर्वरक मात्रा का ही प्रयोग करें।"
+    record.advisory_notes = req.advisory_notes or "Testing completed. Follow scientific dosage recommendations."
 
     db.commit()
     db.refresh(record)
 
     return {
         "success": True,
-        "message": "मृदा परीक्षण रिपोर्ट सफलतापूर्वक अपडेट की गई!",
+        "message": "Soil testing report updated successfully!",
         "record_id": record.id,
         "sample_id": record.sample_id,
         "status": record.status

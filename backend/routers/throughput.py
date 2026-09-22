@@ -20,7 +20,7 @@ router = APIRouter(tags=["Throughput Engine & Superintendent Command"])
 class CircuitBreakerRequest(BaseModel):
     center_id: str
     action: str = "HALT"  # 'HALT' or 'RESUME'
-    reason: str = "RAIN"  # 'RAIN', 'MACHINE_BREAKDOWN', 'GODOWN_SATURATED', 'OTHER'
+    reason: str = "RAIN"  # 'RAIN', 'MACHINE_BREAKDOWN', 'WAREHOUSE_SATURATED', 'OTHER'
     reason_label: Optional[str] = None
     defer_hours: int = 2
     operator_notes: Optional[str] = None
@@ -107,26 +107,26 @@ def get_superintendent_telemetry(
         {
             "stageKey": "GATE_SCANNED",
             "stageNameEn": "Gate Verification",
-            "stageNameHi": "गेट सत्यापन",
+            "stageNameHi": "Gate Verification",
             "icon": "🚜",
             "avgMinutes": 4.2,
             "benchmarkMinutes": 4.0,
             "thresholdWarning": 8.0,
             "status": "OPTIMAL",
-            "statusLabel": "सामान्य (Smooth)",
+            "statusLabel": "Smooth / Normal",
             "color": "emerald",
             "queueCount": 3
         },
         {
             "stageKey": "ASSAY_TESTING",
             "stageNameEn": "Assay Testing (Moisture/FAQ)",
-            "stageNameHi": "गुणवत्ता एवं नमी जांच",
+            "stageNameHi": "Quality & Moisture Assay",
             "icon": "🧪",
             "avgMinutes": 38.5,  # High bottleneck alert!
             "benchmarkMinutes": 15.0,
             "thresholdWarning": 25.0,
             "status": "ELEVATED_BOTTLENECK",
-            "statusLabel": "गंभीर रुकावट (High Bottleneck Alert)",
+            "statusLabel": "High Bottleneck Alert",
             "color": "rose",
             "queueCount": 9,
             "alertMessage": "Assay Bay 2 average wait time elevated: 38.5 mins (Moisture calibration variance)"
@@ -134,65 +134,65 @@ def get_superintendent_telemetry(
         {
             "stageKey": "GROSS_WEIGHED",
             "stageNameEn": "Gross Scale 1 (Loaded)",
-            "stageNameHi": "सकल इलेक्ट्रॉनिक तौल",
+            "stageNameHi": "Gross Weighing Scale",
             "icon": "⚖️",
             "avgMinutes": 6.5,
             "benchmarkMinutes": 6.0,
             "thresholdWarning": 12.0,
             "status": "OPTIMAL",
-            "statusLabel": "सामान्य (Smooth)",
+            "statusLabel": "Smooth / Normal",
             "color": "emerald",
             "queueCount": 2
         },
         {
             "stageKey": "UNLOADING_BAY",
             "stageNameEn": "Unloading Sheds / Silos",
-            "stageNameHi": "अनलोडिंग गोदाम शेड",
+            "stageNameHi": "Unloading Sheds & Bays",
             "icon": "📦",
             "avgMinutes": 14.8,
             "benchmarkMinutes": 12.0,
             "thresholdWarning": 20.0,
             "status": "OPTIMAL",
-            "statusLabel": "सामान्य (Smooth)",
+            "statusLabel": "Smooth / Normal",
             "color": "emerald",
             "queueCount": 4
         },
         {
             "stageKey": "TARE_WEIGHED",
             "stageNameEn": "Tare Scale 2 (Empty)",
-            "stageNameHi": "खाली वाहन तौल (Net Tare)",
+            "stageNameHi": "Tare Scale (Net Tare)",
             "icon": "🌾",
             "avgMinutes": 4.8,
             "benchmarkMinutes": 5.0,
             "thresholdWarning": 10.0,
             "status": "OPTIMAL",
-            "statusLabel": "सामान्य (Smooth)",
+            "statusLabel": "Smooth / Normal",
             "color": "emerald",
             "queueCount": 2
         },
         {
             "stageKey": "J_FORM_ISSUED",
             "stageNameEn": "Statutory e-J-Form",
-            "stageNameHi": "डिजिटल जे-फॉर्म जारी",
+            "stageNameHi": "Digital J-Form Issuance",
             "icon": "📜",
             "avgMinutes": 1.5,
             "benchmarkMinutes": 2.0,
             "thresholdWarning": 5.0,
             "status": "OPTIMAL",
-            "statusLabel": "त्वरित (Instant Digital)",
+            "statusLabel": "Instant Digital",
             "color": "emerald",
             "queueCount": 1
         },
         {
             "stageKey": "DBT_DISPATCHED",
             "stageNameEn": "DBT Bank Transfer",
-            "stageNameHi": "प्रत्यक्ष बैंक हस्तांतरण",
+            "stageNameHi": "Direct Benefit Transfer",
             "icon": "🏦",
             "avgMinutes": 8.2,
             "benchmarkMinutes": 10.0,
             "thresholdWarning": 30.0,
             "status": "OPTIMAL",
-            "statusLabel": "त्वरित (Instant 100%)",
+            "statusLabel": "Instant 100%",
             "color": "emerald",
             "queueCount": 0
         }
@@ -259,10 +259,10 @@ async def toggle_circuit_breaker(
     if payload.action.upper() == "HALT":
         rand_id = f"CB-2026-{random.randint(100, 999)}"
         reason_map = {
-            "RAIN": "अचानक भारी बारिश व जलभराव (Sudden Heavy Rain & Flooding)",
-            "MACHINE_BREAKDOWN": "वेईब्रिज मशीन खराबी (Weighbridge Mechanical Failure)",
-            "GODOWN_SATURATED": "गोदाम क्षमता पूर्ण / साइलो संतृप्ति (Godown Saturated)",
-            "OTHER": "प्रशासनिक आपातकाल (Administrative Emergency Halt)"
+            "RAIN": "Sudden Heavy Rain & Flooding",
+            "MACHINE_BREAKDOWN": "Weighbridge Mechanical Failure",
+            "WAREHOUSE_SATURATED": "Warehouse Saturated / Silo Full",
+            "OTHER": "Administrative Emergency Halt"
         }
         reason_label = payload.reason_label or reason_map.get(payload.reason, "Emergency Operational Halt")
 
@@ -297,7 +297,7 @@ async def toggle_circuit_breaker(
             "reasonLabel": reason_label,
             "deferHours": payload.defer_hours,
             "smsCountSent": simulated_sms_count,
-            "smsSample": f"अलर्ट: {center.name} में {reason_label} के कारण आपका स्लॉट {payload.defer_hours} घंटे के लिए स्थगित किया गया है। टोकन प्राथमिकता सुरक्षित है।"
+            "smsSample": f"ALERT: Due to {reason_label} at {center.name}, your slot has been deferred by {payload.defer_hours} hour(s). Token priority preserved."
         })
 
         return {

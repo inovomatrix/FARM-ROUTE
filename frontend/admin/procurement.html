@@ -103,14 +103,14 @@
         <div>
           <div class="flex items-center gap-2 mb-1.5">
             <span class="text-xs font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-              Procurement Oversight (खरीद एवं तौल रिकॉर्ड)
+              Procurement Oversight
             </span>
             <span class="text-[10px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl font-bold text-slate-900 tracking-tight">
-            District Crop Procurement & Weighment Oversight (जिला खरीद एवं तौल निगरानी)
+            District Crop Procurement & Weighment Oversight
           </h1>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
             Audit weighbridge gross and tare captures, moisture analysis, net purchase quintals, and DBT payment
@@ -179,10 +179,10 @@
           <select id="proc-crop-filter"
             class="text-xs py-2 px-3 border border-slate-200 rounded-lg focus:outline-none focus:border-amber-500 bg-white">
             <option value="all">All Commodities</option>
-            <option value="wheat">Wheat (गेहूं)</option>
-            <option value="paddy">Paddy (धान)</option>
-            <option value="mustard">Mustard (सरसों)</option>
-            <option value="cotton">Cotton (कपास)</option>
+            <option value="wheat">Wheat</option>
+            <option value="paddy">Paddy</option>
+            <option value="mustard">Mustard</option>
+            <option value="cotton">Cotton</option>
           </select>
         </div>
         <div class="text-[11px] text-slate-400 font-mono hidden sm:block">
@@ -327,11 +327,11 @@
 
         emptyState.classList.add('hidden');
         tbody.innerHTML = filtered.map(rec => {
-          const isCompleted = rec.status.includes('पूर्ण');
+          const isCompleted = rec.status.includes('Completed');
 
           let statusBadge = isCompleted
-            ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">&check; खरीद पूर्ण (Completed)</span>`
-            : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">खरीद प्रक्रिया में (In Progress)</span>`;
+            ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">&check; Procurement Completed</span>`
+            : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Procurement in Progress</span>`;
 
           return `
             <tr class="hover:bg-slate-50/70 transition-colors">

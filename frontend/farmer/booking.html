@@ -44,15 +44,11 @@
 
       <!-- Navigation & Logout -->
       <div class="flex items-center gap-3">
-        <!-- Language Switcher Option (English / Hindi) -->
+        <!-- Language Switcher Option (English) -->
         <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-          title="Language">
+          title="Language: English">
           <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-            class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
-            EN
-          </button>
-          <button type="button" data-lang="hi" onclick="window.KisanI18n && window.KisanI18n.setLanguage('hi')"
-            class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
+            class="px-2.5 py-1 rounded-md transition-all bg-emerald-600 text-white cursor-default">
             EN
           </button>
         </div>
@@ -178,11 +174,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              <span>ज़िला, राज्य</span>
+              <span>District, State</span>
             </p>
           </div>
           <div class="text-right text-xs">
-            <span class="text-slate-400 block text-[10px] uppercase font-bold">समय</span>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Time</span>
             <span class="font-medium text-slate-700" id="center-hours">09:00 AM – 05:00 PM</span>
           </div>
         </div>
@@ -222,8 +218,8 @@
               2
             </span>
             <div>
-              <h2 class="text-sm font-bold text-slate-900">तारीख चुनें (Select Date)</h2>
-              <p class="text-[11px] text-slate-500">खरीद केंद्र पर आने की उपयुक्त तारीख चुनें</p>
+              <h2 class="text-sm font-bold text-slate-900">Select Date</h2>
+              <p class="text-[11px] text-slate-500">Select your preferred arrival date for crop procurement</p>
             </div>
           </div>
           <span
@@ -238,7 +234,7 @@
         </div>
       </div>
 
-      <!-- Step 3: Select Time Slot (Dynamic Mandi Throughput Engine) -->
+      <!-- Step 3: Select Time Slot (Dynamic Market Throughput Engine) -->
       <div class="card p-6 bg-white border-slate-200 shadow-xs space-y-4">
         <div class="flex flex-wrap items-center justify-between pb-3 border-b border-slate-100 gap-2">
           <div class="flex items-center gap-2.5">
@@ -248,12 +244,12 @@
             </span>
             <div>
               <div class="flex items-center gap-2">
-                <h2 class="text-sm font-bold text-slate-900">समय स्लॉट चुनें • डायनामिक थ्रूपुट इंजन</h2>
+                <h2 class="text-sm font-bold text-slate-900">Select Time Slot • Dynamic Market Throughput Engine</h2>
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
                   SIH26032 Core
                 </span>
               </div>
-              <p class="text-[11px] text-slate-500">भौतिक वेईब्रिज क्षमता और थ्रूपुट पर आधारित गतिशील स्लॉट आवंटन</p>
+              <p class="text-[11px] text-slate-500">Dynamic slot allocation based on physical weighbridge capacity and throughput rates</p>
             </div>
           </div>
           <span
@@ -267,9 +263,9 @@
         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
             <span class="font-bold text-slate-700 flex items-center gap-1.5">
-              <span>⚙️</span> थ्रूपुट सूत्र (Throughput Formula):
+              <span>⚙️</span> Dynamic Throughput Formula:
               <code class="font-mono text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200" id="throughput-formula-badge">
-                (2 वेईब्रिज × 10 दर/घंटा) - 2 बफर = 18 वाहन/घंटा
+                (2 Weighbridges × 10 Rate/Hr) - 2 Buffer = 18 Vehicles/Hr
               </code>
             </span>
             <span class="text-[11px] text-slate-500 font-medium" id="throughput-hardware-note">
@@ -282,7 +278,7 @@
             <span class="text-slate-400 font-bold uppercase text-[10px]">3-Tier Capacity:</span>
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
               <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-              &lt; 60% सुगम (Low Load / Fast-Track)
+              &lt; 60% Low Load (Fast-Track)
             </span>
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-semibold">
               <span class="w-2 h-2 rounded-full bg-amber-600"></span>
@@ -290,7 +286,7 @@
             </span>
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-rose-50 text-rose-800 border border-rose-200 font-semibold">
               <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-              &gt; 85% अत्यधिक भीड़ (Saturated / Locked)
+              &gt; 85% Saturated (Locked)
             </span>
           </div>
         </div>
@@ -307,10 +303,10 @@
               <span class="text-lg">📍</span>
               <div>
                 <h4 class="text-xs font-bold text-amber-900">
-                  कम भीड़ वाले नजदीकी खरीद केंद्र (Nearby Low-Load Procurement Mandis)
+                  Nearby Low-Load Procurement Centers
                 </h4>
                 <p class="text-[11px] text-amber-700">
-                  इस केंद्र पर भीड़ अधिक है। कतार में समय बचाने हेतु नजदीकी केंद्र चुनें:
+                  High congestion at this center. Select nearby alternative centers to save waiting time:
                 </p>
               </div>
             </div>
@@ -339,15 +335,15 @@
           </div>
           <div>
             <span class="text-slate-400 block text-[10px] uppercase font-bold">Crop</span>
-            <span class="font-bold text-slate-900" id="summary-commodity">चयन प्रतीक्षित</span>
+            <span class="font-bold text-slate-900" id="summary-commodity">Pending Selection</span>
           </div>
           <div>
-            <span class="text-slate-400 block text-[10px] uppercase font-bold">तारीख (Date)</span>
-            <span class="font-bold text-slate-900" id="summary-date">चयन प्रतीक्षित</span>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Date</span>
+            <span class="font-bold text-slate-900" id="summary-date">Pending Selection</span>
           </div>
           <div>
             <span class="text-slate-400 block text-[10px] uppercase font-bold">Time Slot</span>
-            <span class="font-bold text-slate-900" id="summary-slot">चयन प्रतीक्षित</span>
+            <span class="font-bold text-slate-900" id="summary-slot">Pending Selection</span>
           </div>
         </div>
 
@@ -358,15 +354,15 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <span id="validation-message">कृपया फसल, तारीख और समय स्लॉट चुनें। (Please complete all 3 selections)</span>
+          <span id="validation-message">Please select commodity, date, and delivery time slot.</span>
         </div>
 
         <!-- Note on prototype nature -->
         <div class="mt-4 text-[11px] text-slate-500 flex items-start gap-1.5 leading-relaxed">
           <span class="text-amber-500 font-bold shrink-0">ℹ</span>
           <span>
-            यह एक प्रोटोटाइप स्लॉट बुकिंग प्रणाली है। पुष्टि करने पर डिजिटल टोकन पर्ची तैयार होगी। केंद्र पर पहुंचने पर
-            गेट ऑपरेटर द्वारा सत्यापन के बाद लाइव कतार स्थिति सक्रिय होगी।
+            Online delivery booking system. Confirming creates your digital pass and QR receipt.
+            Live queue tracking activates upon physical arrival and gate check-in.
           </span>
         </div>
 
@@ -443,9 +439,9 @@
         const avail = window.FarmerPortal.getCenterAvailability(center.id);
         document.getElementById('unavailable-reason-badge').textContent = avail.reason || avail.labelEnglish;
         document.getElementById('unavailable-explanation').textContent =
-          avail.status === 'maintenance' ? 'यह केंद्र वर्तमान में रखरखाव में है (Center currently under maintenance)। इस केंद्र पर अभी नया स्लॉट बुक नहीं किया जा सकता।' :
-            (avail.status === 'paused' ? 'केंद्र पर परिचालन अस्थायी रूप से रोक दिया गया है (Operations temporarily paused)। इस केंद्र पर अभी नया स्लॉट बुक नहीं किया जा सकता।' :
-              (avail.status === 'closed' ? 'यह केंद्र वर्तमान में बंद है (Center currently closed)। इस केंद्र पर अभी नया स्लॉट बुक नहीं किया जा सकता।' :
+          avail.status === 'maintenance' ? 'Center currently under maintenance. Slot bookings unavailable.' :
+            (avail.status === 'paused' ? 'Operations temporarily paused at this center. Slot bookings unavailable.' :
+              (avail.status === 'closed' ? 'Center currently closed. Slot bookings unavailable.' :
                 'New slot bookings are temporarily paused at this center.'));
         document.getElementById('unavailable-view-details-btn').setAttribute('href', `center-details.html?id=${encodeURIComponent(center.id)}`);
         unavailableContainer.classList.remove('hidden');
@@ -571,7 +567,7 @@
         });
       }
 
-      // 7. Dynamic Mandi Throughput Engine — Slot Allocation
+      // 7. Dynamic Market Throughput Engine — Slot Allocation
       const slotOptions = document.getElementById('slot-options');
       const formulaBadge = document.getElementById('throughput-formula-badge');
       const hardwareNote = document.getElementById('throughput-hardware-note');
@@ -591,7 +587,7 @@
         // Update hardware throughput header
         if (formulaBadge) formulaBadge.textContent = dynamicSchedule.formulaText;
         if (hardwareNote) {
-          hardwareNote.textContent = `${dynamicSchedule.hourlyCapacity} वाहन/घंटा क्षमता • कुल दैनिक कोटा: ${dynamicSchedule.totalDayCapacity} वाहन`;
+          hardwareNote.textContent = `${dynamicSchedule.hourlyCapacity} Vehicles/Hour Capacity • Daily Intake Capacity: ${dynamicSchedule.totalDayCapacity} Vehicles`;
         }
 
         // Render 3-tier slots
@@ -602,15 +598,15 @@
                 <div class="flex items-center justify-between mb-2">
                   <span class="font-bold text-slate-700">${slot.timeRange}</span>
                   <span class="text-[10px] font-black px-2 py-0.5 rounded bg-rose-200 text-rose-800 flex items-center gap-1">
-                    <span>🔒</span> संतृप्त (Locked)
+                    <span>🔒</span> Saturated (Locked)
                   </span>
                 </div>
                 <div class="w-full bg-rose-200 h-1.5 rounded-full overflow-hidden my-1.5">
                   <div class="bg-rose-600 h-full rounded-full" style="width: ${slot.utilizationPercent}%;"></div>
                 </div>
                 <div class="flex items-center justify-between text-[10px] text-rose-800 font-semibold mt-1">
-                  <span>क्षमता पूर्ण: ${slot.bookedVehicles}/${slot.hourlyCapacity} वाहन</span>
-                  <span class="font-bold">${slot.utilizationPercent}% (संतृप्त)</span>
+                  <span>Capacity Reached: ${slot.bookedVehicles}/${slot.hourlyCapacity} Vehicles</span>
+                  <span class="font-bold">${slot.utilizationPercent}% (Saturated)</span>
                 </div>
               </div>
             `;
@@ -628,7 +624,7 @@
               <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 w-full">
                 <span class="font-medium">${slot.bookedVehicles}/${slot.hourlyCapacity} vehicles • ${slot.availableCapacity} slots left</span>
                 <span class="font-bold px-1.5 py-0.5 rounded text-[10px] ${slot.badgeClass}">
-                  ${slot.labelHindi.split('(')[0].trim()} (${slot.utilizationPercent}%)
+                  ${slot.labelEnglish.split('(')[0].trim()} (${slot.utilizationPercent}%)
                 </span>
               </div>
             </button>
@@ -661,7 +657,7 @@
                 <div class="text-[11px] text-amber-800 mt-0.5">${a.recommendationReason}</div>
               </div>
               <a href="booking.html?centerId=${a.centerId}" class="px-2.5 py-1.5 rounded-md bg-[#15803d] hover:bg-emerald-700 text-white font-bold text-[11px] shrink-0 ml-2 shadow-2xs">
-                यहाँ बुक करें &rarr;
+                Book Here &rarr;
               </a>
             </div>
           `).join('');
@@ -698,7 +694,7 @@
         // SECONDARY SAFETY CHECK
         if (!window.FarmerPortal.isCenterAcceptingBookings(center.id)) {
           const avail = window.FarmerPortal.getCenterAvailability(center.id);
-          validationMessage.textContent = `बुकिंग असफल: यह केंद्र वर्तमान में नई बुकिंग स्वीकार नहीं कर रहा है (${avail.reason || avail.labelEnglish})। कृपया दूसरा केंद्र चुनें।`;
+          validationMessage.textContent = `Booking Failed: Facility is not currently accepting new reservations (${avail.reason || avail.labelEnglish}). Please select an alternative center.`;
           validationWarning.classList.remove('hidden');
           validationWarning.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
@@ -707,7 +703,7 @@
         // Validation check
         const missing = [];
         if (!selectedCommodity) missing.push("Commodity");
-        if (!selectedDate) missing.push("तारीख (Date)");
+        if (!selectedDate) missing.push("Date");
         if (!selectedSlot) missing.push("Time Slot");
 
         if (missing.length > 0) {
@@ -779,7 +775,7 @@
         if (saved) {
           window.location.href = "booking-confirmation.html";
         } else {
-          validationMessage.textContent = "बुकिंग सहेजने में त्रुटि हुई। कृपया पुनः प्रयास करें।";
+          validationMessage.textContent = "Error saving booking reservation. Please try again.";
           validationWarning.classList.remove('hidden');
         }
       });

@@ -103,14 +103,14 @@
         <div>
           <div class="flex items-center gap-2 mb-1.5">
             <span class="text-xs font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-              Read-Only Queue Board (कतार निगरानी बोर्ड)
+              Read-Only Queue Board
             </span>
             <span class="text-[10px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl font-bold text-slate-900 tracking-tight">
-            District Live Queue Monitoring (जिला कतार निगरानी)
+            District Live Queue Monitoring
           </h1>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
             Real-time administrative view of vehicle intake across all district centers. Monitor waiting lines, gate
@@ -290,8 +290,8 @@
         let countCompleted = 0;
 
         baseFiltered.forEach(item => {
-          const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-          const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
+          const isCompleted = (item.status || "").includes("Procurement Completed");
+          const isInProgress = (item.status || "").includes("Procurement in Progress") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
 
           if (item.arrivalStatus === 'arrived') countArrived++;
           if (item.arrivalStatus === 'checked_in') countCheckedIn++;
@@ -309,8 +309,8 @@
 
         // Apply Status Filter
         const filtered = baseFiltered.filter(item => {
-          const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-          const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
+          const isCompleted = (item.status || "").includes("Procurement Completed");
+          const isInProgress = (item.status || "").includes("Procurement in Progress") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
 
           if (currentFilter === 'all') return true;
           if (currentFilter === 'arrived') return item.arrivalStatus === 'arrived';
@@ -332,8 +332,8 @@
 
         emptyState.classList.add('hidden');
         tbody.innerHTML = filtered.map(item => {
-          const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-          const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
+          const isCompleted = (item.status || "").includes("Procurement Completed");
+          const isInProgress = (item.status || "").includes("Procurement in Progress") || (item.queuePosition === 0 && item.arrivalStatus === 'checked_in' && !isCompleted);
 
           // Arrival Badge
           let arrivalBadge = '';
@@ -358,15 +358,15 @@
           // Status Badge
           let statusBadge = '';
           if (isCompleted) {
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">खरीद पूर्ण (Completed)</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">Procurement Completed</span>`;
           } else if (isInProgress) {
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">खरीद प्रक्रिया में (In Progress)</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Procurement in Progress</span>`;
           } else if (item.queuePosition === 1) {
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">आपकी बारी जल्द है (Turn Next)</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">Your Turn Is Next</span>`;
           } else if (item.arrivalStatus === 'checked_in') {
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">कतार में प्रतीक्षा (Waiting)</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">Waiting in Queue</span>`;
           } else {
-            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-500">बुकिंग पुष्ट (Booked)</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-500">Booking Confirmed</span>`;
           }
 
           return `

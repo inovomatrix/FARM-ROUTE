@@ -395,7 +395,7 @@
         // Status Badge
         const statusBadgeEl = document.getElementById('booking-status-badge');
         statusBadgeEl.className = `inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${badge.badgeClass}`;
-        statusBadgeEl.innerHTML = `<span class="w-2 h-2 rounded-full ${badge.dotColor}"></span> ${badge.labelHindi} (${badge.labelEnglish})`;
+        statusBadgeEl.innerHTML = `<span class="w-2 h-2 rounded-full ${badge.dotColor}"></span> ${badge.labelEnglish}`;
 
         // Digital Token
         const tokenNum = currentBooking.tokenId || window.FarmerPortal.generateTokenNumber(currentBooking);
@@ -415,7 +415,7 @@
         document.getElementById('detail-farmer-name').textContent = currentBooking.farmerName || user.name || 'Demo Farmer';
         document.getElementById('detail-farmer-phone').textContent = currentBooking.farmerPhone || user.phone || '9876543210';
         document.getElementById('detail-created-at').textContent = currentBooking.createdAt
-          ? new Date(currentBooking.createdAt).toLocaleString('hi-IN')
+          ? new Date(currentBooking.createdAt).toLocaleString('en-IN')
           : 'Recent';
 
         // Cancellation or Status Metadata Row
@@ -425,12 +425,12 @@
         if (status === 'CANCELLED') {
           metaLabel.textContent = 'Cancelled At:';
           metaValue.textContent = currentBooking.cancelledAt
-            ? new Date(currentBooking.cancelledAt).toLocaleString('hi-IN') + (currentBooking.cancelledBy ? ` (${currentBooking.cancelledBy})` : '')
+            ? new Date(currentBooking.cancelledAt).toLocaleString('en-IN') + (currentBooking.cancelledBy ? ` (${currentBooking.cancelledBy})` : '')
             : 'Cancelled';
           metaValue.className = 'font-bold text-rose-600';
         } else {
           metaLabel.textContent = 'Current Status:';
-          metaValue.textContent = `${badge.labelHindi} (${badge.labelEnglish})`;
+          metaValue.textContent = badge.labelEnglish;
           metaValue.className = 'font-medium text-slate-700';
         }
 

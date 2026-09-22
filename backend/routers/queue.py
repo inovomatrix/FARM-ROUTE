@@ -99,8 +99,8 @@ def get_center_queue(center_id: str, db: Session = Depends(get_db)):
     today_bookings = len(all_items)
     arrived = sum(1 for e in all_items if e["arrivalStatus"] in ["arrived", "checked_in"])
     in_queue = sum(1 for e in all_items if e["arrivalStatus"] == "checked_in" and e["queuePosition"] > 0)
-    in_progress = sum(1 for e in all_items if e["queuePosition"] == 0 and "खरीद पूर्ण" not in e["status"])
-    completed = sum(1 for e in all_items if "खरीद पूर्ण" in e["status"] or e["currentStage"] == "DBT_DISPATCHED")
+    in_progress = sum(1 for e in all_items if e["queuePosition"] == 0 and "Procurement Completed" not in e["status"])
+    completed = sum(1 for e in all_items if "Procurement Completed" in e["status"] or e["currentStage"] == "DBT_DISPATCHED")
 
     return {
         "success": True,
@@ -217,7 +217,7 @@ async def gate_checkin(payload: GateCheckinAdvancedRequest, db: Session = Depend
             arrival_status="checked_in",
             current_stage="GATE_SCANNED",
             assigned_bay=assigned_bay,
-            status="गेट सत्यापन पूर्ण (Gate Verified)"
+            status="Gate Verified"
         )
         db.add(queue_entry)
         db.commit()
@@ -324,7 +324,7 @@ async def report_transit_delay(payload: TransitDelayReportRequest, db: Session =
         "success": True,
         "tokenId": booking.token_id,
         "currentStage": "TRANSIT_DELAYED",
-        "message": "रास्ते में देरी दर्ज की गई। स्लॉट रद्द नहीं हुआ — 60 मिनट की अतिरिक्त ग्रेस विंडो प्रदान की गई है।",
+        "message": "Transit delay recorded. Slot not cancelled — 60-minute grace window granted.",
         "graceMinutes": 60,
         "reason": payload.reason,
         "arrivalWindowEnd": booking.arrival_window_end.isoformat() if booking.arrival_window_end else None
@@ -378,7 +378,7 @@ async def supervisor_override_standby(payload: SupervisorOverrideRequest, db: Se
         "success": True,
         "tokenId": booking.token_id,
         "status": "GATE_SCANNED_STANDBY",
-        "message": f"अधीक्षक विशेष अनुमति स्वीकृत: {booking.farmer_name} को स्टैंडबाई कतार में प्रवेश दिया गया।",
+        "message": f"Supervisor special admission approved: {booking.farmer_name} admitted to standby queue.",
         "result": result
     }
 
@@ -432,16 +432,16 @@ async def advance_queue(payload: QueueAdvanceRequest, db: Session = Depends(get_
     booking = db.query(Booking).filter(Booking.id == queue_entry.booking_id).first()
 
     if new_pos == 1:
-        queue_entry.status = "आपकी बारी जल्द है (Your Turn Is Next)"
+        queue_entry.status = "Your Turn Is Next"
     elif new_pos == 0:
-        queue_entry.status = "खरीद प्रक्रिया में (Procurement in Progress)"
+        queue_entry.status = "Procurement in Progress"
         if booking and booking.current_stage == "GATE_SCANNED":
             try:
                 transition_token_state(booking, "ASSAY_TESTING", {"operator": "QUEUE-SYSTEM"}, db)
             except Exception:
                 pass
     else:
-        queue_entry.status = "कतार में प्रतीक्षा (Waiting in Queue)"
+        queue_entry.status = "Waiting in Queue"
 
     if booking:
         booking.queue_position = new_pos
@@ -487,7 +487,7 @@ async def complete_procurement(payload: ProcurementActionRequest, db: Session = 
     booking.tare_weight = tare
     booking.net_weight = net
     booking.assay_moisture = payload.moisture_percent or 10.5
-    booking.status = "खरीद पूर्ण (Procurement Completed)"
+    booking.status = "Procurement Completed"
     booking.current_stage = "DBT_DISPATCHED"
     booking.dbt_ref_no = dbt_ref
     booking.dbt_status = "SUCCESS"
@@ -500,7 +500,7 @@ async def complete_procurement(payload: ProcurementActionRequest, db: Session = 
         queue_entry.total_vehicles_ahead = 0
         queue_entry.estimated_wait_minutes = 0
         queue_entry.current_stage = "DBT_DISPATCHED"
-        queue_entry.status = "खरीद पूर्ण (Procurement Completed)"
+        queue_entry.status = "Procurement Completed"
         queue_entry.gross_weight = gross
         queue_entry.tare_weight = tare
         queue_entry.net_weight = net
@@ -583,9 +583,9 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
         {
             "lane": "Weighbridge Scale 1 (Inbound)",
             "laneKey": "GROSS_LANE",
-            "type": "GROSS (सकल भार)",
+            "type": "GROSS (Loaded Weight)",
             "tokenId": entries[0].token_id if len(entries) > 0 else "KS-TKN-1002",
-            "farmerName": entries[0].farmer_name if len(entries) > 0 else "बलविंदर सिंह (Balwinder Singh)",
+            "farmerName": entries[0].farmer_name if len(entries) > 0 else "Balwinder Singh",
             "vehicleNumber": "HR-05-BC-8921",
             "commodity": entries[0].commodity if len(entries) > 0 else "Wheat (Grade A)",
             "grossWeight": 45.8,
@@ -595,9 +595,9 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
         {
             "lane": "Weighbridge Scale 2 (Outbound)",
             "laneKey": "TARE_LANE",
-            "type": "TARE / NET (खाली तौल)",
+            "type": "TARE / NET (Empty Weight)",
             "tokenId": entries[1].token_id if len(entries) > 1 else "KS-TKN-1004",
-            "farmerName": entries[1].farmer_name if len(entries) > 1 else "राजिंदर कुमार (Rajinder Kumar)",
+            "farmerName": entries[1].farmer_name if len(entries) > 1 else "Rajinder Kumar",
             "vehicleNumber": "HR-05-PQ-4412",
             "commodity": entries[1].commodity if len(entries) > 1 else "Paddy (PR-126)",
             "grossWeight": 14.2,
@@ -607,43 +607,43 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
         }
     ]
 
-    # Unloading Bays / Godown Sheds
+    # Unloading Bays / Warehouse Sheds
     unloading_sheds = [
         {
             "bayId": "SHED-BAY-A1",
-            "shedName": "गोदाम शेड नं. 1 (Central Godown A)",
+            "shedName": "Warehouse Shed No. 1 (Central Warehouse A)",
             "tokenId": "KS-TKN-1005",
-            "farmerName": "कुलदीप सिंह",
+            "farmerName": "Kuldeep Singh",
             "vehicleNumber": "HR-05-AB-7711",
             "commodity": "Wheat (FAQ Grade-1)",
             "status": "UNLOADING_IN_PROGRESS",
-            "statusLabel": "बोरी खालीकरण जारी (Unloading)",
+            "statusLabel": "Bags Unloading in Progress",
             "color": "amber",
             "bagsUnloaded": 180,
             "totalBags": 220
         },
         {
             "bayId": "SHED-BAY-A2",
-            "shedName": "गोदाम शेड नं. 1 (Central Godown A)",
+            "shedName": "Warehouse Shed No. 1 (Central Warehouse A)",
             "tokenId": "KS-TKN-1007",
-            "farmerName": "जसविंदर चीमा",
+            "farmerName": "Jaswinder Cheema",
             "vehicleNumber": "PB-11-TR-8821",
             "commodity": "Paddy (PR-126)",
             "status": "UNLOADING_COMPLETED",
-            "statusLabel": "खालीकरण पूर्ण • वेईब्रिज-2 प्रस्थान",
+            "statusLabel": "Unloading Completed • Exit to Scale 2",
             "color": "emerald",
             "bagsUnloaded": 250,
             "totalBags": 250
         },
         {
             "bayId": "SHED-BAY-B1",
-            "shedName": "साइलो प्लेटफार्म नं. 2 (Bulk Silo Shed B)",
+            "shedName": "Silo Platform No. 2 (Bulk Silo Shed B)",
             "tokenId": "KS-TKN-1009",
-            "farmerName": "धर्मपाल यादव",
+            "farmerName": "Dharampal Yadav",
             "vehicleNumber": "HR-02-MN-9912",
             "commodity": "Wheat (Sharbati)",
             "status": "UNLOADING_IN_PROGRESS",
-            "statusLabel": "अनलोडिंग जारी",
+            "statusLabel": "Unloading in Progress",
             "color": "amber",
             "bagsUnloaded": 95,
             "totalBags": 200
@@ -654,10 +654,10 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
     standby_queue = [
         {
             "tokenId": "KS-TKN-0994",
-            "farmerName": "गुरदीप बाजवा",
+            "farmerName": "Gurdeep Bajwa",
             "vehicleNumber": "PB-02-XY-1011",
             "commodity": "Wheat",
-            "reason": "STANDBY_OVERDUE (देरी से आगमन)",
+            "reason": "STANDBY_OVERDUE (Delayed Arrival)",
             "status": "STANDBY_WAITING",
             "overrideEligible": True
         }
@@ -680,10 +680,10 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
     else:
         # High quality demo entries if queue empty
         next_in_queue = [
-            {"queuePos": 1, "tokenId": "KS-TKN-1011", "farmerName": "सुरेश कुमार (Suresh Kumar)", "commodity": "Wheat (Grade A)", "vehicleNumber": "HR-05-AB-1234", "callGate": "Gate Bay 1", "estWaitMins": 4},
-            {"queuePos": 2, "tokenId": "KS-TKN-1015", "farmerName": "हरप्रीत मान (Harpreet Mann)", "commodity": "Paddy (Basmati)", "vehicleNumber": "PB-11-XY-9021", "callGate": "Gate Bay 2", "estWaitMins": 9},
-            {"queuePos": 3, "tokenId": "KS-TKN-1018", "farmerName": "राम किशन (Ram Kishan)", "commodity": "Wheat (Grade A)", "vehicleNumber": "HR-02-MN-3342", "callGate": "Gate Bay 1", "estWaitMins": 14},
-            {"queuePos": 4, "tokenId": "KS-TKN-1022", "farmerName": "कुलदीप शर्मा (Kuldeep Sharma)", "commodity": "Mustard (सरसों)", "vehicleNumber": "HR-05-KL-7721", "callGate": "Gate Bay 2", "estWaitMins": 19}
+            {"queuePos": 1, "tokenId": "KS-TKN-1011", "farmerName": "Suresh Kumar", "commodity": "Wheat (Grade A)", "vehicleNumber": "HR-05-AB-1234", "callGate": "Gate Bay 1", "estWaitMins": 4},
+            {"queuePos": 2, "tokenId": "KS-TKN-1015", "farmerName": "Harpreet Mann", "commodity": "Paddy (Basmati)", "vehicleNumber": "PB-11-XY-9021", "callGate": "Gate Bay 2", "estWaitMins": 9},
+            {"queuePos": 3, "tokenId": "KS-TKN-1018", "farmerName": "Ram Kishan", "commodity": "Wheat (Grade A)", "vehicleNumber": "HR-02-MN-3342", "callGate": "Gate Bay 1", "estWaitMins": 14},
+            {"queuePos": 4, "tokenId": "KS-TKN-1022", "farmerName": "Kuldeep Sharma", "commodity": "Mustard", "vehicleNumber": "HR-05-KL-7721", "callGate": "Gate Bay 2", "estWaitMins": 19}
         ]
 
     # Assay Bay Assignments
@@ -691,23 +691,23 @@ def get_yard_screen_billboard_data(center_id: str, db: Session = Depends(get_db)
         {
             "bay": "Assay Station 1",
             "tokenId": "KS-TKN-1008",
-            "farmerName": "अमित चौधरी",
+            "farmerName": "Amit Choudhary",
             "moisture": "10.8%",
-            "status": "CLEARED (पास)",
+            "status": "CLEARED (Passed)",
             "color": "emerald"
         },
         {
             "bay": "Assay Station 2",
             "tokenId": "KS-TKN-1010",
-            "farmerName": "विक्रम गिल",
+            "farmerName": "Vikram Gill",
             "moisture": "11.6%",
-            "status": "TESTING (जांच जारी)",
+            "status": "TESTING (In Progress)",
             "color": "amber"
         },
         {
             "bay": "Assay Station 3",
             "tokenId": "KS-TKN-1012",
-            "farmerName": "गुरप्रीत संधू",
+            "farmerName": "Gurpreet Sandhu",
             "moisture": "12.4%",
             "status": "ALERT (>12% Aerating)",
             "color": "rose"

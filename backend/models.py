@@ -38,7 +38,7 @@ class Center(Base):
     accepted_crops = Column(Text, default="[]")  # JSON string
     facilities = Column(Text, default="[]")      # JSON string
     daily_capacity_mt = Column(Integer, default=500)
-    slot_duration = Column(String, default="60 मिनट")
+    slot_duration = Column(String, default="60 Mins")
     current_queue_vehicles = Column(Integer, default=0)
     estimated_wait_minutes = Column(Integer, default=0)
     load_status = Column(String, default="low")  # 'low', 'medium', 'high'
@@ -130,7 +130,7 @@ class QueueEntry(Base):
     total_vehicles_ahead = Column(Integer, default=0)
     estimated_wait_minutes = Column(Integer, default=15)
     arrival_status = Column(String, default="checked_in")
-    status = Column(String, default="कतार में प्रतीक्षा (Waiting in Queue)")
+    status = Column(String, default="Waiting in Queue")
 
     # State-Machine Sync & Physical Mandi Cycle
     current_stage = Column(String, default="BOOKED")
@@ -241,7 +241,7 @@ class SoilTestRecord(Base):
     time_slot = Column(String, nullable=False)
     crop_planned = Column(String, nullable=False, default="Wheat (Grade A)")
     land_area_acres = Column(Float, default=5.0)
-    soil_type = Column(String, default="Alluvial Loam (दोमट मिट्टी)")
+    soil_type = Column(String, default="Alluvial Loam")
     status = Column(String, default="COMPLETED")                # 'BOOKED', 'SAMPLE_COLLECTED', 'IN_TESTING', 'COMPLETED'
     
     # Soil Health Card Parameters
@@ -268,7 +268,7 @@ class CircuitBreakerEvent(Base):
     center_name = Column(String, nullable=False)
     is_halted = Column(Boolean, default=True)
     reason = Column(String, nullable=False)                    # 'RAIN', 'MACHINE_BREAKDOWN', 'GODOWN_SATURATED', 'OTHER'
-    reason_label = Column(String, nullable=False)              # e.g. 'अचानक भारी बारिश (Sudden Heavy Rain)'
+    reason_label = Column(String, nullable=False)              # e.g. 'Sudden Heavy Rain & Flooding'
     affected_slots = Column(Text, default="[]")                # JSON array of slot strings
     defer_hours = Column(Integer, default=2)
     sms_count_sent = Column(Integer, default=0)

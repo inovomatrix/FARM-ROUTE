@@ -156,7 +156,7 @@
             <span>Kisan Vani</span>
             <span class="kv-launcher-mic-badge">AI Voice</span>
           </div>
-          <span class="kv-launcher-sub">Rates, Dates & Mandi Support</span>
+          <span class="kv-launcher-sub">Rates, Dates & Market Support</span>
         </div>
       </button>
     `;
@@ -573,13 +573,13 @@
     const welcomeData = {
       response: `**Welcome ${farmerName}! 🙏 I am Kisan Vani, your digital agricultural assistant.**\n\n` +
         `I can assist you with:\n` +
-        `• 🌾 **MSP Floor Prices & Mandi Rates**\n` +
+        `• 🌾 **MSP Floor Prices & Market Rates**\n` +
         `• 📅 **Official Procurement Schedules & Dates**\n` +
         `• 📍 **Nearby Procurement Centers & Queue Congestion**\n` +
         `• ⚡ **Digital Tokens & Weighbridge Slot Booking**\n` +
         `• 💳 **Direct Benefit Transfer (DBT) & Grievance Redressal**\n\n` +
         `*Click the microphone to speak, type your question, or choose an option below.*`,
-      audio_text: `Welcome ${farmerName}! I am Kisan Vani. You can ask me about crop MSP rates, procurement schedules, nearby mandis, and slot bookings.`,
+      audio_text: `Welcome ${farmerName}! I am Kisan Vani. You can ask me about crop MSP rates, procurement schedules, nearby markets, and slot bookings.`,
       quick_actions: [
         { label: "🌾 MSP Floor Rates", url: "farmer/centers.html" },
         { label: "📍 Nearby Centers", url: "farmer/centers.html" },
@@ -588,7 +588,7 @@
       suggestions: [
         "What is the MSP rate for wheat?",
         "When does mustard procurement start?",
-        "How congested is Karnal mandi?",
+        "How congested is Karnal market?",
         "How do I book a token?",
         "When will DBT payment be credited?"
       ]
@@ -671,7 +671,7 @@
             `• **End Date:** **${k.end}**\n` +
             `• **Minimum Support Price (MSP):** **${k.msp}**\n` +
             `• **Moisture Ceiling:** ${k.moisture}\n\n` +
-            `💡 *Ensure you reserve a time slot on KisanSetu before departing for the mandi.*`,
+            `💡 *Ensure you reserve a time slot on KisanSetu before departing for the market.*`,
           audio_text: `Government procurement of ${k.crop} runs from ${k.start} to ${k.end}. The support price is ${k.msp}.`,
           quick_actions: [
             { label: "⚡ Book a Slot", url: `farmer/booking.html?crop=${matchedCropKey}` },
@@ -689,7 +689,7 @@
             `🌾 **Kharif Season:**\n` +
             `• Paddy: 1 October 2026 to 15 November 2026 (MSP: ₹2,183)\n` +
             `• Bajra: 1 October 2026 to 15 November 2026 (MSP: ₹2,500)\n\n` +
-            `🕒 Mandi Operational Hours: 09:00 AM to 05:00 PM (Monday - Saturday)`,
+            `🕒 Market Operational Hours: 09:00 AM to 05:00 PM (Monday - Saturday)`,
           audio_text: "Mustard procurement starts on 15 March, and wheat and gram begin on 1 April 2026. Paddy procurement starts on 1 October.",
           quick_actions: [
             { label: "⚡ Book a Token", url: "farmer/booking.html" },
@@ -707,7 +707,7 @@
         return {
           response: `🌾 **${k.crop} Official MSP & Rate Structure**:\n\n` +
             `• **Government MSP:** **${k.msp}**\n` +
-            `• **Demo Mandi Rate:** ${k.demo}\n` +
+            `• **Demo Market Rate:** ${k.demo}\n` +
             `• **Acceptable Moisture:** ${k.moisture}\n` +
             `• **Payment:** Direct bank transfer (DBT) within 48-72 hours.`,
           audio_text: `The government MSP rate for ${k.crop} is ${k.msp}.`,
@@ -722,8 +722,8 @@
     // 3. Booking query
     if (qLower.includes('booking') || qLower.includes('book') || qLower.includes('token') || qLower.includes('slot')) {
       return {
-        response: `⚡ **Easy Steps to Book a Mandi Token**:\n\n` +
-          `1. Go to 'Find Procurement Center' and select your mandi.\n` +
+        response: `⚡ **Easy Steps to Book a Market Token**:\n\n` +
+          `1. Go to 'Find Procurement Center' and select your market.\n` +
           `2. Choose your crop and enter estimated quantity in quintals.\n` +
           `3. Pick a convenient date and time slot (e.g. 09:00 AM).\n` +
           `4. Enter your vehicle number and confirm to receive your digital pass!`,
@@ -788,10 +788,10 @@
 
     // Default Fallback
     return {
-      response: `🌾 **Kisan Vani Mandi Assistance**:\n\n` +
+      response: `🌾 **Kisan Vani Market Assistance**:\n\n` +
         `• **Crop MSP Rates:** Wheat ₹2,275/Q, Mustard ₹5,650/Q, Gram ₹5,440/Q, Paddy ₹2,183/Q.\n` +
         `• **Procurement Schedules:** Mustard from 15 March, Wheat from 1 April 2026.\n` +
-        `• **Slot Booking:** Book a digital pass to avoid waiting in long queues at the mandi.`,
+        `• **Slot Booking:** Book a digital pass to avoid waiting in long queues at the market.`,
       audio_text: "You can ask about crop MSP prices, procurement schedules, and slot bookings.",
       quick_actions: [
         { label: "🌾 Crop MSP Prices", url: "farmer/centers.html" },

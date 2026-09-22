@@ -137,7 +137,7 @@
         farmerName: booking.farmerName || "Demo Farmer",
         vehicleNo: booking.vehicleNumber || "HR-05-AB-1234",
         centerId: booking.centerId || "CTR-KARNAL-01",
-        centerName: booking.centerName || "Karnal Mandi",
+        centerName: booking.centerName || "Karnal Market",
         commodity: booking.commodity || "Wheat",
         quantityQtl: booking.quantityQuintals || booking.quantity_qtl || 40.0,
         timeWindow: [startIso, endIso],

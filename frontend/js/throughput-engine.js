@@ -1,5 +1,5 @@
 /**
- * KisanSetu — Dynamic Mandi Throughput Engine (Anti-Bottleneck Core)
+ * KisanSetu — Dynamic Market Throughput Engine (Anti-Bottleneck Core)
  * Modular mathematical slot allocation and capacity meter.
  * Hourly Capacity = (Active Weighbridges * Avg Weighing Rate per Hr) + Buffer Adjustment
  */
@@ -152,7 +152,7 @@
     },
 
     /**
-     * Fetch alternative nearby centers when chosen mandi is saturated
+     * Fetch alternative nearby centers when chosen market is saturated
      */
     async fetchAlternativeCenters(centerId, commodity = "") {
       try {
@@ -185,7 +185,7 @@
         },
         {
           centerId: "CTR-GHARAUNDA-03",
-          name: "Gharaunda Kisan Mandi",
+          name: "Gharaunda Farmer Market",
           district: "Karnal",
           distanceKm: 18.2,
           driveTimeMinutes: 30,

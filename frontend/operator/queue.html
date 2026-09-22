@@ -72,11 +72,11 @@
         </a>
         <a href="complaints.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
-          Complaints (शिकायतें)
+          Complaints
         </a>
         <a href="soil-testing.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center gap-1">
-          <span>🧪</span> Soil Testing (मृदा परीक्षण)
+          <span>🧪</span> Soil Testing
         </a>
       </nav>
     </div>
@@ -94,11 +94,11 @@
               Live Yard Monitor
             </span>
             <span class="text-[10px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl font-bold text-slate-900 tracking-tight">
-            Live Queue Management (लाइव कतार प्रबंधन)
+            Live Queue Management
           </h1>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
             Track arriving tractor-trolleys, manage gate check-ins, advance queue positions, and direct vehicles to
@@ -225,13 +225,13 @@
         document.getElementById('count-all').textContent = allItems.length;
         document.getElementById('count-arrived').textContent = allItems.filter(i => i.arrivalStatus === 'arrived').length;
         document.getElementById('count-in-queue').textContent = allItems.filter(i => i.arrivalStatus === 'checked_in' && i.queuePosition > 0).length;
-        document.getElementById('count-in-progress').textContent = allItems.filter(i => (i.status || "").includes("खरीद प्रक्रिया में") || (i.queuePosition === 0 && !(i.status || "").includes("खरीद पूर्ण"))).length;
-        document.getElementById('count-completed').textContent = allItems.filter(i => (i.status || "").includes("खरीद पूर्ण")).length;
+        document.getElementById('count-in-progress').textContent = allItems.filter(i => (i.status || "").includes("Procurement in Progress") || (i.queuePosition === 0 && !(i.status || "").includes("Procurement Completed"))).length;
+        document.getElementById('count-completed').textContent = allItems.filter(i => (i.status || "").includes("Procurement Completed")).length;
 
         // Filter items
         const filtered = allItems.filter(item => {
-          const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-          const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && !isCompleted);
+          const isCompleted = (item.status || "").includes("Procurement Completed");
+          const isInProgress = (item.status || "").includes("Procurement in Progress") || (item.queuePosition === 0 && !isCompleted);
 
           if (currentFilter === 'all') return true;
           if (currentFilter === 'arrived') return item.arrivalStatus === 'arrived';
@@ -252,25 +252,25 @@
 
         emptyMsg.classList.add('hidden');
         tbody.innerHTML = filtered.map(item => {
-          const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-          const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में");
+          const isCompleted = (item.status || "").includes("Procurement Completed");
+          const isInProgress = (item.status || "").includes("Procurement in Progress");
 
           // Status Badge styling
           let statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">${item.status || 'Confirmed'}</span>`;
           if (isCompleted) {
-            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">खरीद पूर्ण (Completed)</span>`;
+            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">Procurement Completed</span>`;
           } else if (isInProgress) {
-            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300">तौल प्रक्रियाधीन</span>`;
+            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300">Weighment in Progress</span>`;
           } else if (item.arrivalStatus === "checked_in") {
-            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-teal-50 text-teal-800 border border-teal-200">कतार में</span>`;
+            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-teal-50 text-teal-800 border border-teal-200">In Queue</span>`;
           } else if (item.arrivalStatus === "arrived") {
-            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">गेट पर उपस्थित</span>`;
+            statusBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">Arrived at Gate</span>`;
           }
 
           // Arrival Badge
           let arrivalBadge = `<span class="text-[10px] font-medium text-slate-400">Not Arrived</span>`;
           if (item.arrivalStatus === "arrived") {
-            arrivalBadge = `<span class="text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">Arrived (गेट पर)</span>`;
+            arrivalBadge = `<span class="text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">Arrived at Gate</span>`;
           } else if (item.arrivalStatus === "checked_in") {
             arrivalBadge = `<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Checked-In ✔</span>`;
           }

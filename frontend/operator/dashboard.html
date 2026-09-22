@@ -44,16 +44,12 @@
 
         <!-- User Info, Language Switcher & Logout -->
         <div class="flex items-center gap-3">
-          <!-- Language Switcher Option (English / Hindi) -->
+          <!-- Language Switcher Option (English) -->
           <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-            title="Change language / भाषा बदलें">
+            title="Language: English">
             <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
+              class="px-2.5 py-1 rounded-md transition-all bg-emerald-600 text-white cursor-default">
               EN
-            </button>
-            <button type="button" data-lang="hi" onclick="window.KisanI18n && window.KisanI18n.setLanguage('hi')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
-              हिन्दी
             </button>
           </div>
 
@@ -86,11 +82,11 @@
         </a>
         <a href="complaints.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
-          Complaints (शिकायतें)
+          Complaints
         </a>
         <a href="soil-testing.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center gap-1">
-          <span>🧪</span> Soil Testing (मृदा परीक्षण)
+          <span>🧪</span> Soil Testing
         </a>
       </nav>
     </div>
@@ -111,7 +107,7 @@
             </span>
             <span
               class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl sm:text-3xl font-bold text-slate-900" id="welcome-user-title">
@@ -140,10 +136,10 @@
     <div class="mb-8">
       <div class="flex items-center justify-between mb-3">
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-2">
-          <span>📊</span> Today's Operational Queue Metrics (दैनिक परिचालन स्थिति)
+          <span>📊</span> Today's Operational Queue Metrics
         </h2>
         <span class="text-[11px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-          डेमो डेटा • Demo Data
+          Demo Data
         </span>
       </div>
 
@@ -157,7 +153,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-slate-900 my-1" id="metric-today-bookings">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">कुल स्लॉट बुकिंग</span>
+          <span class="text-[10px] text-slate-500 font-medium">Total Bookings</span>
         </div>
 
         <!-- Metric 2: Arrived Farmers -->
@@ -168,7 +164,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-teal-700 my-1" id="metric-arrived">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">केंद्र पर उपस्थित</span>
+          <span class="text-[10px] text-slate-500 font-medium">Arrived at Center</span>
         </div>
 
         <!-- Metric 3: Pending Gate Verification -->
@@ -179,7 +175,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-amber-600 my-1" id="metric-pending-gate">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">सत्यापन प्रतीक्षित</span>
+          <span class="text-[10px] text-slate-500 font-medium">Pending Verification</span>
         </div>
 
         <!-- Metric 4: Waiting in Queue -->
@@ -190,7 +186,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-blue-700 my-1" id="metric-in-queue">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">कतार में प्रतीक्षारत</span>
+          <span class="text-[10px] text-slate-500 font-medium">Waiting in Queue</span>
         </div>
 
         <!-- Metric 5: Procurement In Progress -->
@@ -201,7 +197,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-[#0f766e] my-1" id="metric-in-progress">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">तौल व खरीद प्रगति</span>
+          <span class="text-[10px] text-slate-500 font-medium">Weighment in Progress</span>
         </div>
 
         <!-- Metric 6: Completed Procurement -->
@@ -212,7 +208,7 @@
           <div class="text-2xl sm:text-3xl font-mono font-black text-purple-700 my-1" id="metric-completed">
             0
           </div>
-          <span class="text-[10px] text-slate-500 font-medium">सफलतापूर्वक पूर्ण</span>
+          <span class="text-[10px] text-slate-500 font-medium">Completed</span>
         </div>
 
       </div>
@@ -221,7 +217,7 @@
     <!-- Section: Quick Operational Desks -->
     <div class="mb-8">
       <h2 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">
-        Facility Operational Desks (परिचालन डेस्क)
+        Facility Operational Desks
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -240,7 +236,7 @@
             <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0f766e] transition-colors">
               Gate Verification Desk
             </h3>
-            <div class="text-xs text-slate-400 font-medium">गेट सत्यापन व प्रवेश डेस्क</div>
+            <div class="text-xs text-slate-400 font-medium">Gate Verification & Entry Desk</div>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">
               Verify digital appointment tokens for arriving tractor-trolleys, check vehicle entry status, and activate
               queue tokens.
@@ -265,7 +261,7 @@
             <h3 class="text-base font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
               Live Queue Management
             </h3>
-            <div class="text-xs text-slate-400 font-medium">लाइव कतार प्रबंधन</div>
+            <div class="text-xs text-slate-400 font-medium">Live Queue Management Desk</div>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">
               Monitor arriving vehicles in yard lanes, review estimated waiting times, advance queue positions, and
               track delays.
@@ -291,7 +287,7 @@
             <h3 class="text-base font-bold text-slate-900 group-hover:text-[#15803d] transition-colors">
               Procurement & Weighment
             </h3>
-            <div class="text-xs text-slate-400 font-medium">तौल एवं खरीद प्रक्रिया</div>
+            <div class="text-xs text-slate-400 font-medium">Weighbridge Intake & Procurement</div>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">
               Record weighbridge tare/gross metrics, verify grain quality parameters, and complete official procurement
               receipts.
@@ -314,9 +310,9 @@
               Soil Testing & Advisory
               <span class="text-[10px] bg-teal-100 text-teal-800 font-bold px-1.5 py-0.5 rounded">NEW</span>
             </h3>
-            <div class="text-xs text-slate-400 font-medium">मृदा परीक्षण एवं उर्वरक सलाह</div>
+            <div class="text-xs text-slate-400 font-medium">Soil Health & Advisory Desk</div>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-              सत्यापित करें कि किसान ने मिट्टी की जांच कराई है या नहीं, फसल अनुसार यूरिया, डीएपी, पोटाश व कीटनाशक मात्रा की पर्ची बनाएं एवं उर्वरक निषेध नियम बताएं।
+              Verify farmer soil test status, generate dosage slips for Urea, DAP, Potash and pesticides, and review fertilizer restrictions.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-teal-100 text-xs font-semibold text-[#0f766e] flex items-center gap-1">

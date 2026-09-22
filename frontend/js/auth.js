@@ -68,7 +68,7 @@ const MOCK_USERS = [
     password: "Operator@123",
     role: "operator",
     centerId: "CTR-HR-04",
-    centerName: "Jhajjar Anaj Mandi Center",
+    centerName: "Jhajjar Grain Market Center",
     district: "Jhajjar",
     state: "Haryana",
     profileCompleted: true
@@ -104,7 +104,7 @@ const MOCK_USERS = [
     password: "Operator@123",
     role: "operator",
     centerId: "CTR-HR-07",
-    centerName: "Hisar Mandi Hub",
+    centerName: "Hisar Market Hub",
     district: "Hisar",
     state: "Haryana",
     profileCompleted: true

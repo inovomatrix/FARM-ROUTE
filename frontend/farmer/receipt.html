@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>डिजिटल खरीद रसीद | Digital Procurement Receipt — KisanSetu</title>
+  <title>Digital Procurement Receipt — KisanSetu</title>
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,10 +50,10 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-base font-bold text-slate-900 tracking-tight">KisanSetu</span>
-            <span class="text-xs text-slate-400">| किसान सेतु</span>
+            <span class="text-xs text-slate-400"></span>
           </div>
           <div class="text-[11px] font-semibold text-[#15803d] -mt-0.5">
-            डिजिटल खरीद प्रमाणपत्र (Procurement Receipt)
+            Digital Procurement Receipt
           </div>
         </div>
       </div>
@@ -61,16 +61,16 @@
       <!-- Quick Actions -->
       <div class="flex items-center gap-2">
         <a href="sales-history.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3">
-          &larr; विक्रय इतिहास (Sales History)
+          &larr; Sales History
         </a>
         <a href="dashboard.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3">
-          डैशबोर्ड (Dashboard)
+          Dashboard
         </a>
         <button type="button" onclick="window.print()" class="btn btn-primary btn-sm text-xs font-semibold py-1.5 px-3 flex items-center gap-1.5 shadow-xs">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
           </svg>
-          प्रिंट / सेव रसीद (Print)
+          Print / Save Receipt
         </button>
       </div>
     </div>
@@ -86,10 +86,10 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
         </svg>
       </div>
-      <h2 class="text-base font-bold text-slate-900 mb-1">रसीद नहीं मिली (Receipt Not Found)</h2>
-      <p class="text-xs text-slate-500 mb-4">निर्दिष्ट रसीद आईडी उपलब्ध नहीं है। कृपया विक्रय इतिहास देखें।</p>
+      <h2 class="text-base font-bold text-slate-900 mb-1">Receipt Not Found</h2>
+      <p class="text-xs text-slate-500 mb-4">The specified receipt ID is unavailable. Please check your sales history.</p>
       <a href="sales-history.html" class="btn btn-primary btn-sm text-xs font-semibold py-2 px-4 inline-block">
-        विक्रय इतिहास पर जाएं (Go to Sales History)
+        Go to Sales History
       </a>
     </div>
 
@@ -98,9 +98,9 @@
       
       <!-- Top Banner / Badge Bar (No Print) -->
       <div class="flex flex-wrap items-center justify-between gap-2 text-xs no-print">
-        <span class="text-slate-500">ई-खरीद पावती • Electronic Procurement Acknowledgment</span>
+        <span class="text-slate-500">Electronic Procurement Acknowledgment</span>
         <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-          डेमो प्रोटोटाइप रसीद • Demo Prototype Receipt
+          Official Procurement Receipt
         </span>
       </div>
 
@@ -115,10 +115,10 @@
             </div>
             <div>
               <div class="text-[10px] font-bold text-[#15803d] uppercase tracking-wider">
-                भारत सरकार • राज्य कृषि विपणन बोर्ड (सिमुलेटेड)
+                Department of Food & Civil Supplies • Agricultural Produce Market Committee
               </div>
               <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                डिजिटल खरीद रसीद
+                Digital Procurement Receipt
               </h1>
               <div class="text-xs font-semibold text-slate-500">
                 Digital Crop Procurement Certificate & Weighment Slip
@@ -127,10 +127,10 @@
           </div>
 
           <div class="text-right">
-            <span class="text-[10px] uppercase font-bold text-slate-400 block">रसीद संख्या (Receipt ID)</span>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Receipt ID</span>
             <span class="font-mono text-sm sm:text-base font-bold text-[#15803d]" id="rcp-id">KSP-RCP-xxxx</span>
             <span class="inline-block text-[9px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 mt-1">
-              ✓ प्रमाणित (Verified)
+              ✓ Certified Authentic
             </span>
           </div>
         </div>
@@ -138,41 +138,41 @@
         <!-- Section 1: Farmer & Center Information -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pb-5 border-b border-slate-100">
           <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-150 space-y-1.5">
-            <span class="text-[10px] uppercase font-bold text-slate-400 block">किसान विवरण (Farmer Details)</span>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Farmer Details</span>
             <div class="flex justify-between">
-              <span class="text-slate-500">नाम (Name):</span>
+              <span class="text-slate-500">Farmer Name:</span>
               <strong class="text-slate-900 font-semibold" id="rcp-farmer-name">-</strong>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">मोबाइल (Phone):</span>
+              <span class="text-slate-500">Mobile Number:</span>
               <span class="font-mono text-slate-700" id="rcp-farmer-phone">-</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">टोकन (Token):</span>
+              <span class="text-slate-500">Digital Pass ID:</span>
               <span class="font-mono font-bold text-emerald-800" id="rcp-token-id">-</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">बुकिंग (Booking ID):</span>
+              <span class="text-slate-500">Booking ID:</span>
               <span class="font-mono text-slate-600" id="rcp-booking-id">-</span>
             </div>
           </div>
 
           <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-150 space-y-1.5">
-            <span class="text-[10px] uppercase font-bold text-slate-400 block">खरीद केंद्र विवरण (Center Details)</span>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Procurement Center Details</span>
             <div class="flex justify-between">
-              <span class="text-slate-500">केंद्र (Center):</span>
+              <span class="text-slate-500">Center Name:</span>
               <strong class="text-slate-900 font-semibold text-right" id="rcp-center-name">-</strong>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">केंद्र कोड (Center ID):</span>
+              <span class="text-slate-500">Center ID:</span>
               <span class="font-mono text-slate-700" id="rcp-center-id">-</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">दिनांक (Date):</span>
+              <span class="text-slate-500">Date:</span>
               <span class="font-semibold text-slate-800" id="rcp-date">-</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">समय (Time):</span>
+              <span class="text-slate-500">Time:</span>
               <span class="text-slate-700" id="rcp-time">-</span>
             </div>
           </div>
@@ -182,31 +182,31 @@
         <div class="py-5 border-b border-slate-100 space-y-3">
           <div class="flex items-center justify-between text-xs">
             <h3 class="font-bold text-slate-900 uppercase tracking-wider text-[11px]">
-              तौल एवं गुणवत्ता विश्लेषण (Electronic Weighment & Quality)
+              Electronic Weighment & Quality Assay
             </h3>
             <span class="text-[10px] font-mono text-slate-400">Electronic Weighbridge Calibrated</span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
             <div class="p-3 bg-white rounded-lg border border-slate-200 text-center">
-              <span class="text-slate-400 block text-[10px]">सकल वजन (Gross Wt)</span>
+              <span class="text-slate-400 block text-[10px]">Gross Weight</span>
               <span class="text-sm font-bold font-mono text-slate-800 mt-0.5 block" id="rcp-gross-wt">-</span>
-              <span class="text-[10px] text-slate-400">भरा वाहन</span>
+              <span class="text-[10px] text-slate-400">Loaded Vehicle</span>
             </div>
             <div class="p-3 bg-white rounded-lg border border-slate-200 text-center">
-              <span class="text-slate-400 block text-[10px]">खाली वजन (Tare Wt)</span>
+              <span class="text-slate-400 block text-[10px]">Tare Weight</span>
               <span class="text-sm font-bold font-mono text-slate-800 mt-0.5 block" id="rcp-tare-wt">-</span>
-              <span class="text-[10px] text-slate-400">खाली वाहन</span>
+              <span class="text-[10px] text-slate-400">Empty Vehicle</span>
             </div>
             <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-300 text-center">
-              <span class="text-emerald-800 block text-[10px] font-bold">शुद्ध वजन (Net Weight)</span>
+              <span class="text-emerald-800 block text-[10px] font-bold">Net Weight</span>
               <span class="text-base font-bold font-mono text-emerald-800 mt-0.5 block" id="rcp-net-wt">-</span>
-              <span class="text-[10px] text-emerald-700 font-medium">कुल उत्पाद</span>
+              <span class="text-[10px] text-emerald-700 font-medium">Certified Net Grain</span>
             </div>
             <div class="p-3 bg-white rounded-lg border border-slate-200 text-center">
-              <span class="text-slate-400 block text-[10px]">नमी (Moisture)</span>
+              <span class="text-slate-400 block text-[10px]">Moisture Content</span>
               <span class="text-sm font-bold font-mono text-slate-800 mt-0.5 block" id="rcp-moisture">-</span>
-              <span class="text-[10px] text-emerald-700 font-semibold" id="rcp-quality">मानक उत्तीर्ण</span>
+              <span class="text-[10px] text-emerald-700 font-semibold" id="rcp-quality">Standard Passed (FAQ)</span>
             </div>
           </div>
         </div>
@@ -214,33 +214,33 @@
         <!-- Section 3: Financial Procurement Breakdown -->
         <div class="py-5 border-b border-slate-200 space-y-3">
           <h3 class="font-bold text-slate-900 uppercase tracking-wider text-[11px]">
-            फसल मूल्य एवं विपणन गणना (Procurement Value Calculation)
+            Procurement Value Settlement
           </h3>
 
           <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2.5">
             <div class="flex justify-between items-center pb-2 border-b border-slate-200">
-              <span class="text-slate-600">फसल का नाम (Crop Variety):</span>
+              <span class="text-slate-600">Commodity (Crop Variety):</span>
               <strong class="text-slate-900 text-sm" id="rcp-crop">-</strong>
             </div>
 
             <div class="flex justify-between items-center">
-              <span class="text-slate-600">प्रमाणित दर (Demo Rate):</span>
+              <span class="text-slate-600">Statutory MSP Rate:</span>
               <span class="font-mono font-bold text-slate-800 text-xs" id="rcp-rate">-</span>
             </div>
 
             <div class="flex justify-between items-center">
-              <span class="text-slate-600">सकल मूल्य (Gross Procurement Value):</span>
+              <span class="text-slate-600">Gross Procurement Value:</span>
               <span class="font-mono text-slate-800" id="rcp-gross-amount">-</span>
             </div>
 
             <div class="flex justify-between items-center">
-              <span class="text-slate-600">कटौती / प्रभार (Mandatory Deductions):</span>
+              <span class="text-slate-600">Mandatory Deductions:</span>
               <span class="font-mono text-slate-700" id="rcp-deductions">₹0.00</span>
             </div>
 
             <div class="pt-2.5 border-t border-slate-300 flex justify-between items-center">
               <div>
-                <span class="text-xs font-bold text-slate-900 block">कुल देय मूल्य (Net Procurement Value):</span>
+                <span class="text-xs font-bold text-slate-900 block">Net Total Payable to Farmer:</span>
                 <span class="text-[10px] text-slate-500">Illustrative Demo Net Amount</span>
               </div>
               <span class="font-mono text-lg sm:text-xl font-bold text-[#15803d]" id="rcp-net-amount">₹0</span>
@@ -252,20 +252,20 @@
         <div class="pt-5 flex flex-wrap items-center justify-between gap-4 text-xs">
           <div class="space-y-1 text-slate-500 text-[11px] max-w-sm leading-relaxed">
             <div class="font-semibold text-slate-700 flex items-center gap-1">
-              <span>🔒</span> ई-सत्यापित डिजिटल रसीद • Electronic Verified
+              <span>🔒</span> Electronically Certified Digital Receipt
             </div>
             <p>
-              यह प्रमाणपत्र किसान सेतु स्मार्ट प्रोक्योरमेंट पोर्टल पर इलेक्ट्रॉनिक वेईब्रिज के आधार पर स्वतः सृजित है।
+              This receipt is electronically generated via certified weighbridge scales and stored securely.
             </p>
             <p class="text-[10px] text-amber-800 bg-amber-50 px-2 py-1 rounded border border-amber-200 inline-block font-medium">
-              डेमो डेटा: यह रसीद केवल प्रोटोटाइप मूल्यांकन हेतु है। कोई वास्तविक बैंक अंतरण नहीं हुआ है।
+              Statutory APMC Procurement Statement. Subject to direct bank account credit via DBT/PFMS.
             </p>
           </div>
 
           <!-- Digital Seal Badge -->
           <div class="p-3 rounded-lg border-2 border-dashed border-emerald-400 bg-emerald-50/50 text-center w-36 shrink-0">
             <div class="text-[9px] font-bold text-[#15803d] uppercase tracking-widest">KisanSetu</div>
-            <div class="text-xs font-bold text-emerald-950 mt-0.5">खरीद संपन्न</div>
+            <div class="text-xs font-bold text-emerald-950 mt-0.5">Procurement Completed</div>
             <div class="text-[9px] text-emerald-800 font-mono mt-0.5">STAGE COMPLETED</div>
             <div class="text-[8px] text-slate-400 mt-1 font-mono" id="rcp-seal-time">-</div>
           </div>
@@ -276,14 +276,14 @@
       <!-- Action Buttons Footer (No Print) -->
       <div class="flex flex-wrap items-center justify-between gap-3 pt-2 no-print">
         <a href="sales-history.html" class="btn btn-outline text-xs font-semibold py-2 px-4">
-          &larr; विक्रय इतिहास (Sales History)
+          &larr; Sales History
         </a>
         <div class="flex items-center gap-2">
           <button type="button" onclick="copyReceiptLink()" class="btn btn-outline text-xs font-semibold py-2 px-3 flex items-center gap-1">
-            <span>🔗</span> लिंक कॉपी करें (Copy Link)
+            <span>🔗</span> Copy Receipt Link
           </button>
           <a href="dashboard.html" class="btn btn-primary text-xs font-semibold py-2 px-4">
-            डैशबोर्ड पर जाएं (Go to Dashboard) &rarr;
+            Go to Dashboard &rarr;
           </a>
         </div>
       </div>
@@ -345,7 +345,7 @@
 
       document.getElementById('rcp-center-name').textContent = receipt.centerName || "Karnal Central Procurement Center";
       document.getElementById('rcp-center-id').textContent = receipt.centerId || "CTR-HR-01";
-      document.getElementById('rcp-date').textContent = receipt.date || "Today (आज)";
+      document.getElementById('rcp-date').textContent = receipt.date || "Today";
       document.getElementById('rcp-time').textContent = receipt.time || "10:30 AM";
 
       const gross = typeof receipt.grossWeight === 'number' ? receipt.grossWeight : parseFloat(receipt.grossWeight) || 58.20;
@@ -360,9 +360,9 @@
       document.getElementById('rcp-tare-wt').textContent = `${tare.toFixed(2)} QTL`;
       document.getElementById('rcp-net-wt').textContent = `${net.toFixed(2)} QTL`;
       document.getElementById('rcp-moisture').textContent = receipt.moisture || "12.4%";
-      document.getElementById('rcp-quality').textContent = receipt.quality || "Grade A (मानक अनुसार)";
+      document.getElementById('rcp-quality').textContent = receipt.quality || "Grade A (FAQ Standard)";
 
-      document.getElementById('rcp-crop').textContent = receipt.crop || receipt.commodity || "Wheat (गेहूं)";
+      document.getElementById('rcp-crop').textContent = receipt.crop || receipt.commodity || "Wheat (WH-1105)";
       document.getElementById('rcp-rate').textContent = `₹${rate.toLocaleString('en-IN')}/QTL`;
       document.getElementById('rcp-gross-amount').textContent = `₹${grossAmt.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
       document.getElementById('rcp-deductions').textContent = `₹${ded.toFixed(2)}`;
@@ -372,7 +372,7 @@
 
     window.copyReceiptLink = function() {
       navigator.clipboard.writeText(window.location.href).then(() => {
-        alert("रसीद लिंक कॉपी हो गया (Receipt link copied to clipboard)");
+        alert("Receipt link copied to clipboard.");
       }).catch(() => {
         alert("URL: " + window.location.href);
       });

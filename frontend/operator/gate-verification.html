@@ -44,16 +44,12 @@
 
         <!-- User Info, Language Switcher & Logout -->
         <div class="flex items-center gap-3">
-          <!-- Language Switcher Option (English / Hindi) -->
+          <!-- Language Switcher Option (English) -->
           <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-            title="Change language / भाषा बदलें">
+            title="Language: English">
             <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
+              class="px-2.5 py-1 rounded-md transition-all bg-emerald-600 text-white cursor-default">
               EN
-            </button>
-            <button type="button" data-lang="hi" onclick="window.KisanI18n && window.KisanI18n.setLanguage('hi')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
-              हिन्दी
             </button>
           </div>
 
@@ -87,11 +83,11 @@
         </a>
         <a href="complaints.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
-          Complaints (शिकायतें)
+          Complaints
         </a>
         <a href="soil-testing.html"
           class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center gap-1">
-          <span>🧪</span> Soil Testing (मृदा परीक्षण)
+          <span>🧪</span> Soil Testing
         </a>
       </nav>
     </div>
@@ -106,14 +102,14 @@
         <div>
           <div class="flex items-center gap-2 mb-1.5">
             <span class="text-xs font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
-              Entry Gate Desk (प्रवेश द्वार डेस्क)
+              Entry Gate Desk
             </span>
             <span class="text-[10px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl font-bold text-slate-900 tracking-tight">
-            Gate Verification & Farmer Check-in (गेट सत्यापन व चेक-इन)
+            Gate Verification & Farmer Check-in
           </h1>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
             Verify farmer digital tokens upon yard arrival, validate vehicle registration, and admit trolleys into the
@@ -155,7 +151,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            Token ID / Booking ID Scanner (टोकन खोजें या स्कैन करें)
+            Token ID / Booking ID Scanner
           </h2>
           <form id="token-search-form" class="flex flex-col sm:flex-row gap-2">
             <div class="relative flex-1">
@@ -173,20 +169,20 @@
           </form>
           <div class="mt-4 pt-3 border-t border-slate-100">
             <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wide mb-2 flex items-center gap-1.5">
-              <span>🛡️</span> एंटी-होर्डिंग एवं बफर सिम्युलेटर (Anti-Hoarding Protocol Triggers):
+              <span>🛡️</span> Anti-Hoarding Protocol Simulator:
             </div>
             <div class="flex flex-wrap gap-2 text-xs">
               <button type="button" id="sim-ontime-btn"
                 class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold transition-all flex items-center gap-1">
-                <span>🟢</span> समय पर आगमन (On-Time • ±45m Buffer)
+                <span>🟢</span> On-Time Arrival (±45m Buffer)
               </button>
               <button type="button" id="sim-overdue-btn"
                 class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold transition-all flex items-center gap-1">
-                <span>🟡</span> समय सीमा समाप्त (Overdue &gt;45m &rarr; Standby)
+                <span>🟡</span> Overdue Arrival (&gt;45m &rarr; Standby)
               </button>
               <button type="button" id="sim-forged-btn"
                 class="px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-300 font-bold transition-all flex items-center gap-1">
-                <span>🔴</span> फर्जी/होर्डेड पास (Forged / Invalid Sig)
+                <span>🔴</span> Forged / Invalid Signature Pass
               </button>
             </div>
           </div>
@@ -196,7 +192,7 @@
         <div class="card p-6 bg-white border-slate-200 shadow-xs">
           <div class="flex items-center justify-between mb-4">
             <div>
-              <h2 class="text-sm font-bold text-slate-900">Arrived Vehicles at Gate (द्वार पर उपस्थित वाहन)</h2>
+              <h2 class="text-sm font-bold text-slate-900">Arrived Vehicles at Gate</h2>
               <p class="text-xs text-slate-500">Farmers reporting at facility boundary awaiting operator gate clearance
               </p>
             </div>
@@ -217,7 +213,7 @@
       <div class="lg:col-span-5">
         <div class="card p-6 bg-white border-slate-200 shadow-xs sticky top-24">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-            <h3 class="text-sm font-bold text-slate-900">Verification Inspection (सत्यापन विवरण)</h3>
+            <h3 class="text-sm font-bold text-slate-900">Verification Inspection</h3>
             <span id="inspection-status-pill"
               class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600">
               No Token Selected
@@ -254,11 +250,11 @@
             <!-- Detail Grid -->
             <div class="grid grid-cols-2 gap-3">
               <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                <div class="text-[10px] text-slate-500 font-medium">Commodity (उपज)</div>
+                <div class="text-[10px] text-slate-500 font-medium">Commodity</div>
                 <div class="font-semibold text-slate-800 mt-0.5" id="inspect-commodity">-</div>
               </div>
               <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                <div class="text-[10px] text-slate-500 font-medium">Time Slot (समय स्लॉट)</div>
+                <div class="text-[10px] text-slate-500 font-medium">Time Slot</div>
                 <div class="font-semibold text-slate-800 mt-0.5" id="inspect-slot">-</div>
               </div>
               <div class="p-2.5 bg-white rounded-lg border border-slate-200">
@@ -275,10 +271,10 @@
             <div id="security-verification-box" class="p-3 rounded-xl border bg-emerald-50/70 border-emerald-300 text-emerald-950 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold flex items-center gap-1.5 text-xs">
-                  <span>🔐</span> डिजिटल हस्ताक्षर (HMAC-SHA256)
+                  <span>🔐</span> Digital Signature (HMAC-SHA256)
                 </span>
                 <span id="inspect-sig-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-200 text-emerald-900">
-                  प्रमाणित (Authentic)
+                  Certified Authentic
                 </span>
               </div>
               <div class="font-mono text-[10px] text-slate-600 truncate" id="inspect-sig-text">
@@ -290,14 +286,14 @@
             <div id="buffer-verification-box" class="p-3 rounded-xl border bg-emerald-50/70 border-emerald-300 text-emerald-950 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold flex items-center gap-1.5 text-xs">
-                  <span>⏱️</span> आगमन समय बफर (±45m Buffer Check)
+                  <span>⏱️</span> Arrival Time Buffer (±45m Buffer Check)
                 </span>
                 <span id="inspect-buffer-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-200 text-emerald-900">
-                  वैध बफर (On-Time)
+                  Valid Buffer (On-Time)
                 </span>
               </div>
               <div class="text-[11px] text-emerald-900 font-medium" id="inspect-buffer-desc">
-                वाहन निर्धारित समय स्लॉट के भीतर उपस्थित हुआ है। प्रवेश अनुमत।
+                Vehicle arrived within scheduled time slot. Gate entry permitted.
               </div>
             </div>
 
@@ -305,21 +301,21 @@
             <div id="standby-overdue-box" class="hidden p-3.5 rounded-xl border bg-amber-50 border-amber-300 text-amber-950 space-y-2.5">
               <div class="flex items-center justify-between font-bold text-xs text-amber-900">
                 <span class="flex items-center gap-1.5">
-                  <span>⚠️</span> स्थिति: STANDBY_OVERDUE (प्रतीक्षा लेन)
+                  <span>⚠️</span> Status: STANDBY_OVERDUE (Standby Lane)
                 </span>
                 <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-900 text-[10px]">Overdue >45m</span>
               </div>
               <p class="text-[11px] text-amber-800 leading-relaxed">
-                वाहन निर्धारित स्लॉट से 45 मिनट से अधिक देरी से पहुंचा है। सामान्य कतार बाधित न हो, इसलिए वाहन को प्रतीक्षा लेन में रखा गया है।
+                Vehicle arrived >45 minutes late. Diverted to standby lane to prevent regular queue congestion.
               </p>
               <button type="button" id="execute-standby-override-btn"
                 class="w-full btn bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs py-2.5 px-3 rounded-lg shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
                 <span>🛡️</span>
-                <span>Supervisor Override: Assign to Standby Yard (अधीक्षक विशेष अनुमति)</span>
+                <span>Supervisor Override: Assign to Standby Yard</span>
               </button>
               <label class="flex items-center gap-2 text-xs font-semibold text-amber-900 cursor-pointer pt-1 border-t border-amber-200">
                 <input type="checkbox" id="supervisor-override-check" class="rounded text-teal-600 focus:ring-teal-500">
-                <span>गेट चेक-इन में विशेष अनुमति शामिल करें (Force Override)</span>
+                <span>Apply Special Override in Gate Check-in</span>
               </label>
             </div>
 
@@ -331,16 +327,16 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
                   </path>
                 </svg>
-                ऑपरेटर भौतिक सत्यापन चेकलिस्ट:
+                Operator Physical Verification Checklist:
               </div>
               <ul class="space-y-1.5 text-[11px] text-slate-600">
                 <li class="flex items-center gap-2">
                   <span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
-                  ट्रैक्टर-ट्रॉली गेट बैरियर पर भौतिक रूप से उपस्थित है
+                  Tractor trolley is physically present at the gate barrier
                 </li>
                 <li class="flex items-center gap-2">
                   <span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
-                  फसल की किस्म टोकन से मेल खाती है
+                  Crop type matches digital token declaration
                 </li>
               </ul>
             </div>
@@ -351,12 +347,12 @@
                 <button type="button" id="call-token-pa-btn"
                   class="btn bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs py-2.5 px-3 flex items-center justify-center gap-1.5 shadow-xs">
                   <span>📢</span>
-                  <span>Call Token (गेट उद्घोषणा)</span>
+                  <span>Call Token (Public Address)</span>
                 </button>
                 <button type="button" id="play-chime-test-btn"
                   class="btn btn-outline text-slate-700 text-xs font-bold py-2.5 px-3 flex items-center justify-center gap-1.5">
                   <span>🔔</span>
-                  <span>Audio Chime (घंटी बजाएं)</span>
+                  <span>Audio Chime</span>
                 </button>
               </div>
 
@@ -365,7 +361,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span>Admit & Verify Gate (गेट सत्यापन करें)</span>
+                <span>Admit & Verify Gate</span>
               </button>
 
               <div id="already-verified-box"
@@ -509,45 +505,45 @@
         // 1. Digital Signature Check (Anti-Hoarding Protocol)
         if (forceMode === "FORGED" || isSimulatedTampered) {
           sigBadge.className = "px-2 py-0.5 rounded text-[10px] font-black bg-rose-600 text-white uppercase";
-          sigBadge.textContent = "फर्जी / अमान्य (FORGERY ALERT)";
+          sigBadge.textContent = "FORGERY ALERT (Invalid)";
           sigText.innerHTML = `<span class="text-rose-600 font-bold">❌ Signature Mismatch! Hoarded or duplicate broker pass detected.</span>`;
           verifyBtn.classList.add('hidden');
           showToast('error', 'SECURITY ALERT: Forged Pass', 'Digital signature does not match central records. Slot hoarding attempt flagged.');
           return;
         } else {
           sigBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-200 text-emerald-900";
-          sigBadge.textContent = "प्रमाणित (Authentic)";
+          sigBadge.textContent = "Certified Authentic";
           sigText.textContent = `SIG: e4f7a91b8c24... • Verified via HMAC-SHA256`;
         }
 
         // 2. Buffer Window Verification (±45 minutes) & Transit Delay Grace Check
         if (item.currentStage === "TRANSIT_DELAYED" || item.transitDelayReason) {
           bufferBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-900 border border-blue-300";
-          bufferBadge.textContent = "ग्रेस स्वीकृत (+60m Grace Active)";
-          bufferDesc.textContent = `किसान द्वारा रास्ते में देरी पूर्व-सूचित है (${item.transitDelayReason || 'वाहन खराबी'})। 60 मिनट की वैधानिक ग्रेस विंडो सक्रिय है — सामान्य गेट प्रवेश अनुमत।`;
+          bufferBadge.textContent = "Grace Window Active (+60m)";
+          bufferDesc.textContent = `Farmer pre-notified delay (${item.transitDelayReason || 'Vehicle Breakdown'}). 60-minute statutory grace window is active — standard admission permitted.`;
           standbyBox.classList.add('hidden');
           verifyBtn.className = "w-full btn btn-primary text-xs font-bold py-3 flex items-center justify-center gap-2 shadow-xs";
-          verifyBtn.innerHTML = `<span>✔</span> <span>Admit with Grace Window (ग्रेस विंडो प्रवेश)</span>`;
+          verifyBtn.innerHTML = `<span>✔</span> <span>Admit with Grace Window</span>`;
         } else if (forceMode === "OVERDUE" || isSimulatedOverdue) {
           bufferBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-amber-200 text-amber-900";
-          bufferBadge.textContent = "विलंब (Overdue >45m)";
-          bufferDesc.textContent = "वाहन 52 मिनट देरी से पहुंचा है। सामान्य कतार बाधित न हो, इसलिए वाहन को स्टैंडबाई लेन में स्थानांतरित किया गया है।";
+          bufferBadge.textContent = "Overdue Arrival (>45m)";
+          bufferDesc.textContent = "Vehicle arrived 52 minutes late. Diverted to standby lane to prevent regular queue congestion.";
           standbyBox.classList.remove('hidden');
           pill.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200";
           pill.textContent = "STANDBY_OVERDUE";
           verifyBtn.classList.remove('hidden');
-          verifyBtn.innerHTML = `<span>⚠️</span> <span>अधीक्षक अनुमति से प्रवेश (Admit Overdue Vehicle)</span>`;
+          verifyBtn.innerHTML = `<span>⚠️</span> <span>Admit Overdue Vehicle (Supervisor Override)</span>`;
           verifyBtn.classList.remove('btn-primary');
           verifyBtn.classList.add('bg-amber-600', 'text-white', 'hover:bg-amber-700');
           verifiedBox.classList.add('hidden');
           return;
         } else {
           bufferBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-200 text-emerald-900";
-          bufferBadge.textContent = "वैध बफर (On-Time)";
-          bufferDesc.textContent = "वाहन निर्धारित समय स्लॉट के भीतर उपस्थित हुआ है। प्रवेश अनुमत।";
+          bufferBadge.textContent = "On-Time Arrival (Valid)";
+          bufferDesc.textContent = "Vehicle arrived within designated time slot. Gate entry permitted.";
           standbyBox.classList.add('hidden');
           verifyBtn.className = "w-full btn btn-primary text-xs font-bold py-3 flex items-center justify-center gap-2 shadow-xs";
-          verifyBtn.innerHTML = `<span>✔</span> <span>Admit & Verify Gate (गेट सत्यापन करें)</span>`;
+          verifyBtn.innerHTML = `<span>✔</span> <span>Admit & Verify Gate</span>`;
         }
 
         if (isCheckedIn) {
@@ -609,7 +605,7 @@
           });
           const json = await res.json();
           if (json.success) {
-            showToast('success', 'Gate Verified Successfully (गेट सत्यापन सफल)',
+            showToast('success', 'Gate Verified Successfully',
               `Vehicle admitted. ${assignedBay} allocated. Slip printed.`);
             selectBooking(selectedBookingId);
 
@@ -623,7 +619,7 @@
 
         const res = window.KisanOperator.verifyGate(selectedBookingId);
         if (res.success) {
-          showToast('success', 'Gate Verified Successfully (गेट सत्यापन सफल)',
+          showToast('success', 'Gate Verified Successfully',
             `Token verified. Vehicle admitted to yard queue. ${assignedBay} allocated.`);
           selectBooking(selectedBookingId);
 
@@ -651,7 +647,7 @@
           });
           const json = await res.json();
           if (json.success) {
-            showToast('success', 'Supervisor Standby Override Approved (अधीक्षक अनुमति स्वीकृत)',
+            showToast('success', 'Supervisor Standby Override Approved',
               'Vehicle admitted into Standby Yard (Bay B1). Priority queue updated.');
             document.getElementById('standby-overdue-box')?.classList.add('hidden');
             document.getElementById('already-verified-box')?.classList.remove('hidden');
@@ -663,7 +659,7 @@
           console.warn('Supervisor override fallback:', err);
         }
 
-        showToast('success', 'Supervisor Standby Override (स्थानीय अनुमति)',
+        showToast('success', 'Supervisor Standby Override Approved',
           'Vehicle admitted to Standby Lane B1 under supervisor discretion.');
         document.getElementById('standby-overdue-box')?.classList.add('hidden');
         document.getElementById('already-verified-box')?.classList.remove('hidden');
@@ -707,19 +703,19 @@
       // Gate PA Callout & Chime Handlers
       document.getElementById('call-token-pa-btn')?.addEventListener('click', () => {
         const tokenId = document.getElementById('inspect-token-id')?.textContent || 'KS-TKN-1011';
-        const farmer = document.getElementById('inspect-farmer-name')?.textContent || 'किसान भाई';
+        const farmer = document.getElementById('inspect-farmer-name')?.textContent || 'Farmer';
         if (window.KisanVoiceAssistant && typeof window.KisanVoiceAssistant.announceToken === 'function') {
           window.KisanVoiceAssistant.announceToken(tokenId, 1, farmer);
-          showToast('info', '📢 गेट ध्वनि उद्घोषणा प्रसारित', `टोकन #${tokenId} (${farmer}) को गेट नंबर 1 पर आमंत्रित किया गया है।`);
+          showToast('info', '📢 Gate Public Announcement Broadcast', `Token #${tokenId} (${farmer}) has been called to Gate #1.`);
         } else {
-          showToast('info', '📢 उद्घोषणा', `टोकन #${tokenId} को गेट नंबर 1 पर बुलाया गया।`);
+          showToast('info', '📢 Announcement', `Token #${tokenId} called to Gate #1.`);
         }
       });
 
       document.getElementById('play-chime-test-btn')?.addEventListener('click', () => {
         if (window.KisanVoiceAssistant && typeof window.KisanVoiceAssistant.playChime === 'function') {
           window.KisanVoiceAssistant.playChime();
-          showToast('info', '🔔 ऑडियो चाइम', 'गेट उद्घोषणा चाइम ध्वनि सफलतापूर्वक बजाई गई।');
+          showToast('info', '🔔 Audio Chime', 'Gate arrival chime played successfully.');
         }
       });
 

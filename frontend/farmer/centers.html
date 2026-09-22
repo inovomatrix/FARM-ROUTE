@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>खरीद केंद्र खोजें | Find Procurement Centers — KisanSetu</title>
+  <title>Find Procurement Centers — KisanSetu</title>
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,10 +33,10 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-base font-bold text-slate-900 tracking-tight">KisanSetu</span>
-            <span class="text-xs text-slate-400">| किसान सेतु</span>
+            <span class="text-xs text-slate-400"></span>
           </div>
           <div class="text-[11px] font-semibold text-[#15803d] -mt-0.5">
-            खरीद केंद्र खोज (Center Discovery)
+            Find Procurement Centers
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
       <div class="flex items-center gap-3">
         <button type="button" onclick="window.KisanVoiceAssistant && window.KisanVoiceAssistant.open()"
           class="btn btn-outline btn-sm text-xs font-semibold flex items-center gap-1.5 py-1.5 px-3 text-[#15803d] border-[#15803d] bg-emerald-50/50 hover:bg-emerald-100/60 cursor-pointer">
-          <span>🎙️</span> किसान वाणी AI
+          <span>🎙️</span> Kisan Vani AI
         </button>
 
         <a href="dashboard.html"
@@ -54,11 +54,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
             </path>
           </svg>
-          वापस डैशबोर्ड (Back to Dashboard)
+          Back to Dashboard
         </a>
 
         <button type="button" id="logout-btn" class="btn btn-outline btn-sm text-xs py-1.5 px-3">
-          लॉगआउट (Logout)
+          Logout
         </button>
       </div>
     </div>
@@ -73,13 +73,13 @@
         <div>
           <div
             class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#15803d] border border-emerald-200 text-[11px] font-semibold mb-2">
-            <span>📍</span> केंद्र निर्देशिका (Procurement Directory)
+            <span>📍</span> Procurement Directory
           </div>
           <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">
-            खरीद केंद्र खोजें
+            Find Procurement Centers
           </h1>
           <p class="text-sm text-slate-600 mt-1">
-            अपने लिए उपयुक्त खरीद केंद्र खोजें और तुलना करें।
+            Explore and compare nearby authorized APMC procurement centers.
           </p>
           <p class="text-xs text-slate-400 mt-0.5">
             Discover authorized government procurement centers, compare queue load, and evaluate wait times.
@@ -87,7 +87,7 @@
         </div>
 
         <div class="bg-white border border-slate-200 rounded-lg py-2 px-3.5 shadow-xs text-xs">
-          <span class="text-slate-400 block text-[10px]">प्रदर्शित केंद्र (Showing Centers)</span>
+          <span class="text-slate-400 block text-[10px]">Showing Centers</span>
           <span class="font-bold text-slate-900 text-sm">
             <span id="visible-count">0</span> / <span id="total-count">0</span>
           </span>
@@ -101,10 +101,10 @@
 
         <!-- Search Input (Span 5 cols) -->
         <div class="md:col-span-5 relative">
-          <label for="center-search-input" class="sr-only">खोजें (Search)</label>
+          <label for="center-search-input" class="sr-only">Search</label>
           <div class="relative">
             <input type="text" id="center-search-input" class="form-input text-xs sm:text-sm pl-9 pr-8 w-full"
-              placeholder="केंद्र का नाम, ज़िला या राज्य खोजें... (Search name, district, state)">
+              placeholder="Search center name, district, or state...">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -121,33 +121,33 @@
 
         <!-- State Dropdown (Span 2 cols) -->
         <div class="md:col-span-2">
-          <label for="state-filter" class="sr-only">राज्य (State)</label>
+          <label for="state-filter" class="sr-only">State</label>
           <select id="state-filter" class="form-select text-xs w-full py-2">
-            <option value="">सभी राज्य (All States)</option>
+            <option value="">All States</option>
           </select>
         </div>
 
         <!-- District Dropdown (Span 2 cols) -->
         <div class="md:col-span-2">
-          <label for="district-filter" class="sr-only">ज़िला (District)</label>
+          <label for="district-filter" class="sr-only">District</label>
           <select id="district-filter" class="form-select text-xs w-full py-2">
-            <option value="">सभी ज़िले (All Districts)</option>
+            <option value="">All Districts</option>
           </select>
         </div>
 
         <!-- Commodity Dropdown (Span 2 cols) -->
         <div class="md:col-span-2">
-          <label for="commodity-filter" class="sr-only">फसल (Commodity)</label>
+          <label for="commodity-filter" class="sr-only">Commodity</label>
           <select id="commodity-filter" class="form-select text-xs w-full py-2">
-            <option value="">सभी फसलें (All Crops)</option>
+            <option value="">All Crops</option>
           </select>
         </div>
 
         <!-- Reset Button (Span 1 col) -->
         <div class="md:col-span-1 text-right">
           <button type="button" id="reset-filters-btn" class="btn btn-outline btn-sm text-xs w-full py-2 px-2"
-            title="फ़िल्टर रीसेट करें">
-            रीसेट
+            title="Reset Filters">
+            Reset
           </button>
         </div>
 
@@ -160,24 +160,24 @@
         <div class="space-y-1">
           <div class="flex items-center gap-2">
             <span class="px-2.5 py-0.5 rounded-full bg-emerald-700 text-white font-bold text-[10px] tracking-wide uppercase flex items-center gap-1">
-              <span>⚡</span> स्मार्ट अनुशंसा (Smart Recommendation)
+              <span>⚡</span> Smart Recommendation
             </span>
-            <span class="text-xs font-semibold text-emerald-800" id="smart-rec-crop-badge">सर्वोत्तम केंद्र</span>
+            <span class="text-xs font-semibold text-emerald-800" id="smart-rec-crop-badge">Recommended Market</span>
           </div>
           <h3 class="text-base sm:text-lg font-bold text-slate-900" id="smart-rec-center-name">-</h3>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-600">
             <span class="flex items-center gap-1 text-emerald-700 font-semibold" id="smart-rec-reason">
-              ✓ फसल स्वीकृत • ✓ न्यूनतम कतार • ✓ स्लॉट उपलब्ध
+              ✓ Crop Accepted • ✓ Low Wait Time • ✓ Slots Available
             </span>
             <span class="text-slate-400">•</span>
-            <span class="font-mono text-slate-700" id="smart-rec-wait">~20 मिनट प्रतीक्षा</span>
+            <span class="font-mono text-slate-700" id="smart-rec-wait">~20 Min Wait</span>
             <span class="text-slate-400">•</span>
-            <span class="font-mono text-slate-700" id="smart-rec-queue">5 वाहन</span>
+            <span class="font-mono text-slate-700" id="smart-rec-queue">5 Vehicles</span>
           </div>
         </div>
         <div class="flex items-center gap-2.5 shrink-0">
           <a id="smart-rec-book-btn" href="#" class="btn btn-primary btn-sm text-xs font-bold py-2 px-4 shadow-xs flex items-center gap-1">
-            <span>📅</span> तुरंत स्लॉट बुक करें (Book Slot) &rarr;
+            <span>📅</span> Book Delivery Slot &rarr;
           </a>
         </div>
       </div>
@@ -197,17 +197,17 @@
         </svg>
       </div>
       <h3 class="text-base font-bold text-slate-800">
-        कोई खरीद केंद्र नहीं मिला
+        No Procurement Centers Found
       </h3>
       <div class="text-xs text-slate-500 font-medium mt-0.5">
         No procurement center found
       </div>
       <p class="text-xs text-slate-400 mt-2 max-w-sm mx-auto leading-relaxed">
-        आपके द्वारा चुने गए खोज शब्द या फ़िल्टर के अनुसार कोई केंद्र उपलब्ध नहीं है। कृपया दूसरा ज़िला या फसल चुनें।
+        No centers match your search filters. Please adjust district or crop selection.
       </p>
       <div class="mt-4">
         <button type="button" id="empty-clear-btn" class="btn btn-primary btn-sm text-xs font-semibold py-2 px-4">
-          फ़िल्टर साफ़ करें (Clear Filters)
+          Clear Filters
         </button>
       </div>
     </div>
@@ -302,19 +302,19 @@
           banner.classList.remove('hidden');
           const badgeEl = document.getElementById('smart-rec-crop-badge');
           if (badgeEl) {
-            badgeEl.textContent = selectedCommodity ? `${selectedCommodity} के लिए उपयुक्त` : 'सर्वोत्तम अनुशंसित केंद्र';
+            badgeEl.textContent = selectedCommodity ? `${selectedCommodity} Recommended for` : 'Top Recommended Center';
           }
           const nameEl = document.getElementById('smart-rec-center-name');
           if (nameEl) nameEl.textContent = rec.name;
 
           const reasonEl = document.getElementById('smart-rec-reason');
-          if (reasonEl) reasonEl.textContent = rec.reason || "✓ फसल स्वीकृत • ✓ न्यूनतम कतार • ✓ स्लॉट उपलब्ध";
+          if (reasonEl) reasonEl.textContent = rec.reason || "✓ Crop Accepted • ✓ Low Wait Time • ✓ Slots Available";
 
           const waitEl = document.getElementById('smart-rec-wait');
-          if (waitEl) waitEl.textContent = `~${rec.estimatedWaitMinutes} मिनट प्रतीक्षा`;
+          if (waitEl) waitEl.textContent = `~${rec.estimatedWaitMinutes} Min Wait`;
 
           const queueEl = document.getElementById('smart-rec-queue');
-          if (queueEl) queueEl.textContent = `${rec.currentQueueVehicles} वाहन कतार में`;
+          if (queueEl) queueEl.textContent = `${rec.currentQueueVehicles} Vehicles in Queue`;
 
           const bookBtn = document.getElementById('smart-rec-book-btn');
           if (bookBtn) {

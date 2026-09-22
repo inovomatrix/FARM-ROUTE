@@ -20,7 +20,7 @@ from backend.models import Booking, QueueEntry, ProcurementRecord
 STAGE_METADATA = {
     "BOOKED": {
         "titleEn": "Slot Booked & Pass Issued",
-        "titleHi": "स्लॉट बुक हुआ • गेट पास जारी",
+        "titleHi": "Slot Booked & Pass Issued",
         "step": 1,
         "icon": "📅",
         "color": "blue",
@@ -28,7 +28,7 @@ STAGE_METADATA = {
     },
     "TRANSIT_DELAYED": {
         "titleEn": "Transit Delayed (+60m Grace Window)",
-        "titleHi": "रास्ते में देरी दर्ज • 60 मिनट ग्रेस विंडो",
+        "titleHi": "Transit Delayed (+60m Grace Window)",
         "step": 1.2,
         "icon": "🚨",
         "color": "amber",
@@ -36,7 +36,7 @@ STAGE_METADATA = {
     },
     "STANDBY_OVERDUE": {
         "titleEn": "Standby Lane (Buffer Overdue)",
-        "titleHi": "प्रतीक्षा लेन • समय सीमा समाप्त",
+        "titleHi": "Standby Lane (Buffer Overdue)",
         "step": 1.5,
         "icon": "⚠️",
         "color": "amber",
@@ -44,7 +44,7 @@ STAGE_METADATA = {
     },
     "GATE_SCANNED": {
         "titleEn": "Gate Verified & Yard Entry",
-        "titleHi": "गेट सत्यापन पूर्ण • यार्ड में प्रवेश",
+        "titleHi": "Gate Verified & Yard Entry",
         "step": 2,
         "icon": "🚜",
         "color": "teal",
@@ -52,7 +52,7 @@ STAGE_METADATA = {
     },
     "ASSAY_TESTING": {
         "titleEn": "Quality & Moisture Assay",
-        "titleHi": "गुणवत्ता एवं नमी परीक्षण (Assay Lab)",
+        "titleHi": "Quality & Moisture Assay",
         "step": 3,
         "icon": "🧪",
         "color": "purple",
@@ -60,7 +60,7 @@ STAGE_METADATA = {
     },
     "REJECTED_QUALITY": {
         "titleEn": "Quality Assay Rejected",
-        "titleHi": "गुणवत्ता परीक्षण में अस्वीकृत",
+        "titleHi": "Quality Assay Rejected",
         "step": 3.5,
         "icon": "❌",
         "color": "rose",
@@ -68,7 +68,7 @@ STAGE_METADATA = {
     },
     "GROSS_WEIGHED": {
         "titleEn": "Gross Weighing (Loaded Vehicle)",
-        "titleHi": "सकल इलेक्ट्रॉनिक तौल (Gross Weighment)",
+        "titleHi": "Gross Weighing (Loaded Vehicle)",
         "step": 4,
         "icon": "⚖️",
         "color": "indigo",
@@ -76,7 +76,7 @@ STAGE_METADATA = {
     },
     "WEIGHBRIDGE_IN": {
         "titleEn": "Gross Weighing (Loaded Vehicle)",
-        "titleHi": "सकल इलेक्ट्रॉनिक तौल (Gross Weighment)",
+        "titleHi": "Gross Weighing (Loaded Vehicle)",
         "step": 4,
         "icon": "⚖️",
         "color": "indigo",
@@ -84,7 +84,7 @@ STAGE_METADATA = {
     },
     "UNLOADING_BAY": {
         "titleEn": "Unloading Bay / Shed",
-        "titleHi": "अनलोडिंग शेड • बोरी खालीकरण",
+        "titleHi": "Unloading Bay / Shed",
         "step": 5,
         "icon": "📦",
         "color": "amber",
@@ -92,7 +92,7 @@ STAGE_METADATA = {
     },
     "TARE_WEIGHED": {
         "titleEn": "Tare Weighing (Empty Vehicle)",
-        "titleHi": "खाली वाहन तौल (Tare Weighment)",
+        "titleHi": "Tare Weighing (Empty Vehicle)",
         "step": 6,
         "icon": "🌾",
         "color": "emerald",
@@ -100,7 +100,7 @@ STAGE_METADATA = {
     },
     "WEIGHBRIDGE_OUT": {
         "titleEn": "Tare Weighing (Empty Vehicle)",
-        "titleHi": "खाली वाहन तौल (Tare Weighment)",
+        "titleHi": "Tare Weighing (Empty Vehicle)",
         "step": 6,
         "icon": "🌾",
         "color": "emerald",
@@ -108,7 +108,7 @@ STAGE_METADATA = {
     },
     "J_FORM_ISSUED": {
         "titleEn": "Statutory e-J-Form Generated",
-        "titleHi": "डिजिटल जे-फॉर्म जारी (MSP खरीद रसीद)",
+        "titleHi": "Statutory e-J-Form Generated",
         "step": 7,
         "icon": "📜",
         "color": "cyan",
@@ -116,7 +116,7 @@ STAGE_METADATA = {
     },
     "DBT_DISPATCHED": {
         "titleEn": "DBT Payment Dispatched",
-        "titleHi": "प्रत्यक्ष लाभ अंतरण (DBT भुगतान पूर्ण)",
+        "titleHi": "DBT Payment Dispatched",
         "step": 8,
         "icon": "🏦",
         "color": "green",
@@ -124,7 +124,7 @@ STAGE_METADATA = {
     },
     "CANCELLED": {
         "titleEn": "Booking Cancelled",
-        "titleHi": "बुकिंग रद्द (Cancelled)",
+        "titleHi": "Booking Cancelled",
         "step": 0,
         "icon": "🚫",
         "color": "slate",
@@ -258,7 +258,7 @@ def transition_token_state(
 
     # Apply stage-specific logic
     if target == "TRANSIT_DELAYED":
-        booking.status = "रास्ते में देरी (+60 मिनट ग्रेस)"
+        booking.status = "Transit Delayed (+60m Grace)"
         reason = metadata.get("reason", "ROAD_BLOCKAGE")
         booking.transit_delay_reason = reason
         booking.transit_delay_reported_at = datetime.utcnow()
@@ -267,20 +267,20 @@ def transition_token_state(
 
     elif target == "STANDBY_OVERDUE":
         booking.arrival_status = "standby_overdue"
-        booking.status = "समय-सीमा समाप्त (Standby Lane)"
+        booking.status = "Standby Lane (Overdue)"
 
     elif target == "GATE_SCANNED":
         booking.arrival_status = "checked_in"
         queue_type = metadata.get("queueType", "NORMAL")
         if queue_type == "STANDBY" or curr == "STANDBY_OVERDUE":
-            booking.status = "गेट प्रवेश (स्टैंडबाई अनुमति)"
+            booking.status = "Gate Admitted (Standby)"
         else:
-            booking.status = "गेट सत्यापन पूर्ण (Gate Scanned)"
+            booking.status = "Gate Verified & Scanned"
         if metadata.get("assignedBay"):
             booking.assigned_bay = metadata.get("assignedBay")
 
     elif target == "ASSAY_TESTING":
-        booking.status = "गुणवत्ता जांच जारी (Assay Testing)"
+        booking.status = "Assay Testing in Progress"
         if metadata.get("assignedBay"):
             booking.assigned_bay = metadata.get("assignedBay")
         if metadata.get("moisture"):
@@ -289,12 +289,12 @@ def transition_token_state(
             booking.assay_quality_grade = metadata.get("grade")
 
     elif target == "REJECTED_QUALITY":
-        booking.status = "अस्वीकृत (Quality Assay Failed)"
+        booking.status = "Quality Assay Rejected"
         if metadata.get("moisture"):
             booking.assay_moisture = float(metadata.get("moisture"))
 
     elif target in ["GROSS_WEIGHED", "WEIGHBRIDGE_IN"]:
-        booking.status = "सकल भार प्रक्रिया पूर्ण (Gross Weighed)"
+        booking.status = "Gross Weighed"
         wb_id = metadata.get("grossWeighbridgeId") or metadata.get("assignedWeighbridge", "WB-SCALE-01")
         booking.gross_weighbridge_id = wb_id
         booking.assigned_weighbridge = wb_id
@@ -306,13 +306,13 @@ def transition_token_state(
             booking.gross_weight = round(gross_kg / 1000.0, 3)
 
     elif target == "UNLOADING_BAY":
-        booking.status = "अनलोडिंग जारी (Unloading Bay)"
+        booking.status = "Unloading in Progress"
         bay_id = metadata.get("unloadingBayId") or metadata.get("assignedBay", "SHED-BAY-A1")
         booking.unloading_bay_id = bay_id
         booking.assigned_bay = bay_id
 
     elif target in ["TARE_WEIGHED", "WEIGHBRIDGE_OUT"]:
-        booking.status = "खाली भार प्रक्रिया पूर्ण (Tare Weighed)"
+        booking.status = "Tare Weighed"
         wb_id = metadata.get("tareWeighbridgeId") or "WB-SCALE-02"
         booking.tare_weighbridge_id = wb_id
         tare_in = metadata.get("tareWeightKg") or metadata.get("tareWeight")
@@ -329,11 +329,11 @@ def transition_token_state(
         generate_statutory_j_form(booking, db, operator_id=metadata.get("operator", "OPERATOR-MAIN"))
 
     elif target == "J_FORM_ISSUED":
-        booking.status = "डिजिटल जे-फॉर्म जारी (e-JForm Issued)"
+        booking.status = "e-JForm Issued"
         generate_statutory_j_form(booking, db, operator_id=metadata.get("operator", "OPERATOR-MAIN"))
 
     elif target == "DBT_DISPATCHED":
-        booking.status = "खरीद एवं भुगतान पूर्ण (DBT Dispatched)"
+        booking.status = "Procurement Completed (DBT Dispatched)"
         booking.dbt_status = "SUCCESS"
         booking.dbt_ref_no = metadata.get("dbtRefNo", booking.dbt_ref_no or f"PFMS-SBI-{now_iso[-6:]}")
 

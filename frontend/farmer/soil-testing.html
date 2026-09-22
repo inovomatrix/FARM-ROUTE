@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>मृदा परीक्षण एवं उर्वरक सलाह | Soil Testing & Advisory — KisanSetu</title>
+  <title>Soil Testing & Fertilizer Advisory — KisanSetu</title>
 
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,10 +48,10 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-base font-bold text-slate-900 tracking-tight">KisanSetu</span>
-            <span class="text-xs text-slate-400">| किसान सेतु</span>
+            <span class="text-xs text-slate-400"></span>
           </div>
           <div class="text-[11px] font-semibold text-emerald-700 -mt-0.5">
-            मृदा स्वास्थ्य एवं उर्वरक सलाह (Soil Testing Desk)
+            Soil Testing & Fertilizer Advisory Desk
           </div>
         </div>
       </div>
@@ -60,19 +60,19 @@
       <div class="flex items-center gap-3">
         <button type="button" onclick="window.KisanVoiceAssistant && window.KisanVoiceAssistant.open()"
           class="btn btn-outline btn-sm text-xs font-semibold flex items-center gap-1.5 py-1.5 px-3.5 rounded-xl text-emerald-700 border-emerald-300 bg-emerald-50/50 hover:bg-emerald-100/60 cursor-pointer shadow-xs">
-          <span>🎙️</span> किसान वाणी AI
+          <span>🎙️</span> Kisan Vani AI
         </button>
 
         <a href="dashboard.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3.5 rounded-xl text-slate-700">
-          डैशबोर्ड पर वापस
+          Back to Dashboard
         </a>
 
         <a href="bookings.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3.5 rounded-xl text-slate-700">
-          मेरी बुकिंग
+          My Bookings
         </a>
 
         <button type="button" id="logout-btn" class="btn btn-outline btn-sm text-xs py-1.5 px-3.5 rounded-xl">
-          लॉगआउट
+          Logout
         </button>
       </div>
     </div>
@@ -87,24 +87,24 @@
         <div>
           <div
             class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#15803d] border border-emerald-300 text-[11px] font-semibold mb-2">
-            <span>🧪</span> मृदा परीक्षण एवं फसल पोषण प्रबंधन (Soil Health & Nutrient Advisory)
+            <span>🧪</span> Soil Health & Nutrient Advisory
           </div>
           <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">
-            मृदा स्वास्थ्य कार्ड एवं वैज्ञानिक उर्वरक सलाह
+            Soil Health Card & Scientific Fertilizer Advisory
           </h1>
           <p class="text-sm text-slate-600 mt-1 font-medium">
-            मिट्टी की जांच कराएं, फसल अनुसार खाद की सही मात्रा जानें और अनावश्यक खाद के नुकसान से बचें।
+            Get your soil tested, discover crop-specific nutrient recommendations, and prevent yield loss from improper fertilizer usage.
           </p>
         </div>
 
         <div class="flex items-center gap-2">
           <button type="button" id="tab-btn-card"
             class="px-4 py-2 rounded-lg text-xs font-bold bg-[#15803d] text-white shadow-xs transition-colors">
-            📋 स्वास्थ्य कार्ड व सलाह
+            📋 Health Card & Advisory
           </button>
           <button type="button" id="tab-btn-book"
             class="px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 transition-colors">
-            📅 नया स्लॉट बुक करें
+            📅 Book Test Appointment
           </button>
         </div>
       </div>
@@ -125,22 +125,22 @@
               <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">SLA ACTIVE</span>
             </div>
             <p class="text-xs text-slate-300 mt-0.5">
-              नागरिक अधिकार पत्र: नमूना संग्रह के 48 कार्य घंटों के भीतर प्रयोगशाला जांच रिपोर्ट एवं उर्वरक संस्तुति की गारंटी।
+              Citizen Charter: Guaranteed laboratory test report and customized advisory within 48 working hours of sample submission.
             </p>
           </div>
         </div>
 
         <div class="flex items-center gap-3">
           <div class="text-right">
-            <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">शेष सेवा समय (Time Left)</span>
+            <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">SLA Remaining</span>
             <div class="text-xl font-black font-mono text-amber-300" id="sla-countdown-timer">
               34h : 18m : 42s
             </div>
           </div>
           <div class="h-8 w-px bg-slate-800"></div>
           <div class="text-right text-[11px] font-mono text-teal-200">
-            <div>लक्ष्य: <strong>48 Hrs</strong></div>
-            <div class="text-emerald-400"><strong>ऑन-टाइम गारंटी</strong></div>
+            <div>Target: <strong>48 Hrs</strong></div>
+            <div class="text-emerald-400"><strong>On-Time Guarantee</strong></div>
           </div>
         </div>
       </div>
@@ -156,21 +156,21 @@
               <div class="flex items-center gap-2">
                 <h2 class="text-lg font-bold text-slate-900" id="shc-farmer-name">Demo Farmer</h2>
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200" id="shc-status-badge">
-                  <span>✓</span> परीक्षण संपन्न (Tested)
+                  <span>✓</span> Tested
                 </span>
               </div>
               <p class="text-xs text-slate-500 mt-0.5" id="shc-meta">
-                सैंपल आईडी: <span class="font-mono font-bold text-slate-700">SMP-HR-7821</span> • परीक्षण केंद्र: करनाल केंद्रीय प्रयोगशाला • दिनांक: 10-03-2026
+                Sample ID: <span class="font-mono font-bold text-slate-700">SMP-HR-7821</span> • Testing Center: Karnal Central Lab • Date: 10-03-2026
               </p>
             </div>
           </div>
 
           <div class="flex items-center gap-2">
             <button type="button" onclick="window.print()" class="btn btn-outline btn-sm text-xs py-1.5 px-3 flex items-center gap-1.5">
-              <span>🖨️</span> प्रिंट रिपोर्ट
+              <span>🖨️</span> Print Report
             </button>
             <button type="button" id="switch-to-book-btn" class="btn btn-primary btn-sm text-xs py-1.5 px-3">
-              + नया सैंपल बुक करें
+              + Book New Sample
             </button>
           </div>
         </div>
@@ -180,105 +180,105 @@
           <!-- pH -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">मृदा pH (अम्लता/क्षारता)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">सामान्य</span>
+              <span class="text-xs font-semibold text-slate-500">Soil pH (Reaction)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Normal</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-ph">7.2</div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-emerald-600" style="width: 55%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: 6.5 – 7.8</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: 6.5 – 7.8</span>
           </div>
 
           <!-- Organic Carbon -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">जैविक कार्बन (OC %)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">मध्यम</span>
+              <span class="text-xs font-semibold text-slate-500">Organic Carbon (OC %)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Medium</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-oc">0.54%</div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-amber-500" style="width: 54%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: > 0.75%</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: > 0.75%</span>
           </div>
 
           <!-- Nitrogen -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">नाइट्रोजन (N)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">निम्न (Low)</span>
+              <span class="text-xs font-semibold text-slate-500">Available Nitrogen (N)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Low</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-n">245 <span class="text-xs font-normal text-slate-500">kg/ha</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-rose-500" style="width: 40%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: 280 – 560 kg/ha</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: 280 – 560 kg/ha</span>
           </div>
 
           <!-- Phosphorus -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">फास्फोरस (P₂O₅)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">पर्याप्त</span>
+              <span class="text-xs font-semibold text-slate-500">Available Phosphorus (P₂O₅)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Sufficient</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-p">17.2 <span class="text-xs font-normal text-slate-500">kg/ha</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-emerald-600" style="width: 68%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: 10 – 25 kg/ha</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: 10 – 25 kg/ha</span>
           </div>
 
           <!-- Potassium -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">पोटाश (K₂O)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">मध्यम</span>
+              <span class="text-xs font-semibold text-slate-500">Available Potassium (K₂O)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Medium</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-k">215 <span class="text-xs font-normal text-slate-500">kg/ha</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-emerald-600" style="width: 62%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: 110 – 280 kg/ha</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: 110 – 280 kg/ha</span>
           </div>
 
           <!-- Zinc -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">जिंक (Zinc)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">कमी (Deficient)</span>
+              <span class="text-xs font-semibold text-slate-500">Available Zinc (Zn)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Deficient</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-zn">0.54 <span class="text-xs font-normal text-slate-500">ppm</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-amber-500" style="width: 45%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">न्यूनतम आवश्यक: > 0.60 ppm</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Critical Limit: > 0.60 ppm</span>
           </div>
 
           <!-- Sulphur -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">सल्फर (Sulphur)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">मध्यम</span>
+              <span class="text-xs font-semibold text-slate-500">Available Sulphur (S)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Medium</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-s">8.5 <span class="text-xs font-normal text-slate-500">ppm</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-emerald-600" style="width: 58%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">आदर्श सीमा: > 10.0 ppm</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Optimal Range: > 10.0 ppm</span>
           </div>
 
           <!-- EC -->
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div class="flex justify-between items-start">
-              <span class="text-xs font-semibold text-slate-500">लवणता (EC)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">सुरक्षित</span>
+              <span class="text-xs font-semibold text-slate-500">Electrical Conductivity (EC)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Safe</span>
             </div>
             <div class="text-2xl font-black text-slate-900 mt-1" id="val-ec">0.42 <span class="text-xs font-normal text-slate-500">dS/m</span></div>
             <div class="meter-bar mt-2">
               <div class="meter-fill bg-emerald-600" style="width: 30%;"></div>
             </div>
-            <span class="text-[10px] text-slate-400 mt-1 block">सुरक्षित सीमा: < 1.0 dS/m</span>
+            <span class="text-[10px] text-slate-400 mt-1 block">Safe Limit: < 1.0 dS/m</span>
           </div>
         </div>
       </div>
@@ -292,33 +292,33 @@
           <div class="space-y-2 flex-1">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <h3 class="text-base font-bold text-rose-950">
-                विशेष चेतावनी: कब खाद का प्रयोग बिल्कुल न करें! (When NOT to Use Fertilizers)
+                Critical Advisory: When NOT to Use Fertilizers
               </h3>
               <span class="text-[11px] font-bold uppercase tracking-wider bg-rose-200 text-rose-900 px-2 py-0.5 rounded">
-                अति-महत्वपूर्ण नियम
+                Critical Safety Rules
               </span>
             </div>
             <p class="text-xs text-rose-900 leading-relaxed font-medium">
-              गलत समय या गलत तरीके से खाद डालने से न केवल खाद बर्बाद होती है, बल्कि फसल को भारी नुकसान और रोग लग सकते हैं:
+              Applying fertilizers at the wrong time or improper rate not only wastes input investment, but also causes severe crop damage, lodging, and pest outbreaks:
             </p>
 
             <ul class="space-y-2 text-xs text-rose-950 pt-1" id="when-not-to-use-list">
               <!-- Dynamically populated based on chosen crop -->
               <li class="flex items-start gap-2">
                 <span class="text-rose-600 font-bold shrink-0">❌</span>
-                <span><strong>फूल आने या बालियां निकलने के बाद यूरिया न डालें</strong>: इससे फसल गिर (Lodging) जाती है, दाना पतला रह जाता है और फफूंद रोग बढ़ते हैं।</span>
+                <span><strong>Do NOT apply Urea after flowering or heading</strong>: Causes vegetative surge and lodging, hinders grain filling, and increases fungal susceptibility.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-rose-600 font-bold shrink-0">❌</span>
-                <span><strong>DAP और जिंक सल्फेट को कभी एक साथ मिलाकर न डालें</strong>: दोनों के मिलने से जिंक फॉस्फेट बन जाता है जो पौधे को नहीं मिलता और खाद व्यर्थ हो जाती है।</span>
+                <span><strong>Never mix DAP directly with Zinc Sulphate</strong>: Forms insoluble Zinc Phosphate, rendering both fertilizers unavailable to crops.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-rose-600 font-bold shrink-0">❌</span>
-                <span><strong>सूखी जमीन या तेज धूप / गर्म दोपहर में यूरिया न छिड़कें</strong>: अमोनिया गैस बनकर उड़ जाती है और पत्तियों पर खाद जलने के धब्बे पड़ जाते हैं।</span>
+                <span><strong>Do NOT broadcast Urea on dry soil or in strong midday sun</strong>: Escapes as ammonia gas via volatilization and can scorch plant foliage.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-rose-600 font-bold shrink-0">❌</span>
-                <span><strong>भारी वर्षा की संभावना होने पर नाइट्रोजन न डालें</strong>: पानी के तेज बहाव से सारी खाद बह जाती है।</span>
+                <span><strong>Do NOT apply Nitrogen before heavy rainfall</strong>: Fertilizer leaches away with surface runoff, resulting in complete wastage.</span>
               </li>
             </ul>
           </div>
@@ -330,28 +330,28 @@
         <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
           <div>
             <h3 class="text-base font-bold text-slate-900">
-              🌾 फसल अनुसार उर्वरक एवं कीटनाशक गणना (Crop-Specific Fertilizer & Pesticide Advisory)
+              🌾 Crop-Specific Fertilizer & Pesticide Advisory
             </h3>
             <p class="text-xs text-slate-500 mt-0.5">
-              अपनी बोई जाने वाली फसल चुनें — आपकी मिट्टी के आधार पर खाद की सटीक बोरी संख्या व समय-सारणी देखें।
+              Select your crop to view precise bag counts, schedule, and agronomic purposes customized for your soil test results.
             </p>
           </div>
 
           <div class="flex flex-wrap items-center gap-3">
             <div class="flex items-center gap-1.5">
-              <label for="advisory-crop-select" class="text-xs font-bold text-slate-700">फसल चुनें:</label>
+              <label for="advisory-crop-select" class="text-xs font-bold text-slate-700">Select Crop:</label>
               <select id="advisory-crop-select" class="text-xs font-semibold py-1.5 px-3 rounded-lg border border-slate-300 bg-slate-50 focus:outline-emerald-600">
-                <option value="wheat" selected>गेहूं (Wheat Grade A)</option>
-                <option value="mustard">सरसों (Mustard)</option>
-                <option value="paddy">धान (Paddy Common)</option>
-                <option value="cotton">कपास (Cotton)</option>
-                <option value="bajra">बाजरा (Bajra)</option>
-                <option value="gram">चना (Gram)</option>
+                <option value="wheat" selected>Wheat (Grade A)</option>
+                <option value="mustard">Mustard</option>
+                <option value="paddy">Paddy (Common)</option>
+                <option value="cotton">Cotton</option>
+                <option value="bajra">Bajra</option>
+                <option value="gram">Gram</option>
               </select>
             </div>
 
             <div class="flex items-center gap-1.5">
-              <label for="advisory-land-acres" class="text-xs font-bold text-slate-700">रकबा (एकड़):</label>
+              <label for="advisory-land-acres" class="text-xs font-bold text-slate-700">Land Area (Acres):</label>
               <input type="number" id="advisory-land-acres" min="0.5" max="100" step="0.5" value="5.5"
                 class="w-20 text-xs font-bold py-1.5 px-2 rounded-lg border border-slate-300 bg-slate-50 focus:outline-emerald-600 text-center" />
             </div>
@@ -361,18 +361,18 @@
         <!-- Fertilizer Dosage Table -->
         <div class="space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-            <span>📦</span> अनुशंसित खाद की कुल मात्रा (<span id="advisory-total-acres-label">5.5 एकड़ के लिए</span>)
+            <span>📦</span> Recommended Fertilizer Quantity (<span id="advisory-total-acres-label">For 5.5 Acres</span>)
           </h4>
 
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
               <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
                 <tr>
-                  <th class="p-3">उर्वरक का नाम</th>
-                  <th class="p-3">दर प्रति एकड़</th>
-                  <th class="p-3 bg-emerald-50 text-emerald-950 font-black">कुल आवश्यक बोरियां (Total Bags)</th>
-                  <th class="p-3">डालने का सही समय</th>
-                  <th class="p-3">उद्देश्य व वैज्ञानिक कारण</th>
+                  <th class="p-3">Fertilizer Name</th>
+                  <th class="p-3">Rate per Acre</th>
+                  <th class="p-3 bg-emerald-50 text-emerald-950 font-black">Total Bags Required</th>
+                  <th class="p-3">Application Timing</th>
+                  <th class="p-3">Agronomic Purpose</th>
                 </tr>
               </thead>
               <tbody id="fertilizer-table-body" class="divide-y divide-slate-150">
@@ -385,7 +385,7 @@
         <!-- Pesticide & Crop Health Recommendations -->
         <div class="space-y-3 pt-3 border-t border-slate-100">
           <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-            <span>🛡️</span> कीट एवं रोग नियंत्रण (Safe Pesticide & Fungicide Schedule)
+            <span>🛡️</span> Integrated Pest & Disease Control Schedule
           </h4>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pesticide-cards-grid">
@@ -403,14 +403,14 @@
           <div>
             <div class="flex items-center gap-2">
               <h3 class="text-sm font-bold text-slate-900">
-                वैज्ञानिक संस्तुति अनुपालन घोषणा (Farmer Compliance Declaration)
+                Scientific Dosage Compliance Declaration
               </h3>
               <span id="compliance-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                प्रमाणित अनुपालन (Grade A Bonus Eligible)
+                Certified Compliance (Grade A Bonus Eligible)
               </span>
             </div>
             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-              क्या आपने इस रिपोर्ट में सुझाई गई यूरिया व डीएपी की संतुलित मात्रा का ही प्रयोग किया है? पुष्टि करने पर मंडी में <strong>Grade A बोनस मूल्य</strong> का लाभ मिलेगा।
+              Have you applied balanced doses of Urea and DAP as recommended in this soil report? Confirmation qualifies your harvest for the <strong>Grade A MSP Premium Bonus</strong> at the market.
             </p>
           </div>
         </div>
@@ -419,7 +419,7 @@
           <button type="button" id="btn-confirm-compliance"
             class="btn bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-xs flex items-center gap-1.5 transition-all">
             <span>✓</span>
-            <span>हां, मैंने सिफारिश अनुसार खाद डाली है</span>
+            <span>Yes, I followed the recommended advisory</span>
           </button>
         </div>
       </div>
@@ -435,75 +435,75 @@
         <div class="lg:col-span-2 card p-6 bg-white border-slate-200 shadow-xs space-y-5">
           <div class="pb-3 border-b border-slate-100">
             <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span>📅</span> मृदा परीक्षण हेतु स्लॉट बुक करें (Book Soil Test Appointment)
+              <span>📅</span> Book Soil Test Appointment
             </h2>
             <p class="text-xs text-slate-500 mt-0.5">
-              अपनी मिट्टी का नमूना नजदीकी अधिकृत मंडी प्रयोगशाला में जमा करने के लिए दिन और समय चुनें।
+              Select an appointment date and time slot to submit your soil sample at the nearest APMC testing laboratory.
             </p>
           </div>
 
           <form id="soil-test-booking-form" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">किसान का नाम *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Farmer Name *</label>
                 <input type="text" id="form-farmer-name" required value="Demo Farmer"
                   class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-slate-50" />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">मोबाइल नंबर *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number *</label>
                 <input type="tel" id="form-farmer-phone" required value="9876543210"
                   class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-slate-50 font-mono" />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">जिला *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">District *</label>
                 <select id="form-district" required class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white">
-                  <option value="Karnal" selected>Karnal (करनाल)</option>
-                  <option value="Ambala">Ambala (अंबाला)</option>
-                  <option value="Rohtak">Rohtak (रोहतक)</option>
-                  <option value="Hisar">Hisar (हिसार)</option>
-                  <option value="Sonipat">Sonipat (सोनीपत)</option>
-                  <option value="Jhajjar">Jhajjar (झज्जर)</option>
-                  <option value="Sirsa">Sirsa (सिरसा)</option>
+                  <option value="Karnal" selected>Karnal</option>
+                  <option value="Ambala">Ambala</option>
+                  <option value="Rohtak">Rohtak</option>
+                  <option value="Hisar">Hisar</option>
+                  <option value="Sonipat">Sonipat</option>
+                  <option value="Jhajjar">Jhajjar</option>
+                  <option value="Sirsa">Sirsa</option>
                 </select>
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">परीक्षण प्रयोगशाला केंद्र (Testing Lab) *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Testing Laboratory Center *</label>
                 <select id="form-center" required class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white">
-                  <option value="CTR-HR-01|Karnal Central Procurement Center" selected>Karnal Central Mandi Soil Lab</option>
-                  <option value="CTR-HR-02|Ambala Grain Market Center">Ambala Mandi Testing Center</option>
+                  <option value="CTR-HR-01|Karnal Central Procurement Center" selected>Karnal Central Market Soil Lab</option>
+                  <option value="CTR-HR-02|Ambala Grain Market Center">Ambala Market Testing Center</option>
                   <option value="CTR-HR-03|Rohtak Central Procurement Center">Rohtak Soil Testing Yard</option>
                 </select>
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">आगामी बोई जाने वाली फसल (Target Crop) *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Target Crop *</label>
                 <select id="form-crop" required class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white">
-                  <option value="Wheat (Grade A)" selected>गेहूं (Wheat)</option>
-                  <option value="Mustard">सरसों (Mustard)</option>
-                  <option value="Paddy (Common)">धान (Paddy)</option>
-                  <option value="Cotton">कपास (Cotton)</option>
-                  <option value="Bajra">बाजरा (Bajra)</option>
-                  <option value="Gram">चना (Gram)</option>
+                  <option value="Wheat (Grade A)" selected>Wheat (Grade A)</option>
+                  <option value="Mustard">Mustard</option>
+                  <option value="Paddy (Common)">Paddy (Common)</option>
+                  <option value="Cotton">Cotton</option>
+                  <option value="Bajra">Bajra</option>
+                  <option value="Gram">Gram</option>
                 </select>
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">जमीन का रकबा (एकड़ में) *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Land Area (in Acres) *</label>
                 <input type="number" id="form-land-area" min="0.5" max="100" step="0.5" required value="5.5"
                   class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white font-mono" />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">सैंपल जमा करने की तारीख *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Sample Submission Date *</label>
                 <input type="date" id="form-date" required
                   class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white" />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">समय स्लॉट *</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Time Slot *</label>
                 <select id="form-slot" required class="w-full text-xs py-2 px-3 rounded-lg border border-slate-300 focus:outline-emerald-600 bg-white">
                   <option value="09:00 AM – 10:00 AM">09:00 AM – 10:00 AM</option>
                   <option value="10:00 AM – 11:00 AM" selected>10:00 AM – 11:00 AM</option>
@@ -516,10 +516,10 @@
 
             <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
               <button type="reset" class="btn btn-outline btn-sm text-xs py-2 px-4">
-                रीसेट करें
+                Reset
               </button>
               <button type="submit" id="submit-booking-btn" class="btn btn-primary btn-sm text-xs font-bold py-2 px-6 shadow-xs">
-                पुष्टि करें और स्लॉट बुक करें (Confirm & Book) &rarr;
+                Confirm & Book Appointment &rarr;
               </button>
             </div>
           </form>
@@ -529,28 +529,28 @@
         <div class="card p-6 bg-emerald-50/60 border border-emerald-200 shadow-xs space-y-4">
           <div class="flex items-center gap-2 text-[#15803d]">
             <span class="text-xl">📋</span>
-            <h3 class="text-sm font-bold text-slate-900">मिट्टी का सही नमूना कैसे लें?</h3>
+            <h3 class="text-sm font-bold text-slate-900">How to Collect Soil Sample Accurately?</h3>
           </div>
 
           <div class="space-y-3 text-xs text-slate-700">
             <div class="p-2.5 bg-white rounded-lg border border-emerald-150">
-              <strong>1. 'V' आकार का गड्ढा बनाएं:</strong>
-              <p class="text-[11px] text-slate-500 mt-0.5">खेत में 5 अलग-अलग स्थानों से 15 सेमी (6 इंच) गहरा 'V' आकार का कट लगाएं।</p>
+              <strong>1. Dig 'V'-Shaped Cuts:</strong>
+              <p class="text-[11px] text-slate-500 mt-0.5">Dig 15 cm (6 inches) deep 'V'-shaped slices across 5 zigzag spots in your plot.</p>
             </div>
 
             <div class="p-2.5 bg-white rounded-lg border border-emerald-150">
-              <strong>2. ऊपरी घास-फूस अलग करें:</strong>
-              <p class="text-[11px] text-slate-500 mt-0.5">पेड़ों की छाया, खाद के ढेर या मेड़ के पास से नमूना न लें।</p>
+              <strong>2. Clear Surface Litter:</strong>
+              <p class="text-[11px] text-slate-500 mt-0.5">Do not sample under trees, near farm bunds, or close to manure heaps.</p>
             </div>
 
             <div class="p-2.5 bg-white rounded-lg border border-emerald-150">
-              <strong>3. नमूना अच्छी तरह मिलाएं:</strong>
-              <p class="text-[11px] text-slate-500 mt-0.5">सभी 5 नमूनों को साफ बोरी पर मिलाकर सुखाएं और लगभग 500 ग्राम मिट्टी साफ पॉलीथीन बैग में पैक करें।</p>
+              <strong>3. Mix & Shade Dry:</strong>
+              <p class="text-[11px] text-slate-500 mt-0.5">Combine all 5 subsamples on a clean tarp, shade-dry, and pack approx. 500 grams into a clean bag.</p>
             </div>
 
             <div class="p-2.5 bg-white rounded-lg border border-emerald-150">
-              <strong>4. पर्ची लगाएं:</strong>
-              <p class="text-[11px] text-slate-500 mt-0.5">पॉलीथीन पर अपना नाम, मोबाइल और टोकन पर्ची संलग्न करके लैब में लाएं।</p>
+              <strong>4. Attach Token Label:</strong>
+              <p class="text-[11px] text-slate-500 mt-0.5">Label with your name, mobile, and sample token ID, then present it at the lab.</p>
             </div>
           </div>
         </div>
@@ -639,7 +639,7 @@
       async function loadAdvisory() {
         const crop = advisoryCropSelect.value;
         const acres = parseFloat(advisoryLandAcres.value) || 5.0;
-        totalAcresLabel.textContent = `${acres} एकड़ के लिए`;
+        totalAcresLabel.textContent = `For ${acres} Acres`;
 
         try {
           const res = await fetch(`/api/v1/soil-testing/farmer/${encodeURIComponent(farmerPhone)}?crop_override=${encodeURIComponent(crop)}`);
@@ -654,7 +654,7 @@
                 <td class="p-3 font-mono text-slate-700">${f.dose_per_acre}</td>
                 <td class="p-3 bg-emerald-50/50 font-mono font-bold text-emerald-800 text-sm">
                   ${f.total_bags}
-                  <span class="block text-[10px] text-slate-500 font-normal">कुल वजन: ${f.total_quantity_kg} kg</span>
+                  <span class="block text-[10px] text-slate-500 font-normal">Total Weight: ${f.total_quantity_kg} kg</span>
                 </td>
                 <td class="p-3 text-slate-600">${f.timing}</td>
                 <td class="p-3 text-slate-500 leading-relaxed">
@@ -675,8 +675,8 @@
                     ${p.dosage_per_acre}
                   </span>
                 </div>
-                <div class="text-slate-600 text-[11px]"><strong>लक्षित कीट/रोग:</strong> ${p.target_pest}</div>
-                <div class="text-[10px] text-slate-500"><strong>सुरक्षा निर्देश:</strong> ${p.safety_interval}</div>
+                <div class="text-slate-600 text-[11px]"><strong>Target Pest / Disease:</strong> ${p.target_pest}</div>
+                <div class="text-[10px] text-slate-500"><strong>Safety Precautions:</strong> ${p.safety_interval}</div>
               </div>
             `).join('');
           }
@@ -733,13 +733,13 @@
           });
           const result = await res.json();
           if (result.success) {
-            alert(`✅ ${result.message}\n\nबुकिंग रिकॉर्ड आईडी: ${result.booking.record_id}\nसैंपल टोकन: ${result.booking.sample_id}\n\nकृपया निर्धारित तारीख पर 500 ग्राम मिट्टी का नमूना लैब में जमा करें।`);
+            alert(`✅ ${result.message}\n\nBooking Record ID: ${result.booking.record_id}\nSample Token: ${result.booking.sample_id}\n\nPlease submit 500g of soil sample at the lab on the scheduled date.`);
             showTab('card');
           } else {
-            alert('बुकिंग असफल रही। कृपया पुनः प्रयास करें।');
+            alert('Booking failed. Please try again.');
           }
         } catch (err) {
-          alert('नेटवर्क त्रुटि: स्लॉट बुक नहीं हो सका। कृपया बाद में प्रयास करें।');
+          alert('Network error: Could not book slot. Please try again later.');
         }
       });
 
@@ -748,7 +748,7 @@
       function updateSlaCountdown() {
         if (remainingSeconds <= 0) {
           const el = document.getElementById('sla-countdown-timer');
-          if (el) el.textContent = "00h : 00m : 00s (समय समाप्त)";
+          if (el) el.textContent = "00h : 00m : 00s (Expired)";
           return;
         }
         remainingSeconds--;
@@ -768,13 +768,13 @@
       const complianceBadge = document.getElementById('compliance-badge');
       if (confirmBtn) {
         confirmBtn.addEventListener('click', () => {
-          confirmBtn.innerHTML = `<span>✓</span> <span>अनुपालन सत्यापित (Confirmed)</span>`;
+          confirmBtn.innerHTML = `<span>✓</span> <span>Compliance Confirmed</span>`;
           confirmBtn.className = "btn bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold py-2.5 px-4 rounded-xl shadow-xs flex items-center gap-1.5 cursor-default";
           if (complianceBadge) {
-            complianceBadge.innerHTML = `<span>🌟</span> प्रमाणित अनुपालन (Grade A Bonus Active)`;
+            complianceBadge.innerHTML = `<span>🌟</span> Certified Compliance (Grade A Bonus Active)`;
             complianceBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-200 text-emerald-950 border border-emerald-400 animate-pulse";
           }
-          alert("🎉 बधाई! आपकी वैज्ञानिक उर्वरक अनुपालन घोषणा दर्ज कर ली गई है। आपकी फसल मंडी में Grade A बोनस मूल्य हेतु पात्र है।");
+          alert("🎉 Congratulations! Your scientific fertilizer compliance declaration has been recorded. Your harvest is eligible for Grade A MSP Bonus.");
         });
       }
     });

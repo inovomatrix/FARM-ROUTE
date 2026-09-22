@@ -85,11 +85,11 @@
         </a>
         <a href="complaints.html"
           class="px-3 py-1.5 rounded-sm bg-teal-50 text-[#0f766e] border border-teal-200 font-bold">
-          Complaints (शिकायतें)
+          Complaints
         </a>
         <a href="soil-testing.html"
           class="px-3 py-1.5 rounded-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center gap-1">
-          <span>🧪</span> Soil Testing (मृदा परीक्षण)
+          <span>🧪</span> Soil Testing
         </a>
       </nav>
     </div>
@@ -108,7 +108,7 @@
               LEVEL 1: Facility Grievance Intake Desk
             </span>
             <span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-              डेमो डेटा • Demo Flow
+              Demo Flow
             </span>
           </div>
           <h1 class="text-xl sm:text-2xl font-bold text-slate-900">
@@ -164,7 +164,7 @@
         <div class="flex items-center gap-2 text-xs">
           <select id="filter-status" class="form-select border-[#d6d1c4] text-xs py-1 px-2 rounded-xs">
             <option value="ALL">All Statuses</option>
-            <option value="OPEN">Open (नई)</option>
+            <option value="OPEN">Open</option>
             <option value="ACKNOWLEDGED">Acknowledged</option>
             <option value="IN_PROGRESS">In Progress</option>
             <option value="RESOLVED">Resolved</option>
@@ -273,7 +273,7 @@
     <div class="bg-white border border-[#e2ded4] rounded-sm max-w-md w-full p-6 shadow-xl space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-[#e2ded4]">
         <div class="flex items-center gap-2 text-rose-800 font-bold text-sm">
-          <span>⚠️</span> Escalate to District Admin (जिला प्रशासन को भेजें)
+          <span>⚠️</span> Escalate to District Admin
         </div>
         <button type="button" onclick="document.getElementById('escalate-modal').classList.add('hidden')"
           class="text-slate-400 hover:text-slate-700 text-lg font-bold">
@@ -290,10 +290,10 @@
       <form id="escalate-form" class="space-y-3">
         <div>
           <label class="form-label font-bold text-xs text-slate-800">
-            Mandatory Escalation Reason (उच्च स्तर पर भेजने का कारण) *
+            Mandatory Escalation Reason *
           </label>
           <textarea id="esc-reason-input" rows="3" class="form-textarea border-[#d6d1c4] text-xs py-2 rounded-xs"
-            placeholder="उदा. स्थानीय स्तर पर समाधान संभव नहीं है क्योंकि..." required></textarea>
+            placeholder="e.g. Local resolution not possible because..." required></textarea>
         </div>
         <div id="esc-error" class="text-xs text-rose-600 font-semibold hidden"></div>
 
@@ -315,7 +315,7 @@
     <div class="bg-white border border-[#e2ded4] rounded-sm max-w-md w-full p-6 shadow-xl space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-[#e2ded4]">
         <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-          <span>✅</span> Mark Complaint Resolved (समाधान करें)
+          <span>✅</span> Mark Complaint Resolved
         </div>
         <button type="button" onclick="document.getElementById('resolve-modal').classList.add('hidden')"
           class="text-slate-400 hover:text-slate-700 text-lg font-bold">
@@ -333,7 +333,7 @@
             Resolution Notes / Corrective Action *
           </label>
           <textarea id="res-notes-input" rows="3" class="form-textarea border-[#d6d1c4] text-xs py-2 rounded-xs"
-            placeholder="उदा. कांटे का पुनः अंशांकन किया गया और तौल विसंगति दूर की गई..." required></textarea>
+            placeholder="e.g. Weighbridge recalibrated and weight discrepancy corrected..." required></textarea>
         </div>
         <div id="res-error" class="text-xs text-rose-600 font-semibold hidden"></div>
 

@@ -124,7 +124,7 @@
           <span class="text-slate-500 font-mono" id="crumb-center-id">Loading...</span>
         </div>
         <span class="text-[10px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-          डेमो डेटा • Demo Data
+          Demo Data
         </span>
       </div>
 
@@ -176,7 +176,7 @@
       <div class="card p-6 bg-white border-amber-200 shadow-xs border">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
           <div>
-            <h2 class="text-sm font-bold text-slate-900">Administrative Operational Controls (प्रशासनिक नियंत्रण)</h2>
+            <h2 class="text-sm font-bold text-slate-900">Administrative Operational Controls</h2>
             <p class="text-xs text-slate-500">Configure center operational availability and booking limits</p>
           </div>
           <span class="text-[10px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-mono"
@@ -190,10 +190,10 @@
             <label class="block font-bold text-slate-700 mb-1">Operational Status</label>
             <select id="ctrl-op-status"
               class="w-full px-3 py-2 border border-slate-300 rounded-lg font-semibold bg-slate-50 focus:bg-white text-xs">
-              <option value="ACTIVE">ACTIVE (सक्रिय)</option>
-              <option value="PAUSED">PAUSED (अस्थायी रोक)</option>
-              <option value="MAINTENANCE">MAINTENANCE (मरम्मत / रखरखाव)</option>
-              <option value="CLOSED">CLOSED (पूर्णतः बंद)</option>
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="PAUSED">PAUSED</option>
+              <option value="MAINTENANCE">MAINTENANCE</option>
+              <option value="CLOSED">CLOSED</option>
             </select>
           </div>
 
@@ -262,7 +262,7 @@
         <!-- Accepted Commodities -->
         <div class="card p-6 bg-white border-slate-200 shadow-xs">
           <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-            <span>🌾</span> Accepted Commodities (स्वीकृत फसलें)
+            <span>🌾</span> Accepted Commodities
           </h2>
           <div class="flex flex-wrap gap-2" id="commodities-container">
             <!-- Dynamically populated -->
@@ -275,7 +275,7 @@
         <!-- Available Infrastructure -->
         <div class="card p-6 bg-white border-slate-200 shadow-xs">
           <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-            <span>🏗️</span> Facility Infrastructure & Services (उपलब्ध सुविधाएं)
+            <span>🏗️</span> Facility Infrastructure & Services
           </h2>
           <div class="flex flex-wrap gap-2" id="facilities-container">
             <!-- Dynamically populated -->
@@ -398,7 +398,7 @@
         `).join('');
 
         // Facilities
-        const facList = center.facilities || ["डिजिटल टोकन", "इलेक्ट्रॉनिक कांटा", "हेल्पडेस्क"];
+        const facList = center.facilities || ["Digital Token Pass", "Electronic Weighbridge", "Helpdesk"];
         document.getElementById('facilities-container').innerHTML = facList.map(f => `
           <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
             &check; ${f}

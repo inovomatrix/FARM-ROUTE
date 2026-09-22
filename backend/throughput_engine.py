@@ -44,7 +44,7 @@ def get_capacity_tier(utilization_pct: float) -> Dict[str, Any]:
         return {
             "tier": "GREEN",
             "code": "green",
-            "labelHindi": "कम भीड़ (सुगम प्रवेश)",
+            "labelHindi": "Low Load (Fast Track)",
             "labelEnglish": "Low Load (Fast Track)",
             "colorHex": "#15803d",
             "bgHex": "#dcfce7",
@@ -54,7 +54,7 @@ def get_capacity_tier(utilization_pct: float) -> Dict[str, Any]:
         return {
             "tier": "AMBER",
             "code": "amber",
-            "labelHindi": "मध्यम भीड़ (सामान्य प्रतीक्षा)",
+            "labelHindi": "Moderate Load (Standard Buffer)",
             "labelEnglish": "Moderate Load (Standard Buffer)",
             "colorHex": "#b45309",
             "bgHex": "#fef3c7",
@@ -64,7 +64,7 @@ def get_capacity_tier(utilization_pct: float) -> Dict[str, Any]:
         return {
             "tier": "RED",
             "code": "red",
-            "labelHindi": "अत्यधिक भीड़ (स्लॉट लॉक)",
+            "labelHindi": "Heavy Congestion (Slot Saturated / Locked)",
             "labelEnglish": "Heavy Congestion (Slot Saturated / Locked)",
             "colorHex": "#b91c1c",
             "bgHex": "#fee2e2",
@@ -225,9 +225,9 @@ def find_low_load_alternative_centers(
                 "currentQueueVehicles": curr_queue,
                 "utilizationPercent": util_pct,
                 "tierCode": tier["code"],
-                "tierLabel": tier["labelHindi"],
+                "tierLabel": tier["labelEnglish"],
                 "availableSlotsEstimate": max(6, int((100 - util_pct) / 6)),
-                "recommendationReason": f"केवल {round(distance_km, 1)} किमी दूर • कम कतार ({curr_queue} वाहन) • तत्काल प्रवेश उपलब्ध"
+                "recommendationReason": f"Only {round(distance_km, 1)} km away • Low queue ({curr_queue} vehicles) • Immediate admission available"
             })
 
     # Sort by distance

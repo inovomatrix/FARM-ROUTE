@@ -1,6 +1,6 @@
 /**
- * KisanSetu — UI Localization Engine (English Platform Standard)
- * Clean key-value dictionary routing supporting English.
+ * KisanSetu — Dynamic UI Localization Engine
+ * Standardized 100% English Language Platform.
  */
 
 (function (window) {
@@ -14,7 +14,7 @@
     // Brand & App
     "app.title": { en: "KisanSetu", hi: "KisanSetu" },
     "app.subtitle": { en: "Smart Agricultural Logistics & Procurement Platform", hi: "Smart Agricultural Logistics & Procurement Platform" },
-    "app.tagline": { en: "Digital Mandi Platform", hi: "Digital Mandi Platform" },
+    "app.tagline": { en: "Digital Market Platform", hi: "Digital Market Platform" },
 
     // Navigation Links
     "nav.home": { en: "Home", hi: "Home" },
@@ -52,7 +52,7 @@
     // Common UI Text
     "common.loading": { en: "Loading...", hi: "Loading..." },
     "common.active": { en: "Active", hi: "Active" },
-    "common.liveMandiRates": { en: "Live Mandi Rates", hi: "Live Mandi Rates" },
+    "common.liveMandiRates": { en: "Live Market Rates", hi: "Live Market Rates" },
     "common.agroWeather": { en: "Local Agro-Weather", hi: "Local Agro-Weather" },
     "common.search": { en: "Search", hi: "Search" },
     "common.filter": { en: "Filter", hi: "Filter" },
@@ -71,17 +71,16 @@
     "common.pending": { en: "Pending", hi: "Pending" },
     "common.refresh": { en: "Refresh", hi: "Refresh" },
     "common.language": { en: "Language", hi: "Language" },
-    "common.switchLang": { en: "Language: English", hi: "Language: English" },
 
     // Farmer Portal Features
     "farmer.greeting": { en: "Welcome, Farmer!", hi: "Welcome, Farmer!" },
-    "farmer.welcomeSub": { en: "Track mandi arrivals, book weighbridge slots, and monitor live queue status.", hi: "Track mandi arrivals, book weighbridge slots, and monitor live queue status." },
+    "farmer.welcomeSub": { en: "Track market arrivals, book weighbridge slots, and monitor live queue status.", hi: "Track market arrivals, book weighbridge slots, and monitor live queue status." },
     "farmer.quickActions": { en: "Quick Actions", hi: "Quick Actions" },
     "farmer.bookNewSlot": { en: "Book Delivery Slot", hi: "Book Delivery Slot" },
     "farmer.viewToken": { en: "View Digital Pass", hi: "View Digital Pass" },
     "farmer.activeBooking": { en: "Active Booking & Pass", hi: "Active Booking & Pass" },
     "farmer.noActiveBooking": { en: "No Active Booking", hi: "No Active Booking" },
-    "farmer.noActiveBookingSub": { en: "You have no upcoming procurement slots or active tokens. Find a center to book a slot.", hi: "You have no upcoming procurement slots or active tokens. Find a center to book a slot." },
+    "farmer.noActiveBookingSub": { en: "You have no upcoming procurement slots or active passes. Find a center to book a slot.", hi: "You have no upcoming procurement slots or active passes. Find a center to book a slot." },
     "farmer.findCenters": { en: "Find Procurement Center", hi: "Find Procurement Center" },
     "farmer.salesSummary": { en: "Sales & Procurement Summary", hi: "Sales & Procurement Summary" },
     "farmer.totalCropSold": { en: "Total Crop Sold", hi: "Total Crop Sold" },
@@ -93,7 +92,7 @@
     "farmer.profileDetails": { en: "Farmer Profile", hi: "Farmer Profile" },
 
     // Throughput & Slots
-    "throughput.title": { en: "Dynamic Mandi Throughput Engine", hi: "Dynamic Mandi Throughput Engine" },
+    "throughput.title": { en: "Dynamic Market Throughput Engine", hi: "Dynamic Market Throughput Engine" },
     "throughput.formula": { en: "Capacity Formula", hi: "Capacity Formula" },
     "throughput.weighbridges": { en: "Active Weighbridges", hi: "Active Weighbridges" },
     "throughput.rate": { en: "Hourly Weighing Rate", hi: "Hourly Weighing Rate" },
@@ -102,7 +101,7 @@
     "throughput.amberTier": { en: "Moderate Load (Normal)", hi: "Moderate Load (Normal)" },
     "throughput.redTier": { en: "Heavy Congestion (Locked)", hi: "Heavy Congestion (Locked)" },
     "throughput.alternativeTitle": { en: "Nearby Low-Load Alternative Centers", hi: "Nearby Low-Load Alternative Centers" },
-    "throughput.divertBtn": { en: "Book at This Mandi", hi: "Book at This Mandi" },
+    "throughput.divertBtn": { en: "Book at This Market", hi: "Book at This Market" },
 
     // Gate Verification & Security
     "gate.title": { en: "Gate Verification Station", hi: "Gate Verification Station" },
@@ -125,18 +124,18 @@
     "stage.dbtDispatched": { en: "DBT Payment Dispatched", hi: "DBT Payment Dispatched" },
 
     // Superintendent & Command Center
-    "supt.title": { en: "Mandi Superintendent Command Center", hi: "Mandi Superintendent Command Center" },
+    "supt.title": { en: "Market Superintendent Command Center", hi: "Market Superintendent Command Center" },
     "supt.controlRoom": { en: "CONTROL ROOM", hi: "CONTROL ROOM" },
-    "supt.tonnageGauge": { en: "Real-Time Mandi Yard Tonnage Gauge", hi: "Real-Time Mandi Yard Tonnage Gauge" },
-    "supt.realtimeIntake": { en: "Inbound Tonnage Saturation vs Mandi Threshold", hi: "Inbound Tonnage Saturation vs Mandi Threshold" },
+    "supt.tonnageGauge": { en: "Real-Time Market Yard Tonnage Gauge", hi: "Real-Time Market Yard Tonnage Gauge" },
+    "supt.realtimeIntake": { en: "Inbound Tonnage Saturation vs Market Threshold", hi: "Inbound Tonnage Saturation vs Market Threshold" },
     "supt.targetCap": { en: "Target Daily Intake Capacity", hi: "Target Daily Intake Capacity" },
     "supt.weighed": { en: "Weighed Inbound (Gate-In)", hi: "Weighed Inbound (Gate-In)" },
     "supt.enroute": { en: "En-Route / Scheduled Bookings", hi: "En-Route / Scheduled Bookings" },
     "supt.cumProgress": { en: "Cumulative Inbound Progress", hi: "Cumulative Inbound Progress" },
     "supt.emergencyBreaker": { en: "Emergency Circuit Breaker", hi: "Emergency Circuit Breaker" },
     "supt.breakerDesc": { 
-      en: "Instantly halt incoming traffic and upcoming slots in case of sudden weather changes, machinery breakdown, or godown saturation.", 
-      hi: "Instantly halt incoming traffic and upcoming slots in case of sudden weather changes, machinery breakdown, or godown saturation." 
+      en: "Instantly halt incoming traffic and upcoming slots in case of sudden weather changes, machinery breakdown, or warehouse saturation.", 
+      hi: "Instantly halt incoming traffic and upcoming slots in case of sudden weather changes, machinery breakdown, or warehouse saturation." 
     },
     "supt.reasonHalt": { en: "Reason for Halt", hi: "Reason for Halt" },
     "supt.deferDuration": { en: "Deferral Duration", hi: "Deferral Duration" },
@@ -145,7 +144,7 @@
     "supt.stageLatency": { en: "End-to-End Turnaround Analytics", hi: "End-to-End Turnaround Analytics" },
     "supt.stageLatencyTitle": { en: "Stage Latency & Bottleneck Detector", hi: "Stage Latency & Bottleneck Detector" },
     "supt.liveIntake": { en: "Live Intake Stream", hi: "Live Intake Stream" },
-    "supt.yardTelemetry": { en: "Mandi Yard Telemetry & Vehicle Pipeline", hi: "Mandi Yard Telemetry & Vehicle Pipeline" },
+    "supt.yardTelemetry": { en: "Market Yard Telemetry & Vehicle Pipeline", hi: "Market Yard Telemetry & Vehicle Pipeline" },
     "supt.refreshBtn": { en: "Refresh Telemetry", hi: "Refresh Telemetry" },
 
     // Table Headers
@@ -156,13 +155,14 @@
     "th.currentStage": { en: "Current Pipeline Stage", hi: "Current Pipeline Stage" },
     "th.allocatedBay": { en: "Allocated Bay / WB", hi: "Allocated Bay / WB" },
     "th.waitTime": { en: "Wait Time", hi: "Wait Time" },
-    "th.action": { en: "Superintendent Action", hi: "Superintendent Action" }
+    "th.action": { en: "Action", hi: "Action" }
   };
 
-  // Language Resolution: Always "en" (English)
+  // Language Resolution: Always strictly English ("en")
   function resolveInitialLanguage() {
     localStorage.setItem(STORAGE_KEY, "en");
     localStorage.setItem(COMPAT_KEY, "en");
+    localStorage.removeItem(EXPLICIT_FLAG);
     return "en";
   }
 
@@ -177,7 +177,9 @@
       currentLang = "en";
       localStorage.setItem(STORAGE_KEY, "en");
       localStorage.setItem(COMPAT_KEY, "en");
+      localStorage.removeItem(EXPLICIT_FLAG);
       document.documentElement.lang = "en";
+
       this.applyTranslations();
       this.updateSwitcherUI();
 
@@ -192,7 +194,8 @@
     t(key) {
       const entry = DICTIONARY[key];
       if (!entry) return key;
-      return entry["en"] || key;
+      if (typeof entry === 'string') return entry;
+      return entry["en"] || entry["hi"] || key;
     },
 
     applyTranslations() {
@@ -209,7 +212,7 @@
         }
       });
 
-      // 2. Direct bilingual inline attributes: data-i18n-en always wins
+      // 2. Direct English inline attributes: data-i18n-en
       document.querySelectorAll("[data-i18n-en]").forEach(el => {
         const text = el.getAttribute("data-i18n-en");
         if (text) {
@@ -230,36 +233,43 @@
     },
 
     updateSwitcherUI() {
-      // A. Update all segmented option switchers (.kisan-lang-switcher)
+      // A. Update all segmented switchers (.kisan-lang-switcher)
       document.querySelectorAll(".kisan-lang-switcher").forEach(container => {
-        const enBtn = container.querySelector('[data-lang="en"]');
-        const hiBtn = container.querySelector('[data-lang="hi"]');
+        let enBtn = container.querySelector('[data-lang="en"]');
+        let hiBtn = container.querySelector('[data-lang="hi"]');
         const isDark = container.closest('.bg-slate-900, .bg-slate-950, [data-theme="dark"]');
 
-        if (enBtn) {
-          enBtn.className = isDark
-            ? "px-2.5 py-1 rounded-md text-xs font-bold bg-teal-600 text-white shadow-xs transition-all cursor-default"
-            : "px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-600 text-white shadow-xs transition-all cursor-default";
-          enBtn.textContent = "EN";
-        }
         if (hiBtn) {
           hiBtn.style.display = "none";
+        }
+
+        if (enBtn) {
+          enBtn.style.display = "";
+          enBtn.textContent = "EN";
+          enBtn.className = isDark
+            ? "px-2.5 py-1 rounded-md text-xs font-bold bg-teal-600 text-white shadow-xs cursor-default"
+            : "px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-600 text-white shadow-xs cursor-default";
+          enBtn.onclick = (e) => { e.preventDefault(); this.setLanguage("en"); };
+        } else {
+          container.innerHTML = `
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold ${isDark ? 'bg-teal-600 text-white' : 'bg-emerald-600 text-white'} shadow-xs inline-flex items-center gap-1 cursor-default">
+              <span>🌐</span> EN
+            </span>
+          `;
         }
       });
 
       // B. Update all single toggle buttons (.kisan-lang-btn)
       document.querySelectorAll(".kisan-lang-btn").forEach(btn => {
-        const label = "English (EN)";
-        const title = "Language: English";
-        
         const labelSpan = btn.querySelector(".lang-text");
         if (labelSpan) {
-          labelSpan.textContent = label;
+          labelSpan.textContent = "English";
         } else {
-          btn.textContent = `🌐 ${label}`;
+          btn.textContent = "🌐 English";
         }
-        btn.setAttribute("title", title);
-        btn.setAttribute("aria-label", `Current language: English.`);
+        btn.setAttribute("title", "Language: English");
+        btn.setAttribute("aria-label", "Language: English");
+        btn.onclick = (e) => { e.preventDefault(); this.setLanguage("en"); };
       });
 
       // C. Update select dropdowns (.kisan-lang-select)
@@ -271,10 +281,10 @@
     renderLanguageSwitchButton() {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "kisan-lang-btn px-2.5 py-1.5 rounded-lg text-xs font-bold border border-slate-700 bg-slate-800 text-teal-300 transition-all shadow-xs flex items-center gap-1.5";
-      btn.innerHTML = `<span>🌐</span><span class="lang-text">English (EN)</span>`;
+      btn.className = "kisan-lang-btn px-2.5 py-1.5 rounded-lg text-xs font-bold border border-slate-700 bg-slate-800 text-teal-300 shadow-xs flex items-center gap-1.5 cursor-default";
+      btn.innerHTML = `<span>🌐</span><span class="lang-text">English</span>`;
       btn.title = "Language: English";
-      btn.onclick = () => this.setLanguage("en");
+      btn.onclick = (e) => { e.preventDefault(); this.setLanguage("en"); };
       return btn;
     }
   };

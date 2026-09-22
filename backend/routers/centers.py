@@ -17,7 +17,7 @@ def _format_center(c: Center) -> dict:
     try:
         facilities = json.loads(c.facilities) if c.facilities else []
     except Exception:
-        facilities = ["डिजिटल टोकन", "वेईब्रिज", "किसान प्रतीक्षालय"]
+        facilities = ["Digital Token", "Weighbridge", "Farmer Waiting Hall"]
 
     return {
         "id": c.id,
@@ -32,7 +32,7 @@ def _format_center(c: Center) -> dict:
         "acceptedCrops": accepted_crops,
         "facilities": facilities,
         "dailyCapacityMT": c.daily_capacity_mt,
-        "dailyCapacity": f"{c.daily_capacity_mt} MT / दिन",
+        "dailyCapacity": f"{c.daily_capacity_mt} MT / Day",
         "slotDuration": c.slot_duration,
         "currentQueueVehicles": c.current_queue_vehicles,
         "estimatedWaitMinutes": c.estimated_wait_minutes,

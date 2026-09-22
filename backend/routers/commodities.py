@@ -20,7 +20,7 @@ def _format_commodity(c: Commodity) -> dict:
         "demoRate": c.demo_rate,
         "mspPerQuintal": c.msp_per_quintal,
         "moistureMaxPercent": c.moisture_max_percent,
-        "demoDisclaimer": "डेमो दर • Demo Rate (Illustrative)"
+        "demoDisclaimer": "Demo Rate (Illustrative)"
     }
 
 @router.get("")

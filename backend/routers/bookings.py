@@ -121,7 +121,7 @@ def create_booking(payload: BookingCreateRequest, db: Session = Depends(get_db))
         total_vehicles_ahead=max(0, queue_pos - 1),
         estimated_wait_minutes=queue_pos * 5,
         arrival_status="pending",
-        status="कन्फर्म (Slot Scheduled)"
+        status="Confirmed (Slot Scheduled)"
     )
     db.add(queue_entry)
 

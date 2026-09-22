@@ -46,14 +46,10 @@
         <div class="flex items-center gap-3">
           <!-- Language Switcher Option (English / Hindi) -->
           <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
-            title="Change language / भाषा बदलें">
+            title="Language: English">
             <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
+              class="px-2.5 py-1 rounded-md transition-all bg-emerald-600 text-white cursor-default">
               EN
-            </button>
-            <button type="button" data-lang="hi" onclick="window.KisanI18n && window.KisanI18n.setLanguage('hi')"
-              class="px-2.5 py-1 rounded-md transition-all cursor-pointer">
-              हिन्दी
             </button>
           </div>
 
@@ -123,7 +119,7 @@
             </span>
             <span
               class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-              डेमो डेटा • Demo Data
+              Demo Data
             </span>
           </div>
           <h1 class="text-2xl sm:text-3xl font-bold text-slate-900" id="welcome-user-title">
@@ -168,10 +164,10 @@
     <div>
       <div class="flex items-center justify-between mb-3">
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-2">
-          <span>📊</span> District Operational Overview (जिला स्तरीय परिचालन स्थिति)
+          <span>📊</span> District Operational Overview
         </h2>
         <span class="text-[11px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
-          डेमो डेटा • Demo Data
+          Demo Data
         </span>
       </div>
 
@@ -228,7 +224,7 @@
       <!-- Center Health Card -->
       <div class="card p-6 bg-white border-slate-200 shadow-xs">
         <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-          <span>🏥</span> District Center Health Status (केंद्र स्वास्थ्य स्थिति)
+          <span>🏥</span> District Center Health Status
         </h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
           <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
@@ -257,7 +253,7 @@
       <!-- Operational Bottlenecks Card -->
       <div class="card p-6 bg-white border-slate-200 shadow-xs">
         <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-          <span>⚠️</span> Bottleneck Detection (अवरोध निगरानी)
+          <span>⚠️</span> Bottleneck Detection
         </h2>
         <div class="space-y-2.5 text-xs">
           <div class="p-2.5 bg-slate-50 rounded-lg flex items-center justify-between">
@@ -284,7 +280,7 @@
     <!-- Monitoring Modules / Quick Shortcuts -->
     <div>
       <h2 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">
-        Administrative Oversight Desks (प्रशासनिक निगरानी डेस्क)
+        Administrative Oversight Desks
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -481,13 +477,13 @@
         const cfg = window.KisanAdmin.getCenterConfig(center.id);
 
         let badgeColor = "bg-emerald-50 text-emerald-800 border-emerald-200";
-        let badgeText = "Normal (कम लोड)";
+        let badgeText = "Normal (Low Load)";
         if (center.loadStatus === 'medium') {
           badgeColor = "bg-amber-50 text-amber-800 border-amber-200";
-          badgeText = "Moderate (मध्यम)";
+          badgeText = "Moderate";
         } else if (center.loadStatus === 'high') {
           badgeColor = "bg-rose-50 text-rose-800 border-rose-200";
-          badgeText = "Heavy (उच्च लोड)";
+          badgeText = "Heavy";
         }
 
         return `

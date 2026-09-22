@@ -37,13 +37,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "09:00 AM – 10:00 AM",
       queuePosition: 3,
       totalVehiclesAhead: 2,
       estimatedWaitMinutes: 15,
       arrivalStatus: "checked_in",
-      status: "कतार में प्रतीक्षा (Waiting in Queue)",
+      status: "Waiting in Queue",
       grossWeight: "Demo (Pending)",
       tareWeight: "Demo (Pending)",
       netQuantity: "Demo (Pending)",
@@ -58,13 +58,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Paddy (Common)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "09:00 AM – 10:00 AM",
       queuePosition: 1,
       totalVehiclesAhead: 0,
       estimatedWaitMinutes: 5,
       arrivalStatus: "checked_in",
-      status: "आपकी बारी जल्द है (Your Turn Is Next)",
+      status: "Your Turn Is Next",
       grossWeight: "Demo (Pending)",
       tareWeight: "Demo (Pending)",
       netQuantity: "Demo (Pending)",
@@ -79,13 +79,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "10:00 AM – 11:00 AM",
       queuePosition: 7,
       totalVehiclesAhead: 6,
       estimatedWaitMinutes: 30,
       arrivalStatus: "arrived",
-      status: "केंद्र पर पहुंच गए (Arrived at Center)",
+      status: "Arrived at Center",
       grossWeight: "N/A",
       tareWeight: "N/A",
       netQuantity: "N/A",
@@ -100,13 +100,13 @@
       centerId: "CTR-HR-01",
       centerName: "Karnal Central Procurement Center",
       commodity: "Wheat (Grade A)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "08:00 AM – 09:00 AM",
       queuePosition: 0,
       totalVehiclesAhead: 0,
       estimatedWaitMinutes: 0,
       arrivalStatus: "checked_in",
-      status: "खरीद पूर्ण (Procurement Completed)",
+      status: "Procurement Completed",
       grossWeight: "6,800 kg",
       tareWeight: "2,200 kg",
       netQuantity: "46.00 Qtl",
@@ -121,13 +121,13 @@
       centerId: "CTR-HR-02",
       centerName: "Ambala Grain Market Center",
       commodity: "Paddy (Common)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "09:30 AM – 10:30 AM",
       queuePosition: 4,
       totalVehiclesAhead: 3,
       estimatedWaitMinutes: 25,
       arrivalStatus: "checked_in",
-      status: "कतार में प्रतीक्षा (Waiting in Queue)",
+      status: "Waiting in Queue",
       grossWeight: "Demo (Pending)",
       tareWeight: "Demo (Pending)",
       netQuantity: "Demo (Pending)",
@@ -142,13 +142,13 @@
       centerId: "CTR-HR-02",
       centerName: "Ambala Grain Market Center",
       commodity: "Paddy (Common)",
-      bookingDate: "Today (आज)",
+      bookingDate: "Today",
       timeSlot: "08:30 AM – 09:30 AM",
       queuePosition: 0,
       totalVehiclesAhead: 0,
       estimatedWaitMinutes: 0,
       arrivalStatus: "checked_in",
-      status: "खरीद पूर्ण (Procurement Completed)",
+      status: "Procurement Completed",
       grossWeight: "7,150 kg",
       tareWeight: "2,350 kg",
       netQuantity: "48.00 Qtl",
@@ -392,7 +392,7 @@
         status: "active",
         acceptingBookings: true,
         reason: "",
-        labelHindi: "बुकिंग उपलब्ध",
+        labelHindi: "Booking Available",
         labelEnglish: "Booking Available",
         badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200"
       };
@@ -475,7 +475,7 @@
           : "not_arrived";
         const status = (isLiveQueueMatched && liveQueue.status)
           ? liveQueue.status
-          : "बुकिंग की पुष्टि (Booking Confirmed)";
+          : "Booking Confirmed";
 
         queueList.push({
           bookingId: activeBooking.bookingId,
@@ -485,7 +485,7 @@
           centerId: activeBooking.centerId || "CTR-HR-01",
           centerName: activeBooking.centerName || "Karnal Central Procurement Center",
           commodity: activeBooking.commodity || "Wheat (Grade A)",
-          bookingDate: activeBooking.bookingDate || "Today (आज)",
+          bookingDate: activeBooking.bookingDate || "Today",
           timeSlot: activeBooking.timeSlot || "10:00 AM – 11:00 AM",
           queuePosition: queuePos,
           totalVehiclesAhead: totalAhead,
@@ -505,8 +505,8 @@
 
       // Sort: Completed at bottom, active by position ascending
       queueList.sort((a, b) => {
-        const aCompleted = (a.status || "").includes("खरीद पूर्ण");
-        const bCompleted = (b.status || "").includes("खरीद पूर्ण");
+        const aCompleted = (a.status || "").includes("Procurement Completed") ;
+        const bCompleted = (b.status || "").includes("Procurement Completed") ;
         if (aCompleted && !bCompleted) return 1;
         if (!aCompleted && bCompleted) return -1;
         return (a.queuePosition || 99) - (b.queuePosition || 99);
@@ -520,8 +520,8 @@
       const records = [];
 
       queueList.forEach(item => {
-        const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-        const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && item.arrivalStatus === "checked_in");
+        const isCompleted = (item.status || "").includes("Procurement Completed") ;
+        const isInProgress = ((item.status || "").includes("Procurement in Progress") ) || (item.queuePosition === 0 && item.arrivalStatus === "checked_in");
 
         if (isCompleted || isInProgress) {
           records.push({
@@ -535,7 +535,7 @@
             tareWeight: item.tareWeight || (isCompleted ? "2,150 kg" : "Pending Tare"),
             netQuantity: item.netQuantity || (isCompleted ? "43.00 Qtl" : "Calculating"),
             moisture: item.moisture || "11.6%",
-            status: isCompleted ? "खरीद पूर्ण (Procurement Completed)" : "खरीद प्रक्रिया में (Procurement in Progress)",
+            status: isCompleted ? "Procurement Completed" : "Procurement in Progress",
             dateTime: item.bookingDate || "Today (Demo)",
             isLiveFarmer: !!item.isLiveFarmer
           });
@@ -561,8 +561,8 @@
       let completed = 0;
 
       centerQueue.forEach(item => {
-        const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-        const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
+        const isCompleted = (item.status || "").includes("Procurement Completed") ;
+        const isInProgress = ((item.status || "").includes("Procurement in Progress") ) || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
 
         if (isCompleted) {
           completed++;
@@ -615,8 +615,8 @@
       let completed = 0;
 
       queueList.forEach(item => {
-        const isCompleted = (item.status || "").includes("खरीद पूर्ण");
-        const isInProgress = (item.status || "").includes("खरीद प्रक्रिया में") || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
+        const isCompleted = (item.status || "").includes("Procurement Completed") ;
+        const isInProgress = ((item.status || "").includes("Procurement in Progress") ) || (item.queuePosition === 0 && !isCompleted && item.arrivalStatus === "checked_in");
 
         if (isCompleted) {
           completed++;
@@ -682,7 +682,7 @@
             type: "HIGH_QUEUE",
             severity: metrics.currentQueue >= 25 ? "CRITICAL" : "HIGH",
             recommendation: "Activate auxiliary weighbridge lane or divert pending slots to adjacent centers.",
-            timestamp: "Live Alert (लाइव)",
+            timestamp: "Live Alert",
             status: alertState[alertId]?.status || "active",
             acknowledged: !!alertState[alertId]?.acknowledged,
             acknowledgedBy: alertState[alertId]?.acknowledgedBy || null,
@@ -705,7 +705,7 @@
             type: "HIGH_LOAD",
             severity: metrics.utilizationPercent >= 95 ? "CRITICAL" : "HIGH",
             recommendation: "Review remaining daily intake capacity and consider capping slot reservations.",
-            timestamp: "Live Alert (लाइव)",
+            timestamp: "Live Alert",
             status: alertState[alertId]?.status || "active",
             acknowledged: !!alertState[alertId]?.acknowledged,
             acknowledgedBy: alertState[alertId]?.acknowledgedBy || null,

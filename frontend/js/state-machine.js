@@ -1,6 +1,6 @@
 /**
- * KisanSetu — Deterministic State Machine (Live Mandi Flow)
- * Strict Physical Mandi Cycle (SIH26032):
+ * KisanSetu — Deterministic State Machine (Live Market Flow)
+ * Strict Physical Market Cycle (SIH26032):
  * BOOKED -> GATE_SCANNED -> ASSAY_TESTING -> GROSS_WEIGHED -> UNLOADING_BAY -> TARE_WEIGHED -> J_FORM_ISSUED -> DBT_DISPATCHED
  * Grace / Edge States: TRANSIT_DELAYED, STANDBY_OVERDUE, REJECTED_QUALITY, CANCELLED
  */
@@ -105,8 +105,8 @@
       icon: "📦",
       badgeClass: "bg-amber-50 text-amber-800 border-amber-200",
       accentColor: "#b45309",
-      descriptionEn: "Grain sacks unloaded at designated godown storage shed / silo platform.",
-      descriptionHi: "Grain sacks unloaded at designated godown storage shed / silo platform."
+      descriptionEn: "Grain sacks unloaded at designated warehouse storage shed / silo platform.",
+      descriptionHi: "Grain sacks unloaded at designated warehouse storage shed / silo platform."
     },
     "TARE_WEIGHED": {
       key: "TARE_WEIGHED",
@@ -271,7 +271,7 @@
           <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping"></span>
-              <span class="text-xs font-bold text-slate-800">Physical Mandi Cycle</span>
+              <span class="text-xs font-bold text-slate-800">Physical Market Cycle</span>
             </div>
             <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
               Stage ${activeStage.step} of 8 • ${activeStage.titleEn.split('(')[0].trim()}

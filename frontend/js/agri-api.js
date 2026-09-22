@@ -1,6 +1,6 @@
 /**
  * KisanSetu Agri-Intelligence API Service
- * Real-time Weather API (WeatherAPI.com) & Agmarknet Mandi Prices (Data.gov.in)
+ * Real-time Weather API (WeatherAPI.com) & Agmarknet Market Prices (Data.gov.in)
  * Ported & Enhanced from shivamgoyal45/kisan-setu-
  */
 
@@ -13,10 +13,10 @@ const FALLBACK_MANDI_RECORDS = [
   { state: "Haryana", district: "Rohtak", market: "New Grain Market, Rohtak (Main APMC)", commodity: "Paddy Basmati", variety: "PB-1121", grade: "Grade A", arrival_date: "15/09/2026", min_price: 3600, max_price: 4250, modal_price: 3950 },
   { state: "Haryana", district: "Rohtak", market: "Grain Market, Meham (Meham APMC)", commodity: "Mustard", variety: "RH-725", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5400, max_price: 5950, modal_price: 5650 },
   { state: "Haryana", district: "Rohtak", market: "Grain Market, Sampla (Sampla APMC)", commodity: "Wheat FAQ", variety: "HD-2967", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2275, max_price: 2425, modal_price: 2360 },
-  { state: "Haryana", district: "Rohtak", market: "Grain Market, Kalanaur", commodity: "Gram / Chana", variety: "HC-5 (Haryana)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5200, max_price: 5600, modal_price: 5420 },
+  { state: "Haryana", district: "Rohtak", market: "Grain Market, Kalanaur", commodity: "Gram (Chickpea)", variety: "HC-5 (Haryana)", grade: "Grade A", arrival_date: "15/09/2026", min_price: 5200, max_price: 5600, modal_price: 5420 },
   { state: "Haryana", district: "Rohtak", market: "Grain Market, Meham (Meham APMC)", commodity: "Bajra", variety: "HHB-67", grade: "FAQ", arrival_date: "15/09/2026", min_price: 2150, max_price: 2350, modal_price: 2250 },
   { state: "Haryana", district: "Karnal", market: "Karnal Central Yard", commodity: "Paddy", variety: "PR-126", grade: "Grade A", arrival_date: "15/09/2026", min_price: 2320, max_price: 2480, modal_price: 2400 },
-  { state: "Haryana", district: "Hisar", market: "Hisar APMC Mandi", commodity: "Cotton", variety: "RCH-659", grade: "Grade A", arrival_date: "15/09/2026", min_price: 6800, max_price: 7450, modal_price: 7150 }
+  { state: "Haryana", district: "Hisar", market: "Hisar APMC Market", commodity: "Cotton", variety: "RCH-659", grade: "Grade A", arrival_date: "15/09/2026", min_price: 6800, max_price: 7450, modal_price: 7150 }
 ];
 
 class KisanAgriService {
@@ -95,7 +95,7 @@ class KisanAgriService {
       return {
         status: 'warning',
         title: 'Precipitation Alert',
-        desc: 'Heavy rainfall active. Postpone foliar spraying of urea/pesticides and protect mandi trolleys with tarpaulins.'
+        desc: 'Heavy rainfall active. Postpone foliar spraying of urea/pesticides and protect market trolleys with tarpaulins.'
       };
     }
     if (humidity > 80 && temp > 28) {
@@ -122,7 +122,7 @@ class KisanAgriService {
     return {
       status: 'favorable',
       title: 'Favorable Field Conditions',
-      desc: 'Weather is favorable for soil testing, nutrient application, and mandi grain deliveries.'
+      desc: 'Weather is favorable for soil testing, nutrient application, and market grain deliveries.'
     };
   }
 
@@ -133,14 +133,14 @@ class KisanAgriService {
     try {
       const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${MANDI_API_KEY}&format=json&limit=40`;
       const response = await fetch(url, { mode: 'cors' });
-      if (!response.ok) throw new Error(`Mandi API status ${response.status}`);
+      if (!response.ok) throw new Error(`Market API status ${response.status}`);
       const data = await response.json();
 
       if (data.records && data.records.length > 0) {
         this.mandiRecords = data.records.map(r => ({
           state: r.state || 'Haryana',
           district: r.district || 'Rohtak',
-          market: r.market || 'APMC Mandi',
+          market: r.market || 'APMC Market',
           commodity: r.commodity || 'Grain',
           variety: r.variety || 'FAQ',
           grade: r.grade || 'Grade A',
@@ -153,7 +153,7 @@ class KisanAgriService {
         this.mandiRecords = FALLBACK_MANDI_RECORDS;
       }
     } catch (e) {
-      console.info('Using verified Agmarknet Mandi cache:', e.message);
+      console.info('Using verified Agmarknet Market cache:', e.message);
       this.mandiRecords = FALLBACK_MANDI_RECORDS;
     }
 
