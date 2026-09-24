@@ -12,7 +12,7 @@ def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else PORT
 
     print("=" * 65)
-    print("  * [KisanSetu Unified Engine] FastAPI + Frontend Active")
+    print("  * [Farm Route Unified Engine] FastAPI + Frontend Active")
     print("=" * 65)
     print(f"  -> Local URL:        http://localhost:{port}")
     print(f"  -> Direct IP:        http://127.0.0.1:{port}")

@@ -1,4 +1,4 @@
-# KisanSetu (किसान सेतु)
+# Farm Route (फार्म रूट)
 
 ### Smart Procurement & Queue Intelligence Platform
 
@@ -8,7 +8,7 @@
 
 ## 1. Overview
 
-**KisanSetu** is a smart procurement and queue intelligence platform designed to eliminate long and uncertain waiting times at agricultural procurement centers, provide real-time visibility into center load and queue conditions, simplify procurement center selection, streamline slot booking, and ensure end-to-end transparency during procurement operations.
+**Farm Route** is a smart procurement and queue intelligence platform designed to eliminate long and uncertain waiting times at agricultural procurement centers, provide real-time visibility into center load and queue conditions, simplify procurement center selection, streamline slot booking, and ensure end-to-end transparency during procurement operations.
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## 3. The Solution
 
-KisanSetu unifies Farmers, Procurement Center Operators, District Admins, and Super Admins on a streamlined platform:
+Farm Route unifies Farmers, Procurement Center Operators, District Admins, and Super Admins on a streamlined platform:
 
 - **Slot Booking**: Farmers schedule guaranteed time-slots matched against procurement center handling capacity.
 - **Digital Token**: Automated, tamper-proof digital tokens providing seamless entry and live queue tracking.

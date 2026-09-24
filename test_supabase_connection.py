@@ -1,5 +1,5 @@
 """
-KisanSetu — Supabase Connection Verification Script
+Farm Route — Supabase Connection Verification Script
 Tests PostgreSQL connection, creates tables, and optionally seeds initial data.
 """
 
@@ -12,7 +12,7 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 def main():
     print("=" * 65)
-    print("  * KisanSetu — Supabase Connection Diagnostic")
+    print("  * Farm Route — Supabase Connection Diagnostic")
     print("=" * 65)
 
     raw_url = os.getenv("DATABASE_URL") or os.getenv("SUPABASE_DB_URL")
@@ -21,7 +21,7 @@ def main():
 
     if not raw_url or not raw_url.strip():
         print("\n[!] No Supabase DATABASE_URL found in .env file.")
-        print("\nTo connect KisanSetu to your Supabase PostgreSQL database:")
+        print("\nTo connect Farm Route to your Supabase PostgreSQL database:")
         print("1. Open your Supabase Dashboard: https://supabase.com/dashboard")
         print("2. Navigate to: Project Settings -> Database -> Connection string -> URI")
         print("3. Copy the URI and replace [YOUR-PASSWORD] with your database password.")
@@ -76,7 +76,7 @@ def main():
         print(f"    - Centers:  {center_count} records")
         print(f"    - Bookings: {booking_count} records")
         print("\n" + "=" * 65)
-        print("  * KisanSetu is successfully connected to Supabase!")
+        print("  * Farm Route is successfully connected to Supabase!")
         print("=" * 65 + "\n")
 
     except Exception as e:

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KisanSetu (किसान सेतु) - Unified Digital Crop Procurement & Smart Mandi Platform | Govt. of Haryana</title>
+  <title>Farm Route (फार्म रूट) - Unified Digital Crop Procurement & Smart Mandi Platform | Govt. of Haryana</title>
   
   <!-- Modern Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2541,7 +2541,7 @@ body {
         <!-- Official Government Header Badge -->
         <div class="text-center" style="margin-bottom: 14px;">
           <span class="sih-innovation-pill" data-i18n="sih_project" style="background:#ecfdf5; color:#047857; border-color:#a7f3d0; font-size:0.75rem;">
-            🏛️ Government of Haryana • KisanSetu Unified Procurement Portal
+            🏛️ Government of Haryana • Farm Route Unified Procurement Portal
           </span>
         </div>
 
@@ -2675,7 +2675,7 @@ body {
         <!-- Registration Link for Farmers -->
         <div class="clean-footer-actions" id="farmerRegisterPrompt">
           <p class="clean-reg-prompt">
-            <span data-i18n="new_to_kisan">New to KisanSetu?</span> 
+            <span data-i18n="new_to_kisan">New to Farm Route?</span> 
             <a href="javascript:void(0)" class="clean-reg-link" onclick="window.app.showFarmerRegistration()" data-i18n="create_account">Create Farmer Account</a>
           </p>
           <p class="clean-reg-subtext" data-i18n="self_reg_note">Online registration is open to all farmers across Rohtak district.</p>
@@ -2845,7 +2845,7 @@ body {
             <span>🌾</span>
           </div>
           <div class="brand-titles">
-            <h1 id="appBrandTitle">KisanSetu</h1>
+            <h1 id="appBrandTitle">Farm Route</h1>
             <p id="appBrandSubtitle">End-to-End Scientific Crop Procurement, Quality Assurance & Smart Mandi Queue System</p>
           </div>
         </div>
@@ -2920,7 +2920,7 @@ body {
     <footer style="background:#0a1e0d; color:#94a3b8; padding:24px 20px; font-size:0.8rem; margin-top:40px; border-top:2px solid #1b5e20;">
       <div style="max-width:1440px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
         <div>
-          <strong style="color:white; font-size:0.95rem;">KisanSetu (किसान सेतु)</strong><br>
+          <strong style="color:white; font-size:0.95rem;">Farm Route (फार्म रूट)</strong><br>
           Department of Agriculture & Farmers Welfare | Government of Haryana | APMC Rohtak Pilot
         </div>
         <div style="text-align:right;">
@@ -3062,7 +3062,7 @@ const I18N_TRANSLATIONS = {
     login_btn_warehouse: 'मंडी संचालक के रूप में लॉगिन करें',
     login_btn_account: 'लेखा अधिकारी के रूप में लॉगिन करें',
 
-    new_to_kisan: 'किसान सेतु पर नए हैं?',
+    new_to_kisan: 'फार्म रूट पर नए हैं?',
     create_account: 'नया किसान खाता बनाएं',
     self_reg_note: 'रोहतक जिले के सभी किसानों हेतु ऑनलाइन स्व-पंजीकरण उपलब्ध है।',
 
@@ -3180,7 +3180,7 @@ const I18N_TRANSLATIONS = {
 
     // Corporate Team Header
     team_section_tag: 'नवाचार टीम • SIH 2026',
-    team_section_title: 'किसान सेतु के निर्माणकर्ता एवं विशेषज्ञ',
+    team_section_title: 'फार्म रूट के निर्माणकर्ता एवं विशेषज्ञ',
     team_section_sub: 'Smart India Hackathon 2026 के अंतर्गत भारतीय कृषि के कायाकल्प हेतु समर्पित बहुविषयक टीम।',
 
     // Team Members
@@ -3259,7 +3259,7 @@ const I18N_TRANSLATIONS = {
     login_btn_warehouse: 'Login as Mandi Operator',
     login_btn_account: 'Login as Accounts Officer',
 
-    new_to_kisan: 'New to KisanSetu?',
+    new_to_kisan: 'New to Farm Route?',
     create_account: 'Create Farmer Account',
     self_reg_note: 'Online registration is open to all farmers across Rohtak district.',
 
@@ -3362,7 +3362,7 @@ const I18N_TRANSLATIONS = {
 
     // Corporate Team Header
     team_section_tag: 'Innovation Team • SIH 2026',
-    team_section_title: 'Builders & Specialists Behind KisanSetu',
+    team_section_title: 'Builders & Specialists Behind Farm Route',
     team_section_sub: 'A multidisciplinary team dedicated to transforming Indian agricultural procurement for Smart India Hackathon 2026.',
 
     // Team Members
@@ -3476,7 +3476,7 @@ class I18nManager {
     // Update brand titles and subtitles
     const brandTitle = document.getElementById('appBrandTitle');
     if (brandTitle) {
-      brandTitle.innerText = isHi ? 'किसान सेतु' : 'KisanSetu';
+      brandTitle.innerText = isHi ? 'फार्म रूट' : 'Farm Route';
     }
     const voiceAssistantHeader = document.getElementById('btnVoiceAssistantHeader');
     if (voiceAssistantHeader) {
@@ -3492,8 +3492,8 @@ class I18nManager {
 
     // Update document title dynamically
     document.title = isHi 
-      ? 'किसान सेतु - डिजिटल फसल खरीद एवं स्मार्ट मंडी तंत्र | SIH 2026'
-      : 'KisanSetu - Unified Crop Procurement & Smart Mandi Ecosystem | SIH 2026';
+      ? 'फार्म रूट - डिजिटल फसल खरीद एवं स्मार्ट मंडी तंत्र | SIH 2026'
+      : 'Farm Route - Unified Crop Procurement & Smart Mandi Ecosystem | SIH 2026';
 
     // Dispatch custom event for dynamic components
     window.dispatchEvent(new CustomEvent('kisan-lang-changed', { detail: { lang: this.currentLang } }));
@@ -5206,7 +5206,7 @@ class KisanMultiDeviceSync {
 
         <!-- QR Code Card -->
         <div style="background:white; border:2px solid #e2e8f0; border-radius:var(--radius-lg); padding:16px; display:inline-block; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:16px;">
-          <img src="${qrApiUrl}" alt="KisanSetu QR Code" style="width:200px; height:200px; display:block; margin:0 auto; border-radius:var(--radius-md);" onerror="this.onerror=null; this.src=''; this.alt='QR Code loading...';">
+          <img src="${qrApiUrl}" alt="Farm Route QR Code" style="width:200px; height:200px; display:block; margin:0 auto; border-radius:var(--radius-md);" onerror="this.onerror=null; this.src=''; this.alt='QR Code loading...';">
           <div style="margin-top:10px; font-size:0.78rem; color:#64748b;">
             📱 ${window.tDual ? window.tDual('फोन के कैमरा से स्कैन करें', 'Scan with Phone Camera') : 'Scan with Camera'}
           </div>
@@ -5863,7 +5863,7 @@ class KisanVaniVoiceBot {
     // 3. Soil Testing & 48h SLA Queries
     if (q.includes('मिट्टी') || q.includes('soil') || q.includes('जांच') || q.includes('testing') || q.includes('sla') || q.includes('सलाह')) {
       const activeSoil = window.kisanState.state.soilRequests[0];
-      return `किसान सेतु में बुवाई से पूर्व मिट्टी परीक्षण की सुविधा उपलब्ध है। जब परीक्षण दल सैंपल जांच कर रिपोर्ट अपलोड करता है, तो खरीद अधिकारी को 48 कार्य घंटों (48 Working Hours) के भीतर अनुशंसित बीज और खाद की मात्रा का परामर्श देना अनिवार्य होता है। वर्तमान में आपकी मिट्टी का pH 7.2 और नाइट्रोजन 210 kg/ha है, जिसमें डीएपी और जिंक की विशेष अनुशंसा की गई है।`;
+      return `फार्म रूट में बुवाई से पूर्व मिट्टी परीक्षण की सुविधा उपलब्ध है। जब परीक्षण दल सैंपल जांच कर रिपोर्ट अपलोड करता है, तो खरीद अधिकारी को 48 कार्य घंटों (48 Working Hours) के भीतर अनुशंसित बीज और खाद की मात्रा का परामर्श देना अनिवार्य होता है। वर्तमान में आपकी मिट्टी का pH 7.2 और नाइट्रोजन 210 kg/ha है, जिसमें डीएपी और जिंक की विशेष अनुशंसा की गई है।`;
     }
 
     // 4. Mandi Rates & MSP Queries
@@ -5890,7 +5890,7 @@ class KisanVaniVoiceBot {
     }
 
     // 7. General Fallback
-    return `किसान भाई, आपका सवाल नोट कर लिया गया है। किसान सेतु पोर्टल पर आप:\n1. 'मिट्टी परीक्षण' का अनुरोध कर सकते हैं।\n2. 48 घंटे में वैज्ञानिक खाद का पर्चा देख सकते हैं।\n3. फसल कटाई का लॉट पंजीकृत कर एमएसपी व अनुपालन बोनस दर पा सकते हैं।\n4. मंडी में बिना लाइन में खड़े रहे लाइव टोकन ट्रैक कर सकते हैं।\n\nआप माइक दबाकर या नीचे दिए गए विकल्पों पर क्लिक करके और जानकारी ले सकते हैं।`;
+    return `किसान भाई, आपका सवाल नोट कर लिया गया है। फार्म रूट पोर्टल पर आप:\n1. 'मिट्टी परीक्षण' का अनुरोध कर सकते हैं।\n2. 48 घंटे में वैज्ञानिक खाद का पर्चा देख सकते हैं।\n3. फसल कटाई का लॉट पंजीकृत कर एमएसपी व अनुपालन बोनस दर पा सकते हैं।\n4. मंडी में बिना लाइन में खड़े रहे लाइव टोकन ट्रैक कर सकते हैं।\n\nआप माइक दबाकर या नीचे दिए गए विकल्पों पर क्लिक करके और जानकारी ले सकते हैं।`;
   }
 
   addChatMessage(sender, text) {
@@ -9315,7 +9315,7 @@ class AccountOfficerPortal {
 
         <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#64748b; margin-top:16px; padding-top:8px; border-top:1px dashed #cbd5e1;">
           <div>अधिकृत हस्ताक्षरी: <strong>${p.allottedBy || 'वरिष्ठ लेखा अधिकारी, APMC रोहतक'}</strong></div>
-          <div>सुरक्षित डिजिटल रिकॉर्ड: <strong>PFMS / KISAN-SETU-VERIFIED</strong></div>
+          <div>सुरक्षित डिजिटल रिकॉर्ड: <strong>PFMS / FARM-ROUTE-VERIFIED</strong></div>
         </div>
       </div>
 
@@ -9348,7 +9348,7 @@ class FarmRouteApp {
   }
 
   init() {
-    console.log('Initializing KisanSetu (किसान सेतु) - Rohtak District Edition...');
+    console.log('Initializing Farm Route (फार्म रूट) - Rohtak District Edition...');
 
     // Populate Rohtak registration dropdowns
     this.populateRegistrationDropdowns();
@@ -9691,7 +9691,7 @@ class FarmRouteApp {
   }
 
   showForgotPasswordHelp() {
-    alert('ℹ️ किसान सेतु डेमो पोर्टल क्रेडेंशियल सूचना:\n\nसभी डेमो उपयोगकर्ताओं का पासवर्ड "1234567890" है।\n\n• किसान: farmer@demo.com\n• खरीद अधिकारी: officer@demo.com\n• लैब टेस्टिंग: testing@demo.com\n• मंडी संचालक: operator@demo.com\n• लेखा अधिकारी: accounts@demo.com');
+    alert('ℹ️ फार्म रूट डेमो पोर्टल क्रेडेंशियल सूचना:\n\nसभी डेमो उपयोगकर्ताओं का पासवर्ड "1234567890" है।\n\n• किसान: farmer@demo.com\n• खरीद अधिकारी: officer@demo.com\n• लैब टेस्टिंग: testing@demo.com\n• मंडी संचालक: operator@demo.com\n• लेखा अधिकारी: accounts@demo.com');
   }
 
   // SIH 2026 1-Click Demo Login
