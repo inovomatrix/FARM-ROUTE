@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Route — Digital Procurement & Queue Intelligence</title>
+  <script src="js/i18n.js"></script>
+
+  <!-- Typography: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
+          },
+          colors: {
+            'agri-dark': '#064e3b',
+            'agri-green': '#059669',
+            'agri-light': '#ecfdf5',
+            'mandi-sand': '#ffffff',
+            'mandi-border': '#e2e8f0',
+            'mandi-rule': '#f1f5f9'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/voice-assistant.css">
+  <style>
+    /* Modern Clean Minimal Aesthetic */
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .field-texture {
+      background-image: radial-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .hairline-b {
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hairline-r {
+      border-right: 1px solid #e2e8f0;
+    }
+    .hairline-all {
+      border: 1px solid #e2e8f0;
+    }
+    .crop-chip.active {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #ffffff;
+      border-color: #047857;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    }
+    .step-node.active {
+      border-color: #059669;
+      background-color: #ecfdf5;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-[#0f172a] flex flex-col min-h-screen antialiased font-sans">
+
+  <!-- Hidden non-visual hook for regression compatibility -->
+  <div id="lang-toggle-btn" style="display:none" data-storage="kisansetu_language"></div>
+
+  <!-- 2. MAIN NAVBAR (FROSTED GLASS EFFECT) -->
+  <header class="bg-white/85 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40 transition-all shadow-xs">
+    <nav class="container mx-auto px-4 py-3 flex items-center justify-between" aria-label="Main Navigation">
+
+      <!-- Brand Logo / Wordmark -->
+      <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white flex items-center justify-center font-bold text-sm shadow-xs transition-transform group-hover:scale-105">
+          FR
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">Farm Route</span>
+            <span class="text-xs font-semibold text-slate-400">| Digital Market Platform</span>
+          </div>
+          <span class="block text-[9px] uppercase font-bold tracking-widest text-emerald-700 -mt-0.5">Digital Market Platform</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-700">
+        <li><a href="#home" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.home">Home</a></li>
+        <li><a href="#crops" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.crops">Crops</a></li>
+        <li><a href="#centers" class="hover:text-emerald-700 transition-colors py-1" data-i18n="nav.centers">Procurement Centers</a></li>
+        <li><a href="farmer/dashboard.html" class="hover:text-emerald-700 transition-colors py-1 text-emerald-700 font-bold" data-i18n="nav.farmerPortal">🌾 Farmer Portal</a></li>
+        
+        <!-- More Dropdown (ONLY: 7-Step Journey, Compare, FAQ, About) -->
+        <li class="relative group">
+          <button type="button" class="flex items-center gap-1 hover:text-emerald-700 py-1 cursor-pointer font-semibold">
+            <span data-i18n="nav.more">More</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-1.5 hidden group-hover:block w-48 z-50">
+            <div class="bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg rounded-xl py-1.5 text-xs font-semibold">
+              <a href="#journey" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.journey">7-Step Process</a>
+              <a href="#comparison" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.compare">Comparison</a>
+              <a href="#faq" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.faq">FAQ</a>
+              <a href="#about" class="block px-3 py-1.5 hover:bg-slate-50 hover:text-emerald-700" data-i18n="nav.about">Platform Details</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Desktop Action Buttons -->
+      <div class="hidden sm:flex items-center gap-2.5">
+        <!-- Language Switcher Option (English / Hindi) -->
+        <div class="kisan-lang-switcher inline-flex items-center rounded-xl border border-slate-200 bg-slate-100 p-0.5 text-xs font-semibold shadow-2xs"
+          title="Language: English">
+          <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')"
+            class="px-2.5 py-1 rounded-lg transition-all cursor-pointer">
+            EN
+          </button>
+          
+        </div>
+
+        <button type="button" onclick="window.KisanVoiceAssistant && window.KisanVoiceAssistant.open()"
+          class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3 rounded-xl border-emerald-300 text-emerald-700 bg-emerald-50/50 hover:bg-emerald-100/60 flex items-center gap-1.5 cursor-pointer">
+          <span>🎙️</span> <span data-i18n="nav.voiceAssistant">Kisan Vani AI</span>
+        </button>
+        <a href="farmer/dashboard.html" class="btn btn-primary btn-sm text-xs font-semibold py-1.5 px-3.5 rounded-xl shadow-xs" data-i18n="nav.farmerPortal">
+          Farmer Portal
+        </a>
+        <a href="pages/login.html" class="btn btn-outline btn-sm text-xs font-semibold py-1.5 px-3 rounded-xl border-slate-200" data-i18n="nav.login">
+          Login
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" id="mobile-menu-toggle"
+        class="md:hidden p-2 text-slate-700 hover:text-slate-900 rounded-lg focus:outline-none"
+        aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Slide-Down Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 py-4 space-y-2.5 text-xs font-semibold text-slate-800">
+      <!-- Mobile Language Switcher -->
+      <div class="flex items-center justify-between p-2 rounded-xl bg-slate-100 text-xs font-semibold">
+        <span class="text-slate-600">🌐 Language: English</span>
+        <div class="kisan-lang-switcher inline-flex items-center rounded-lg border border-slate-200 bg-white p-0.5">
+          <button type="button" data-lang="en" onclick="window.KisanI18n && window.KisanI18n.setLanguage('en')" class="px-2.5 py-1 rounded-md">English</button>
+          
+        </div>
+      </div>
+      <a href="#home" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.home">Home</a>
+      <a href="#crops" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.crops">Crops</a>
+      <a href="#centers" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-emerald-700 nav-mobile-link" data-i18n="nav.centers">Procurement Centers</a>
+      <a href="#journey" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.journey">7-Step Process</a>
+      <a href="#comparison" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.compare">Comparison</a>
+      <a href="#faq" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.faq">FAQ</a>
+      <a href="#about" class="block py-1.5 px-2 hover:bg-slate-50 hover:text-[#15803d] nav-mobile-link" data-i18n="nav.about">Platform Details</a>
+      <div class="pt-2 border-t border-slate-100 flex gap-2">
+        <a href="farmer/dashboard.html" class="btn btn-primary btn-sm flex-1 text-center py-2 nav-mobile-link" data-i18n="nav.farmerPortal">Farmer Portal</a>
+        <a href="pages/login.html" class="btn btn-outline btn-sm flex-1 text-center py-2 nav-mobile-link" data-i18n="nav.login">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main id="home" class="flex-1">
+
+    <!-- 3. HERO (SPLIT ASYMMETRIC OPERATIONAL LAYOUT) -->
+    <section class="py-12 md:py-20 border-b border-slate-200/80 bg-gradient-to-b from-emerald-50/30 via-white to-white relative overflow-hidden">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+          <!-- Left Column: Editorial Headline & Actions -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200/80 text-[11px] font-semibold text-emerald-800 rounded-full shadow-2xs">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Smart Government Procurement & Queue Intelligence Platform</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              From Farm to Procurement Center <br>
+              <span class="text-emerald-700">The Complete Journey in One Place</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 font-medium leading-normal">
+              Your complete journey from farm to procurement center
+            </p>
+
+            <!-- Practical Workflow Points (Clean List, No Blobs) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-1 text-xs text-slate-600 font-medium">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">01.</span>
+                <span><strong>Find procurement center</strong> — Locate authorized local centers</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">02.</span>
+                <span><strong>Book slot</strong> — Reserve a fixed arrival time window</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">03.</span>
+                <span><strong>Get token</strong> — Generate a secure digital pass</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">04.</span>
+                <span><strong>Track queue</strong> — Real-time position tracking</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">05.</span>
+                <span><strong>Complete procurement</strong> — Electronic weighbridge & assay</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold font-mono">06.</span>
+                <span><strong>Receive digital receipt</strong> — Verified e-J-Form receipt</span>
+              </div>
+            </div>
+
+            <!-- Primary CTAs -->
+            <div class="flex flex-wrap items-center gap-3 pt-3">
+              <a href="farmer/centers.html" class="btn btn-primary btn-lg text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs flex items-center gap-2">
+                <span>📍</span> Find Centers &rarr;
+              </a>
+              <a href="farmer/dashboard.html" class="btn btn-outline btn-lg text-xs font-semibold py-2.5 px-5 rounded-xl bg-white border-slate-200 text-slate-700 hover:bg-slate-50">
+                <span>🌾</span> Farmer Portal
+              </a>
+            </div>
+
+            <div class="text-[11px] text-slate-400 pt-1 flex items-center gap-2">
+              <span class="font-bold text-emerald-600">✓</span> 
+              <span>Zero Congestion • Live Mobile Queue Tracking • Official MSP Floor Guarantee</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Operational Live Center Preview Card -->
+          <div class="lg:col-span-5">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-md p-6 font-sans relative hover:border-emerald-500/40 transition-all">
+              
+              <!-- Board Top Header -->
+              <div class="flex items-start justify-between pb-3 border-b border-slate-100 mb-4">
+                <div>
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-700 block">
+                    LIVE OPERATIONAL CENTER PREVIEW
+                  </span>
+                  <h3 class="text-base font-bold text-slate-900 mt-0.5">Rohtak Grain Center</h3>
+                  <div class="text-xs text-slate-400 flex items-center gap-1 font-mono">
+                    <span>CTR-HR-03</span> • <span>Rohtak, Haryana</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  ● Booking Available
+                </span>
+              </div>
+
+              <!-- Operational Metrics Table -->
+              <div class="grid grid-cols-3 gap-2 py-3.5 bg-slate-50/70 border border-slate-200/70 rounded-xl text-center mb-4">
+                <div class="p-2 border-r border-slate-200/70">
+                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Queue</span>
+                  <span class="text-base font-mono font-bold text-slate-900 mt-0.5 block">12 vehicles</span>
+                  <span class="text-[10px] text-slate-400 font-medium">Vehicles in Queue</span>
+                </div>
+                <div class="p-2 border-r border-slate-200/70">
+                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Estimated Wait</span>
+                  <span class="text-base font-mono font-bold text-amber-600 mt-0.5 block">~35 min</span>
+                  <span class="text-[10px] text-slate-400 font-medium">Wait Time</span>
+                </div>
+                <div class="p-2">
+                  <span class="text-[9px] font-semibold uppercase tracking-wider text-slate-400 block">Today's Cap</span>
+                  <span class="text-base font-mono font-bold text-slate-900 mt-0.5 block">24 / 40 MT</span>
+                  <span class="text-[10px] text-slate-400 font-medium">Daily Intake</span>
+                </div>
+              </div>
+
+              <!-- Visual ASCII/Bar Load Meter -->
+              <div class="space-y-1.5 mb-4 p-3.5 bg-slate-50/50 border border-slate-100 rounded-xl">
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-700">
+                  <span>Center Intake Load:</span>
+                  <span class="font-mono text-emerald-700 font-bold">70% (MODERATE)</span>
+                </div>
+                <div class="w-full bg-slate-200/80 h-2 rounded-full overflow-hidden">
+                  <div class="bg-amber-500 h-full rounded-full" style="width: 70%;"></div>
+                </div>
+              </div>
+
+              <!-- Mini Operational Action -->
+              <div class="flex items-center justify-between pt-2 text-xs">
+                <span class="text-[10px] text-amber-800 bg-amber-50 px-2.5 py-0.5 border border-amber-200 rounded-full font-mono font-semibold">
+                  Demo Simulation Data
+                </span>
+                <a href="farmer/booking.html?centerId=CTR-HR-03" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1">
+                  Book Slot at This Center &rarr;
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. INTERACTIVE CROPS SECTION (MINIMAL MODERN SELECTOR) -->
+    <section id="crops" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            🌱 MSP Reference Directory
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Key Supported Crops (MSP Directory)
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Select a crop to view official MSP procurement rates, categories, and acceptable moisture standards.
+          </p>
+        </div>
+
+        <!-- Horizontal Scrollable / Wrap Chip Selector -->
+        <div class="flex flex-wrap items-center gap-2 mb-8 pb-3 border-b border-slate-100" id="crop-selector-container">
+          <button type="button" class="crop-chip active px-4 py-2 text-xs font-semibold border rounded-xl transition-all shadow-xs" data-crop="Wheat">Wheat</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Paddy">Paddy</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Mustard">Mustard</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Bajra">Bajra</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Cotton">Cotton</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Maize">Maize</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Barley">Barley</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Gram">Gram</button>
+          <button type="button" class="crop-chip px-4 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all" data-crop="Soybean">Soybean</button>
+        </div>
+
+        <!-- Dynamic Detailed Operational Panel for Selected Crop -->
+        <div id="crop-display-panel" class="bg-slate-50/70 border border-slate-200/80 p-6 md:p-8 rounded-2xl shadow-xs">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            
+            <div class="md:col-span-4 border-b md:border-b-0 md:border-r border-slate-200/80 pb-6 md:pb-0 md:pr-8">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-100/60 px-2.5 py-0.5 rounded-full inline-block mb-2" id="panel-crop-season">Rabi Season Crop</span>
+              <h3 class="text-2xl font-bold text-slate-900 mt-1" id="panel-crop-name">WHEAT (GRADE A)</h3>
+              <p class="text-xs text-slate-500 font-medium mt-1" id="panel-crop-hindi">Grade A Certified Cereal</p>
+              <div class="mt-4 inline-flex items-center gap-2 bg-white border border-slate-200/80 px-3 py-1.5 rounded-xl shadow-xs">
+                <span class="text-[10px] font-semibold text-slate-400 uppercase">Category:</span>
+                <span class="text-xs font-semibold text-slate-800" id="panel-crop-category">Cereal Grain</span>
+              </div>
+            </div>
+
+            <div class="md:col-span-5 grid grid-cols-2 gap-4">
+              <div class="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+                <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wide">MSP Floor Rate</span>
+                <span class="text-xl font-bold font-mono text-emerald-700 mt-1 block" id="panel-crop-rate">₹2,275 / Q</span>
+                <span class="text-[11px] text-slate-500 font-medium">Minimum Support Price</span>
+              </div>
+              <div class="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+                <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wide">Moisture Tolerance</span>
+                <span class="text-xl font-bold font-mono text-slate-800 mt-1 block" id="panel-crop-moisture">12.0% Max</span>
+                <span class="text-[11px] text-slate-500 font-medium">Fair Average Quality (FAQ) Standard</span>
+              </div>
+            </div>
+
+            <div class="md:col-span-3 text-left md:text-right space-y-2.5">
+              <a id="panel-crop-action-btn" href="farmer/centers.html?commodity=Wheat" class="btn btn-primary w-full md:w-auto text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs inline-flex items-center justify-center gap-2">
+                <span>Find Procurement Centers</span> &rarr;
+              </a>
+              <div class="text-[11px] text-slate-400 block font-mono">
+                Official MSP Benchmark (Illustrative)
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. 7-STEP FARMER PROCESS TIMELINE (MINIMAL CONNECTED STEPS) -->
+    <section id="journey" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            ⚡ Operational Workflow
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            7-Step Farm to Procurement Market Journey
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Step-by-step verified timeline from initial center search to digital procurement receipt.
+          </p>
+        </div>
+
+        <!-- Connected Process Timeline -->
+        <div class="grid grid-cols-1 md:grid-cols-7 border border-slate-200/90 bg-white rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-slate-100 shadow-sm">
+
+          <!-- Step 1 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">01</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Center Discovery</h3>
+              <div class="text-[11px] font-medium text-slate-500">Find Center</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Discover nearest low-load centers by crop and district.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 1 of 7</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">02</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Slot Booking</h3>
+              <div class="text-[11px] font-medium text-slate-500">Book Slot</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Reserve an arrival date and 1-hour time window.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 2 of 7</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">03</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Digital Token</h3>
+              <div class="text-[11px] font-medium text-slate-500">Digital Pass</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Receive a verified digital token pass (#KS-TKN-xxxx).
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 3 of 7</div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">04</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Live Queue</h3>
+              <div class="text-[11px] font-medium text-slate-500">Live Queue</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Monitor your live position in queue and wait time.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 4 of 7</div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">05</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Gate Check-in</h3>
+              <div class="text-[11px] font-medium text-slate-500">Gate Check-in</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Operator scans QR token at entry gate for yard admission.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 5 of 7</div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="p-5 flex flex-col justify-between hover:bg-slate-50/80 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-600 block">06</span>
+              <h3 class="text-xs font-bold text-slate-900 mt-1.5">Weighment</h3>
+              <div class="text-[11px] font-medium text-slate-500">Weighment</div>
+              <p class="text-[11px] text-slate-500 mt-2.5 leading-relaxed">
+                Accurate weighbridge measurement of gross and tare weight.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 text-[10px] font-mono text-slate-400">Step 6 of 7</div>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="p-5 flex flex-col justify-between bg-emerald-50/60 hover:bg-emerald-50 transition-colors">
+            <div>
+              <span class="text-base font-mono font-bold text-emerald-800 block">07</span>
+              <h3 class="text-xs font-bold text-emerald-950 mt-1.5">Digital Receipt</h3>
+              <div class="text-[11px] font-medium text-emerald-700">Receipt</div>
+              <p class="text-[11px] text-emerald-800 mt-2.5 leading-relaxed">
+                Instant statutory e-J-Form receipt issued with DBT payout.
+              </p>
+            </div>
+            <div class="mt-4 pt-2.5 border-t border-emerald-200/80 text-[10px] font-mono text-emerald-700 font-bold">Complete</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. LIVE QUEUE OPERATIONAL TIMELINE VISUAL -->
+    <section id="live-queue-preview" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+              📊 Real-Time Queue Telemetry
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+              Transparent Queue Progression
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Every vehicle stage is digitally tracked from entry gate to weighbridge tare with zero queue jumping.
+            </p>
+            <div class="p-4 bg-slate-50/80 border border-slate-200/80 rounded-2xl text-xs space-y-1.5 shadow-xs">
+              <div class="font-bold text-slate-800">End-to-End Operational Pipeline</div>
+              <p class="text-slate-500 text-[11px] leading-relaxed">
+                From booking confirmation to final DBT dispatch, every transition is visible to both farmer and center staff.
+              </p>
+            </div>
+            <div class="pt-1">
+              <a href="farmer/queue.html" class="btn btn-primary text-xs font-semibold py-2.5 px-5 rounded-xl shadow-xs inline-flex items-center gap-2">
+                <span>⚡</span> View Live Queue Screen &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Operational Flow Indicator Board -->
+          <div class="lg:col-span-7 bg-slate-50/60 border border-slate-200/80 p-5 md:p-6 rounded-2xl shadow-sm">
+            <div class="space-y-2.5 font-sans text-xs">
+              
+              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+                <span class="font-semibold text-slate-800">1. Booking Confirmed</span>
+                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ CONFIRMED</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+                <span class="font-semibold text-slate-800">2. Arrival at Center</span>
+                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ ARRIVED</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+                <span class="font-semibold text-slate-800">3. Gate Verification</span>
+                <span class="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[11px] flex items-center gap-1">✓ CHECKED_IN</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-amber-50/70 border border-amber-200/80 rounded-xl shadow-xs">
+                <span class="font-semibold text-amber-950">4. Queue Position</span>
+                <span class="font-bold text-amber-800 bg-amber-200/60 px-2.5 py-0.5 rounded-full text-[11px]">POSITION 05 (Ahead: 4)</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-emerald-100/70 border border-emerald-300 rounded-xl shadow-xs">
+                <span class="font-bold text-emerald-950">5. Procurement / Weighbridge</span>
+                <span class="font-bold text-emerald-800 animate-pulse text-[11px]">● LIVE AT WEIGHBRIDGE</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-white border border-slate-200/80 rounded-xl opacity-75">
+                <span class="font-medium text-slate-500">6. Digital Receipt Issued</span>
+                <span class="text-slate-400 font-medium text-[11px]">○ PENDING FINISH</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. DIGITAL RECEIPT REALISTIC PREVIEW -->
+    <section id="receipt-preview" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/40">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            🧾 Certified Procurement Document
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Digital Procurement Receipt (e-J-Form)
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Official APMC electronic receipt detailing gross, tare, and net produce weight with verified payment amount.
+          </p>
+        </div>
+
+        <!-- Realistic Digital Receipt Slip -->
+        <div class="max-w-xl mx-auto bg-white border border-slate-200/90 shadow-md p-6 md:p-8 rounded-2xl font-sans text-xs">
+          
+          <div class="text-center pb-4 border-b border-slate-100">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-700 font-semibold block">GOVERNMENT PROCUREMENT INTAKE</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-1">FARM ROUTE DIGITAL PROCUREMENT RECEIPT</h3>
+            <span class="text-[11px] text-slate-500">Electronic Procurement & Weighbridge Certificate</span>
+          </div>
+
+          <div class="py-4 border-b border-slate-100 grid grid-cols-2 gap-3 text-[11px]">
+            <div>
+              <span class="text-slate-400 block text-[10px]">Farmer Name:</span>
+              <span class="font-bold text-slate-800">Ram Kumar (Farmer)</span>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[10px]">Receipt ID:</span>
+              <span class="font-mono font-bold text-slate-800">KSP-RCP-2026-0842</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">Crop / Grade:</span>
+              <span class="font-bold text-slate-800">Wheat (FAQ Grade A)</span>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[10px]">Procurement Center:</span>
+              <span class="font-medium text-slate-800">Rohtak Grain Center</span>
+            </div>
+          </div>
+
+          <!-- Itemized Weight Math Table -->
+          <div class="py-4 border-b border-slate-100 space-y-2 font-mono text-xs">
+            <div class="flex justify-between">
+              <span class="text-slate-500">Gross Weight (Loaded):</span>
+              <span class="font-semibold text-slate-800">58.20 Q</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Tare Weight (Empty):</span>
+              <span class="font-semibold text-slate-800">5.70 Q</span>
+            </div>
+            <div class="flex justify-between pt-2 border-t border-slate-100 text-slate-900 font-bold">
+              <span>Net Produce Weight:</span>
+              <span class="text-emerald-700">52.50 Q</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">MSP Procurement Rate:</span>
+              <span class="font-semibold text-slate-800">₹2,275.00 / Q</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Statutory Deductions:</span>
+              <span class="font-semibold text-slate-800">₹0.00</span>
+            </div>
+          </div>
+
+          <!-- Total Due -->
+          <div class="py-4 flex items-center justify-between border-b border-slate-100">
+            <div>
+              <span class="text-[10px] uppercase font-semibold text-slate-400 block tracking-wider">Net Payable Amount (DBT)</span>
+              <span class="text-2xl font-mono font-bold text-emerald-700 mt-0.5 block">₹1,19,437.50</span>
+            </div>
+            <div class="w-14 h-14 border border-slate-200 bg-slate-50/80 rounded-xl p-1 flex items-center justify-center text-[9px] text-center font-mono text-slate-400 shadow-xs">
+              [QR VERIFIED]
+            </div>
+          </div>
+
+          <div class="pt-4 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Official e-J-Form Sample</span>
+            <a href="farmer/sales-history.html" class="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline">
+              View in Sales History &rarr;
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. OPERATIONAL CENTERS DIRECTORY -->
+    <section id="centers" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            📍 Procurement Center Directory
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Procurement Center Directory
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Explore authorized local centers, compare live load saturation, and book a delivery slot.
+          </p>
+        </div>
+
+        <!-- Two Column Operational Directory -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Left Column: Filters -->
+          <div class="lg:col-span-4 bg-slate-50/70 border border-slate-200/80 p-5 rounded-2xl shadow-xs space-y-4 text-xs font-sans">
+            <div class="pb-3 border-b border-slate-200/80 flex items-center justify-between">
+              <span class="font-bold uppercase tracking-wider text-slate-700">Filters</span>
+              <button type="button" id="dir-reset-btn" class="text-emerald-700 font-semibold hover:underline">Reset</button>
+            </div>
+
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1.5">Crop Commodity</label>
+              <select id="dir-crop-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
+                <option value="">All Crops</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Mustard">Mustard</option>
+                <option value="Paddy">Paddy</option>
+                <option value="Bajra">Bajra</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Maize">Maize</option>
+                <option value="Barley">Barley</option>
+                <option value="Gram">Gram</option>
+                <option value="Soybean">Soybean</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1.5">District</label>
+              <select id="dir-district-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
+                <option value="">All Districts</option>
+                <option value="Karnal">Karnal</option>
+                <option value="Ambala">Ambala</option>
+                <option value="Rohtak">Rohtak</option>
+                <option value="Panipat">Panipat</option>
+                <option value="Kurukshetra">Kurukshetra</option>
+                <option value="Hisar">Hisar</option>
+                <option value="Sirsa">Sirsa</option>
+                <option value="Jind">Jind</option>
+                <option value="Rewari">Rewari</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1.5">Availability Status</label>
+              <select id="dir-status-filter" class="w-full px-3 py-2 border border-slate-200 bg-white rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all">
+                <option value="">All Centers</option>
+                <option value="available">Booking Available Only</option>
+              </select>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-500">
+              Showing: <span id="dir-count" class="font-bold text-slate-800">17</span> / 17 centers
+            </div>
+          </div>
+
+          <!-- Right Column: Results List -->
+          <div class="lg:col-span-8 space-y-3" id="dir-results-container">
+            <!-- Rendered dynamically by JavaScript from MOCK_CENTERS -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. PROBLEM VS SOLUTION (EDITORIAL COMPARISON) -->
+    <section id="comparison" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200/60 mb-2">
+            ⚖️ Operational Impact Comparison
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Traditional Market vs. Farm Route Platform
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Why Farm Route brings operational dignity, predictability, and transparency to market procurement.
+          </p>
+        </div>
+
+        <!-- Editorial Split Comparison Table -->
+        <div class="grid grid-cols-1 md:grid-cols-2 border border-slate-200/90 bg-white rounded-2xl divide-y md:divide-y-0 md:divide-x divide-slate-100 shadow-sm overflow-hidden">
+          
+          <!-- Column 1: Traditional Market -->
+          <div class="p-6 md:p-8 space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+              <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold font-mono">✕</span>
+              <h3 class="text-xs font-bold text-rose-900 uppercase tracking-wide">TRADITIONAL MARKET SYSTEM</h3>
+            </div>
+            
+            <ul class="space-y-3 text-xs text-slate-600">
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Uncertain arrival:</strong> Hundreds of tractor-trolleys arrive unannounced simultaneously.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Protracted waiting:</strong> Farmers spend 12 to 36 hours waiting in overnight queues.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Zero queue visibility:</strong> No advance awareness of vehicles ahead or bay status.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Vulnerable paper passes:</strong> High risk of lost paper tokens and queue-jumping conflicts.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Opaque settlement:</strong> Handwritten receipts feature arbitrary deductions and delayed payments.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Farm Route -->
+          <div class="p-6 md:p-8 space-y-4 bg-emerald-50/30">
+            <div class="flex items-center gap-3 pb-3 border-b border-emerald-100/60">
+              <span class="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold font-mono">✓</span>
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide">FARM ROUTE SMART PLATFORM</h3>
+            </div>
+
+            <ul class="space-y-3 text-xs text-slate-700 font-medium">
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
+                <span><strong>Dynamic throughput:</strong> Automatic diversion recommendations to nearby low-load centers.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
+                <span><strong>Guaranteed arrival slots:</strong> 45-minute arrival time slots matched to weighbridge capacity.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
+                <span><strong>Cryptographic tokens:</strong> HMAC-signed QR passes that eliminate tampering and line cutting.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
+                <span><strong>Live queue tracking:</strong> Real-time yard position, vehicles ahead, and estimated wait minutes.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-600 font-bold font-mono mt-0.5">✓</span>
+                <span><strong>Statutory e-J-Forms:</strong> Instant digitally verifiable receipts with direct PFMS/DBT payout.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. COMPACT EDITORIAL BENEFITS LIST -->
+    <section id="benefits" class="py-16 md:py-20 border-b border-slate-200/80 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        
+        <div class="max-w-2xl mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            ✨ Platform Capabilities
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Key Operational Benefits
+          </h2>
+        </div>
+
+        <!-- 2-Column Editorial Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-100 pt-8 text-xs">
+          
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">1. Easy Booking</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Reserve arrival dates and guaranteed hourly weighbridge slots at your convenience.</p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">2. Digital Token</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Paperless HMAC-signed digital pass for seamless check-in at the yard gate.</p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">3. Live Queue</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Track your vehicle's live place in the queue and weighbridge progress in real time.</p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">4. Transparent Procurement</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Automated capture of gross loaded weight, tare vehicle weight, and net crop tonnage.</p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">5. Digital Receipt</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Instant statutory procurement receipt (e-J-Form) generated upon tare weighment.</p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/40 hover:bg-slate-50/80 hover:border-slate-200/80 transition-colors">
+            <span class="font-bold text-slate-900 block text-sm">6. Center Information</span>
+            <p class="text-slate-500 mt-1 leading-relaxed">Transparent insight into daily market tonnage thresholds, accepted crops, and queue loads.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 11. 10-QUESTION EDITORIAL ACCESSIBLE FAQ ACCORDION -->
+    <section id="faq" class="py-16 md:py-20 border-b border-slate-200/80 bg-slate-50/50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        
+        <div class="mb-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
+            💡 Frequently Asked Questions
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 mt-1">
+            Operational FAQ & Help
+          </h2>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Clear operational answers to common questions about slot booking, digital tokens, and procurement.
+          </p>
+        </div>
+
+        <!-- 10 Accessible FAQ Accordion Items -->
+        <div class="border-t border-slate-200/80 divide-y divide-slate-200/70" id="faq-accordion-group">
+
+          <!-- FAQ 1 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-1">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                1. What is Farm Route and how does it work?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-1" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              Farm Route is a digital agricultural procurement and queue management platform. It allows farmers to reserve arrival time slots at government-authorized centers, receive cryptographic digital tokens, and track real-time queue status directly from their mobile phones.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-2">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                2. Is there any fee for slot booking or using the platform?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-2" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              No, Farm Route is entirely free for all farmers. There are no fees for searching centers, reserving time slots, tracking queue positions, or downloading digital procurement receipts.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-3">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                3. How do I find the best procurement center for my crop?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-3" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              Navigate to 'Procurement Centers', choose your crop (e.g., Wheat, Mustard, Paddy) and district. The dynamic throughput engine highlights low-congestion alternative centers with minimal wait times.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-4">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                4. What is a digital token and how is it used?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-4" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              When you book a slot, you receive an HMAC-signed digital pass with an ID (#KS-TKN-xxxx) and QR code. Center operators scan this QR code at the entrance gate to verify your arrival and grant priority lane entry.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-5">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                5. What happens if I am delayed and arrive outside my scheduled window?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-2" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              The system provides a grace buffer. If delayed on the road, you can report a transit delay (+60 min window) from your portal. Vehicles arriving past their buffer are accommodated via the Standby Lane without disrupting scheduled arrivals.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-6">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                6. How does live queue tracking work?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-6" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              In the 'Live Queue' section of the Farmer Portal, you can see your vehicle's exact place in line, the count of vehicles ahead, the active weighbridge scale, and estimated wait minutes.
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-7">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                7. Can I reschedule or cancel an active booking?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-7" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              Yes. As long as your booking is in CONFIRMED status and you haven't yet checked in at the entry gate, you can cancel or rebook at any time from your Farmer Dashboard.
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-8">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                8. What is the weighment and quality inspection process?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-8" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              Upon gate entry, the vehicle undergoes moisture testing at the assay lab. It is then weighed on an electronic weighbridge (Gross Loaded Weight). After grain unloading at the storage shed, the empty trolley is weighed (Tare Weight) to calculate exact net grain tonnage.
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-9">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                9. When and how do I receive the procurement receipt?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-9" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              As soon as tare weighing is verified by the operator, an official statutory APMC Form 'J' e-receipt (#KSP-RCP-xxxx) is generated instantly. You can view, download, or print it from your portal, and payment is processed via DBT.
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="py-4">
+            <button type="button" class="faq-toggle w-full py-1 text-left flex items-center justify-between gap-4 focus:outline-none group" aria-expanded="false" aria-controls="faq-ans-10">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                10. Is this a live government procurement portal?
+              </span>
+              <span class="faq-icon text-slate-400 text-xs font-mono w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-700 transition-colors">[+]</span>
+            </button>
+            <div id="faq-ans-10" class="faq-content pt-3 pb-2 text-xs text-slate-600 leading-relaxed hidden">
+              This platform is developed as a production-grade working prototype and proof-of-concept for Smart India Hackathon (SIH). It operates with realistic simulated data and API connectivity to demonstrate the complete end-to-end digital market workflow.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 12. MINIMAL CALL TO ACTION -->
+    <section class="py-16 md:py-20 relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 text-white">
+      <div class="container mx-auto px-4 text-center max-w-2xl space-y-4 relative z-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          Reserve Your Market Delivery Slot Today
+        </h2>
+        <p class="text-sm text-emerald-100/80 leading-relaxed">
+          Find nearest low-load centers, check live queue conditions, and reserve a guaranteed time window for hassle-free procurement.
+        </p>
+        <div class="pt-3 flex flex-wrap items-center justify-center gap-3">
+          <a href="farmer/centers.html" class="btn bg-white text-emerald-950 hover:bg-slate-100 border-white text-xs font-semibold py-2.5 px-6 rounded-xl shadow-md transition-all">
+            Find Procurement Centers &rarr;
+          </a>
+          <a href="farmer/dashboard.html" class="btn bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 text-xs font-semibold py-2.5 px-6 rounded-xl transition-all">
+            Explore Farmer Portal
+          </a>
+        </div>
+        <div class="text-[11px] text-emerald-300/80 font-mono pt-2">
+          Zero Platform Fee • Operates on Any Smartphone Browser
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 13. MINIMAL TRUSTWORTHY FOOTER -->
+  <footer id="about" class="bg-white border-t border-slate-200/80 pt-10 pb-8 text-xs text-slate-500 font-sans">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <div class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+          FR
+        </div>
+            <span class="font-bold text-slate-900 text-sm">Farm Route</span>
+            <span class="text-slate-400">| Digital Market Platform</span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-500">
+            Digital Market & Agricultural Queue Intelligence Platform — engineered for zero-congestion procurement, verified time slots, and tamper-evident digital receipts.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-3">Navigation</h4>
+          <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs">
+            <a href="#home" class="hover:text-emerald-700 transition-colors">Home</a>
+            <a href="#crops" class="hover:text-emerald-700 transition-colors">Crops</a>
+            <a href="#centers" class="hover:text-emerald-700 transition-colors">Procurement Centers</a>
+            <a href="#journey" class="hover:text-emerald-700 transition-colors">7-Step Process</a>
+            <a href="#faq" class="hover:text-emerald-700 transition-colors">FAQ</a>
+            <a href="farmer/dashboard.html" class="hover:text-emerald-700 transition-colors">Farmer Portal</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-3">Platform Standards</h4>
+          <p class="text-xs leading-relaxed text-slate-500">
+            SIH Innovation Prototype 2026. Built with client-side localStorage simulation and verified operational workflows.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-400">
+        <div>
+          &copy; 2026 Farm Route. Built for SIH / Mentor Demonstration.
+        </div>
+        <div class="font-mono text-amber-800 bg-amber-50 px-2.5 py-1 border border-amber-200/80 rounded-full">
+          Illustrative Prototype Simulation • Demo Data
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Mock Data, Utils, API, and Operational Interactivity -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/voice-assistant.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-open-icon');
+      const closeIcon = document.getElementById('menu-close-icon');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+          mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('hidden');
+          if (openIcon && closeIcon) {
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+          }
+        });
+
+        document.querySelectorAll('.nav-mobile-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            if (openIcon && closeIcon) {
+              openIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+            }
+          });
+        });
+      }
+
+      // 2. Interactive Crop Selector (Item 3)
+      const cropChips = document.querySelectorAll('.crop-chip');
+      const commodities = (window.MOCK_COMMODITIES) || [];
+
+      function selectCrop(cropKey) {
+        const found = commodities.find(c => 
+          (c.nameEnglish && c.nameEnglish.toLowerCase() === cropKey.toLowerCase()) ||
+          (c.name && c.name.toLowerCase().includes(cropKey.toLowerCase()))
+        );
+
+        if (!found) return;
+
+        // Update active chip UI
+        cropChips.forEach(chip => {
+          if (chip.dataset.crop.toLowerCase() === cropKey.toLowerCase()) {
+            chip.classList.add('active');
+            chip.classList.remove('bg-white', 'text-slate-700');
+          } else {
+            chip.classList.remove('active');
+            chip.classList.add('bg-white', 'text-slate-700');
+          }
+        });
+
+        // Update panel info
+        const panelName = document.getElementById('panel-crop-name');
+        const panelHindi = document.getElementById('panel-crop-hindi');
+        const panelSeason = document.getElementById('panel-crop-season');
+        const panelCategory = document.getElementById('panel-crop-category');
+        const panelRate = document.getElementById('panel-crop-rate');
+        const panelMoisture = document.getElementById('panel-crop-moisture');
+        const panelBtn = document.getElementById('panel-crop-action-btn');
+
+        if (panelName) panelName.textContent = (found.nameEnglish || found.name || '').toUpperCase();
+        if (panelHindi) panelHindi.textContent = `${found.nameEnglish || found.name} (Grade A Certified)`;
+        if (panelSeason) panelSeason.textContent = found.season || 'Rabi Crop';
+        if (panelCategory) panelCategory.textContent = found.category || 'Grain';
+        if (panelRate) panelRate.textContent = `₹${(found.mspPerQuintal || found.demoRate).toLocaleString('en-IN')} / Q`;
+        if (panelMoisture) panelMoisture.textContent = `${found.moistureMaxPercent || 12.0}% Max`;
+        if (panelBtn) panelBtn.href = `farmer/centers.html?commodity=${encodeURIComponent(found.nameEnglish || found.name)}`;
+      }
+
+      cropChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          selectCrop(chip.dataset.crop);
+        });
+      });
+
+      // 4. Operational Centers Directory Listing (Item 4)
+      const centers = (window.MOCK_CENTERS) || [];
+      const dirContainer = document.getElementById('dir-results-container');
+      const dirCropFilter = document.getElementById('dir-crop-filter');
+      const dirDistrictFilter = document.getElementById('dir-district-filter');
+      const dirStatusFilter = document.getElementById('dir-status-filter');
+      const dirResetBtn = document.getElementById('dir-reset-btn');
+      const dirCount = document.getElementById('dir-count');
+
+      function renderCentersDirectory() {
+        if (!dirContainer) return;
+
+        const selCrop = dirCropFilter ? dirCropFilter.value.toLowerCase() : '';
+        const selDist = dirDistrictFilter ? dirDistrictFilter.value.toLowerCase() : '';
+        const selStatus = dirStatusFilter ? dirStatusFilter.value : '';
+
+        const filtered = centers.filter(c => {
+          // Crop check
+          const cropsList = [
+            c.commodity,
+            ...(Array.isArray(c.commodities) ? c.commodities : []),
+            ...(Array.isArray(c.acceptedCrops) ? c.acceptedCrops : [])
+          ].filter(Boolean).join(' ').toLowerCase();
+          const matchCrop = !selCrop || cropsList.includes(selCrop);
+
+          // District check
+          const matchDist = !selDist || (c.district && c.district.toLowerCase() === selDist);
+
+          // Status check
+          const isAvail = typeof window.KisanUtils !== 'undefined' ? window.KisanUtils.isCenterAcceptingBookings(c.id) : true;
+          const matchStatus = !selStatus || isAvail;
+
+          return matchCrop && matchDist && matchStatus;
+        });
+
+        if (dirCount) dirCount.textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          dirContainer.innerHTML = `
+            <div class="p-8 bg-white border border-slate-200/80 text-center text-xs text-slate-500 rounded-2xl shadow-xs">
+              No procurement centers match the selected criteria. Please adjust your filters.
+            </div>
+          `;
+          return;
+        }
+
+        dirContainer.innerHTML = filtered.slice(0, 5).map(c => {
+          const isAvail = typeof window.KisanUtils !== 'undefined' ? window.KisanUtils.isCenterAcceptingBookings(c.id) : true;
+          const statusBadge = isAvail 
+            ? `<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full">● Booking Available</span>`
+            : `<span class="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/70 px-2.5 py-0.5 rounded-full">⚠️ Booking Paused</span>`;
+
+          const loadUpper = String(c.loadStatus || 'MODERATE').toUpperCase();
+          const loadMeter = loadUpper === 'LOW' ? '███░░░░░░░ 30%' : (loadUpper === 'HIGH' ? '█████████░ 90%' : '██████░░░░ 60%');
+
+          const bookBtn = isAvail
+            ? `<a href="farmer/booking.html?centerId=${encodeURIComponent(c.id)}" class="btn btn-primary text-[11px] font-semibold py-1.5 px-3.5 rounded-xl shadow-xs">Book Slot</a>`
+            : `<button disabled class="btn btn-outline text-[11px] font-semibold py-1.5 px-3.5 rounded-xl opacity-50 cursor-not-allowed">Unavailable</button>`;
+
+          return `
+            <div class="bg-white border border-slate-200/80 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-xs hover:shadow-sm hover:border-emerald-500/40 transition-all">
+              <div class="space-y-1.5 flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono font-bold text-slate-400">${c.id}</span>
+                  <h4 class="text-sm font-bold text-slate-900">${c.name}</h4>
+                  ${statusBadge}
+                </div>
+                <div class="text-[11px] text-slate-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span>${c.district}, ${c.state}</span>
+                  <span>•</span>
+                  <span>Crop: <strong>${c.commodity || 'Mixed'}</strong></span>
+                  <span>•</span>
+                  <span class="font-mono">Queue: <strong>${c.currentQueueVehicles} vehicles</strong></span>
+                  <span>•</span>
+                  <span class="font-mono text-amber-800">Wait: <strong>~${c.estimatedWaitMinutes} min</strong></span>
+                </div>
+                <div class="text-[10px] font-mono text-slate-400 pt-0.5">
+                  Load: ${loadMeter} • Daily Cap: ${c.dailyCapacity || (c.dailyCapacityMT + ' MT')}
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                <a href="farmer/center-details.html?id=${encodeURIComponent(c.id)}" class="btn btn-outline text-[11px] font-semibold py-1.5 px-3 rounded-xl border-slate-200 hover:bg-slate-50">
+                  View
+                </a>
+                ${bookBtn}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      dirCropFilter?.addEventListener('change', renderCentersDirectory);
+      dirDistrictFilter?.addEventListener('change', renderCentersDirectory);
+      dirStatusFilter?.addEventListener('change', renderCentersDirectory);
+      dirResetBtn?.addEventListener('click', () => {
+        if (dirCropFilter) dirCropFilter.value = '';
+        if (dirDistrictFilter) dirDistrictFilter.value = '';
+        if (dirStatusFilter) dirStatusFilter.value = '';
+        renderCentersDirectory();
+      });
+
+      renderCentersDirectory();
+
+      // 5. Accessible FAQ Accordion (Item 9)
+      const faqToggles = document.querySelectorAll('.faq-toggle');
+      faqToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          const targetId = btn.getAttribute('aria-controls');
+          const content = document.getElementById(targetId);
+          const icon = btn.querySelector('.faq-icon');
+
+          // Single-open accordion
+          faqToggles.forEach(otherBtn => {
+            if (otherBtn !== btn) {
+              otherBtn.setAttribute('aria-expanded', 'false');
+              const otherTarget = document.getElementById(otherBtn.getAttribute('aria-controls'));
+              if (otherTarget) otherTarget.classList.add('hidden');
+              const otherIcon = otherBtn.querySelector('.faq-icon');
+              if (otherIcon) otherIcon.textContent = '[+]';
+            }
+          });
+
+          if (isExpanded) {
+            btn.setAttribute('aria-expanded', 'false');
+            content?.classList.add('hidden');
+            if (icon) icon.textContent = '[+]';
+          } else {
+            btn.setAttribute('aria-expanded', 'true');
+            content?.classList.remove('hidden');
+            if (icon) icon.textContent = '[−]';
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+
+</html>
